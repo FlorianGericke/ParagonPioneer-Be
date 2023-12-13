@@ -3,8 +3,8 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-.gradle
-.code
+.gradle/
+.vscode/
 
 ### STS ###
 .apt_generated
@@ -24,6 +24,7 @@ bin/
 *.iml
 *.ipr
 out/
+build/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
