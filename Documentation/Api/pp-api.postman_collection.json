@@ -1,0 +1,1274 @@
+{
+	"info": {
+		"_postman_id": "e9560e52-874b-4133-a8b2-0f0f5404dca6",
+		"name": "pp-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26034033",
+		"_collection_link": "https://enventory-api.postman.co/workspace/pp-api~19b54b72-1463-47fc-a854-475b5b0f80e9/collection/26034033-e9560e52-874b-4133-a8b2-0f0f5404dca6?action=share&source=collection_link&creator=26034033"
+	},
+	"item": [
+		{
+			"name": "building",
+			"item": [
+				{
+					"name": "building",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buildings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "0e301b77-f1c2-49fa-bdff-c636677b1275"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"putchange\",\n    \"remarks\": \"TestRemarkPut\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "0e301b77-f1c2-49fa-bdff-c636677b1275"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"patch\",\n    \"remarks\": \"TestRemarkpatch\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "0e301b77-f1c2-49fa-bdff-c636677b1275"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "0e301b77-f1c2-49fa-bdff-c636677b1275"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "good",
+			"item": [
+				{
+					"name": "good",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"good"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "goods",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"good"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "good by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "01b7d7e0-a488-40cd-bc45-b30e5bdc5b93"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "good by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"putchange\",\n    \"remarks\": \"TestRemarkPut\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "01b7d7e0-a488-40cd-bc45-b30e5bdc5b93"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "good by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"patch\",\n    \"remarks\": \"TestRemarkpatch\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "01b7d7e0-a488-40cd-bc45-b30e5bdc5b93"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "good by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "01b7d7e0-a488-40cd-bc45-b30e5bdc5b93"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "population",
+			"item": [
+				{
+					"name": "population",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Testname\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"population"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "populations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"population"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "population by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"population",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "35b97c0d-5579-422a-ba60-f29335ef7644"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "population by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"putchange\",\n    \"remarks\": \"TestRemarkpatch\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"population",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a51aaa6d-8912-4caa-9178-c04aa71ddea6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "population by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"patch\",\n    \"remarks\": \"TestRemarkpatch\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"population",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a51aaa6d-8912-4caa-9178-c04aa71ddea6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "population by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"population",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1ad61738-c4fe-4fb2-a92b-0d66f68e9678"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "requirement",
+			"item": [
+				{
+					"name": "requirement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"good_id\":\"05904ea4-f6e0-41c3-bc6d-0c89ac8b89f7\",\n    \"population_id\":\"1a407814-1604-4ae2-a452-f471b8e0f7ce\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"requirement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requirements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"requirement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requirement by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"requirement",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3a8cf9d7-0dd1-4065-8b55-4c976cc89f9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requirement by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"good_id\":\"05904ea4-f6e0-41c3-bc6d-0c89ac8b89f7\",\n    \"population_id\":\"1a407814-1604-4ae2-a452-f471b8e0f7ce\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"requirement",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3a8cf9d7-0dd1-4065-8b55-4c976cc89f9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requirement by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"good_id\":\"05904ea4-f6e0-41c3-bc6d-0c89ac8b89f7\",\n    \"population_id\":\"1a407814-1604-4ae2-a452-f471b8e0f7ce\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"requirement",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "population by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"requirement",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3a8cf9d7-0dd1-4065-8b55-4c976cc89f9e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cost/building_goods",
+			"item": [
+				{
+					"name": "building_goods",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building_id\": \"63b87d14-f346-4cab-9dc5-bb4afe6bbab2\",\n    \"good_id\":\"04ba4970-f2f7-424a-9e34-f928171b6bb2\",\n    \"amount\":\"10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_good",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_good"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_goods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_good",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_good"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_good by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_good/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_good",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_good by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building_id\": \"63b87d14-f346-4cab-9dc5-bb4afe6bbab2\",\n    \"good_id\":\"04ba4970-f2f7-424a-9e34-f928171b6bb2\",\n    \"amount\":\"5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_good/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_good",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_good by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building_id\": \"63b87d14-f346-4cab-9dc5-bb4afe6bbab2\",\n    \"good_id\":\"04ba4970-f2f7-424a-9e34-f928171b6bb2\",\n    \"amount\":\"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_good/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_good",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_good by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_good/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_good",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cost/building_population",
+			"item": [
+				{
+					"name": "building_population",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building_id\": \"55aa311a-152e-4333-8531-9a625ce59129\",\n    \"population_id\":\"2dd5ebd9-0ec7-49e0-b66f-7e992d35308e\",\n    \"amount\":\"100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_population"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_populations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_population"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_population by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_population",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1d14a2b8-3c1e-4b1a-881d-20604d417ccb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_population by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building_id\": \"55aa311a-152e-4333-8531-9a625ce59129\",\n    \"population_id\":\"2dd5ebd9-0ec7-49e0-b66f-7e992d35308e\",\n    \"amount\":\"500\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_population",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1d14a2b8-3c1e-4b1a-881d-20604d417ccb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_population by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building_id\": \"55aa311a-152e-4333-8531-9a625ce59129\",\n    \"population_id\":\"2dd5ebd9-0ec7-49e0-b66f-7e992d35308e\",\n    \"amount\":\"100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_population",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1d14a2b8-3c1e-4b1a-881d-20604d417ccb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "building_population by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"cost",
+								"building_population",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1d14a2b8-3c1e-4b1a-881d-20604d417ccb"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BasePath",
+			"value": "http://127.0.0.1",
+			"type": "string"
+		},
+		{
+			"key": "port",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"key": "ApiVersion",
+			"value": "v1",
+			"type": "string"
+		}
+	]
+}
