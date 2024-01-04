@@ -8,7 +8,7 @@ import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component(value = " costBuildingGoodsService")
+@Component(value = "costBuildingGoodsService")
 public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods, Cost_Building_GoodsRepository, Cost_Building_GoodsDTO> {
     private final GoodRepository goodRepository;
     private final BuildingRepository buildingRepository;

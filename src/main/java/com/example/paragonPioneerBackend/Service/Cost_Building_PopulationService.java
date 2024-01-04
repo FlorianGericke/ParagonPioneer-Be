@@ -6,16 +6,16 @@ import com.example.paragonPioneerBackend.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component(value = " costBuildingPopulationService")
+@Component(value = "costBuildingPopulationService")
 public class Cost_Building_PopulationService extends BaseService<Cost_Building_Population, Cost_Building_PopulationRepository, Cost_Building_PopulationDTO> {
     private final PopulationRepository populationRepository;
-    private final BuildingRepository buildingRepository;
+    private final PopulationBuildingRepository populationBuildingRepository;
 
     @Autowired
-    public Cost_Building_PopulationService(Cost_Building_PopulationRepository repository, PopulationRepository populationRepository, BuildingRepository buildingRepository) {
+    public Cost_Building_PopulationService(Cost_Building_PopulationRepository repository, PopulationRepository populationRepository, PopulationBuildingRepository populationBuildingRepository) {
         super(repository);
         this.populationRepository = populationRepository;
-        this.buildingRepository = buildingRepository;
+        this.populationBuildingRepository = populationBuildingRepository;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Cost_Building_PopulationService extends BaseService<Cost_Building_P
         return repository.save(
                 Cost_Building_Population.builder()
                         .population(populationRepository.findById(costBuildingPopulationDTO.getPopulationId()).get())
-                        .building(buildingRepository.findById(costBuildingPopulationDTO.getBuildingId()).get())
+                        .building(populationBuildingRepository.findById(costBuildingPopulationDTO.getBuildingId()).get())
                         .amount(costBuildingPopulationDTO.getAmount())
                         .build()
         );
@@ -31,7 +31,7 @@ public class Cost_Building_PopulationService extends BaseService<Cost_Building_P
 
     @Override
     public Cost_Building_Population putPatch(Cost_Building_Population original, Cost_Building_PopulationDTO costBuildingPopulationDTO) {
-        original.setBuilding(costBuildingPopulationDTO.getBuildingId() == null ? original.getBuilding() : buildingRepository.findById(costBuildingPopulationDTO.getBuildingId()).get());
+        original.setBuilding(costBuildingPopulationDTO.getBuildingId() == null ? original.getBuilding() : populationBuildingRepository.findById(costBuildingPopulationDTO.getBuildingId()).get());
         original.setPopulation(costBuildingPopulationDTO.getPopulationId() == null ? original.getPopulation() : populationRepository.findById(costBuildingPopulationDTO.getPopulationId()).get());
         if (original.getAmount() != costBuildingPopulationDTO.getAmount()) {
             original.setAmount(costBuildingPopulationDTO.getAmount());

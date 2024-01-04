@@ -1,8 +1,8 @@
 package com.example.paragonPioneerBackend.Entity.JoinTables;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
-import com.example.paragonPioneerBackend.Entity.Building;
 import com.example.paragonPioneerBackend.Entity.Population;
+import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -29,7 +29,7 @@ public class Cost_Building_Population extends BaseEntity {
     @OneToOne()
     @JsonBackReference
     @JoinColumn(name = "building_id")
-    Building building;
+    PopulationBuilding building;
 
     @Column()
     private int amount;
