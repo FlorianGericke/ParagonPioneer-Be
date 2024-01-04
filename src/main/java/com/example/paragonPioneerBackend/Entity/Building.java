@@ -1,26 +1,26 @@
 package com.example.paragonPioneerBackend.Entity;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
-import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Population;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import java.util.Set;
 
+
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Getter
 @Setter
 @ToString
-@Builder
-@RequiredArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE building SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-public class Building extends BaseEntity {
-
+@NoArgsConstructor
+public abstract class Building extends BaseEntity{
     @Column(nullable = false, length = 255)
     private String name;
 
@@ -31,9 +31,4 @@ public class Building extends BaseEntity {
     @JsonManagedReference
     @ToString.Exclude
     Set<Cost_Building_Goods> costs;
-
-    @OneToOne(mappedBy = "building")
-    @JsonManagedReference
-    @ToString.Exclude
-    Cost_Building_Population population;
 }
