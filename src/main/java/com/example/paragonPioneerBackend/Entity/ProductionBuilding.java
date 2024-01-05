@@ -23,12 +23,13 @@ public class ProductionBuilding extends Building {
 
     @OneToOne()
     @JoinColumn(name = "recipe", nullable = true)
-    Recipe recipe = null;
+    private Recipe recipe = null;
 
     @Builder
-    public ProductionBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, float productionPerMinute) {
+    public ProductionBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, float productionPerMinute, Recipe recipe) {
         super(name, remarks, costs);
         this.productionPerMinute = productionPerMinute;
+        this.recipe = recipe;
     }
 
     public ProductionBuilding() {
