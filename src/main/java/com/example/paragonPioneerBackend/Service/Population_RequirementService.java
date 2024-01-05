@@ -26,7 +26,7 @@ public class Population_RequirementService extends BaseService<Population_Requir
         return repository.save(Population_Requirement.builder()
                 .population(populationRepository.findById(populationRequirementDTO.getPopulationId()).get())
                 .good(goodRepository.findById(populationRequirementDTO.getGoodId()).get())
-                .income(populationRequirementDTO.getIncome())
+                .produce(populationRequirementDTO.getProduce())
                 .consumption(populationRequirementDTO.getConsumption())
                 .isBasic(populationRequirementDTO.isBasic())
                 .build());
@@ -36,8 +36,8 @@ public class Population_RequirementService extends BaseService<Population_Requir
     public Population_Requirement putPatch(Population_Requirement original, Population_RequirementDTO populationRequirementDTO) {
         original.setPopulation(populationRequirementDTO.getPopulationId() == null ? original.getPopulation() : populationRepository.findById(populationRequirementDTO.getPopulationId()).get());
         original.setGood(populationRequirementDTO.getGoodId() == null ? original.getGood() : goodRepository.findById(populationRequirementDTO.getGoodId()).get());
-        if (original.getIncome() != populationRequirementDTO.getIncome()) {
-            original.setIncome(populationRequirementDTO.getIncome());
+        if (original.getProduce() != populationRequirementDTO.getProduce()) {
+            original.setProduce(populationRequirementDTO.getProduce());
         }
         if (original.isBasic() != populationRequirementDTO.isBasic()) {
             original.setBasic(populationRequirementDTO.isBasic());

@@ -14,7 +14,7 @@ public class Population_RequirementInserter {
     private final PopulationRepository populationRepository;
     private final GoodRepository goodRepository;
 
-    private record Inserter(String populationName, String goodName, float consumption, float income, boolean isBasic) {
+    private record Inserter(String populationName, String goodName, float consumption, float produce, boolean isBasic) {
     }
 
     Inserter[] inserts = {
@@ -72,7 +72,7 @@ public class Population_RequirementInserter {
                             .good(goodRepository.findByNameIs(insert.goodName))
                             .population(populationRepository.findByNameIs(insert.populationName))
                             .consumption(insert.consumption)
-                            .income(insert.income)
+                            .produce(insert.produce)
                             .isBasic(insert.isBasic)
                             .build()
             );
