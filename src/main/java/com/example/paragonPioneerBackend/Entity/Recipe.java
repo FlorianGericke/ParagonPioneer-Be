@@ -12,9 +12,9 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-//@Builder
-//@RequiredArgsConstructor
-//@AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 @SQLDelete(sql = "UPDATE recipe SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
 public class Recipe extends BaseEntity {
