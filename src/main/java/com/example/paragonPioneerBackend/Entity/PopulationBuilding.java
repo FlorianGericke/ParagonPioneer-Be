@@ -15,12 +15,12 @@ import java.util.Set;
 @ToString
 public class PopulationBuilding extends Building {
 
-    private int capacity;
+    private int capacity = 0;
 
     @OneToOne(mappedBy = "building")
     @JsonManagedReference
     @ToString.Exclude
-    Cost_Building_Population population;
+    Cost_Building_Population population = null;
 
     @Builder
     public PopulationBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, int capacity) {
