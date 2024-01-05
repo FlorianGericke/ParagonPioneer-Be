@@ -23,8 +23,8 @@ public class Population_RequirementDTO{
     @JsonProperty("consumption")
     private float consumption;
 
-    @JsonProperty("income")
-    private float income;
+    @JsonProperty("produce")
+    private float produce;
 
     @JsonProperty("isBasic")
     private boolean isBasic;

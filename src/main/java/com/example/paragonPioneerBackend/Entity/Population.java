@@ -21,6 +21,11 @@ import java.util.Set;
 @SQLDelete(sql = "UPDATE population SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
 public class Population extends BaseEntity {
+    public enum PopulationProductionUnit {
+        Militias,
+        Income,
+        Favor
+    }
 
     @Column(name="name", nullable = true, columnDefinition = "TEXT")
     private String name;
@@ -34,4 +39,20 @@ public class Population extends BaseEntity {
     @JsonBackReference
     @ToString.Exclude
     Set<Cost_Building_Population> requiredBuilding;
+
+    public PopulationProductionUnit getPopulationProductionUnit(){
+        if (getName() == null){
+            return null;
+        }
+
+        if (getName().equals("Pioneers")){
+            return PopulationProductionUnit.Militias;
+        }
+
+        if (getName().equals("Paragons")){
+            return PopulationProductionUnit.Favor;
+        }
+
+        return PopulationProductionUnit.Income;
+    }
 }
