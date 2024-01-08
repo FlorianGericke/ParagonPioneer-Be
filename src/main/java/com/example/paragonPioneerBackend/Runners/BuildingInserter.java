@@ -17,15 +17,15 @@ public class BuildingInserter {
     }
 
     Inserter[] inserts = {
-            new Inserter("Lumberjack", "", 0, ""),
+            new Inserter("Lumberjack", "Wood", 5f, ""),
             new Inserter("Forester", "", 0, ""),
             new Inserter("Warehouse I", "", 0, ""),
-            new Inserter("Well", "", 0, ""),
+            new Inserter("Well", "Water", 0.01666666667f, ""),
             new Inserter("Kontor I", "", 0, ",Limited to one per island"),
             new Inserter("Fisherman", "Fish", 0.75f, ""),
-            new Inserter("Sawmill", "", 0, ""),
-            new Inserter("Potato Field", "", 0, ""),
-            new Inserter("Potato Farm", "", 0, "")
+            new Inserter("Sawmill", "Plank", 5f, ""),
+            new Inserter("Potato Field", "Potato Field", 0.01666666667f, ""),
+            new Inserter("Potato Farm", "Schnaps", 1f, "")
     };
 
     public void run() {
