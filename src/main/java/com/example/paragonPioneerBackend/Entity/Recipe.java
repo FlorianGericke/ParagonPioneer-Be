@@ -5,6 +5,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+/**
+ * Entity representing a Recipe
+ */
 @Entity
 @Getter
 @Setter

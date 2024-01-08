@@ -10,6 +10,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+/**
+ * Entity for join table Required_Populations_Building
+ */
 @Entity
 @Getter
 @Setter
@@ -24,12 +27,12 @@ public class Requirement_Population_Building extends BaseEntity {
     @ManyToOne()
     @JoinColumn(name = "population_id")
     @JsonManagedReference
-    Population population;
+    private Population population;
 
     @OneToOne()
     @JsonBackReference
     @JoinColumn(name = "building_id")
-    Building building;
+    private Building building;
 
     @Column()
     private int amount;

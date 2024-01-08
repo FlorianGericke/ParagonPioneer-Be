@@ -11,6 +11,9 @@ import org.hibernate.annotations.Where;
 
 import java.util.Set;
 
+/**
+ * Entity representing a Good
+ */
 @Entity
 @Getter
 @Setter
@@ -31,5 +34,5 @@ public class Good extends BaseEntity {
     @OneToMany(mappedBy = "good")
     @JsonBackReference
     @ToString.Exclude
-    Set<Cost_Building_Goods> neededForBuildings;
+    private Set<Cost_Building_Goods> neededForBuildings;
 }

@@ -10,7 +10,10 @@ import org.hibernate.annotations.Where;
 
 import java.util.Set;
 
-
+/**
+ * BaseClass for Buildings
+ * Contains all attributes and properties a building has to provide
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Getter
@@ -30,10 +33,10 @@ public abstract class Building extends BaseEntity{
     @OneToMany(mappedBy = "building")
     @JsonManagedReference
     @ToString.Exclude
-    Set<Cost_Building_Goods> costs;
+    private Set<Cost_Building_Goods> costs;
 
     @OneToOne(mappedBy = "building")
     @JsonManagedReference
     @ToString.Exclude
-    Requirement_Population_Building requirePopulation = null;
+    private Requirement_Population_Building requirePopulation = null;
 }

@@ -23,19 +23,19 @@ public class BaseEntity {
      * date the entity was created
      */
     @Column(name = "created_at", nullable = false)
-    protected LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
     /**
      * date the entity was last updated
      */
     @Column(name = "updated_at", nullable = true)
-    protected LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;
 
     /**
      * date the entity was deleted
      */
     @Column(name = "deleted_at", nullable = true)
-    protected LocalDateTime deletedAt;
+    private LocalDateTime deletedAt;
 
 
     @PrePersist
@@ -56,6 +56,10 @@ public class BaseEntity {
         this.deletedAt = LocalDateTime.now();
     }
 
+    /**
+     * get state of the entity
+     * @return EntityState of the entity
+     */
     protected EntityState getState() {
         if(deletedAt != null) {
             return EntityState.DELETED;

@@ -11,6 +11,9 @@ import org.hibernate.annotations.Where;
 
 import java.util.Set;
 
+/**
+ * Entity representing a Population
+ */
 @Entity
 @Getter
 @Setter
@@ -21,6 +24,10 @@ import java.util.Set;
 @SQLDelete(sql = "UPDATE population SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
 public class Population extends BaseEntity {
+
+    /**
+     * Enum of all possible procurements ot a population
+     */
     public enum PopulationProductionUnit {
         Militias,
         Income,
@@ -33,13 +40,17 @@ public class Population extends BaseEntity {
     @OneToMany(mappedBy = "population")
     @JsonManagedReference
     @ToString.Exclude
-    Set<Population_Requirement> requiredGoods;
+    private Set<Population_Requirement> requiredGoods;
 
     @OneToMany(mappedBy = "population")
     @JsonBackReference
     @ToString.Exclude
-    Set<Requirement_Population_Building> requiredBuilding;
+    private Set<Requirement_Population_Building> requiredBuilding;
 
+    /**
+     * get the Type of the production for this population
+     * @return PopulationProductionUnit of this entity
+     */
     public PopulationProductionUnit getPopulationProductionUnit(){
         if (getName() == null){
             return null;
