@@ -99,10 +99,18 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
         return null;
     }
 
+    /**
+     * get all ProductionBuildings
+     * @return List of all ProductionBuildings
+     */
     public List<ProductionBuilding> getAllProductionBuilding() {
         return productionBuildingRepository.findAll();
     }
 
+    /**
+     * get all PopulationBuildings
+     * @return  List of all PopulationBuildings
+     */
     public List<PopulationBuilding> getAlPopulationBuilding() {
         return populationBuildingRepository.findAll();
     }

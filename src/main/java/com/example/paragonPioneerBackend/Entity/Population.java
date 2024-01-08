@@ -29,8 +29,19 @@ public class Population extends BaseEntity {
      * Enum of all possible procurements ot a population
      */
     public enum PopulationProductionUnit {
+        /**
+         * Population creates Militias
+         */
         Militias,
+
+        /**
+         * Population creates Income
+         */
         Income,
+
+        /**
+         * Population creates Favor
+         */
         Favor
     }
 

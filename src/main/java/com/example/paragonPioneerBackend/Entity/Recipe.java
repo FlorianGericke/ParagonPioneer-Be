@@ -19,6 +19,11 @@ import org.hibernate.annotations.Where;
 @Where(clause = "deleted_at IS NULL")
 public class Recipe extends BaseEntity {
 
+    /**
+     * record stores quantity of the needed input
+     * @param good the input good
+     * @param quantity the quantity of the input good
+     */
     public record QuantityOfGood(Good good, int quantity) {
     }
 
@@ -96,6 +101,10 @@ public class Recipe extends BaseEntity {
     @JoinColumn(name = "output")
     private Good output;
 
+    /**
+     * get Quantity and Good
+     * @return Array containing aa record QuantityOfGood(Good good, int quantity)
+     */
     public QuantityOfGood[] getQuantityOfGoods() {
         QuantityOfGood[] re = new QuantityOfGood[10];
         re[0] = new QuantityOfGood(getInput1(), getQuantityOfInput1());
