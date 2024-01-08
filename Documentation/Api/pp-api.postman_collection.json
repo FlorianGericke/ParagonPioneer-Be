@@ -11,13 +11,13 @@
 			"name": "building",
 			"item": [
 				{
-					"name": "building",
+					"name": "PopulationBuilding",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\",\n    \"capacity\" : 100\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -25,7 +25,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/population",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -33,7 +33,38 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
-								"building"
+								"building",
+								"population"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductionBuilding",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunctionnnnnnnnnn\",\n    \"remarks\": \"TestRemark\",\n    \"production_per_minute\" : 100.0,\n    \"id_of_recipe\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/production",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								"production"
 							]
 						}
 					},
@@ -103,7 +134,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "0e301b77-f1c2-49fa-bdff-c636677b1275"
+									"value": "13066bdb-bff0-4fe2-a327-99cba67edb79"
 								}
 							]
 						}
@@ -111,13 +142,13 @@
 					"response": []
 				},
 				{
-					"name": "building by id",
+					"name": "PopulationBuilding by id",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"putchange\",\n    \"remarks\": \"TestRemarkPut\"\n}\n",
+							"raw": "{\n    \"name\": \"putchange\",\n    \"remarks\": \"TestRemarkPut\",\n    \"capacity\" : 150\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -125,7 +156,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/population/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -134,12 +165,13 @@
 								"api",
 								"{{ApiVersion}}",
 								"building",
+								"population",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "0e301b77-f1c2-49fa-bdff-c636677b1275"
+									"value": "1739111a-41a6-4dee-88cd-399d26014a8e"
 								}
 							]
 						}
@@ -147,13 +179,13 @@
 					"response": []
 				},
 				{
-					"name": "building by id",
+					"name": "PopulationBuilding by id",
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"patch\",\n    \"remarks\": \"TestRemarkpatch\"\n}",
+							"raw": "{\n    \"name\": \"patch\",\n    \"remarks\": \"TestRemarkpatch\",\n    \"capacity\" : 100\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -161,7 +193,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/population/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -170,12 +202,87 @@
 								"api",
 								"{{ApiVersion}}",
 								"building",
+								"population",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "0e301b77-f1c2-49fa-bdff-c636677b1275"
+									"value": "1739111a-41a6-4dee-88cd-399d26014a8e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductionBuilding by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"meias\",\n    \"remarks\": \"TestRemark\",\n    \"production_per_minute\" : 100.0,\n    \"id_of_recipe\": null\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/production/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								"production",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "371b1e16-d140-4c20-8396-deef7cf7214e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductionBuilding by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"patch\",\n    \"remarks\": \"TestRemarkpatch\",\n     \"production_per_minute\" : 100.0,\n    \"id_of_recipe\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/production/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								"production",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "b04fffe3-a86d-48b3-8254-f0532cf6fc56"
 								}
 							]
 						}
@@ -302,7 +409,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -310,12 +417,13 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
+								"good",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "01b7d7e0-a488-40cd-bc45-b30e5bdc5b93"
+									"value": "0dac9653-9b56-4271-9089-2e2c3fc10aa5"
 								}
 							]
 						}
@@ -337,7 +445,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -345,12 +453,13 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
+								"good",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "01b7d7e0-a488-40cd-bc45-b30e5bdc5b93"
+									"value": "0dac9653-9b56-4271-9089-2e2c3fc10aa5"
 								}
 							]
 						}
@@ -372,7 +481,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -380,12 +489,13 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
+								"good",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "01b7d7e0-a488-40cd-bc45-b30e5bdc5b93"
+									"value": "0dac9653-9b56-4271-9089-2e2c3fc10aa5"
 								}
 							]
 						}
@@ -407,7 +517,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -415,12 +525,226 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
+								"good",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "01b7d7e0-a488-40cd-bc45-b30e5bdc5b93"
+									"value": "0dac9653-9b56-4271-9089-2e2c3fc10aa5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recipe",
+			"item": [
+				{
+					"name": "recipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"input_1\": \"Copper Ingot\",\n   \"quantity_of_input_1\": 2,\n    \n    \"output\":\"Feast\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipe by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"recipe",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "d6f01531-8b9b-4b97-85b8-17da1a754e5f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipe by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"input_5\": \"Schnapps\",\n   \"quantity_of_input_5\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"recipe",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "d6f01531-8b9b-4b97-85b8-17da1a754e5f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipe by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"input_5\": \"Schnapps\",\n   \"quantity_of_input_5\": 2,\n\n   \"input_7\": \"Flour\",\n   \"quantity_of_input_7\": 2,\n\n   \"input_10\": \"Cigar\",\n   \"quantity_of_input_10\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"recipe",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "d6f01531-8b9b-4b97-85b8-17da1a754e5f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipe by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"recipe",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "d6f01531-8b9b-4b97-85b8-17da1a754e5f"
 								}
 							]
 						}
@@ -525,7 +849,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "35b97c0d-5579-422a-ba60-f29335ef7644"
+									"value": "a0e5d411-5243-4f8b-a7c8-2507334aab5b"
 								}
 							]
 						}
@@ -561,7 +885,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "a51aaa6d-8912-4caa-9178-c04aa71ddea6"
+									"value": "a0e5d411-5243-4f8b-a7c8-2507334aab5b"
 								}
 							]
 						}
@@ -597,7 +921,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "a51aaa6d-8912-4caa-9178-c04aa71ddea6"
+									"value": "a0e5d411-5243-4f8b-a7c8-2507334aab5b"
 								}
 							]
 						}
@@ -643,7 +967,7 @@
 			]
 		},
 		{
-			"name": "requirement",
+			"name": "relation/population_requirement",
 			"item": [
 				{
 					"name": "requirement",
@@ -652,7 +976,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"good_id\":\"05904ea4-f6e0-41c3-bc6d-0c89ac8b89f7\",\n    \"population_id\":\"1a407814-1604-4ae2-a452-f471b8e0f7ce\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
+							"raw": "{\n    \"good_id\":\"29867411-7272-4057-9220-fbe792a0e4e9\",\n    \"population_id\":\"6ed26103-7519-43c7-932d-80b84b3987bb\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -726,7 +1050,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "3a8cf9d7-0dd1-4065-8b55-4c976cc89f9e"
+									"value": "b8bdd015-951e-4af1-93e4-9e378578d5cd"
 								}
 							]
 						}
@@ -740,7 +1064,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"good_id\":\"05904ea4-f6e0-41c3-bc6d-0c89ac8b89f7\",\n    \"population_id\":\"1a407814-1604-4ae2-a452-f471b8e0f7ce\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
+							"raw": "{\n    \"good_id\":\"04b00ce2-0851-4cfc-9114-9bbc20b0782e\",\n    \"population_id\":\"a0e5d411-5243-4f8b-a7c8-2507334aab5b\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -762,7 +1086,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "3a8cf9d7-0dd1-4065-8b55-4c976cc89f9e"
+									"value": "b8bdd015-951e-4af1-93e4-9e378578d5cd"
 								}
 							]
 						}
@@ -776,7 +1100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"good_id\":\"05904ea4-f6e0-41c3-bc6d-0c89ac8b89f7\",\n    \"population_id\":\"1a407814-1604-4ae2-a452-f471b8e0f7ce\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
+							"raw": "{\n\"good_id\":\"04b00ce2-0851-4cfc-9114-9bbc20b0782e\",\n    \"population_id\":\"a0e5d411-5243-4f8b-a7c8-2507334aab5b\",\n    \"consumption\": 2.0,\n    \"income\": 3.0,\n    \"isBasic\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -798,7 +1122,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "b8bdd015-951e-4af1-93e4-9e378578d5cd"
 								}
 							]
 						}
@@ -834,7 +1158,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "3a8cf9d7-0dd1-4065-8b55-4c976cc89f9e"
+									"value": "b8bdd015-951e-4af1-93e4-9e378578d5cd"
 								}
 							]
 						}
@@ -844,7 +1168,7 @@
 			]
 		},
 		{
-			"name": "cost/building_goods",
+			"name": "relation/cost/building_goods",
 			"item": [
 				{
 					"name": "building_goods",
@@ -853,7 +1177,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"building_id\": \"63b87d14-f346-4cab-9dc5-bb4afe6bbab2\",\n    \"good_id\":\"04ba4970-f2f7-424a-9e34-f928171b6bb2\",\n    \"amount\":\"10\"\n}",
+							"raw": "{\n    \"building_id\": \"2ef866d1-5ccc-4c52-8327-ff2c79f5c194\",\n    \"good_id\":\"1f690cd5-8a82-4e0b-9da5-2f5809a1817c\",\n    \"amount\":\"10\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -918,7 +1242,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "da48d957-5a64-4a78-99f2-ae0bf8c44f84"
 								}
 							]
 						}
@@ -932,7 +1256,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"building_id\": \"63b87d14-f346-4cab-9dc5-bb4afe6bbab2\",\n    \"good_id\":\"04ba4970-f2f7-424a-9e34-f928171b6bb2\",\n    \"amount\":\"5\"\n}",
+							"raw": "{\n    \"building_id\": \"e3a02c53-4272-412c-92a4-8da4dab15f1c\",\n    \"good_id\":\"04ba4970-f2f7-424a-9e34-f928171b6bb2\",\n    \"amount\":\"5\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -955,7 +1279,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "da48d957-5a64-4a78-99f2-ae0bf8c44f84"
 								}
 							]
 						}
@@ -969,7 +1293,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"building_id\": \"63b87d14-f346-4cab-9dc5-bb4afe6bbab2\",\n    \"good_id\":\"04ba4970-f2f7-424a-9e34-f928171b6bb2\",\n    \"amount\":\"3\"\n}",
+							"raw": "{\n    \"building_id\": \"804420b0-4a66-4c74-90df-c8a0c215e020\",\n    \"good_id\":\"17252eb3-31ef-4745-a299-9d77dda2de37\",\n    \"amount\":\"5\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -992,7 +1316,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "da48d957-5a64-4a78-99f2-ae0bf8c44f84"
 								}
 							]
 						}
@@ -1029,7 +1353,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "da48d957-5a64-4a78-99f2-ae0bf8c44f84"
 								}
 							]
 						}
@@ -1039,7 +1363,7 @@
 			]
 		},
 		{
-			"name": "cost/building_population",
+			"name": "relation/requirement/population_building",
 			"item": [
 				{
 					"name": "building_population",
@@ -1048,7 +1372,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"building_id\": \"55aa311a-152e-4333-8531-9a625ce59129\",\n    \"population_id\":\"2dd5ebd9-0ec7-49e0-b66f-7e992d35308e\",\n    \"amount\":\"100\"\n}",
+							"raw": "{\n    \"building_id\": \"0fa42d09-b681-45d4-8c06-48d64d3a8ce6\",\n    \"population_id\":\"06ab811a-26e8-4fa5-b6a8-c5a0ecd5da59\",\n    \"amount\":\"100\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1056,7 +1380,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/building_population",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1064,7 +1388,7 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
-								"cost",
+								"requirement",
 								"building_population"
 							]
 						}
@@ -1077,7 +1401,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/building_population",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1085,7 +1409,7 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
-								"cost",
+								"requirement",
 								"building_population"
 							]
 						}
@@ -1098,7 +1422,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/building_population/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1106,14 +1430,14 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
-								"cost",
+								"requirement",
 								"building_population",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "1d14a2b8-3c1e-4b1a-881d-20604d417ccb"
+									"value": "08e10c91-63bb-4fd7-805d-d15e411e8e87"
 								}
 							]
 						}
@@ -1127,7 +1451,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"building_id\": \"55aa311a-152e-4333-8531-9a625ce59129\",\n    \"population_id\":\"2dd5ebd9-0ec7-49e0-b66f-7e992d35308e\",\n    \"amount\":\"500\"\n}",
+							"raw": "{\n    \"building_id\": \"804420b0-4a66-4c74-90df-c8a0c215e020\",\n    \"population_id\":\"a636ff4e-dec4-4463-9c49-42f5738daa7d\",\n    \"amount\":\"500\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1135,7 +1459,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/building_population/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1143,14 +1467,14 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
-								"cost",
+								"requirement",
 								"building_population",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "1d14a2b8-3c1e-4b1a-881d-20604d417ccb"
+									"value": "08e10c91-63bb-4fd7-805d-d15e411e8e87"
 								}
 							]
 						}
@@ -1164,7 +1488,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"building_id\": \"55aa311a-152e-4333-8531-9a625ce59129\",\n    \"population_id\":\"2dd5ebd9-0ec7-49e0-b66f-7e992d35308e\",\n    \"amount\":\"100\"\n}",
+							"raw": "{\n    \"building_id\": \"0fa42d09-b681-45d4-8c06-48d64d3a8ce6\",\n    \"population_id\":\"a636ff4e-dec4-4463-9c49-42f5738daa7d\",\n    \"amount\":\"500\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1172,7 +1496,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/building_population/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1180,14 +1504,14 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
-								"cost",
+								"requirement",
 								"building_population",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "1d14a2b8-3c1e-4b1a-881d-20604d417ccb"
+									"value": "08e10c91-63bb-4fd7-805d-d15e411e8e87"
 								}
 							]
 						}
@@ -1209,7 +1533,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_population/:id",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/building_population/:id",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1217,14 +1541,14 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
-								"cost",
+								"requirement",
 								"building_population",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "1d14a2b8-3c1e-4b1a-881d-20604d417ccb"
+									"value": "10701e8c-4835-44c6-814f-16557f12576f"
 								}
 							]
 						}
