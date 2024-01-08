@@ -52,6 +52,8 @@ Or, when using an IDE, execute the main method in:
 
 [Klassen Diagram](./Documentation/Code/src.png)
 
+[Java Doc (WIP)](./Documentation/Java/index.html)
+
 ## Database UML
 
 [Go To DB-Diagrams](https://dbdiagram.io/d/PP-PR-655c68de3be14957876943d3)
