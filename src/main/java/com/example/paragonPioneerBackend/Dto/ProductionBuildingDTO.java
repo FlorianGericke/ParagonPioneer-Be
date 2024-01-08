@@ -1,20 +1,19 @@
 package com.example.paragonPioneerBackend.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Getter
 @Setter
 @SuperBuilder
 public class ProductionBuildingDTO extends BuildingDTO {
     @JsonProperty("production_per_minute")
-    private float productionPerMinute = 0;
+    private float productionPerMinute;
 
     @JsonProperty("id_of_recipe")
     private UUID idOfRecipe ;

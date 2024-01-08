@@ -8,11 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+/**
+ * Handling all endpoints responding to goods, extends BaseController.
+ *
+ */
 @Controller
 @RequestMapping(path = "/api/v1/good")
 public class GoodController extends BaseController<Good, GoodRepository, GoodDTO, GoodService> {
 
+    /**
+     * Constructor for GoodController, gets autowired
+     * @param service service the controller is using
+     */
     @Autowired
     public GoodController(GoodService service) {
         super(service);

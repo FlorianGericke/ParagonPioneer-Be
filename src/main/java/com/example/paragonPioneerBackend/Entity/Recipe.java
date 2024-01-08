@@ -1,12 +1,9 @@
 package com.example.paragonPioneerBackend.Entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
-import java.util.List;
 
 @Entity
 @Getter
@@ -27,70 +24,70 @@ public class Recipe extends BaseEntity {
     private Good input1;
 
     @Column(name = "quantity_of_input_1")
-    private int quantityOfInput1 = 0;
+    private int quantityOfInput1;
 
     @ManyToOne()
     @JoinColumn(name = "input_2", nullable = true)
     private Good input2;
 
     @Column(name = "quantity_of_input_2")
-    private int quantityOfInput2 = 0;
+    private int quantityOfInput2;
 
     @ManyToOne()
     @JoinColumn(name = "input_3", nullable = true)
     private Good input3;
 
     @Column(name = "quantity_of_input_3")
-    private int quantityOfInput3 = 0;
+    private int quantityOfInput3;
 
     @ManyToOne()
     @JoinColumn(name = "input_4", nullable = true)
     private Good input4;
 
     @Column(name = "quantity_of_input_4")
-    private int quantityOfInput4 = 0;
+    private int quantityOfInput4;
 
     @ManyToOne()
     @JoinColumn(name = "input_5", nullable = true)
     private Good input5;
 
     @Column(name = "quantity_of_input_5")
-    private int quantityOfInput5 = 0;
+    private int quantityOfInput5;
 
     @ManyToOne()
     @JoinColumn(name = "input_6", nullable = true)
     private Good input6;
 
     @Column(name = "quantity_of_input_6")
-    private int quantityOfInput6 = 0;
+    private int quantityOfInput6;
 
     @ManyToOne()
     @JoinColumn(name = "input_7", nullable = true)
     private Good input7;
 
     @Column(name = "quantity_of_input_7")
-    private int quantityOfInput7 = 0;
+    private int quantityOfInput7;
 
     @ManyToOne()
     @JoinColumn(name = "input_8", nullable = true)
     private Good input8;
 
     @Column(name = "quantity_of_input_8")
-    private int quantityOfInput8 = 0;
+    private int quantityOfInput8;
 
     @ManyToOne()
     @JoinColumn(name = "input_9", nullable = true)
     private Good input9;
 
     @Column(name = "quantity_of_input_9")
-    private int quantityOfInput9 = 0;
+    private int quantityOfInput9;
 
     @ManyToOne()
     @JoinColumn(name = "input_10", nullable = true)
     private Good input10;
 
     @Column(name = "quantity_of_input_10")
-    private int quantityOfInput10 = 0;
+    private int quantityOfInput10;
 
     @ManyToOne()
     @JoinColumn(name = "output", nullable = true)

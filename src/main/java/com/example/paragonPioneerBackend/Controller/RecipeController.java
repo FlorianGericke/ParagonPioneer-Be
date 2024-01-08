@@ -8,11 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+/**
+ * Handling all endpoints responding to recipes, extends BaseController.
+ *
+ */
 @Controller
 @RequestMapping(path = "/api/v1/recipe")
 public class RecipeController extends BaseController<Recipe, RecipeRepository, RecipeDTO, RecipeService> {
 
+    /**
+     * Constructor for RecipeController, gets autowired
+     * @param service service the controller is using
+     */
     @Autowired
     public RecipeController(RecipeService service) {
         super(service);
