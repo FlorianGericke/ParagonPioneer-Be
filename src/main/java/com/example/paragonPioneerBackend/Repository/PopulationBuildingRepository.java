@@ -9,5 +9,5 @@ import java.util.UUID;
  * Repository for populationBuildings
  */
 public interface PopulationBuildingRepository extends JpaRepository<PopulationBuilding, UUID> {
-    public PopulationBuilding findByNameIs(String name);
+    PopulationBuilding findByNameIs(String name);
 }

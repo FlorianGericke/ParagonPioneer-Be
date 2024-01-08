@@ -16,7 +16,7 @@ import java.util.Set;
 @ToString
 public class PopulationBuilding extends Building {
 
-    private int capacity = 0;
+    private int capacity;
 
     /**
      * Constructs a new instance of PopulationBuilding

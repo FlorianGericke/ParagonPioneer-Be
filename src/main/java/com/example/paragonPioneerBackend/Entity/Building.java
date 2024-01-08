@@ -24,7 +24,7 @@ import java.util.Set;
 @Where(clause = "deleted_at IS NULL")
 @NoArgsConstructor
 public abstract class Building extends BaseEntity{
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = true, columnDefinition = "TEXT")

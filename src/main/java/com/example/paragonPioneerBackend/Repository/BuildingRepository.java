@@ -15,5 +15,5 @@ public interface BuildingRepository extends JpaRepository<Building, UUID> {
      * @param name of the building to find
      * @return the building
      */
-    public Building findByNameIs(String name);
+    Building findByNameIs(String name);
 }

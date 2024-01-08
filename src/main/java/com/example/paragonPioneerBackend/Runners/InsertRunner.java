@@ -22,10 +22,9 @@ public class InsertRunner implements ApplicationRunner {
     /**
      * function called when application is started
      * @param args the application arguments
-     * @throws Exception if an exception occurs
      */
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         goodInserter.run();
         recipeInserter.run();
         populationInserter.run();

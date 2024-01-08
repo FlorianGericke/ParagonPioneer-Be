@@ -28,13 +28,13 @@ public class BaseEntity {
     /**
      * date the entity was last updated
      */
-    @Column(name = "updated_at", nullable = true)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     /**
      * date the entity was deleted
      */
-    @Column(name = "deleted_at", nullable = true)
+    @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
 

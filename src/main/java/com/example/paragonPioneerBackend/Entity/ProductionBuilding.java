@@ -19,11 +19,11 @@ import java.util.Set;
 @ToString
 public class ProductionBuilding extends Building {
 
-    @Column(name="production_per_minute", nullable = true)
+    @Column(name="production_per_minute")
     private float productionPerMinute = 0;
 
     @OneToOne()
-    @JoinColumn(name = "recipe", nullable = true)
+    @JoinColumn(name = "recipe")
     private Recipe recipe = null;
 
     /**

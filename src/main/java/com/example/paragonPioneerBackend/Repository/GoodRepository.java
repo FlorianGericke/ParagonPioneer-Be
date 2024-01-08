@@ -15,5 +15,5 @@ public interface GoodRepository extends JpaRepository<Good, UUID> {
      * @param name of the good to find
      * @return the good
      */
-    public Good findByNameIs(String name);
+    Good findByNameIs(String name);
 }

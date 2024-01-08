@@ -16,14 +16,14 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
      * @param output the output good of the recipe  to find
      * @return the recipe
      */
-    public Recipe findByOutputIs(Good output);
+    Recipe findByOutputIs(Good output);
 
     /**
      * * find a populationBuilding by its output name
      * @param outputName the output good name of the recipe  to find
      * @return the recipe
      */
-    public Recipe findByOutputNameIs(String outputName);
+    Recipe findByOutputNameIs(String outputName);
 }
 
 

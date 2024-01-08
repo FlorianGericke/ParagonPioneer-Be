@@ -15,5 +15,5 @@ public interface ProductionBuildingRepository extends JpaRepository<ProductionBu
      * @param name of the population building to find
      * @return the populationBuilding
      */
-    public ProductionBuilding findByNameIs(String name);
+    ProductionBuilding findByNameIs(String name);
 }

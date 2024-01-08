@@ -34,7 +34,7 @@ public class Population extends BaseEntity {
         Favor
     }
 
-    @Column(name="name", nullable = true, columnDefinition = "TEXT")
+    @Column(name="name", columnDefinition = "TEXT")
     private String name;
 
     @OneToMany(mappedBy = "population")

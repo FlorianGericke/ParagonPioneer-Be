@@ -15,6 +15,6 @@ public interface PopulationRepository extends JpaRepository<Population, UUID> {
      * @param name of the population to find
      * @return the population
      */
-    public Population findByNameIs(String name);
+    Population findByNameIs(String name);
 }
 
