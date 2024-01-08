@@ -9,17 +9,31 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+/**
+ * the Base handling the CRUD functions for the Recipe Entities. Extends BaseService
+ */
 @Component(value = "recipeService")
 public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeDTO> {
 
     private final GoodRepository goodRepository;
 
+    /**
+     *  Constructs a new RecipeService. is Autowired
+     * @param repository the repository the Service should use
+     * @param goodRepository the repository the Service should use
+     */
     @Autowired
     public RecipeService(RecipeRepository repository, GoodRepository goodRepository) {
         super(repository);
         this.goodRepository = goodRepository;
     }
 
+    /**
+     *  Adds new Entity to the database
+     * Overridden from BaseService
+     * @param recipeDTO DTO responding to the Entity to add.
+     * @return the added entity
+     */
     @Override
     public Recipe post(RecipeDTO recipeDTO) {
         return repository.save(Recipe.builder()
@@ -47,6 +61,13 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
                 .build());
     }
 
+    /**
+     * Updates an Entity
+     * Overridden from BaseService
+     * @param original original entity
+     * @param recipeDTO dto containing the updated data
+     * @return the update entity
+     */
     @Override
     public Recipe putPatch(Recipe original, RecipeDTO recipeDTO) {
         original.setInput1(recipeDTO.getInput1() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 1)).orElse(null) : original.getInput1());

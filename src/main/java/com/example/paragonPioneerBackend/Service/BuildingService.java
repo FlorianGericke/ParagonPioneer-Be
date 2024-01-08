@@ -16,6 +16,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 
+/**
+ * the Base handling the CRUD functions for the Building Entities. Extends BaseService
+ * @param <BuildingTypeDTO> The DTO the Service should use
+ */
 @Component(value = "buildingService")
 public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseService<Building, BuildingRepository, BuildingTypeDTO> {
 
@@ -24,6 +28,14 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     private final ProductionBuildingRepository productionBuildingRepository;
     private final RecipeRepository recipeRepository;
 
+    /**
+     * Constructs a new BuildingService. is Autowired
+     * @param repository  the repository the Service should use
+     * @param buildingRepository  the repository the Service should use
+     * @param populationBuildingRepository the repository the Service should use
+     * @param productionBuildingRepository the repository the Service should use
+     * @param recipeRepository the repository the Service should use
+     */
     @Autowired
     public BuildingService(BuildingRepository repository, BuildingRepository buildingRepository, PopulationBuildingRepository populationBuildingRepository, ProductionBuildingRepository productionBuildingRepository, RecipeRepository recipeRepository) {
         super(repository);
@@ -33,6 +45,12 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
         this.recipeRepository = recipeRepository;
     }
 
+    /**
+     * Adds new Entity to the database
+     * Overridden from BaseService
+     * @param buildingTypeDTO DTO responding to the Entity to add.
+     * @return the added entity
+     */
     @Override
     public Building post(BuildingTypeDTO buildingTypeDTO) {
         if (buildingTypeDTO instanceof PopulationBuildingDTO populationBuildingDTO) {
@@ -55,6 +73,13 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
         return null;
     }
 
+    /**
+     * Updates an Entity
+     * Overridden from BaseService
+     * @param original original entity
+     * @param buildingTypeDTO dto containing the updated data
+     * @return the updated entity
+     */
     @Override
     public Building putPatch(Building original, BuildingTypeDTO buildingTypeDTO) {
         original.setName(buildingTypeDTO.getName() != null ? buildingTypeDTO.getName() : original.getName());

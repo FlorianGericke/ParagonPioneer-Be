@@ -8,12 +8,21 @@ import com.example.paragonPioneerBackend.Repository.Population_RequirementReposi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * the Base handling the CRUD functions for the population requirement relations. Extends BaseService
+ */
 @Component(value = "population_RequirementService")
 public class Population_RequirementService extends BaseService<Population_Requirement, Population_RequirementRepository, Population_RequirementDTO> {
 
     private final GoodRepository goodRepository;
     private final PopulationRepository populationRepository;
 
+    /**
+     *  Constructs a new Population_RequirementService. is Autowired
+     * @param repository the repository the Service should use
+     * @param goodRepository the repository the Service should use
+     * @param populationRepository the repository the Service should use
+     */
     @Autowired
     public Population_RequirementService(Population_RequirementRepository repository, GoodRepository goodRepository, PopulationRepository populationRepository) {
         super(repository);
@@ -21,6 +30,12 @@ public class Population_RequirementService extends BaseService<Population_Requir
         this.populationRepository = populationRepository;
     }
 
+    /**
+     * Adds new Entity to the database
+     * Overridden from BaseService
+     * @param populationRequirementDTO DTO responding to the Entity to add.
+     * @return  the added entity
+     */
     @Override
     public Population_Requirement post(Population_RequirementDTO populationRequirementDTO) {
         return repository.save(Population_Requirement.builder()
@@ -32,6 +47,13 @@ public class Population_RequirementService extends BaseService<Population_Requir
                 .build());
     }
 
+    /**
+     * Updates an Entity
+     * Overridden from BaseService
+     * @param original original entity
+     * @param populationRequirementDTO dto containing the updated data
+     * @return the update entity
+     */
     @Override
     public Population_Requirement putPatch(Population_Requirement original, Population_RequirementDTO populationRequirementDTO) {
         original.setPopulation(populationRequirementDTO.getPopulationId() == null ? original.getPopulation() : populationRepository.findById(populationRequirementDTO.getPopulationId()).get());
