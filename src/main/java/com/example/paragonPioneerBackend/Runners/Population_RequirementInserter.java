@@ -7,6 +7,9 @@ import com.example.paragonPioneerBackend.Repository.Population_RequirementReposi
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Setup all data for relation population requirements
+ */
 @Component
 @RequiredArgsConstructor
 public class Population_RequirementInserter {
@@ -17,7 +20,7 @@ public class Population_RequirementInserter {
     private record Inserter(String populationName, String goodName, float consumption, float produce, boolean isBasic) {
     }
 
-    Inserter[] inserts = {
+    private final Inserter[] inserts = {
             new Inserter("Pioneers", "Water", 0, 0, true),
             new Inserter("Pioneers", "Fish", 1F / 4800, 0, false),
             new Inserter("Pioneers", "Schnapps", 1F / 7200, 0, false),
@@ -65,6 +68,9 @@ public class Population_RequirementInserter {
             new Inserter("Paragons", "University", 0, 0, false),
     };
 
+    /**
+     * Run the insertions
+     */
     public void run() {
         for (Inserter insert : inserts) {
             repository.save(

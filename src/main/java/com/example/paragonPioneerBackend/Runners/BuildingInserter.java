@@ -7,6 +7,9 @@ import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Setup all data for Buildings
+ */
 @Component
 @RequiredArgsConstructor
 public class BuildingInserter {
@@ -16,7 +19,7 @@ public class BuildingInserter {
     private record Inserter(String name, String recipe, float productionPerMinute, String remarks) {
     }
 
-    Inserter[] inserts = {
+    private final Inserter[] inserts = {
             new Inserter("Lumberjack", "Wood", 5f, ""),
             new Inserter("Forester", "", 0, ""),
             new Inserter("Warehouse I", "", 0, ""),
@@ -28,6 +31,9 @@ public class BuildingInserter {
             new Inserter("Potato Farm", "Schnaps", 1f, "")
     };
 
+    /**
+     * Run the insertions
+     */
     public void run() {
         repository.save(PopulationBuilding.builder().name("Pioneer's Hut").capacity(10).remarks("").build());
         repository.save(PopulationBuilding.builder().name("Colonist's House").capacity(15).remarks("").build());

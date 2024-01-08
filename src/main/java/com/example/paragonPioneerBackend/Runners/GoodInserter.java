@@ -5,6 +5,9 @@ import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Setup all data for goods
+ */
 @Component
 @RequiredArgsConstructor
 public class GoodInserter{
@@ -13,7 +16,7 @@ public class GoodInserter{
     private record Inserter(String name, String remarks) {
     }
 
-    Inserter[] inserts = {
+    private final Inserter[] inserts = {
             new Inserter("Coin", "Global"),
             new Inserter("Cartography", "Global, used for Discovery"),
             new Inserter("Favor", "Global, needed for more island slots"),
@@ -103,6 +106,9 @@ public class GoodInserter{
             new Inserter("Vineyard", ""),
     };
 
+    /**
+     * Run the insertions
+     */
     public void run() {
         for (Inserter insert : inserts) {
             repository.save(Good.builder().name(insert.name).remarks(insert.remarks).build());

@@ -5,6 +5,9 @@ import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Setup all data for populations
+ */
 @Component
 @RequiredArgsConstructor
 public class PopulationInserter {
@@ -13,7 +16,7 @@ public class PopulationInserter {
     private record Inserter(String name) {
     }
 
-    Inserter[] inserts = {
+    private final Inserter[] inserts = {
             new Inserter("Pioneers"),
             new Inserter("Colonists"),
             new Inserter("Townsmen"),
@@ -22,6 +25,9 @@ public class PopulationInserter {
 
     };
 
+    /**
+     * Run the insertions
+     */
     public void run() {
         for (Inserter insert : inserts) {
             repository.save(Population.builder().name(insert.name).build());

@@ -1,12 +1,14 @@
 package com.example.paragonPioneerBackend.Runners;
 
-import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Entity.Recipe;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Setup all data for recipes
+ */
 @Component
 @RequiredArgsConstructor
 public class RecipeInserter {
@@ -18,7 +20,7 @@ public class RecipeInserter {
                             String i10, int q10, String output) {
     }
 
-    Inserter[] inserts = {
+    private final Inserter[] inserts = {
             new Inserter("Land tile", 7, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Wood"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Water"),
             new Inserter("Land tile", 1, "Water tile", 4, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Fish"),
@@ -36,6 +38,9 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Beehive", 8, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Honey"),
     };
 
+    /**
+     * Run the insertions
+     */
     public void run() {
         for (Inserter insert : inserts) {
             repository.save(Recipe.builder()
