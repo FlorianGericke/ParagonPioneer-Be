@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class Cost_Building_PopulationInserter {
     private final Cost_Building_PopulationRepository repository;
-    private final BuildingRepository buildingRepository;
+    private final PopulationBuildingRepository buildingRepository;
     private final PopulationRepository populationRepository;
 
     private record Inserter(String buildingName, String populationName, int amount) {

@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
@@ -9,7 +10,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class BuildingDTO{
     @JsonProperty("id")
     private UUID id;

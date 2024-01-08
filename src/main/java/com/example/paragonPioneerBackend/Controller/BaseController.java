@@ -11,7 +11,8 @@ import java.util.UUID;
 
 public class BaseController<
         Type extends BaseEntity,
-        Repository extends JpaRepository<Type, UUID>, Dto,
+        Repository extends JpaRepository<Type, UUID>,
+        Dto,
         Service extends BaseService<Type, Repository, Dto>
         > {
     protected final Service service;
