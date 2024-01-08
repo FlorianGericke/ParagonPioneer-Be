@@ -35,7 +35,7 @@ public class Population_Requirement extends BaseEntity {
     private float consumption;
 
     @Column()
-    private float income;
+    private float produce;
 
     @Column()
     private boolean isBasic;
