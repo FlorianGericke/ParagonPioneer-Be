@@ -52,7 +52,7 @@ Or, when using an IDE, execute the main method in:
 
 [Klassen Diagram](./Documentation/Code/src.png)
 
-[Java Doc (WIP)](./Documentation/Java/index.html)
+[Java Doc (WIP)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/LF12-ParagonPioneer/ParagonPioneer-BeParagonPioneer-Be/tree/develop/Documentation/Java/index.html)
 
 ## Database UML
 
