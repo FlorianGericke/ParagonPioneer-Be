@@ -1,10 +1,8 @@
 package com.example.paragonPioneerBackend.Entity;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
-import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Population;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
 import lombok.*;
 
 import java.util.Set;
@@ -17,14 +15,9 @@ public class PopulationBuilding extends Building {
 
     private int capacity = 0;
 
-    @OneToOne(mappedBy = "building")
-    @JsonManagedReference
-    @ToString.Exclude
-    Cost_Building_Population population = null;
-
     @Builder
-    public PopulationBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, int capacity) {
-        super(name, remarks, costs);
+    public PopulationBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, Requirement_Population_Building requirementPopulationBuildings, int capacity) {
+        super(name, remarks, costs, requirementPopulationBuildings);
         this.capacity = capacity;
     }
 

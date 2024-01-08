@@ -1,6 +1,5 @@
 package com.example.paragonPioneerBackend.Runners;
 
-import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -15,7 +14,7 @@ public class InsertRunner implements ApplicationRunner {
     private final BuildingInserter buildingInserter;
     private final Cost_Building_goodsInserter costBuildingGoodsInserter;
     private final Population_RequirementInserter populationRequirementInserter;
-    private final Cost_Building_PopulationInserter costBuildingPopulation;
+    private final Requirement_Population_BuildingInserter costBuildingPopulation;
 
 
     @Override

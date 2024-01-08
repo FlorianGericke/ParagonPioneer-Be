@@ -10,6 +10,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
 public class BuildingDTO{
     @JsonProperty("id")
@@ -20,4 +21,5 @@ public class BuildingDTO{
 
     @JsonProperty("remarks")
     private String remarks;
+
 }

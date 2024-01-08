@@ -10,7 +10,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @Builder
-public class Cost_Building_PopulationDTO {
+public class Requirement_Population_BuildingDTO {
     @JsonProperty("id")
     private UUID id;
 

@@ -1,10 +1,10 @@
 package com.example.paragonPioneerBackend.Entity;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
+import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -31,4 +31,9 @@ public abstract class Building extends BaseEntity{
     @JsonManagedReference
     @ToString.Exclude
     Set<Cost_Building_Goods> costs;
+
+    @OneToOne(mappedBy = "building")
+    @JsonManagedReference
+    @ToString.Exclude
+    Requirement_Population_Building requirePopulation = null;
 }

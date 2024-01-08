@@ -1,6 +1,6 @@
 package com.example.paragonPioneerBackend.Entity;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Population;
+import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
 import com.example.paragonPioneerBackend.Entity.JoinTables.Population_Requirement;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -38,7 +38,7 @@ public class Population extends BaseEntity {
     @OneToMany(mappedBy = "population")
     @JsonBackReference
     @ToString.Exclude
-    Set<Cost_Building_Population> requiredBuilding;
+    Set<Requirement_Population_Building> requiredBuilding;
 
     public PopulationProductionUnit getPopulationProductionUnit(){
         if (getName() == null){
