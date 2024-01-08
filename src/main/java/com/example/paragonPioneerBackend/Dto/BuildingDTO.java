@@ -6,6 +6,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
+/**
+ * DTO for sending Building data
+ */
 @Data
 @Getter
 @Setter

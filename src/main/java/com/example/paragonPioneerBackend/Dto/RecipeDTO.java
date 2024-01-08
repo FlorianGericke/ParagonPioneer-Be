@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.util.UUID;
 
+/**
+ * DTO for sending Recipe data
+ */
 @Data
 @Getter
 @Setter

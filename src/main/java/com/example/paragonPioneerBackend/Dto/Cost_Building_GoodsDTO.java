@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.util.UUID;
 
+/**
+ * DTO for sending cost building goods relation data
+ */
 @Data
 @Getter
 @Setter

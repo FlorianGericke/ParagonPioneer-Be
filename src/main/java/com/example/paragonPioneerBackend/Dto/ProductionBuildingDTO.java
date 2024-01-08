@@ -6,6 +6,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
+/**
+ * DTO for sending Production Building data
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Getter
