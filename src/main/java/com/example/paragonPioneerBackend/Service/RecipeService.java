@@ -23,16 +23,16 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     @Override
     public Recipe post(RecipeDTO recipeDTO) {
         return repository.save(Recipe.builder()
-                .input1(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 1)).orElse(null))
-                .input2(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 2)).orElse(null))
-                .input3(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 3)).orElse(null))
-                .input4(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 4)).orElse(null))
-                .input5(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 5)).orElse(null))
-                .input6(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 6)).orElse(null))
-                .input7(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 7)).orElse(null))
-                .input8(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 8)).orElse(null))
-                .input9(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 9)).orElse(null))
-                .input10(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 10)).orElse(null))
+                .input1(recipeDTO.getInput1() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 1)).orElse(null) : null)
+                .input2(recipeDTO.getInput2() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 2)).orElse(null) : null)
+                .input3(recipeDTO.getInput3() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 3)).orElse(null) : null)
+                .input4(recipeDTO.getInput4() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 4)).orElse(null) : null)
+                .input5(recipeDTO.getInput5() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 5)).orElse(null) : null)
+                .input6(recipeDTO.getInput6() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 6)).orElse(null) : null)
+                .input7(recipeDTO.getInput7() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 7)).orElse(null) : null)
+                .input8(recipeDTO.getInput8() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 8)).orElse(null) : null)
+                .input9(recipeDTO.getInput9() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 9)).orElse(null) : null)
+                .input10(recipeDTO.getInput10() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 10)).orElse(null) : null)
                 .quantityOfInput1(recipeDTO.getQuantityOfInput1())
                 .quantityOfInput2(recipeDTO.getQuantityOfInput2())
                 .quantityOfInput3(recipeDTO.getQuantityOfInput3())
@@ -43,22 +43,22 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
                 .quantityOfInput8(recipeDTO.getQuantityOfInput8())
                 .quantityOfInput9(recipeDTO.getQuantityOfInput9())
                 .quantityOfInput10(recipeDTO.getQuantityOfInput10())
-                .output(goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 11)).orElse(null))
+                .output(recipeDTO.getOutput() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 11)).orElse(null) : null)
                 .build());
     }
 
     @Override
     public Recipe putPatch(Recipe original, RecipeDTO recipeDTO) {
-        original.setInput1(original.getInput1().getId() != getUUIDFromGoodNumber(recipeDTO, 1) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 1)).orElse(null) : original.getInput1());
-        original.setInput2(original.getInput2().getId() != getUUIDFromGoodNumber(recipeDTO, 2) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 2)).orElse(null) : original.getInput2());
-        original.setInput3(original.getInput3().getId() != getUUIDFromGoodNumber(recipeDTO, 3) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 3)).orElse(null) : original.getInput3());
-        original.setInput4(original.getInput4().getId() != getUUIDFromGoodNumber(recipeDTO, 4) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 4)).orElse(null) : original.getInput4());
-        original.setInput5(original.getInput5().getId() != getUUIDFromGoodNumber(recipeDTO, 5) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 5)).orElse(null) : original.getInput5());
-        original.setInput6(original.getInput6().getId() != getUUIDFromGoodNumber(recipeDTO, 6) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 6)).orElse(null) : original.getInput6());
-        original.setInput7(original.getInput7().getId() != getUUIDFromGoodNumber(recipeDTO, 7) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 7)).orElse(null) : original.getInput7());
-        original.setInput8(original.getInput8().getId() != getUUIDFromGoodNumber(recipeDTO, 8) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 8)).orElse(null) : original.getInput8());
-        original.setInput9(original.getInput9().getId() != getUUIDFromGoodNumber(recipeDTO, 9) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 9)).orElse(null) : original.getInput9());
-        original.setInput10(original.getInput10().getId() != getUUIDFromGoodNumber(recipeDTO, 10) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 10)).orElse(null) : original.getInput10());
+        original.setInput1(recipeDTO.getInput1() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 1)).orElse(null) : original.getInput1());
+        original.setInput2(recipeDTO.getInput2() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 2)).orElse(null) : original.getInput2());
+        original.setInput3(recipeDTO.getInput3() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 3)).orElse(null) : original.getInput3());
+        original.setInput4(recipeDTO.getInput4() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 4)).orElse(null) : original.getInput4());
+        original.setInput5(recipeDTO.getInput5() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 5)).orElse(null) : original.getInput5());
+        original.setInput6(recipeDTO.getInput6() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 6)).orElse(null) : original.getInput6());
+        original.setInput7(recipeDTO.getInput7() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 7)).orElse(null) : original.getInput7());
+        original.setInput8(recipeDTO.getInput8() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 8)).orElse(null) : original.getInput8());
+        original.setInput9(recipeDTO.getInput9() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 9)).orElse(null) : original.getInput9());
+        original.setInput10(recipeDTO.getInput10() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 10)).orElse(null) : original.getInput10());
 
         original.setQuantityOfInput1(original.getQuantityOfInput1() != recipeDTO.getQuantityOfInput1() ? recipeDTO.getQuantityOfInput1() : original.getQuantityOfInput1());
         original.setQuantityOfInput2(original.getQuantityOfInput2() != recipeDTO.getQuantityOfInput2() ? recipeDTO.getQuantityOfInput2() : original.getQuantityOfInput2());
@@ -72,35 +72,91 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
         original.setQuantityOfInput10(original.getQuantityOfInput10() != recipeDTO.getQuantityOfInput10() ? recipeDTO.getQuantityOfInput10() : original.getQuantityOfInput10());
 
 
-        original.setOutput(original.getOutput().getId() != getUUIDFromGoodNumber(recipeDTO, 11) ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 11)).orElse(null) : original.getOutput());
+        original.setOutput(recipeDTO.getOutput() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 11)).orElse(null) : original.getOutput());
 
         return original;
     }
 
     private UUID getUUIDFromGoodNumber(RecipeDTO recipeDTO, int num) {
         return switch (num) {
-            case 1 ->
-                    recipeDTO.getInput1() != null ? recipeDTO.getInput1() : goodRepository.findByNameIs(recipeDTO.getInput1Name()).getId();
-            case 2 ->
-                    recipeDTO.getInput2() != null ? recipeDTO.getInput2() : goodRepository.findByNameIs(recipeDTO.getInput2Name()).getId();
-            case 3 ->
-                    recipeDTO.getInput3() != null ? recipeDTO.getInput3() : goodRepository.findByNameIs(recipeDTO.getInput3Name()).getId();
-            case 4 ->
-                    recipeDTO.getInput4() != null ? recipeDTO.getInput4() : goodRepository.findByNameIs(recipeDTO.getInput4Name()).getId();
-            case 5 ->
-                    recipeDTO.getInput5() != null ? recipeDTO.getInput5() : goodRepository.findByNameIs(recipeDTO.getInput5Name()).getId();
-            case 6 ->
-                    recipeDTO.getInput6() != null ? recipeDTO.getInput6() : goodRepository.findByNameIs(recipeDTO.getInput6Name()).getId();
-            case 7 ->
-                    recipeDTO.getInput7() != null ? recipeDTO.getInput7() : goodRepository.findByNameIs(recipeDTO.getInput7Name()).getId();
-            case 8 ->
-                    recipeDTO.getInput8() != null ? recipeDTO.getInput8() : goodRepository.findByNameIs(recipeDTO.getInput8Name()).getId();
-            case 9 ->
-                    recipeDTO.getInput9() != null ? recipeDTO.getInput9() : goodRepository.findByNameIs(recipeDTO.getInput9Name()).getId();
-            case 10 ->
-                    recipeDTO.getInput10() != null ? recipeDTO.getInput10() : goodRepository.findByNameIs(recipeDTO.getInput10Name()).getId();
-            case 11 ->
-                    recipeDTO.getOutput() != null ? recipeDTO.getOutput() : goodRepository.findByNameIs(recipeDTO.getOutputName()).getId();
+            case 1 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput1());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput1()).getId();
+                }
+            }
+            case 2 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput2());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput2()).getId();
+                }
+            }
+            case 3 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput3());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput3()).getId();
+                }
+            }
+            case 4 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput4());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput4()).getId();
+                }
+            }
+            case 5 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput5());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput5()).getId();
+                }
+            }
+            case 6 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput6());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput6()).getId();
+                }
+            }
+            case 7 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput7());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput7()).getId();
+                }
+            }
+            case 8 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput8());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput8()).getId();
+                }
+            }
+            case 9 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput9());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput9()).getId();
+                }
+            }
+            case 10 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getInput10());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getInput10()).getId();
+                }
+            }
+            case 11 -> {
+                try {
+                    yield UUID.fromString(recipeDTO.getOutput());
+                } catch (IllegalArgumentException e) {
+                    yield goodRepository.findByNameIs(recipeDTO.getOutput()).getId();
+                }
+            }
+
             default -> null;
         };
     }
