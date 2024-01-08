@@ -27,7 +27,7 @@ public abstract class Building extends BaseEntity{
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String remarks;
 
     @OneToMany(mappedBy = "building")

@@ -48,8 +48,6 @@ Or, when using an IDE, execute the main method in:
 
 ## Api Documentation
 
-[Go To Swagger UI](./Documentation/Api/openapi.yaml)
-
 [Klassen Diagram](./Documentation/Code/src.png)
 
 [Java Doc (WIP)](https://htmlpreview.github.io/?https://raw.githubusercontent.com/LF12-ParagonPioneer/ParagonPioneer-BeParagonPioneer-Be/tree/develop/Documentation/Java/index.html)
@@ -60,4 +58,3 @@ Or, when using an IDE, execute the main method in:
 
 [UML Diagram](./Documentation/Database/ppAssemblyLineBa.png)
 
-[back](../../README.md)
