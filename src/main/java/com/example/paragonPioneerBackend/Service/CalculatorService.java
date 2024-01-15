@@ -18,8 +18,8 @@ public class CalculatorService {
     private final RecipeRepository recipeRepository;
     private final GoodRepository goodRepository;
 
-    public void calculate(String goodName, float amount){
-        Calculator calc = new Calculator(recipeRepository, goodRepository, new ProductionKnot(goodName,amount));
+    public void calculate(String goodName, float amount) {
+        Calculator calc = new Calculator(recipeRepository, goodRepository, goodName, amount);
         System.out.println(calc.getFormatted());
     }
 }

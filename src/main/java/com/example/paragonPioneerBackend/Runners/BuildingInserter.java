@@ -1,9 +1,11 @@
 package com.example.paragonPioneerBackend.Runners;
 
+import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
+import com.example.paragonPioneerBackend.Service.BuildingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 public class BuildingInserter {
     private final BuildingRepository repository;
     private final RecipeRepository recipeRepository;
+    private final BuildingService<ProductionBuildingDTO> productionBuildingService;
 
     private record Inserter(String name, String recipe, float productionPerMinute, String remarks) {
     }
@@ -41,8 +44,16 @@ public class BuildingInserter {
         repository.save(PopulationBuilding.builder().name("Merchant's Mansion").capacity(25).remarks("").build());
         repository.save(PopulationBuilding.builder().name("Paragon's Residence").capacity(30).remarks("").build());
 
+
+
         for (Inserter insert : inserts) {
-            repository.save(ProductionBuilding.builder().name(insert.name).remarks(insert.remarks).recipe(recipeRepository.findByOutputNameIs(insert.recipe).orElse(null)).productionPerMinute(insert.productionPerMinute).build());
+            if (recipeRepository.findByOutputNameIs(insert.recipe).isEmpty()) {
+                repository.save(ProductionBuilding.builder().name(insert.name).remarks(insert.remarks).recipe(recipeRepository.findByOutputNameIs(insert.recipe).orElse(null)).productionPerMinute(insert.productionPerMinute).build());
+            }else{
+                var recipe = recipeRepository.findByOutputNameIs(insert.recipe).get().getId();
+                productionBuildingService.post(ProductionBuildingDTO.builder().name(insert.name).remarks(insert.remarks).idOfRecipe(recipe).productionPerMinute(insert.productionPerMinute).build());
+            }
+
         }
     }
 }

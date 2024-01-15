@@ -1,8 +1,5 @@
 package com.example.paragonPioneerBackend.Calculator;
 
-import com.example.paragonPioneerBackend.Entity.Good;
-import com.example.paragonPioneerBackend.Entity.Recipe;
-import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,16 +12,19 @@ import java.util.List;
 @Setter
 public class ProductionKnot {
 
+
     public record Need(String good, float perMinute) {
     }
 
     private String goodName;
     private float amount;
+    private String productionBuilding;
 
 
-    public ProductionKnot(String goodName, float amount) {
+    public ProductionKnot(String goodName, float amount, String productionBuilding) {
         this.goodName = goodName;
         this.amount = amount;
+        this.productionBuilding =productionBuilding;
         this.needs = new ArrayList<>();
     }
 
@@ -40,13 +40,13 @@ public class ProductionKnot {
 
     public void addNeed(Need need) {
         ProductionStack inserter = new ProductionStack();
-        ProductionKnot knot = new ProductionKnot(need.good, need.perMinute);
+        ProductionKnot knot = new ProductionKnot(need.good, need.perMinute, productionBuilding);
         inserter.add(knot);
         needs.add(inserter);
     }
 
     public ProductionKnot clone() {
-        ProductionKnot copy = new ProductionKnot(this.goodName, amount);
+        ProductionKnot copy = new ProductionKnot(this.goodName, amount, this.productionBuilding);
 
         copy.needs = new ArrayList<>();
 
@@ -75,7 +75,7 @@ public class ProductionKnot {
         for (int i = 0; i < indent; i++) {
             st.append("\t");
         }
-        st.append(this.goodName).append(" : ").append(this.amount).append("\n");
+        st.append(this.goodName).append(" : ").append(this.amount).append(" (").append(productionBuilding).append(")\n");
         for (int i = 0; i < indent; i++) {
             st.append("\t");
         }

@@ -1,8 +1,10 @@
 package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Dto.RecipeDTO;
+import com.example.paragonPioneerBackend.Entity.Building;
 import com.example.paragonPioneerBackend.Entity.Recipe;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
+import com.example.paragonPioneerBackend.Repository.ProductionBuildingRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +20,9 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     private final GoodRepository goodRepository;
 
     /**
-     *  Constructs a new RecipeService. is Autowired
-     * @param repository the repository the Service should use
+     * Constructs a new RecipeService. is Autowired
+     *
+     * @param repository     the repository the Service should use
      * @param goodRepository the repository the Service should use
      */
     @Autowired
@@ -29,8 +32,9 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     }
 
     /**
-     *  Adds new Entity to the database
+     * Adds new Entity to the database
      * Overridden from BaseService
+     *
      * @param recipeDTO DTO responding to the Entity to add.
      * @return the added entity
      */
@@ -64,7 +68,8 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     /**
      * Updates an Entity
      * Overridden from BaseService
-     * @param original original entity
+     *
+     * @param original  original entity
      * @param recipeDTO dto containing the updated data
      * @return the update entity
      */

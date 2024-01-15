@@ -30,7 +30,7 @@ public class Calculator {
     }
 
     public Calculator(RecipeRepository recipeRepository, GoodRepository goodRepository, String goodName, float amount) {
-        this(recipeRepository, goodRepository, new ProductionKnot(goodName, amount));
+        this(recipeRepository, goodRepository, new ProductionKnot(goodName, amount, recipeRepository.findByOutputNameIs(goodName).get().getProductionBuilding().getName()));
     }
 
     private void setUp(ProductionKnot target) {
@@ -50,14 +50,20 @@ public class Calculator {
                 continue;
             }
 
-            ProductionKnot knot = new ProductionKnot(ingredient.good().getName(), ingredient.quantity() * target.getAmount());
+            ProductionKnot knot = null;
+            if (recipeRepository.findByOutputNameIs(ingredient.good().getName()).isEmpty()) {
+                knot = new ProductionKnot(ingredient.good().getName(), ingredient.quantity() * target.getAmount(), "Unknown");
+
+            } else {
+                knot = new ProductionKnot(ingredient.good().getName(), ingredient.quantity() * target.getAmount(), recipeRepository.findByOutputNameIs(ingredient.good().getName()).get().getProductionBuilding().getName());
+            }
             setUp(knot);
             target.addNeed(knot);
         }
     }
 
     public String getFormatted() {
-        StringBuilder st = new StringBuilder("For the production of ").append(target.getGoodName()).append("\n");
+        StringBuilder st = new StringBuilder("For the production of ").append(target.getGoodName()).append(" (").append(target.getProductionBuilding()).append(")\n");
         st.append("\t");
         for (ProductionStack stack : target.getNeeds()) {
             ProductionStack cp = (ProductionStack) stack.clone();

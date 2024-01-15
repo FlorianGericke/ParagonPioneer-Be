@@ -13,11 +13,13 @@ import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.Transient;
 import java.util.List;
 
 
 /**
  * the Base handling the CRUD functions for the Building Entities. Extends BaseService
+ *
  * @param <BuildingTypeDTO> The DTO the Service should use
  */
 @Service(value = "buildingService")
@@ -30,11 +32,12 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
 
     /**
      * Constructs a new BuildingService. is Autowired
-     * @param repository  the repository the Service should use
-     * @param buildingRepository  the repository the Service should use
+     *
+     * @param repository                   the repository the Service should use
+     * @param buildingRepository           the repository the Service should use
      * @param populationBuildingRepository the repository the Service should use
      * @param productionBuildingRepository the repository the Service should use
-     * @param recipeRepository the repository the Service should use
+     * @param recipeRepository             the repository the Service should use
      */
     @Autowired
     public BuildingService(BuildingRepository repository, BuildingRepository buildingRepository, PopulationBuildingRepository populationBuildingRepository, ProductionBuildingRepository productionBuildingRepository, RecipeRepository recipeRepository) {
@@ -48,9 +51,11 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     /**
      * Adds new Entity to the database
      * Overridden from BaseService
+     *
      * @param buildingTypeDTO DTO responding to the Entity to add.
      * @return the added entity
      */
+    @Transient
     @Override
     public Building post(BuildingTypeDTO buildingTypeDTO) {
         if (buildingTypeDTO instanceof PopulationBuildingDTO populationBuildingDTO) {
@@ -62,12 +67,22 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
         }
 
         if (buildingTypeDTO instanceof ProductionBuildingDTO productionBuildingDTO) {
-            return buildingRepository.save(ProductionBuilding.builder()
+            var productionBuilding =  buildingRepository.save(ProductionBuilding.builder()
                     .name(productionBuildingDTO.getName())
                     .remarks(productionBuildingDTO.getRemarks())
                     .productionPerMinute(productionBuildingDTO.getProductionPerMinute())
                     .recipe(recipeRepository.findById(productionBuildingDTO.getIdOfRecipe()).orElse(null))
                     .build());
+
+            var recipe = recipeRepository.findById(productionBuildingDTO.getIdOfRecipe()).orElse(null);
+
+            if (recipe != null) {
+                recipe.setProductionBuilding(productionBuilding);
+                recipeRepository.save(recipe);
+            }
+
+            return productionBuilding;
+
         }
 
         return null;
@@ -76,7 +91,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     /**
      * Updates an Entity
      * Overridden from BaseService
-     * @param original original entity
+     *
+     * @param original        original entity
      * @param buildingTypeDTO dto containing the updated data
      * @return the updated entity
      */
@@ -90,7 +106,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
             return original;
         }
 
-        if (buildingTypeDTO instanceof ProductionBuildingDTO productionBuildingDTO  && original instanceof ProductionBuilding) {
+        if (buildingTypeDTO instanceof ProductionBuildingDTO productionBuildingDTO && original instanceof ProductionBuilding) {
             ((ProductionBuilding) original).setProductionPerMinute(productionBuildingDTO.getProductionPerMinute() != ((ProductionBuilding) original).getProductionPerMinute() ? productionBuildingDTO.getProductionPerMinute() : ((ProductionBuilding) original).getProductionPerMinute());
             ((ProductionBuilding) original).setRecipe(productionBuildingDTO.getIdOfRecipe() != null ? recipeRepository.findById(productionBuildingDTO.getIdOfRecipe()).get() : ((ProductionBuilding) original).getRecipe());
             return original;
@@ -101,6 +117,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
 
     /**
      * get all ProductionBuildings
+     *
      * @return List of all ProductionBuildings
      */
     public List<ProductionBuilding> getAllProductionBuilding() {
@@ -109,7 +126,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
 
     /**
      * get all PopulationBuildings
-     * @return  List of all PopulationBuildings
+     *
+     * @return List of all PopulationBuildings
      */
     public List<PopulationBuilding> getAlPopulationBuilding() {
         return populationBuildingRepository.findAll();
