@@ -101,6 +101,10 @@ public class Recipe extends BaseEntity {
     @JoinColumn(name = "output")
     private Good output;
 
+    @OneToOne()
+    @JoinColumn(name = "production_building")
+    private ProductionBuilding productionBuilding = null;
+
     /**
      * get Quantity and Good
      * @return Array containing aa record QuantityOfGood(Good good, int quantity)

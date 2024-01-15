@@ -98,7 +98,7 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
         return original;
     }
 
-    private UUID getUUIDFromGoodNumber(RecipeDTO recipeDTO, int num) {
+    UUID getUUIDFromGoodNumber(RecipeDTO recipeDTO, int num) {
         return switch (num) {
             case 1 -> {
                 try {
