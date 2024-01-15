@@ -9,7 +9,6 @@ import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.UUID;
  * Handling all endpoints responding to building, extends BaseController.
  *
  */
-@Controller
+@RestController
 @RequestMapping(path = "/api/v1/building")
 public class BuildingController extends BaseController<Building,BuildingRepository,BuildingDTO,BuildingService<BuildingDTO>> {
 

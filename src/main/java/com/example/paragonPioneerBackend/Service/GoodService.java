@@ -4,12 +4,12 @@ import com.example.paragonPioneerBackend.Dto.GoodDTO;
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * the Base handling the CRUD functions for the Goods Entities. Extends BaseService
  */
-@Component(value = "goodService")
+@Service(value = "goodService")
 public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
 
     /**

@@ -3,6 +3,7 @@ package com.example.paragonPioneerBackend.Repository;
 import com.example.paragonPioneerBackend.Entity.Good;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -15,5 +16,5 @@ public interface GoodRepository extends JpaRepository<Good, UUID> {
      * @param name of the good to find
      * @return the good
      */
-    Good findByNameIs(String name);
+    Optional<Good> findByNameIs(String name);
 }

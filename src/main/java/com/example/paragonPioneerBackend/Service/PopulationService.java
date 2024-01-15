@@ -4,12 +4,12 @@ import com.example.paragonPioneerBackend.Dto.PopulationDTO;
 import com.example.paragonPioneerBackend.Entity.Population;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * the Base handling the CRUD functions for the Populations Entities. Extends BaseService
  */
-@Component(value = "populationService")
+@Service(value = "populationService")
 public class PopulationService extends BaseService<Population, PopulationRepository, PopulationDTO> {
 
     /**

@@ -4,12 +4,12 @@ import com.example.paragonPioneerBackend.Dto.Requirement_Population_BuildingDTO;
 import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
 import com.example.paragonPioneerBackend.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Service handling the functionality of the required Population for a building. Extends BaseService
  */
-@Component(value = "costBuildingPopulationService")
+@Service(value = "costBuildingPopulationService")
 public class Requirement_Building_PopulationService extends BaseService<Requirement_Population_Building, Requirement_Population_BuildingRepository, Requirement_Population_BuildingDTO> {
     private final PopulationRepository populationRepository;
     private final BuildingRepository buildingRepository;

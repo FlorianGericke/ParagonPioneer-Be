@@ -6,12 +6,12 @@ import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import com.example.paragonPioneerBackend.Repository.Population_RequirementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * the Base handling the CRUD functions for the population requirement relations. Extends BaseService
  */
-@Component(value = "population_RequirementService")
+@Service(value = "population_RequirementService")
 public class Population_RequirementService extends BaseService<Population_Requirement, Population_RequirementRepository, Population_RequirementDTO> {
 
     private final GoodRepository goodRepository;

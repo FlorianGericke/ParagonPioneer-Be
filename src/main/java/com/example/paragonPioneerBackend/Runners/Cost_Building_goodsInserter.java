@@ -37,7 +37,7 @@ public class Cost_Building_goodsInserter{
         for (Inserter insert : inserts) {
             repository.save(
                     Cost_Building_Goods.builder()
-                            .good(goodRepository.findByNameIs(insert.goodName))
+                            .good(goodRepository.findByNameIs(insert.goodName).get())
                             .building(buildingRepository.findByNameIs(insert.buildingName))
                             .amount(insert.amount)
                             .build()

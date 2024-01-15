@@ -6,12 +6,12 @@ import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Repository.Cost_Building_GoodsRepository;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * the Base handling the CRUD functions for the cost building goods relations. Extends BaseService
  */
-@Component(value = "costBuildingGoodsService")
+@Service(value = "costBuildingGoodsService")
 public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods, Cost_Building_GoodsRepository, Cost_Building_GoodsDTO> {
     private final GoodRepository goodRepository;
     private final BuildingRepository buildingRepository;

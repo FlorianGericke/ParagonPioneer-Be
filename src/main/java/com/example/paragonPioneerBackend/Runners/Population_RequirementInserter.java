@@ -75,7 +75,7 @@ public class Population_RequirementInserter {
         for (Inserter insert : inserts) {
             repository.save(
                     Population_Requirement.builder()
-                            .good(goodRepository.findByNameIs(insert.goodName))
+                            .good(goodRepository.findByNameIs(insert.goodName).get())
                             .population(populationRepository.findByNameIs(insert.populationName))
                             .consumption(insert.consumption)
                             .produce(insert.produce)

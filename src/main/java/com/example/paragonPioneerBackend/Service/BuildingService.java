@@ -11,7 +11,7 @@ import com.example.paragonPioneerBackend.Repository.PopulationBuildingRepository
 import com.example.paragonPioneerBackend.Repository.ProductionBuildingRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * the Base handling the CRUD functions for the Building Entities. Extends BaseService
  * @param <BuildingTypeDTO> The DTO the Service should use
  */
-@Component(value = "buildingService")
+@Service(value = "buildingService")
 public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseService<Building, BuildingRepository, BuildingTypeDTO> {
 
     private final BuildingRepository buildingRepository;
