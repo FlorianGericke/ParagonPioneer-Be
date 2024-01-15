@@ -42,7 +42,7 @@ public class BuildingInserter {
         repository.save(PopulationBuilding.builder().name("Paragon's Residence").capacity(30).remarks("").build());
 
         for (Inserter insert : inserts) {
-            repository.save(ProductionBuilding.builder().name(insert.name).remarks(insert.remarks).recipe(recipeRepository.findByOutputNameIs(insert.recipe)).productionPerMinute(insert.productionPerMinute).build());
+            repository.save(ProductionBuilding.builder().name(insert.name).remarks(insert.remarks).recipe(recipeRepository.findByOutputNameIs(insert.recipe).orElse(null)).productionPerMinute(insert.productionPerMinute).build());
         }
     }
 }
