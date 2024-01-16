@@ -10,6 +10,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+/**
+ * Entity for join table Cost_Building
+ */
 @Entity
 @Getter
 @Setter
@@ -19,17 +22,16 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE cost_building_goods SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-
 public class Cost_Building_Goods extends BaseEntity {
     @ManyToOne()
     @JoinColumn(name = "good_id")
     @JsonManagedReference
-    Good good;
+    private Good good;
 
     @ManyToOne()
     @JsonBackReference
     @JoinColumn(name = "building_id")
-    Building building;
+    private Building building;
 
     @Column()
     private int amount;

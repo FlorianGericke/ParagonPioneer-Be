@@ -6,10 +6,14 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
+/**
+ * DTO for sending Building data
+ */
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
 public class BuildingDTO{
     @JsonProperty("id")
@@ -20,4 +24,5 @@ public class BuildingDTO{
 
     @JsonProperty("remarks")
     private String remarks;
+
 }

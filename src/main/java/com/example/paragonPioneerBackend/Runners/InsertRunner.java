@@ -5,22 +5,30 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+/**
+ * Execute all runner in correct Order. To set up relations correctly
+ */
 @Component
 @RequiredArgsConstructor
 public class InsertRunner implements ApplicationRunner {
+    private final GoodInserter goodInserter;
+    private final RecipeInserter recipeInserter;
+    private final PopulationInserter populationInserter;
     private final BuildingInserter buildingInserter;
     private final Cost_Building_goodsInserter costBuildingGoodsInserter;
-    private final GoodInserter goodInserter;
-    private final PopulationInserter populationInserter;
     private final Population_RequirementInserter populationRequirementInserter;
-    private final Cost_Building_PopulationInserter costBuildingPopulation;
+    private final Requirement_Population_BuildingInserter costBuildingPopulation;
 
-
+    /**
+     * function called when application is started
+     * @param args the application arguments
+     */
     @Override
-    public void run(ApplicationArguments args) throws Exception {
-        buildingInserter.run();
+    public void run(ApplicationArguments args) {
         goodInserter.run();
+        recipeInserter.run();
         populationInserter.run();
+        buildingInserter.run();
         costBuildingGoodsInserter.run();
         populationRequirementInserter.run();
         costBuildingPopulation.run();

@@ -5,6 +5,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
+/**
+ * Repository for populationBuildings
+ */
 public interface PopulationBuildingRepository extends JpaRepository<PopulationBuilding, UUID> {
-    public PopulationBuilding findByNameIs(String name);
+
+    /**
+     * * find a PopulationBuilding by its name
+     * @param name of the PopulationBuilding to find
+     * @return the PopulationBuilding
+     */
+    PopulationBuilding findByNameIs(String name);
 }

@@ -1,8 +1,8 @@
 package com.example.paragonPioneerBackend.Entity.JoinTables;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
+import com.example.paragonPioneerBackend.Entity.Building;
 import com.example.paragonPioneerBackend.Entity.Population;
-import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -10,6 +10,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+/**
+ * Entity for join table Required_Populations_Building
+ */
 @Entity
 @Getter
 @Setter
@@ -17,19 +20,19 @@ import org.hibernate.annotations.Where;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
-@SQLDelete(sql = "UPDATE cost_building_population SET deleted_at = current_date WHERE id=?")
+@SQLDelete(sql = "UPDATE requirement_population_building SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-public class Cost_Building_Population extends BaseEntity {
+public class Requirement_Population_Building extends BaseEntity {
 
     @ManyToOne()
     @JoinColumn(name = "population_id")
     @JsonManagedReference
-    Population population;
+    private Population population;
 
     @OneToOne()
     @JsonBackReference
     @JoinColumn(name = "building_id")
-    PopulationBuilding building;
+    private Building building;
 
     @Column()
     private int amount;

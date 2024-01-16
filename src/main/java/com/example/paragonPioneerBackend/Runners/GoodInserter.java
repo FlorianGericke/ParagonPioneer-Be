@@ -5,6 +5,9 @@ import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Setup all data for goods
+ */
 @Component
 @RequiredArgsConstructor
 public class GoodInserter{
@@ -13,7 +16,7 @@ public class GoodInserter{
     private record Inserter(String name, String remarks) {
     }
 
-    Inserter[] inserts = {
+    private final Inserter[] inserts = {
             new Inserter("Coin", "Global"),
             new Inserter("Cartography", "Global, used for Discovery"),
             new Inserter("Favor", "Global, needed for more island slots"),
@@ -25,6 +28,7 @@ public class GoodInserter{
             new Inserter("Linseed", ""),
             new Inserter("Linen", ""),
             new Inserter("Bow", ""),
+            new Inserter("Archer", ""),
             new Inserter("Ropes", ""),
             new Inserter("Copper Ore", ""),
             new Inserter("Copper Ingot", ""),
@@ -51,12 +55,14 @@ public class GoodInserter{
             new Inserter("Meat", ""),
             new Inserter("Coal", ""),
             new Inserter("Gold Ore", ""),
+            new Inserter("Gold", ""),
             new Inserter("Gold Ingot", ""),
             new Inserter("Gold Jewelry", ""),
             new Inserter("Linseed Oil", ""),
             new Inserter("Iron Ore", ""),
             new Inserter("Iron Ingot", ""),
             new Inserter("Iron Sword", ""),
+            new Inserter("Militia", ""),
             new Inserter("Tools", "Build material"),
             new Inserter("Crossbow", ""),
             new Inserter("Marble", "Build material"),
@@ -75,7 +81,7 @@ public class GoodInserter{
             new Inserter("Grapes", ""),
             new Inserter("Barrel", ""),
             new Inserter("Wine", ""),
-            new Inserter("Paper", ""),
+            new Inserter("Windjammer", ""),
             new Inserter("Book", ""),
             new Inserter("Coke", ""),
             new Inserter("Steel Ingot", ""),
@@ -85,8 +91,24 @@ public class GoodInserter{
             new Inserter("Cannon", ""),
             new Inserter("Metal Cuttings", ""),
             new Inserter("Fireworks", ""),
+            new Inserter("Land tile", ""),
+            new Inserter("Mountain tile", ""),
+            new Inserter("Hop Field", ""),
+            new Inserter("Horse Field", ""),
+            new Inserter("Indigo Field", ""),
+            new Inserter("Linseed Field", ""),
+            new Inserter("Potato Field", ""),
+            new Inserter("Water tile", ""),
+            new Inserter("Sheep Field", ""),
+            new Inserter("Mulberry Trees", ""),
+            new Inserter("Tobacco Field", ""),
+            new Inserter("Wheat Field", ""),
+            new Inserter("Vineyard", ""),
     };
 
+    /**
+     * Run the insertions
+     */
     public void run() {
         for (Inserter insert : inserts) {
             repository.save(Good.builder().name(insert.name).remarks(insert.remarks).build());

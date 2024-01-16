@@ -5,6 +5,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
+/**
+ * Repository for goods
+ */
 public interface GoodRepository extends JpaRepository<Good, UUID> {
-    public Good findByNameIs(String name);
+
+    /**
+     * * find a Good by its name
+     * @param name of the good to find
+     * @return the good
+     */
+    Good findByNameIs(String name);
 }

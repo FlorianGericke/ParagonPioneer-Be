@@ -5,6 +5,9 @@ import com.example.paragonPioneerBackend.Repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Setup all data for relation cost building goods
+ */
 @Component
 @RequiredArgsConstructor
 public class Cost_Building_goodsInserter{
@@ -15,7 +18,7 @@ public class Cost_Building_goodsInserter{
     private record Inserter(String buildingName, String goodName, int amount) {
     }
 
-    Inserter[] inserts = {
+    private final Inserter[] inserts = {
             new Inserter("Lumberjack", "Wood", 5),
             new Inserter("Forester", "Wood", 10),
             new Inserter("Warehouse I", "Wood", 10),
@@ -27,6 +30,9 @@ public class Cost_Building_goodsInserter{
             new Inserter("Potato Farm", "Plank", 10)
     };
 
+    /**
+     * Run the insertions
+     */
     public void run() {
         for (Inserter insert : inserts) {
             repository.save(

@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.util.UUID;
 
+/**
+ * for sending cost population requirement relation data
+ */
 @Data
 @Getter
 @Setter

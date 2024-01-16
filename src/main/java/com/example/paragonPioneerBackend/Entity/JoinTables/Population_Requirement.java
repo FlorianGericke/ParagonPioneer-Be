@@ -10,6 +10,9 @@ import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+/**
+ * Entity for join table Population_Requirement
+ */
 @Entity
 @Getter
 @Setter
@@ -24,12 +27,12 @@ public class Population_Requirement extends BaseEntity {
     @ManyToOne()
     @JoinColumn(name = "good_id")
     @JsonManagedReference
-    Good good;
+    private Good good;
 
     @ManyToOne()
     @JsonBackReference
     @JoinColumn(name = "population_id")
-    Population population;
+    private Population population;
 
     @Column()
     private float consumption;

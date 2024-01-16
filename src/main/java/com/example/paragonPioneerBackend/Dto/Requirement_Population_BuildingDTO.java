@@ -5,12 +5,15 @@ import lombok.*;
 
 import java.util.UUID;
 
+/**
+ * for sending requirement population building relation data
+ */
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @Builder
-public class Cost_Building_PopulationDTO {
+public class Requirement_Population_BuildingDTO {
     @JsonProperty("id")
     private UUID id;
 
