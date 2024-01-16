@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
+import com.example.paragonPioneerBackend.Exceptions.EntityNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -81,7 +82,7 @@ public abstract class BaseService<
      * @return deleted entity
      */
     public Type delete(UUID id) {
-        Type entity = repository.findById(id).orElseThrow();
+        Type entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("No Entity with Id " + id ));
         repository.deleteById(id);
         return entity;
     }
