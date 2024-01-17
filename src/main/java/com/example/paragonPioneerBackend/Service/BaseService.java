@@ -1,17 +1,21 @@
 package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Optional;
 import java.util.UUID;
 
 /**
  * The Base Service handling the CRUD functions for the Entities
- * @param <Type> of the Entity the service is for
+ *
+ * @param <Type>       of the Entity the service is for
  * @param <Repository> of the repository the service should use. he Repository has to extend JpaRepository for the Entity und UUD as identifier
- * @param <Dto> containing the data for the Entity
+ * @param <Dto>        containing the data for the Entity
  */
 public abstract class BaseService<
         Type extends BaseEntity,
@@ -26,6 +30,7 @@ public abstract class BaseService<
 
     /**
      * Constructor of the BaseService
+     *
      * @param repository the repository the Service is using
      */
     public BaseService(Repository repository) {
@@ -34,6 +39,7 @@ public abstract class BaseService<
 
     /**
      * Post function
+     *
      * @param dto DTO responding to the Entity to add.
      * @return the created entity
      */
@@ -41,14 +47,27 @@ public abstract class BaseService<
 
     /**
      * receive alle entities from the database
+     *
      * @return List of entities
      */
-    public List<Type> getAll() {
-        return repository.findAll();
+    public Page<Type> getAll(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
+    /**
+     * receive alle entities from the database with pagination
+     *
+     * @param page     the page number to display
+     * @param pageSize the amount of Items per page
+     * @return Page of Type
+     */
+    public Page<Type> getAll(int page, int pageSize) {
+        return repository.findAll(PageRequest.of(page, pageSize));
     }
 
     /**
      * Get single entity
+     *
      * @param id uuid if the entity to receive
      * @return Optional of the Entity
      */
@@ -58,15 +77,17 @@ public abstract class BaseService<
 
     /**
      * Update an entity
+     *
      * @param original original entity
-     * @param dto dto containing the updated data
+     * @param dto      dto containing the updated data
      * @return updated entity
      */
     public abstract Type putPatch(Type original, Dto dto);
 
     /**
      * Update an entity
-     * @param id id of the entity to update
+     *
+     * @param id  id of the entity to update
      * @param dto dto containing the updated data
      * @return updated entity
      */
@@ -77,6 +98,7 @@ public abstract class BaseService<
 
     /**
      * delete an entity
+     *
      * @param id of the entity to delete
      * @return deleted entity
      */

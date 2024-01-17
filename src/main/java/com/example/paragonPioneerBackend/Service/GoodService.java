@@ -6,6 +6,8 @@ import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * the Base handling the CRUD functions for the Goods Entities. Extends BaseService
  */
@@ -20,6 +22,16 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
     @Autowired
     public GoodService(GoodRepository repository) {
         super(repository);
+    }
+
+    /**
+     * Find all Goods with name contains
+     *
+     * @param name the string contained
+     * @return list of Goods matching
+     */
+    public List<Good> find(String name) {
+        return repository.findAllByNameContains(name);
     }
 
     /**

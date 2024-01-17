@@ -2,19 +2,22 @@ package com.example.paragonPioneerBackend.Controller;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
 import com.example.paragonPioneerBackend.Service.BaseService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Optional;
 import java.util.UUID;
 
 /**
  * The BaseBaseController Handles the Basic CRUD Endpoints.
- * @param <Type> The Entity for this controller. The entity type must extend from BaseEntity.
+ *
+ * @param <Type>       The Entity for this controller. The entity type must extend from BaseEntity.
  * @param <Repository> The Repository for this controller. The Repository has to extend JpaRepository for the Entity und UUD as identifier
- * @param <Dto> The Dto for sending data to this controller
- * @param <Service> the Service handling the CRUD Endpoints
+ * @param <Dto>        The Dto for sending data to this controller
+ * @param <Service>    the Service handling the CRUD Endpoints
  */
 public class BaseController<
         Type extends BaseEntity,
@@ -30,6 +33,7 @@ public class BaseController<
 
     /**
      * Constructor for the BaseController
+     *
      * @param service The service this Controller is using
      */
     public BaseController(Service service) {
@@ -38,6 +42,7 @@ public class BaseController<
 
     /**
      * Post endpoint
+     *
      * @param dto entity dto
      * @return the entity added to the database
      */
@@ -48,15 +53,17 @@ public class BaseController<
 
     /**
      * get endpoint
+     *
      * @return a list of all entities
      */
     @GetMapping(produces = "application/json")
-    public @ResponseBody List<Type> getEntities() {
-        return service.getAll();
+    public @ResponseBody Page<Type> getEntities(Pageable pageable) {
+        return service.getAll(pageable);
     }
 
     /**
      * get endpoint
+     *
      * @param id uuid of the entity
      * @return entity responding to the uuid
      */
@@ -67,7 +74,8 @@ public class BaseController<
 
     /**
      * put endpoint
-     * @param id uuid of the entity to change
+     *
+     * @param id  uuid of the entity to change
      * @param dto dto containing the changes of the entity
      * @return updated entity
      */
@@ -78,7 +86,8 @@ public class BaseController<
 
     /**
      * patch endpoint
-     * @param id uuid of the entity to change
+     *
+     * @param id  uuid of the entity to change
      * @param dto dto containing the changes of the entity
      * @return updated entity
      */
@@ -89,6 +98,7 @@ public class BaseController<
 
     /**
      * delete endpoint
+     *
      * @param id uuid of the entity to delete
      * @return deleted entity
      */
