@@ -35,12 +35,12 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Gold", 0, "Bow", 1, "Militia", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Archer"),
             new Inserter("Land tile", 1, "Linseed", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Ropes"),
             new Inserter("Land tile", 1, "Mountain tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Stone"),
-
+            new Inserter("Mountain tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Copper Ore"),
+            new Inserter("Land tile", 1, "Copper Ore", 1, "Wood", 10, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Copper Ingot"),
+            new Inserter("Land tile", 1, "Copper Ingot", 1, "Wood", 10, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Copper Sword"),
 
 /*
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+
             new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
             new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
             new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
