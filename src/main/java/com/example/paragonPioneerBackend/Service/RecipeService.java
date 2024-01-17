@@ -7,6 +7,7 @@ import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -18,8 +19,9 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     private final GoodRepository goodRepository;
 
     /**
-     *  Constructs a new RecipeService. is Autowired
-     * @param repository the repository the Service should use
+     * Constructs a new RecipeService. is Autowired
+     *
+     * @param repository     the repository the Service should use
      * @param goodRepository the repository the Service should use
      */
     @Autowired
@@ -29,8 +31,19 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     }
 
     /**
-     *  Adds new Entity to the database
+     * Find all Recipe whew the outputName contains
+     *
+     * @param outputName the string contained
+     * @return list of Recipe matching
+     */
+    public List<Recipe> find(String outputName) {
+        return repository.findAllByOutputNameContains(outputName);
+    }
+
+    /**
+     * Adds new Entity to the database
      * Overridden from BaseService
+     *
      * @param recipeDTO DTO responding to the Entity to add.
      * @return the added entity
      */
@@ -64,7 +77,8 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     /**
      * Updates an Entity
      * Overridden from BaseService
-     * @param original original entity
+     *
+     * @param original  original entity
      * @param recipeDTO dto containing the updated data
      * @return the update entity
      */

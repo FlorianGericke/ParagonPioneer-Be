@@ -6,6 +6,7 @@ import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
 import com.example.paragonPioneerBackend.Entity.Building;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
+import com.example.paragonPioneerBackend.Entity.Recipe;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,14 @@ import java.util.UUID;
 
 /**
  * Handling all endpoints responding to building, extends BaseController.
- *
  */
 @Controller
 @RequestMapping(path = "/api/v1/building")
-public class BuildingController extends BaseController<Building,BuildingRepository,BuildingDTO,BuildingService<BuildingDTO>> {
+public class BuildingController extends BaseController<Building, BuildingRepository, BuildingDTO, BuildingService<BuildingDTO>> {
 
     /**
      * Constructor for BuildingController, gets autowired
+     *
      * @param service service the controller is using
      */
     @Autowired
@@ -33,7 +34,19 @@ public class BuildingController extends BaseController<Building,BuildingReposito
     }
 
     /**
+     * get endpoint for find by name
+     *
+     * @param name to look for
+     * @return list of all Buildings containing the name
+     */
+    @GetMapping(value = "/find", produces = "application/json")
+    public @ResponseBody List<Building> getEntities(@RequestParam String name) {
+        return service.find(name);
+    }
+
+    /**
      * get endpoint
+     *
      * @return List of all PopulationBuildings
      */
     @GetMapping(path = "/population", produces = "application/json")
@@ -43,6 +56,7 @@ public class BuildingController extends BaseController<Building,BuildingReposito
 
     /**
      * get endpoint
+     *
      * @return List of all ProductionBuildings
      */
     @GetMapping(path = "/production", produces = "application/json")
@@ -52,6 +66,7 @@ public class BuildingController extends BaseController<Building,BuildingReposito
 
     /**
      * post endpoint
+     *
      * @param dto dto of the population building to add
      * @return added PopulationBuilding
      */
@@ -63,6 +78,7 @@ public class BuildingController extends BaseController<Building,BuildingReposito
 
     /**
      * post endpoint
+     *
      * @param dto dto of the production building to add
      * @return added ProductionBuilding
      */
@@ -74,7 +90,8 @@ public class BuildingController extends BaseController<Building,BuildingReposito
 
     /**
      * put endpoint
-     * @param id of the PopulationBuilding to update
+     *
+     * @param id  of the PopulationBuilding to update
      * @param dto containing the update information
      * @return updated ProductionBuilding
      */
@@ -85,7 +102,8 @@ public class BuildingController extends BaseController<Building,BuildingReposito
 
     /**
      * patch endpoint
-     * @param id of the PopulationBuilding to update
+     *
+     * @param id  of the PopulationBuilding to update
      * @param dto containing the update information
      * @return updated ProductionBuilding
      */
@@ -96,7 +114,8 @@ public class BuildingController extends BaseController<Building,BuildingReposito
 
     /**
      * put endpoint
-     * @param id of the ProductionBuilding to update
+     *
+     * @param id  of the ProductionBuilding to update
      * @param dto containing the update information
      * @return updated ProductionBuilding
      */
@@ -107,7 +126,8 @@ public class BuildingController extends BaseController<Building,BuildingReposito
 
     /**
      * patch endpoint
-     * @param id of the ProductionBuilding to update
+     *
+     * @param id  of the ProductionBuilding to update
      * @param dto containing the update information
      * @return updated ProductionBuilding
      */

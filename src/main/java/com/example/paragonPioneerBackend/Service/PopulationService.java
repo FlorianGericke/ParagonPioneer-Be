@@ -6,6 +6,8 @@ import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * the Base handling the CRUD functions for the Populations Entities. Extends BaseService
  */
@@ -13,7 +15,8 @@ import org.springframework.stereotype.Component;
 public class PopulationService extends BaseService<Population, PopulationRepository, PopulationDTO> {
 
     /**
-     *  Constructs a new PopulationService. is Autowired
+     * Constructs a new PopulationService. is Autowired
+     *
      * @param repository the repository the Service should use
      */
     @Autowired
@@ -22,8 +25,9 @@ public class PopulationService extends BaseService<Population, PopulationReposit
     }
 
     /**
-     *  Adds new Entity to the database
+     * Adds new Entity to the database
      * Overridden from BaseService
+     *
      * @param populationDTO DTO responding to the Entity to add.
      * @return the added entity
      */
@@ -37,9 +41,20 @@ public class PopulationService extends BaseService<Population, PopulationReposit
     }
 
     /**
+     * Find all Population with name contains
+     *
+     * @param name the string contained
+     * @return list of Population matching
+     */
+    public List<Population> find(String name) {
+        return repository.findAllByNameContains(name);
+    }
+
+    /**
      * Updates an Entity
      * Overridden from BaseService
-     * @param original original entity
+     *
+     * @param original      original entity
      * @param populationDTO dto containing the updated data
      * @return the update entity
      */
