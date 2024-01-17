@@ -26,19 +26,35 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Water tile", 4, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Fish"),
             new Inserter("Land tile", 1, "Wood", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Plank"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Potato Field"),
+            new Inserter("Land tile", 1, "Potato Field", 4, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Schnapps"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Community"),
-
-/*
+            new Inserter("Land tile", 1, "Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Linseed Field"),
             new Inserter("Land tile", 1, "Linseed Field", 8, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Linseed"),
             new Inserter("Land tile", 1, "Linseed", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Linen"),
-            new Inserter("Land tile", 1, "Linseed", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Bow"),
+            new Inserter("Land tile", 1, "Linseed", 1, "Wood", 5, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Bow"),
             new Inserter("Land tile", 1, "Gold", 0, "Bow", 1, "Militia", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Archer"),
             new Inserter("Land tile", 1, "Linseed", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Ropes"),
-            new Inserter("Land tile", 1, "Plank", 3000, "Sail", 6000, "Steel Ingot", 200, "Gold", 20000, null, 0, null, 0, null, 0, null, 0, null, 0, "Schooner"),
-            new Inserter("Land tile", 1, "Plank", 3000, "Sail", 1800, "Steel Ingot", 200, "Gold", 30000, null, 0, null, 0, null, 0, null, 0, null, 0, "Windjammer"),
-            new Inserter("Land tile", 1, "Beehive", 8, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Honey"),
+            new Inserter("Land tile", 1, "Mountain tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Stone"),
 
-  Vorrübergehend deaktiviert bis wir uns zwecks Reihenfolge einig sind
+
+/*
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
+
   */
     };
 
