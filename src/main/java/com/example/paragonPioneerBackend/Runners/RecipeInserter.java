@@ -74,26 +74,37 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Coal", 1, "Gold Ore", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Gold Ingot"),
             new Inserter("Land tile", 1, "Coal", 1, "Gold Ingot", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Gold Jewelry"),
             new Inserter("Land tile", 1, "Linseed", 2, "Iron Ingot", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Crossbow"),
+            new Inserter("Land tile", 1, "Gold", 4, "Crossbow", 1, "Militia", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Crossbowman"),
+            new Inserter("Land tile", 1, "Mountain tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Marble"),
+            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Education"),
+            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Hygiene"),
+            new Inserter("Land tile", 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Water"),
+            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Mulberry Trees"),
+            new Inserter("Land tile", 1, "Silk", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Silk Cloth"),
+            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Indigo Field"),
+            new Inserter("Land tile", 1, "Silk Cloth", 1, "Dye", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Garment"),
+            new Inserter("Mountain tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Gem"),
+            new Inserter("Land tile", 1, "Gold Ingot", 1, "Gem", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Goblet"),
+            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Beehive"),
+            new Inserter("Land tile", 1, "Linseed", 1, "Honey", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Candle"),
+            new Inserter("Land tile", 1, "Candle", 3, "Copper Ingot", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Candle Holder"),
+            new Inserter("Land tile", 1, "Coal", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Coke"),
+            new Inserter("Land tile", 1, "Iron Ingot", 1, "Coke", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Steel Ingot"),
+            new Inserter("Land tile", 1, "Horse", 1, "Steel Ingot", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Armored Horse"),
+            new Inserter("Land tile", 1, "Gold", 5, "Armored Horse", 1, "Militia", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Cuirassier"),
+            new Inserter("Land tile", 1, "Schnapps", 2, "Honey", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Liqueur"),
+            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Lobster"),
+            new Inserter("Land tile", 1, "Liqueur", 1, "Lobster", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Feast"),
+            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Vineyard"),
+            new Inserter("Land tile", 1, "Iron Ingot", 1, "Plank", 16, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Barrel"),
+            new Inserter("Land tile", 1, "Grape", 4, "Barrel", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Wine"),
+            new Inserter("Land tile", 1, "Wood", 16, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Paper"),
+            new Inserter("Land tile", 1, "Paper", 4, "Dye", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Book"),
+            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Salpetre"),
 
-
-
-/*
-
-
-
-
+            /*
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            new Inserter(null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-
-  */
+            */
     };
 
     /**
