@@ -117,7 +117,8 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Horse", 20, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Gambling"),
             new Inserter("Land tile", 1, "Book", 15, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "University"),
 
-
+//https://oszimt-my.sharepoint.com/:x:/g/personal/lingsminat_florian_oszimt_onmicrosoft_com/Eee1K8H31LFAv335Nl95EwgBwTbi7y-IHPz7AhNOmDHMCw?e=N8x37
+//Hier ist die Liste zu finden. Rezepte wurden aufsteigend nach ID eingetragen, Grau, Rot und Orange markierte Rezepte wurden nicht eingestragen
 
 
 
