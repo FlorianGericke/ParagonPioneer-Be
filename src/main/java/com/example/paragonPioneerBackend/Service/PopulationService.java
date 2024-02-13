@@ -3,6 +3,7 @@ package com.example.paragonPioneerBackend.Service;
 import com.example.paragonPioneerBackend.Dto.PopulationDTO;
 import com.example.paragonPioneerBackend.Entity.Population;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
+import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +37,7 @@ public class PopulationService extends BaseService<Population, PopulationReposit
         return repository.save(
                 Population.builder()
                         .name(populationDTO.getName())
+                        .slug(populationDTO.getSlug().isEmpty() ? SlugUtil.createSlug(populationDTO.getName()) : populationDTO.getSlug())
                         .build()
         );
     }
@@ -51,6 +53,16 @@ public class PopulationService extends BaseService<Population, PopulationReposit
     }
 
     /**
+     * Find Good by slug
+     *
+     * @param slug the string contained
+     * @return list of Goods matching
+     */
+    public Population findBySlug(String slug) {
+        return repository.findBySlugIs(slug);
+    }
+
+    /**
      * Updates an Entity
      * Overridden from BaseService
      *
@@ -61,6 +73,7 @@ public class PopulationService extends BaseService<Population, PopulationReposit
     @Override
     public Population putPatch(Population original, PopulationDTO populationDTO) {
         original.setName(populationDTO.getName() != null ? populationDTO.getName() : original.getName());
+        original.setSlug(populationDTO.getSlug() != null ? populationDTO.getSlug() : original.getSlug());
         return original;
     }
 }

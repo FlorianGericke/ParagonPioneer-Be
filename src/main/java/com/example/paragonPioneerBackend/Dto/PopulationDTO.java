@@ -20,4 +20,7 @@ public class PopulationDTO {
     @JsonProperty("name")
     private String name;
 
+    @JsonProperty("slug")
+    @Builder.Default
+    private String slug = "";
 }

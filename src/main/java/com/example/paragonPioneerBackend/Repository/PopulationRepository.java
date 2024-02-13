@@ -20,6 +20,15 @@ public interface PopulationRepository extends JpaRepository<Population, UUID> {
     Population findByNameIs(String name);
 
     /**
+     * * find a population by its name
+     *
+     * @param slug of the good to find
+     * @return the good
+     */
+    Population findBySlugIs(String slug);
+
+
+    /**
      * find all population by name contains
      *
      * @param name contained string

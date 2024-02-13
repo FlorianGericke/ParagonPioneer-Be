@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Runners;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
 import com.example.paragonPioneerBackend.Repository.*;
+import com.example.paragonPioneerBackend.Service.PopulationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class Requirement_Population_BuildingInserter {
     private final Requirement_Population_BuildingRepository repository;
     private final PopulationBuildingRepository buildingRepository;
-    private final PopulationRepository populationRepository;
+    private final PopulationService populationService;
 
     private record Inserter(String buildingName, String populationName, int amount) {
     }
@@ -32,7 +33,7 @@ public class Requirement_Population_BuildingInserter {
         for (Inserter insert : inserts) {
             repository.save(
                     Requirement_Population_Building.builder()
-                            .population(populationRepository.findByNameIs(insert.populationName))
+                            .population(populationService.findBySlug(insert.populationName))
                             .building(buildingRepository.findByNameIs(insert.buildingName))
                             .amount(insert.amount)
                             .build()
