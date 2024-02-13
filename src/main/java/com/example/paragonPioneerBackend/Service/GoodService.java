@@ -3,6 +3,7 @@ package com.example.paragonPioneerBackend.Service;
 import com.example.paragonPioneerBackend.Dto.GoodDTO;
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
+import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +31,28 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
      * @param name the string contained
      * @return list of Goods matching
      */
-    public List<Good> find(String name) {
+    public List<Good> findAllByNameContains(String name) {
         return repository.findAllByNameContains(name);
+    }
+
+    /**
+     * Find Good by slug
+     *
+     * @param slug the string contained
+     * @return list of Goods matching
+     */
+    public Good findBySlug(String slug) {
+        return repository.findBySlugIs(slug);
+    }
+
+    /**
+     * Find Good by Name
+     *
+     * @param name the string contained
+     * @return list of Goods matching
+     */
+    public Good findByName(String name) {
+        return repository.findByNameIs(name);
     }
 
     /**
@@ -46,6 +67,7 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
         return repository.save(Good.builder()
                 .name(goodDTO.getName())
                 .remarks(goodDTO.getRemarks())
+                .slug(goodDTO.getSlug().isEmpty() ? SlugUtil.createSlug(goodDTO.getName()) : goodDTO.getSlug())
                 .build());
     }
 
@@ -60,6 +82,7 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
     @Override
     public Good putPatch(Good original, GoodDTO goodDTO) {
         original.setName(goodDTO.getName() != null ? goodDTO.getName() : original.getName());
+        original.setSlug(goodDTO.getSlug() != null ? goodDTO.getSlug() : original.getSlug());
         original.setRemarks(goodDTO.getRemarks() != null ? goodDTO.getRemarks() : original.getRemarks());
         return original;
     }

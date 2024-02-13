@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Runners;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
 import com.example.paragonPioneerBackend.Repository.*;
+import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class Cost_Building_goodsInserter{
     private final Cost_Building_GoodsRepository repository;
     private final BuildingRepository buildingRepository;
-    private final GoodRepository goodRepository;
+    private final GoodService goodService;
 
     private record Inserter(String buildingName, String goodName, int amount) {
     }
@@ -37,7 +38,7 @@ public class Cost_Building_goodsInserter{
         for (Inserter insert : inserts) {
             repository.save(
                     Cost_Building_Goods.builder()
-                            .good(goodRepository.findByNameIs(insert.goodName))
+                            .good(goodService.findByName(insert.goodName))
                             .building(buildingRepository.findByNameIs(insert.buildingName))
                             .amount(insert.amount)
                             .build()

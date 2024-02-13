@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Runners;
 
-import com.example.paragonPioneerBackend.Entity.Good;
-import com.example.paragonPioneerBackend.Repository.GoodRepository;
+import com.example.paragonPioneerBackend.Dto.GoodDTO;
+import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class GoodInserter{
-    private final GoodRepository repository;
+    private final GoodService service;
 
     private record Inserter(String name, String remarks) {
     }
@@ -111,7 +111,7 @@ public class GoodInserter{
      */
     public void run() {
         for (Inserter insert : inserts) {
-            repository.save(Good.builder().name(insert.name).remarks(insert.remarks).build());
+            service.post(GoodDTO.builder().name(insert.name).remarks(insert.remarks).build());
         }
     }
 }

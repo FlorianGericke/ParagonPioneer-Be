@@ -1,9 +1,9 @@
 package com.example.paragonPioneerBackend.Runners;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Population_Requirement;
-import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import com.example.paragonPioneerBackend.Repository.Population_RequirementRepository;
+import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class Population_RequirementInserter {
     private final Population_RequirementRepository repository;
     private final PopulationRepository populationRepository;
-    private final GoodRepository goodRepository;
+    private final GoodService goodService;
 
     private record Inserter(String populationName, String goodName, float consumption, float produce, boolean isBasic) {
     }
@@ -75,7 +75,7 @@ public class Population_RequirementInserter {
         for (Inserter insert : inserts) {
             repository.save(
                     Population_Requirement.builder()
-                            .good(goodRepository.findByNameIs(insert.goodName))
+                            .good(goodService.findByName(insert.goodName))
                             .population(populationRepository.findByNameIs(insert.populationName))
                             .consumption(insert.consumption)
                             .produce(insert.produce)

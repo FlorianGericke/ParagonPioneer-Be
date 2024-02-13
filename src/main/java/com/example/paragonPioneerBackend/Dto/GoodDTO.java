@@ -22,4 +22,8 @@ public class GoodDTO{
 
     @JsonProperty("remarks")
     private String remarks;
+
+    @JsonProperty("slug")
+    @Builder.Default
+    private String slug = "";
 }
