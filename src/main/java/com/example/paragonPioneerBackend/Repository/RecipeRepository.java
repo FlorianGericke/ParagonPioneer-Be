@@ -5,6 +5,7 @@ import com.example.paragonPioneerBackend.Entity.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -18,7 +19,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
      * @param output the output good of the recipe  to find
      * @return the recipe
      */
-    Recipe findByOutputIs(Good output);
+    Optional<Recipe> findByOutputIs(Good output);
 
     /**
      * * find a populationBuilding by its output name
@@ -26,7 +27,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
      * @param outputName the output good name of the recipe  to find
      * @return the recipe
      */
-    Recipe findByOutputNameIs(String outputName);
+    Optional<Recipe> findByOutputNameIs(String outputName);
 
     /**
      * find all recipes by output name contains

@@ -1,8 +1,8 @@
 package com.example.paragonPioneerBackend.Runners;
 
-import com.example.paragonPioneerBackend.Entity.Recipe;
-import com.example.paragonPioneerBackend.Repository.RecipeRepository;
+import com.example.paragonPioneerBackend.Dto.RecipeDTO;
 import com.example.paragonPioneerBackend.Service.GoodService;
+import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class RecipeInserter {
-    private final RecipeRepository repository;
+    private final RecipeService recipeService;
     private final GoodService goodService;
 
     private record Inserter(String i1, int q1, String i2, int q2, String i3, int q3, String i4, int q4, String i5,
@@ -110,7 +110,7 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Paper", 4, "Dye", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Book"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Salpetre"),
             new Inserter("Land tile", 1, "Coal", 1, "Salpetre", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Gunpowder"),
-            new Inserter("Land tile", 1, "Steel Ingot" , 1, "Gunpowder", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Cannon"),
+            new Inserter("Land tile", 1, "Steel Ingot", 1, "Gunpowder", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Cannon"),
             new Inserter("Land tile", 1, "Gold", 5, "Cannon", 1, "Militia", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Cannoneer"),
             new Inserter("Land tile", 1, "Iron Ingot", 1, "Copper Ingot", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Metal Cuttings"),
             new Inserter("Land tile", 1, "Gunpowder", 2, "Metal Cuttings", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Fireworks"),
@@ -120,7 +120,6 @@ public class RecipeInserter {
 //https://oszimt-my.sharepoint.com/:x:/g/personal/lingsminat_florian_oszimt_onmicrosoft_com/Eee1K8H31LFAv335Nl95EwgBwTbi7y-IHPz7AhNOmDHMCw?e=N8x37
 //Hier ist die Liste zu finden. Rezepte wurden aufsteigend nach ID eingetragen, Grau, Rot und Orange markierte Rezepte wurden nicht eingestragen
             //
-
 
 
             /*
@@ -133,18 +132,18 @@ public class RecipeInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            repository.save(Recipe.builder()
-                    .output(goodService.findByName(insert.output))
-                    .input1(goodService.findByName(insert.i1))
-                    .input2(goodService.findByName(insert.i2))
-                    .input3(goodService.findByName(insert.i3))
-                    .input4(goodService.findByName(insert.i4))
-                    .input5(goodService.findByName(insert.i5))
-                    .input6(goodService.findByName(insert.i6))
-                    .input7(goodService.findByName(insert.i7))
-                    .input8(goodService.findByName(insert.i8))
-                    .input9(goodService.findByName(insert.i9))
-                    .input10(goodService.findByName(insert.i10))
+            recipeService.post(RecipeDTO.builder()
+                    .output(getIdOrNull(insert.output))
+                    .input1(getIdOrNull(insert.i1))
+                    .input2(getIdOrNull(insert.i2))
+                    .input3(getIdOrNull(insert.i3))
+                    .input4(getIdOrNull(insert.i4))
+                    .input5(getIdOrNull(insert.i5))
+                    .input6(getIdOrNull(insert.i5))
+                    .input7(getIdOrNull(insert.i6))
+                    .input8(getIdOrNull(insert.i7))
+                    .input9(getIdOrNull(insert.i8))
+                    .input10(getIdOrNull(insert.i10))
                     .quantityOfInput1(insert.q1)
                     .quantityOfInput2(insert.q2)
                     .quantityOfInput3(insert.q3)
@@ -157,5 +156,12 @@ public class RecipeInserter {
                     .quantityOfInput10(insert.q10)
                     .build());
         }
+    }
+
+    private String getIdOrNull(String name) {
+        if (goodService.findByName(name).isEmpty()) {
+            return null;
+        }
+        return goodService.findByName(name).get().getId().toString();
     }
 }
