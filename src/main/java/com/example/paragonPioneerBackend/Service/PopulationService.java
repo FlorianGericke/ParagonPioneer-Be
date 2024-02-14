@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * the Base handling the CRUD functions for the Populations Entities. Extends BaseService
@@ -48,9 +49,11 @@ public class PopulationService extends BaseService<Population, PopulationReposit
      * @param name the string contained
      * @return list of Population matching
      */
-    public List<Population> find(String name) {
+    public List<Population> findAllByNameContains(String name) {
         return repository.findAllByNameContains(name);
     }
+
+
 
     /**
      * Find Good by slug
@@ -58,8 +61,18 @@ public class PopulationService extends BaseService<Population, PopulationReposit
      * @param slug the string contained
      * @return list of Goods matching
      */
-    public Population findBySlug(String slug) {
+    public Optional<Population> findBySlug(String slug) {
         return repository.findBySlugIs(slug);
+    }
+
+    /**
+     * Find Population by Name
+     *
+     * @param name the string contained
+     * @return list of Goods matching
+     */
+    public Optional<Population> findByName(String name) {
+        return repository.findByNameIs(name);
     }
 
     /**

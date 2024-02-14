@@ -4,6 +4,7 @@ import com.example.paragonPioneerBackend.Entity.Population;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -17,7 +18,7 @@ public interface PopulationRepository extends JpaRepository<Population, UUID> {
      * @param name of the population to find
      * @return the population
      */
-    Population findByNameIs(String name);
+    Optional<Population> findByNameIs(String name);
 
     /**
      * * find a population by its name
@@ -25,7 +26,7 @@ public interface PopulationRepository extends JpaRepository<Population, UUID> {
      * @param slug of the good to find
      * @return the good
      */
-    Population findBySlugIs(String slug);
+    Optional<Population> findBySlugIs(String slug);
 
 
     /**

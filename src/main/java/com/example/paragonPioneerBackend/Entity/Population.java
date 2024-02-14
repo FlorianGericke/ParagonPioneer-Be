@@ -20,6 +20,7 @@ import java.util.Set;
 @Setter
 @ToString
 @Builder
+@Table(name = "population")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE population SET deleted_at = current_date WHERE id=?")
@@ -46,10 +47,10 @@ public class Population extends BaseEntity implements Slugable {
         Favor
     }
 
-    @Column(name = "name", columnDefinition = "TEXT")
+    @Column(name = "name", columnDefinition = "varchar(255)")
     private String name;
 
-    @Column(name = "slug", nullable = false, unique = true, length = 255)
+    @Column(name = "slug", nullable = false, unique = true,columnDefinition = "varchar(255)")
     private String slug;
 
     @OneToMany(mappedBy = "population")
