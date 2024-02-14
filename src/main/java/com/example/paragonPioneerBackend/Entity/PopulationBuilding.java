@@ -27,8 +27,8 @@ public class PopulationBuilding extends Building {
      * @param capacity of persons living in the PopulationBuilding
      */
     @Builder
-    public PopulationBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, Requirement_Population_Building requirementPopulationBuildings, int capacity) {
-        super(name, remarks, costs, requirementPopulationBuildings);
+    public PopulationBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, Requirement_Population_Building requirementPopulationBuildings, int capacity, String slug) {
+        super(name, remarks, costs, requirementPopulationBuildings, slug);
         this.capacity = capacity;
     }
 
