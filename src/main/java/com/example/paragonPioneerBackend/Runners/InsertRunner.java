@@ -21,16 +21,17 @@ public class InsertRunner implements ApplicationRunner {
 
     /**
      * function called when application is started
+     *
      * @param args the application arguments
      */
     @Override
     public void run(ApplicationArguments args) {
         goodInserter.run();
-        recipeInserter.run();
         populationInserter.run();
+        recipeInserter.run();
+        populationRequirementInserter.run();
         buildingInserter.run();
         costBuildingGoodsInserter.run();
-        populationRequirementInserter.run();
         costBuildingPopulation.run();
     }
 }

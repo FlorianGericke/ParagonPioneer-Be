@@ -15,13 +15,13 @@ import java.util.UUID;
 @Builder
 public class Requirement_Population_BuildingDTO {
     @JsonProperty("id")
-    private UUID id;
+    private String id;
 
     @JsonProperty("building_id")
-    private UUID buildingId;
+    private String buildingId;
 
     @JsonProperty("population_id")
-    private UUID populationId;
+    private String populationId;
 
     @JsonProperty("amount")
     private int amount;

@@ -18,6 +18,7 @@ import org.hibernate.annotations.Where;
 @Setter
 @ToString
 @Builder
+@Table(name = "population_requirement" )
 @RequiredArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE population_requirement SET deleted_at = current_date WHERE id=?")

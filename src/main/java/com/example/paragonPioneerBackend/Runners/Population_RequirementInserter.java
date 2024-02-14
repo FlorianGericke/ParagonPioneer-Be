@@ -1,9 +1,10 @@
 package com.example.paragonPioneerBackend.Runners;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Population_Requirement;
-import com.example.paragonPioneerBackend.Repository.Population_RequirementRepository;
+import com.example.paragonPioneerBackend.Dto.Population_RequirementDTO;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import com.example.paragonPioneerBackend.Service.PopulationService;
+import com.example.paragonPioneerBackend.Service.Population_RequirementService;
+import com.example.paragonPioneerBackend.Util.OptionalUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class Population_RequirementInserter {
-    private final Population_RequirementRepository repository;
+    private final Population_RequirementService populationRequirementService;
     private final PopulationService populationService;
     private final GoodService goodService;
 
@@ -73,10 +74,11 @@ public class Population_RequirementInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            repository.save(
-                    Population_Requirement.builder()
-                            .good(goodService.findByName(insert.goodName))
-                            .population(populationService.findBySlug(insert.populationName))
+            System.out.println(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)));
+            populationRequirementService.post(
+                    Population_RequirementDTO.builder()
+                            .goodId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)))
+                            .populationId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)))
                             .consumption(insert.consumption)
                             .produce(insert.produce)
                             .isBasic(insert.isBasic)
