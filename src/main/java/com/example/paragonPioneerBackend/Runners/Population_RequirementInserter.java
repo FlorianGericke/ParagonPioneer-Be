@@ -74,7 +74,6 @@ public class Population_RequirementInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            System.out.println(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)));
             populationRequirementService.post(
                     Population_RequirementDTO.builder()
                             .goodId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)))
