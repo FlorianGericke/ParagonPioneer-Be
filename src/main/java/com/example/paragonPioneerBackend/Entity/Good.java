@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -20,19 +21,20 @@ import java.util.Set;
 @Setter
 @ToString
 @Builder
+@Table(name = "good")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE good SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
 public class Good extends BaseEntity implements Slugable {
 
-    @Column(name = "name", nullable = false, unique = true, length = 255, columnDefinition = "TEXT")
+    @Column(name = "name", nullable = false, unique = true, columnDefinition = "varchar(255)")
     private String name;
 
-    @Column(name = "remarks", nullable = true, length = 255, columnDefinition = "TEXT")
+    @Column(name = "remarks", nullable = true, columnDefinition = "varchar(255)")
     private String remarks;
 
-    @Column(name = "slug", nullable = false, unique = true,  length = 255)
+    @Column(name = "slug", nullable = false, unique = true, columnDefinition = "varchar(255)")
     private String slug;
 
     @OneToMany(mappedBy = "good")

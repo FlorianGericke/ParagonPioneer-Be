@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * the Base handling the CRUD functions for the Goods Entities. Extends BaseService
@@ -41,7 +42,7 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
      * @param slug the string contained
      * @return list of Goods matching
      */
-    public Good findBySlug(String slug) {
+    public Optional<Good> findBySlug(String slug) {
         return repository.findBySlugIs(slug);
     }
 
@@ -51,7 +52,7 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
      * @param name the string contained
      * @return list of Goods matching
      */
-    public Good findByName(String name) {
+    public Optional<Good> findByName(String name) {
         return repository.findByNameIs(name);
     }
 
