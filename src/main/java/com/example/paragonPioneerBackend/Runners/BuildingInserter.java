@@ -21,15 +21,63 @@ public class BuildingInserter {
 
     private final Inserter[] inserts = {
             new Inserter("Lumberjack", "Wood", 5f, ""),
-            new Inserter("Forester", "", 0, ""),
-            new Inserter("Warehouse I", "", 0, ""),
-            new Inserter("Well", "Water", 0.01666666667f, ""),
-            new Inserter("Kontor I", "", 0, ",Limited to one per island"),
-            new Inserter("Fisherman", "Fish", 0.75f, ""),
-            new Inserter("Sawmill", "Plank", 5f, ""),
-            new Inserter("Potato Field", "Potato Field", 0.01666666667f, ""),
-            new Inserter("Potato Farm", "Schnaps", 1f, "")
+            new Inserter("Well", "Water", 0.01667f, ""),
+            new Inserter("Fishermans Hut","Fish",0.75f,""),
+            new Inserter("Sawmill","Plank",5f,""),
+            new Inserter("Potato Field","Potato Field",0.01667f,""),
+            new Inserter("Potato Farm","Schnapps",1f,""),
+            new Inserter("Tavern","Community",0.01667f,""),
+            new Inserter("Linseed Field","Linseed Field",0.01667f,""),
+            new Inserter("Linseed Farm","Linseed",0.5f,""),
+            new Inserter("Linen Weaver","Linen",0.5f,""),
+            new Inserter("Bowyer","Bow",0.5f,""),
+            new Inserter("Archery Range","Archer",0.1f,""),
+            new Inserter("Ropery","Ropes",0.5f,""),
+            new Inserter("Stonecutter","Stone",0.14286f,""),
+            new Inserter("Copper Mine","Copper Ore",0.25f,""),
+            new Inserter("Copper Smelter","Copper Ingot",0.125f,""),
+            new Inserter("Copper Armory","Copper Sword",0.125f,""),
+            new Inserter("Barracks","Footsoldier",0.1f,""),
+            new Inserter("Sheep Field","Sheep Field",0.01667f,""),
+            new Inserter("Sheep Farm","Yarn",0.5f,""),
+            new Inserter("Wheat Field","Wheat Field",0.01667f,""),
+            new Inserter("Wheat Farm","Wheat",0.5f,""),
+            new Inserter("Windmill","Flour",0.5f,""),
+            new Inserter("Bakery","Bread",0.25f,""),
+            new Inserter("Horse Field","Horse Field",0.01667f,""),
+            new Inserter("Horse Breeder","Horse",0.01667f,""),
+            new Inserter("Riding Arena","Cavalry",0.1f,""),
+            new Inserter("Tobacco Field","Tobacco Field",0.01667f,""),
+            new Inserter("Tobacco Farm","Tobacco",0.5f,""),
+            new Inserter("Cigar Manufacturer","Cigar",0.5f,""),
+            new Inserter("Sailmaker","Sail",0.25f,""),
+            new Inserter("Clay Pit","Clay",0.5f,""),
+            new Inserter("Brickyard","Brick",0.25f,""),
+            new Inserter("Longbowyer","Longbow",0.5f,""),
+            new Inserter("Longbow Archer Range","Longbow Archer",0.1f,""),
+            new Inserter("Cotton Field","Cotton Field",0.01667f,""),
+            new Inserter("Cotton Plantation","Yarn",1f,""),
+            new Inserter("Tailor","Clothes",0.25f,""),
+            new Inserter("Hop Field","Hop Field",0.01667f,""),
+            new Inserter("Hop Farm","Hops",0.5f,""),
+            new Inserter("Malthouse","Malt",0.5f,""),
+            new Inserter("Brewery","Beer",0.5f,""),
+            new Inserter("Linseed Pil Press","Linseed Oil",0.33333f,""),
+            new Inserter("Medicus","Medical Care",0.01667f,""),
+            new Inserter("Iron Mine","Iron Ore",0.25f,""),
+            new Inserter("Iron Smelter","Iron Ingot",0.125f,""),
+            new Inserter("Toolmaker","Tools",0.25f,""),
+            new Inserter("Iron Armory","Iron Sword",0.125f,""),
+            new Inserter("Knight Barracks","Knight",0.1f,""),
+
+
+
+
+
     };
+    /*
+        new Inserter("","",f,""),
+     */
 
     /**
      * Run the insertions
