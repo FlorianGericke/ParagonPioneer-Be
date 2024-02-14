@@ -3,8 +3,6 @@ package com.example.paragonPioneerBackend.Dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import java.util.UUID;
-
 /**
  * for sending requirement population building relation data
  */

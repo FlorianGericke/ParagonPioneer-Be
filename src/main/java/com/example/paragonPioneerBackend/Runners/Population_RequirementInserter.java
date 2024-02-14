@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class Population_RequirementInserter {
     private final Population_RequirementService populationRequirementService;
-    private final PopulationService populationService;
     private final GoodService goodService;
 
     private record Inserter(String populationName, String goodName, float consumption, float produce, boolean isBasic) {

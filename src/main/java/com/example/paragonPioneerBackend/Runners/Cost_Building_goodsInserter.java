@@ -40,7 +40,7 @@ public class Cost_Building_goodsInserter{
         for (Inserter insert : inserts) {
             String buildingId = null;
 
-            if (buildingService.findByName(insert.buildingName) != null) {
+            if (buildingService.findByName(insert.buildingName).isPresent()) {
                 buildingId = Objects.requireNonNull(buildingService.findByName(insert.buildingName).orElse(null)).getId().toString();
             }
 
