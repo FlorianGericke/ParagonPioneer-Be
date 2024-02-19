@@ -6,6 +6,7 @@ import com.example.paragonPioneerBackend.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
 /**
  * Service handling the functionality of the required Population for a building. Extends BaseService
  */
@@ -37,8 +38,8 @@ public class Requirement_Building_PopulationService extends BaseService<Requirem
     public Requirement_Population_Building post(Requirement_Population_BuildingDTO costBuildingPopulationDTO) {
         return repository.save(
                 Requirement_Population_Building.builder()
-                        .population(populationRepository.findById(costBuildingPopulationDTO.getPopulationId()).get())
-                        .building(buildingRepository.findById(costBuildingPopulationDTO.getBuildingId()).get())
+                        .population(populationRepository.findById(UUID.fromString(costBuildingPopulationDTO.getPopulationId())).get())
+                        .building(buildingRepository.findById(UUID.fromString(costBuildingPopulationDTO.getBuildingId())).get())
                         .amount(costBuildingPopulationDTO.getAmount())
                         .build()
         );
@@ -53,8 +54,8 @@ public class Requirement_Building_PopulationService extends BaseService<Requirem
      */
     @Override
     public Requirement_Population_Building putPatch(Requirement_Population_Building original, Requirement_Population_BuildingDTO costBuildingPopulationDTO) {
-        original.setBuilding(costBuildingPopulationDTO.getBuildingId() == null ? original.getBuilding() : buildingRepository.findById(costBuildingPopulationDTO.getBuildingId()).get());
-        original.setPopulation(costBuildingPopulationDTO.getPopulationId() == null ? original.getPopulation() : populationRepository.findById(costBuildingPopulationDTO.getPopulationId()).get());
+        original.setBuilding(costBuildingPopulationDTO.getBuildingId() == null ? original.getBuilding() : buildingRepository.findById(UUID.fromString(costBuildingPopulationDTO.getBuildingId())).get());
+        original.setPopulation(costBuildingPopulationDTO.getPopulationId() == null ? original.getPopulation() : populationRepository.findById(UUID.fromString(costBuildingPopulationDTO.getPopulationId())).get());
         if (original.getAmount() != costBuildingPopulationDTO.getAmount()) {
             original.setAmount(costBuildingPopulationDTO.getAmount());
         }
