@@ -1,5 +1,6 @@
 package com.example.paragonPioneerBackend.Entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,6 +25,7 @@ import java.util.List;
 @Where(clause = "deleted_at IS NULL")
 public class Admin extends BaseEntity implements UserDetails {
 
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     private String password;

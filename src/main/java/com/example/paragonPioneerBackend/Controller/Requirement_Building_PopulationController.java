@@ -3,7 +3,7 @@ package com.example.paragonPioneerBackend.Controller;
 import com.example.paragonPioneerBackend.Dto.Requirement_Population_BuildingDTO;
 import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
 import com.example.paragonPioneerBackend.Repository.Requirement_Population_BuildingRepository;
-import com.example.paragonPioneerBackend.Service.Requirement_Building_PopulationService;
+import com.example.paragonPioneerBackend.Service.EntityServices.Requirement_Building_PopulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
