@@ -1,14 +1,15 @@
-package com.example.paragonPioneerBackend.Runners;
+package com.example.paragonPioneerBackend.Bin.Config.Data;
 
+import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Execute all runner in correct Order. To set up relations correctly
  */
-@Component
+@Configuration
 @RequiredArgsConstructor
 public class InsertRunner implements ApplicationRunner {
     private final GoodInserter goodInserter;

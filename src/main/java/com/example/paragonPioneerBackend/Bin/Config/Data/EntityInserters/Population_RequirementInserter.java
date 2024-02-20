@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Runners;
+package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Population_Requirement;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;

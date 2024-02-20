@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Runners;
+package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
 import com.example.paragonPioneerBackend.Repository.*;

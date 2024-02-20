@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Runners;
+package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
