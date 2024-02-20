@@ -8,6 +8,7 @@ import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
 /**
  * the Base handling the CRUD functions for the cost building goods relations. Extends BaseService
  */
@@ -39,8 +40,8 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
     public Cost_Building_Goods post(Cost_Building_GoodsDTO costBuildingGoodsDTO) {
         return repository.save(
                 Cost_Building_Goods.builder()
-                        .good(goodRepository.findById(costBuildingGoodsDTO.getGoodId()).get())
-                        .building(buildingRepository.findById(costBuildingGoodsDTO.getBuildingId()).get())
+                        .good(goodRepository.findById(UUID.fromString(costBuildingGoodsDTO.getGoodId())).orElse(null))
+                        .building(buildingRepository.findById(UUID.fromString(costBuildingGoodsDTO.getBuildingId())).orElse(null))
                         .amount(costBuildingGoodsDTO.getAmount())
                         .build()
         );
@@ -55,8 +56,8 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
      */
     @Override
     public Cost_Building_Goods putPatch(Cost_Building_Goods original, Cost_Building_GoodsDTO costBuildingGoodsDTO) {
-        original.setBuilding(costBuildingGoodsDTO.getBuildingId() == null ? original.getBuilding() : buildingRepository.findById(costBuildingGoodsDTO.getBuildingId()).get());
-        original.setGood(costBuildingGoodsDTO.getGoodId() == null ? original.getGood() : goodRepository.findById(costBuildingGoodsDTO.getGoodId()).get());
+        original.setBuilding(costBuildingGoodsDTO.getBuildingId() == null ? original.getBuilding() : buildingRepository.findById(UUID.fromString(costBuildingGoodsDTO.getBuildingId())).get());
+        original.setGood(costBuildingGoodsDTO.getGoodId() == null ? original.getGood() : goodRepository.findById(UUID.fromString(costBuildingGoodsDTO.getGoodId())).get());
         if (original.getAmount() != costBuildingGoodsDTO.getAmount()) {
             original.setAmount(costBuildingGoodsDTO.getAmount());
         }

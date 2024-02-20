@@ -4,6 +4,7 @@ import com.example.paragonPioneerBackend.Entity.Building;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -17,7 +18,7 @@ public interface BuildingRepository extends JpaRepository<Building, UUID> {
      * @param name of the building to find
      * @return the building
      */
-    Building findByNameIs(String name);
+    Optional<Building> findByNameIs(String name);
 
     /**
      * find all building by name contains
@@ -26,4 +27,12 @@ public interface BuildingRepository extends JpaRepository<Building, UUID> {
      * @return list of all matching
      */
     List<Building> findAllByNameContains(String name);
+
+    /**
+     * * find a Good by its name
+     *
+     * @param slug of the good to find
+     * @return the good
+     */
+    Optional<Building> findBySlugIs(String slug);
 }

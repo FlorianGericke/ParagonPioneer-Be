@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.UUID;
-
 /**
  * DTO for sending Building data
  */
@@ -15,9 +13,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class BuildingDTO{
+public class BuildingDTO {
     @JsonProperty("id")
-    private UUID id;
+    private String id;
 
     @JsonProperty("name")
     private String name;
@@ -25,4 +23,7 @@ public class BuildingDTO{
     @JsonProperty("remarks")
     private String remarks;
 
+    @JsonProperty("slug")
+    @Builder.Default
+    private String slug = "";
 }

@@ -38,6 +38,6 @@ public class PopulationController extends BaseController<Population, PopulationR
      */
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Population> getEntities(@RequestParam String name) {
-        return service.find(name);
+        return service.findAllByNameContains(name);
     }
 }

@@ -6,7 +6,6 @@ import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
 import com.example.paragonPioneerBackend.Entity.Building;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
-import com.example.paragonPioneerBackend.Entity.Recipe;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class BuildingController extends BaseController<Building, BuildingReposit
      */
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Building> getEntities(@RequestParam String name) {
-        return service.find(name);
+        return service.findAllByNameContains(name);
     }
 
     /**

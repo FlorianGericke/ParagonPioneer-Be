@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.UUID;
-
 /**
  * DTO for sending Population Building data
  */
@@ -25,8 +23,8 @@ public class PopulationBuildingDTO extends BuildingDTO {
      * @param remarks of the new instance
      * @param capacity of the new instance
      */
-    public PopulationBuildingDTO(UUID id, String name, String remarks, int capacity) {
-        super(id, name, remarks);
+    public PopulationBuildingDTO(String id, String name, String remarks, int capacity, String slug) {
+        super(id, name, remarks, slug);
         this.capacity = capacity;
     }
 
