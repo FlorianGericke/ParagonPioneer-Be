@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Service;
+package com.example.paragonPioneerBackend.Service.Authservices;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

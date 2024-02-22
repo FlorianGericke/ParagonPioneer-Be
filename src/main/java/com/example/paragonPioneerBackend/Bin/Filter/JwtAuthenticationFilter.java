@@ -1,6 +1,6 @@
 package com.example.paragonPioneerBackend.Bin.Filter;
 
-import com.example.paragonPioneerBackend.Service.JwtService;
+import com.example.paragonPioneerBackend.Service.Authservices.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

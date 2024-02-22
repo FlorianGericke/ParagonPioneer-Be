@@ -1,5 +1,9 @@
-package com.example.paragonPioneerBackend.Bin.Auth;
+package com.example.paragonPioneerBackend.Controller;
 
+import com.example.paragonPioneerBackend.Dto.RegisterRequest;
+import com.example.paragonPioneerBackend.Dto.AuthenticationRequest;
+import com.example.paragonPioneerBackend.Dto.AuthenticationResponse;
+import com.example.paragonPioneerBackend.Service.Authservices.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

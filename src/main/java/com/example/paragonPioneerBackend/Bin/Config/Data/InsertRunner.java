@@ -1,13 +1,12 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data;
 
-import com.example.paragonPioneerBackend.Bin.Auth.AuthenticationService;
-import com.example.paragonPioneerBackend.Bin.Auth.RegisterRequest;
+import com.example.paragonPioneerBackend.Service.Authservices.AuthenticationService;
+import com.example.paragonPioneerBackend.Dto.RegisterRequest;
 import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * Execute all runner in correct Order. To set up relations correctly
