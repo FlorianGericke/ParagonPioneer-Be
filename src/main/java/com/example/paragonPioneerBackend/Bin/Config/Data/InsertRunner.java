@@ -1,10 +1,13 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data;
 
+import com.example.paragonPioneerBackend.Bin.Auth.AuthenticationService;
+import com.example.paragonPioneerBackend.Bin.Auth.RegisterRequest;
 import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * Execute all runner in correct Order. To set up relations correctly
@@ -12,6 +15,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class InsertRunner implements ApplicationRunner {
+    private final AuthenticationService authenticationService;
+
     private final GoodInserter goodInserter;
     private final RecipeInserter recipeInserter;
     private final PopulationInserter populationInserter;
@@ -22,10 +27,16 @@ public class InsertRunner implements ApplicationRunner {
 
     /**
      * function called when application is started
+     *
      * @param args the application arguments
      */
     @Override
     public void run(ApplicationArguments args) {
+        authenticationService.register(RegisterRequest.builder()
+                .email("amin@user.de")
+                .password("admin")
+                .build());
+
         goodInserter.run();
         recipeInserter.run();
         populationInserter.run();
