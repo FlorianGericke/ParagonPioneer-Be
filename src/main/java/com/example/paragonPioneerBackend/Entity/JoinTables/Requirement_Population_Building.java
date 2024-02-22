@@ -20,6 +20,7 @@ import org.hibernate.annotations.Where;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Table(name = "requirement_population_building")
 @SQLDelete(sql = "UPDATE requirement_population_building SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
 public class Requirement_Population_Building extends BaseEntity {

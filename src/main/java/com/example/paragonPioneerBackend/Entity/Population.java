@@ -19,6 +19,7 @@ import java.util.Set;
 @Setter
 @ToString
 @Builder
+@Table(name = "population")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE population SET deleted_at = current_date WHERE id=?")
