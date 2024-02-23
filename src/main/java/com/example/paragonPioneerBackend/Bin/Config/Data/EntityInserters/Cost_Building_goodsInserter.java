@@ -1,19 +1,22 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
-import com.example.paragonPioneerBackend.Repository.*;
+import com.example.paragonPioneerBackend.Dto.Cost_Building_GoodsDTO;
+import com.example.paragonPioneerBackend.Service.BuildingService;
+import com.example.paragonPioneerBackend.Service.Cost_Building_GoodsService;
+import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 /**
  * Setup all data for relation cost building goods
  */
 @Component
 @RequiredArgsConstructor
 public class Cost_Building_goodsInserter{
-    private final Cost_Building_GoodsRepository repository;
-    private final BuildingRepository buildingRepository;
-    private final GoodRepository goodRepository;
+    private final Cost_Building_GoodsService costBuildingGoodsService;
+    private final BuildingService<?> buildingService;
+    private final GoodService goodService;
 
     private record Inserter(String buildingName, String goodName, int amount) {
     }
@@ -35,10 +38,16 @@ public class Cost_Building_goodsInserter{
      */
     public void run() {
         for (Inserter insert : inserts) {
-            repository.save(
-                    Cost_Building_Goods.builder()
-                            .good(goodRepository.findByNameIs(insert.goodName))
-                            .building(buildingRepository.findByNameIs(insert.buildingName))
+            String buildingId = null;
+
+            if (buildingService.findByName(insert.buildingName).isPresent()) {
+                buildingId = Objects.requireNonNull(buildingService.findByName(insert.buildingName).orElse(null)).getId().toString();
+            }
+
+            costBuildingGoodsService.post(
+                    Cost_Building_GoodsDTO.builder()
+                            .goodId(Objects.requireNonNull(goodService.findByName(insert.goodName).orElse(null)).getId().toString())
+                            .buildingId(buildingId)
                             .amount(insert.amount)
                             .build()
             );

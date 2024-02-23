@@ -35,6 +35,6 @@ public class RecipeController extends BaseController<Recipe, RecipeRepository, R
      */
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Recipe> getEntities(@RequestParam String outputName) {
-        return service.find(outputName);
+        return service.findAllByNameContains(outputName);
     }
 }

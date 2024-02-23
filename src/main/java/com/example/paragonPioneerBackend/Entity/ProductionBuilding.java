@@ -36,8 +36,8 @@ public class ProductionBuilding extends Building {
      * @param recipe the production recipe of the building
      */
     @Builder
-    public ProductionBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, Requirement_Population_Building requirementPopulationBuildings, float productionPerMinute, Recipe recipe) {
-        super(name, remarks, costs,requirementPopulationBuildings);
+    public ProductionBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, Requirement_Population_Building requirementPopulationBuildings, float productionPerMinute, Recipe recipe, String slug) {
+        super(name, remarks, costs,requirementPopulationBuildings, slug);
         this.productionPerMinute = productionPerMinute;
         this.recipe = recipe;
     }

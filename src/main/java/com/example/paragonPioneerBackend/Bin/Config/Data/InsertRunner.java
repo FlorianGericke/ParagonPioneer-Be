@@ -37,11 +37,11 @@ public class InsertRunner implements ApplicationRunner {
                 .build());
 
         goodInserter.run();
-        recipeInserter.run();
         populationInserter.run();
-        buildingInserter.run();
-        costBuildingGoodsInserter.run();
+        recipeInserter.run();
         populationRequirementInserter.run();
-        costBuildingPopulation.run();
+//        buildingInserter.run(); todo : this is a QuickFix
+//        costBuildingGoodsInserter.run();
+//        costBuildingPopulation.run();
     }
 }

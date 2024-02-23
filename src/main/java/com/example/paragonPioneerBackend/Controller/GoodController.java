@@ -38,6 +38,6 @@ public class GoodController extends BaseController<Good, GoodRepository, GoodDTO
      */
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Good> getEntities(@RequestParam String name) {
-        return service.find(name);
+        return service.findAllByNameContains(name);
     }
 }

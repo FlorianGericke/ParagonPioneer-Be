@@ -3,11 +3,13 @@ package com.example.paragonPioneerBackend.Service.EntityServices;
 import com.example.paragonPioneerBackend.Dto.PopulationDTO;
 import com.example.paragonPioneerBackend.Entity.Population;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
+import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * the Base handling the CRUD functions for the Populations Entities. Extends BaseService
@@ -37,6 +39,7 @@ public class PopulationService extends BaseService<Population, PopulationReposit
         return repository.save(
                 Population.builder()
                         .name(populationDTO.getName())
+                        .slug(populationDTO.getSlug().isEmpty() ? SlugUtil.createSlug(populationDTO.getName()) : populationDTO.getSlug())
                         .build()
         );
     }
@@ -47,8 +50,30 @@ public class PopulationService extends BaseService<Population, PopulationReposit
      * @param name the string contained
      * @return list of Population matching
      */
-    public List<Population> find(String name) {
+    public List<Population> findAllByNameContains(String name) {
         return repository.findAllByNameContains(name);
+    }
+
+
+
+    /**
+     * Find Good by slug
+     *
+     * @param slug the string contained
+     * @return list of Goods matching
+     */
+    public Optional<Population> findBySlug(String slug) {
+        return repository.findBySlugIs(slug);
+    }
+
+    /**
+     * Find Population by Name
+     *
+     * @param name the string contained
+     * @return list of Goods matching
+     */
+    public Optional<Population> findByName(String name) {
+        return repository.findByNameIs(name);
     }
 
     /**
@@ -62,6 +87,7 @@ public class PopulationService extends BaseService<Population, PopulationReposit
     @Override
     public Population putPatch(Population original, PopulationDTO populationDTO) {
         original.setName(populationDTO.getName() != null ? populationDTO.getName() : original.getName());
+        original.setSlug(populationDTO.getSlug() != null ? populationDTO.getSlug() : original.getSlug());
         return original;
     }
 }

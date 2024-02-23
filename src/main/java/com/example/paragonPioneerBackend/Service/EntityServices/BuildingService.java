@@ -10,11 +10,15 @@ import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Repository.PopulationBuildingRepository;
 import com.example.paragonPioneerBackend.Repository.ProductionBuildingRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
+import com.example.paragonPioneerBackend.Util.SlugUtil;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 
 /**
@@ -49,13 +53,33 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     }
 
     /**
+     * Find Good by slug
+     *
+     * @param slug the string contained
+     * @return list of Goods matching
+     */
+    public Optional<Building> findBySlug(String slug) {
+        return repository.findBySlugIs(slug);
+    }
+
+    /**
      * Find all Buildings with name contains
      *
      * @param name the string contained
      * @return list of Recipe matching
      */
-    public List<Building> find(String name) {
+    public List<Building> findAllByNameContains(String name) {
         return repository.findAllByNameContains(name);
+    }
+
+    /**
+     * Find Good by Name
+     *
+     * @param name the string contained
+     * @return list of Goods matching
+     */
+    public Optional<Building> findByName(String name) {
+        return repository.findByNameIs(name);
     }
 
     /**
@@ -72,16 +96,27 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
                     .name(populationBuildingDTO.getName())
                     .remarks(populationBuildingDTO.getRemarks())
                     .capacity(populationBuildingDTO.getCapacity())
+                    .slug(populationBuildingDTO.getSlug().isEmpty() ? SlugUtil.createSlug(populationBuildingDTO.getName()) : populationBuildingDTO.getSlug())
                     .build());
         }
 
         if (buildingTypeDTO instanceof ProductionBuildingDTO productionBuildingDTO) {
-            return buildingRepository.save(ProductionBuilding.builder()
+            ProductionBuilding building = ProductionBuilding.builder()
                     .name(productionBuildingDTO.getName())
                     .remarks(productionBuildingDTO.getRemarks())
                     .productionPerMinute(productionBuildingDTO.getProductionPerMinute())
-                    .recipe(recipeRepository.findById(productionBuildingDTO.getIdOfRecipe()).orElse(null))
-                    .build());
+                    .recipe(UuidUtil.parseUuidFromStringOrNull(productionBuildingDTO.getIdOfRecipe()) == null ?
+                            null :
+                            recipeRepository.findById(UuidUtil.parseUuidFromStringOrNull(productionBuildingDTO.getIdOfRecipe())).orElse(null))
+                    .slug(productionBuildingDTO.getSlug().isEmpty() ? SlugUtil.createSlug(productionBuildingDTO.getName()) : productionBuildingDTO.getSlug())
+                    .build();
+            try {
+                return buildingRepository.save(building);
+            } catch (Exception e) {
+
+                throw new RuntimeException(e.getMessage() +"\n"+ String.valueOf(productionBuildingDTO) +"\n"+ building);
+            }
+
         }
 
         return null;
@@ -99,6 +134,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     public Building putPatch(Building original, BuildingTypeDTO buildingTypeDTO) {
         original.setName(buildingTypeDTO.getName() != null ? buildingTypeDTO.getName() : original.getName());
         original.setRemarks(buildingTypeDTO.getRemarks() != null ? buildingTypeDTO.getRemarks() : original.getRemarks());
+        original.setSlug(buildingTypeDTO.getSlug() != null ? buildingTypeDTO.getSlug() : original.getSlug());
 
         if (buildingTypeDTO instanceof PopulationBuildingDTO populationBuildingDTO && original instanceof PopulationBuilding) {
             ((PopulationBuilding) original).setCapacity(populationBuildingDTO.getCapacity() != ((PopulationBuilding) original).getCapacity() ? populationBuildingDTO.getCapacity() : ((PopulationBuilding) original).getCapacity());
@@ -107,7 +143,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
 
         if (buildingTypeDTO instanceof ProductionBuildingDTO productionBuildingDTO && original instanceof ProductionBuilding) {
             ((ProductionBuilding) original).setProductionPerMinute(productionBuildingDTO.getProductionPerMinute() != ((ProductionBuilding) original).getProductionPerMinute() ? productionBuildingDTO.getProductionPerMinute() : ((ProductionBuilding) original).getProductionPerMinute());
-            ((ProductionBuilding) original).setRecipe(productionBuildingDTO.getIdOfRecipe() != null ? recipeRepository.findById(productionBuildingDTO.getIdOfRecipe()).get() : ((ProductionBuilding) original).getRecipe());
+            ((ProductionBuilding) original).setRecipe(productionBuildingDTO.getIdOfRecipe() != null ? recipeRepository.findById(UUID.fromString(productionBuildingDTO.getIdOfRecipe())).get() : ((ProductionBuilding) original).getRecipe());
             return original;
         }
 

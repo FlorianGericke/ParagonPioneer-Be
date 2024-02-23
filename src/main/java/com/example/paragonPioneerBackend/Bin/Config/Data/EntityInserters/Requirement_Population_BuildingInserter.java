@@ -1,9 +1,13 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
-import com.example.paragonPioneerBackend.Repository.*;
+import com.example.paragonPioneerBackend.Dto.Requirement_Population_BuildingDTO;
+import com.example.paragonPioneerBackend.Service.BuildingService;
+import com.example.paragonPioneerBackend.Service.PopulationService;
+import com.example.paragonPioneerBackend.Service.Requirement_Building_PopulationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 /**
  * Setup all data for relation require populations for buildings
@@ -11,9 +15,9 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class Requirement_Population_BuildingInserter {
-    private final Requirement_Population_BuildingRepository repository;
-    private final PopulationBuildingRepository buildingRepository;
-    private final PopulationRepository populationRepository;
+    private final Requirement_Building_PopulationService requirementBuildingPopulationService;
+    private final BuildingService<?> buildingService;
+    private final PopulationService populationService;
 
     private record Inserter(String buildingName, String populationName, int amount) {
     }
@@ -30,10 +34,10 @@ public class Requirement_Population_BuildingInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            repository.save(
-                    Requirement_Population_Building.builder()
-                            .population(populationRepository.findByNameIs(insert.populationName))
-                            .building(buildingRepository.findByNameIs(insert.buildingName))
+            requirementBuildingPopulationService.post(
+                    Requirement_Population_BuildingDTO.builder()
+                            .populationId(populationService.findAllByNameContains(insert.populationName).get(0).getId().toString())
+                            .buildingId(Objects.requireNonNull(buildingService.findByName(insert.buildingName).orElse(null)).getId().toString())
                             .amount(insert.amount)
                             .build()
             );

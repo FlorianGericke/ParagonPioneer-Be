@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Entity;
 
 import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
 import com.example.paragonPioneerBackend.Entity.JoinTables.Population_Requirement;
+import com.example.paragonPioneerBackend.Util.SlugUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -24,7 +25,7 @@ import java.util.Set;
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE population SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-public class Population extends BaseEntity {
+public class Population extends BaseEntity implements Slugable {
 
     /**
      * Enum of all possible procurements ot a population
@@ -46,8 +47,11 @@ public class Population extends BaseEntity {
         Favor
     }
 
-    @Column(name="name", columnDefinition = "TEXT")
+    @Column(name = "name", columnDefinition = "varchar(255)")
     private String name;
+
+    @Column(name = "slug", nullable = false, unique = true,columnDefinition = "varchar(255)")
+    private String slug;
 
     @OneToMany(mappedBy = "population")
     @JsonManagedReference
@@ -61,21 +65,35 @@ public class Population extends BaseEntity {
 
     /**
      * get the Type of the production for this population
+     *
      * @return PopulationProductionUnit of this entity
      */
-    public PopulationProductionUnit getPopulationProductionUnit(){
-        if (getName() == null){
+    public PopulationProductionUnit getPopulationProductionUnit() {
+        if (getName() == null) {
             return null;
         }
 
-        if (getName().equals("Pioneers")){
+        if (getName().equals("Pioneers")) {
             return PopulationProductionUnit.Militias;
         }
 
-        if (getName().equals("Paragons")){
+        if (getName().equals("Paragons")) {
             return PopulationProductionUnit.Favor;
         }
 
         return PopulationProductionUnit.Income;
+    }
+
+    @Override
+    public String getSlug() {
+        return this.slug;
+    }
+
+    public void setSlug(String slug) {
+        if (!SlugUtil.validateSlug(slug)) {
+            throw new IllegalStateException("Could not create Slug for" + slug);
+        }
+
+        this.slug = slug;
     }
 }

@@ -40,7 +40,7 @@ public class BuildingController extends BaseController<Building, BuildingReposit
      */
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Building> getEntities(@RequestParam String name) {
-        return service.find(name);
+        return service.findAllByNameContains(name);
     }
 
     /**

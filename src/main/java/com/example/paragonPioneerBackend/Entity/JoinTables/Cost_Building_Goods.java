@@ -18,6 +18,7 @@ import org.hibernate.annotations.Where;
 @Setter
 @ToString
 @Builder
+@Table(name = "cost_building_goods")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name = "cost_building_goods")
