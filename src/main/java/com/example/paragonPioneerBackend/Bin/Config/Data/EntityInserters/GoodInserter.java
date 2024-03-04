@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Dto.GoodDTO;
-import com.example.paragonPioneerBackend.Service.GoodService;
+import com.example.paragonPioneerBackend.Service.EntityServices.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

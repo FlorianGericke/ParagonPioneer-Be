@@ -1,9 +1,8 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Dto.Population_RequirementDTO;
-import com.example.paragonPioneerBackend.Service.GoodService;
-import com.example.paragonPioneerBackend.Service.PopulationService;
-import com.example.paragonPioneerBackend.Service.Population_RequirementService;
+import com.example.paragonPioneerBackend.Service.EntityServices.GoodService;
+import com.example.paragonPioneerBackend.Service.EntityServices.Population_RequirementService;
 import com.example.paragonPioneerBackend.Util.OptionalUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
