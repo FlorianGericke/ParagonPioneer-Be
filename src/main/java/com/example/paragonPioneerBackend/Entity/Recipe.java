@@ -13,6 +13,7 @@ import org.hibernate.annotations.Where;
 @Setter
 @ToString
 @Builder
+@Table(name = "recipe")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE recipe SET deleted_at = current_date WHERE id=?")

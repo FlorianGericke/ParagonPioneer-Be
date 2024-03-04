@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.UUID;
-
 /**
  * DTO for sending Production Building data
  */
@@ -19,7 +17,8 @@ public class ProductionBuildingDTO extends BuildingDTO {
     private float productionPerMinute;
 
     @JsonProperty("id_of_recipe")
-    private UUID idOfRecipe ;
+    @Builder.Default
+    private String idOfRecipe = null;
 
     /**
      * default constructor
@@ -35,8 +34,8 @@ public class ProductionBuildingDTO extends BuildingDTO {
      * @param productionPerMinute  of the instance
      * @param idOfRecipe  of the instance
      */
-    public ProductionBuildingDTO(UUID id, String name, String remarks, float productionPerMinute, UUID idOfRecipe) {
-        super(id, name, remarks);
+    public ProductionBuildingDTO(String id, String name, String remarks, float productionPerMinute, String idOfRecipe, String slug) {
+        super(id, name, remarks, slug);
         this.productionPerMinute = productionPerMinute;
         this.idOfRecipe = idOfRecipe;
     }
@@ -46,7 +45,7 @@ public class ProductionBuildingDTO extends BuildingDTO {
      * @param productionPerMinute  of the instance
      * @param idOfRecipe  of the instance
      */
-    public ProductionBuildingDTO(float productionPerMinute, UUID idOfRecipe) {
+    public ProductionBuildingDTO(float productionPerMinute, String idOfRecipe) {
         this.productionPerMinute = productionPerMinute;
         this.idOfRecipe = idOfRecipe;
     }

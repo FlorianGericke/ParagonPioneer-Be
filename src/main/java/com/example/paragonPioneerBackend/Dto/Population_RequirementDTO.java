@@ -3,8 +3,6 @@ package com.example.paragonPioneerBackend.Dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import java.util.UUID;
-
 /**
  * for sending cost population requirement relation data
  */
@@ -15,13 +13,13 @@ import java.util.UUID;
 @Builder
 public class Population_RequirementDTO{
     @JsonProperty("id")
-    private UUID id;
+    private String id;
 
     @JsonProperty("good_id")
-    private UUID goodId;
+    private String goodId;
 
     @JsonProperty("population_id")
-    private UUID populationId;
+    private String populationId;
 
     @JsonProperty("consumption")
     private float consumption;
