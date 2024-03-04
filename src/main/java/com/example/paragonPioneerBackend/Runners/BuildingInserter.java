@@ -58,7 +58,7 @@ public class BuildingInserter {
             new Inserter("Longbowyer","Longbow",0.5f,""),
             new Inserter("Longbow Archer Range","Longbow Archer",0.1f,""),
             new Inserter("Cotton Field","Cotton Field",0.01667f,""),
-            new Inserter("Cotton Plantation","Yarn",1f,""),
+//            new Inserter("Cotton Plantation","Yarn",1f,""), todo at the moment the backen does not support multiple variants to produce a good
             new Inserter("Tailor","Clothes",0.25f,""),
             new Inserter("Hop Field","Hop Field",0.01667f,""),
             new Inserter("Hop Farm","Hops",0.5f,""),
