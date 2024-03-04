@@ -110,13 +110,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
                             recipeRepository.findById(UuidUtil.parseUuidFromStringOrNull(productionBuildingDTO.getIdOfRecipe())).orElse(null))
                     .slug(productionBuildingDTO.getSlug().isEmpty() ? SlugUtil.createSlug(productionBuildingDTO.getName()) : productionBuildingDTO.getSlug())
                     .build();
-            try {
-                return buildingRepository.save(building);
-            } catch (Exception e) {
-
-                throw new RuntimeException(e.getMessage() +"\n"+ String.valueOf(productionBuildingDTO) +"\n"+ building);
-            }
-
+            return buildingRepository.save(building);
         }
 
         return null;

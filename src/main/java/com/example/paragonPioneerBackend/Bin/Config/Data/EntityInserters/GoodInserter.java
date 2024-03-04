@@ -17,6 +17,19 @@ public class GoodInserter{
     }
 
     private final Inserter[] inserts = {
+            new Inserter("Land tile", ""),
+            new Inserter("Water tile", ""),
+            new Inserter("Mountain tile", ""),
+            new Inserter("Hop Field", ""),
+            new Inserter("Horse Field", ""),
+            new Inserter("Indigo Field", ""),
+            new Inserter("Linseed Field", ""),
+            new Inserter("Potato Field", ""),
+            new Inserter("Sheep Field", ""),
+            new Inserter("Cotton Field", ""),
+            new Inserter("Mulberry Trees", ""),
+            new Inserter("Tobacco Field", ""),
+            new Inserter("Wheat Field", ""),
             new Inserter("Coin", "Global"),
             new Inserter("Cartography", "Global, used for Discovery"),
             new Inserter("Favor", "Global, needed for more island slots"),
@@ -91,18 +104,6 @@ public class GoodInserter{
             new Inserter("Cannon", ""),
             new Inserter("Metal Cuttings", ""),
             new Inserter("Fireworks", ""),
-            new Inserter("Land tile", ""),
-            new Inserter("Mountain tile", ""),
-            new Inserter("Hop Field", ""),
-            new Inserter("Horse Field", ""),
-            new Inserter("Indigo Field", ""),
-            new Inserter("Linseed Field", ""),
-            new Inserter("Potato Field", ""),
-            new Inserter("Water tile", ""),
-            new Inserter("Sheep Field", ""),
-            new Inserter("Mulberry Trees", ""),
-            new Inserter("Tobacco Field", ""),
-            new Inserter("Wheat Field", ""),
             new Inserter("Vineyard", ""),
     };
 
