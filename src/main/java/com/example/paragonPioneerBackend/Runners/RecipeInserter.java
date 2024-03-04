@@ -57,7 +57,7 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Linseed", 2, "Wood", 10, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Longbow"),
             new Inserter("Land tile", 1, "Gold", 2, "longbow", 1, "Militia", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Longbow Archer"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Cotton Field"),
-            new Inserter("Land tile", 1, "Cotton Field", 8, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Yarn"),
+//            new Inserter("Land tile", 1, "Cotton Field", 8, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Yarn"), todo : Ath the moment the backend does not support multiple types of recipes for one good
             new Inserter("Land tile", 1, "Fabric", 4, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Clothes"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Hop Field"),
             new Inserter("Land tile", 1, "Hop Field", 8, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Hops"),
@@ -82,7 +82,7 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Mountain tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Marble"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Education"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Hygiene"),
-            new Inserter("Land tile", 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Water"),
+//            new Inserter("Land tile", 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Water"),  todo: multiple recipe variant are currently not supported by the Backend, this feature will be implement later
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Mulberry Tree"),
             new Inserter("Land tile", 1, "Mulberry Tree", 8, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Silk"),
             new Inserter("Land tile", 1, "Silk", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Silk Cloth"),

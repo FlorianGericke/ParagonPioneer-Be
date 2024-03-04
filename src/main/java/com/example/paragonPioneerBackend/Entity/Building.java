@@ -42,7 +42,7 @@ public abstract class Building extends BaseEntity implements Slugable {
     @ToString.Exclude
     private Requirement_Population_Building requirePopulation = null;
 
-    @Column(name = "slug", nullable = false, unique = false, columnDefinition = "varchar(255)")
+    @Column(name = "slug", nullable = false, unique = true, columnDefinition = "varchar(255)")
     @ToString.Exclude
     private String slug;
 
