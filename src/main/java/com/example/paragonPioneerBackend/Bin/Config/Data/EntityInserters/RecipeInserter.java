@@ -3,8 +3,11 @@ package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 import com.example.paragonPioneerBackend.Dto.RecipeDTO;
 import com.example.paragonPioneerBackend.Service.EntityServices.GoodService;
 import com.example.paragonPioneerBackend.Service.EntityServices.RecipeService;
+import com.example.paragonPioneerBackend.Util.StringUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Locale;
 
 /**
  * Setup all data for recipes
@@ -159,9 +162,9 @@ public class RecipeInserter {
     }
 
     private String getIdOrNull(String name) {
-        if (goodService.findByName(name).isEmpty()) {
+        if (goodService.findByName(StringUtil.toLower(name)).isEmpty()) {
             return null;
         }
-        return goodService.findByName(name).get().getId().toString();
+        return goodService.findByName(StringUtil.toLower(name)).get().getId().toString();
     }
 }

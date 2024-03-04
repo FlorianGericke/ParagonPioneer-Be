@@ -2,8 +2,11 @@ package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Dto.GoodDTO;
 import com.example.paragonPioneerBackend.Service.EntityServices.GoodService;
+import com.example.paragonPioneerBackend.Util.StringUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Locale;
 
 /**
  * Setup all data for goods
@@ -112,7 +115,7 @@ public class GoodInserter{
      */
     public void run() {
         for (Inserter insert : inserts) {
-            service.post(GoodDTO.builder().name(insert.name).remarks(insert.remarks).build());
+            service.post(GoodDTO.builder().name(StringUtil.toLower(insert.name)).remarks(StringUtil.toLower(insert.remarks)).build());
         }
     }
 }

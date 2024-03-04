@@ -2,8 +2,11 @@ package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Dto.PopulationDTO;
 import com.example.paragonPioneerBackend.Service.EntityServices.PopulationService;
+import com.example.paragonPioneerBackend.Util.StringUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Locale;
 
 /**
  * Setup all data for populations
@@ -30,7 +33,7 @@ public class PopulationInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            populationService.post(PopulationDTO.builder().name(insert.name).build());
+            populationService.post(PopulationDTO.builder().name(StringUtil.toLower(insert.name)).build());
         }
     }
 }

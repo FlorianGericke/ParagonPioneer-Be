@@ -4,9 +4,11 @@ import com.example.paragonPioneerBackend.Dto.Cost_Building_GoodsDTO;
 import com.example.paragonPioneerBackend.Service.EntityServices.BuildingService;
 import com.example.paragonPioneerBackend.Service.EntityServices.Cost_Building_GoodsService;
 import com.example.paragonPioneerBackend.Service.EntityServices.GoodService;
+import com.example.paragonPioneerBackend.Util.StringUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
 import java.util.Objects;
 /**
  * Setup all data for relation cost building goods
@@ -41,12 +43,12 @@ public class Cost_Building_goodsInserter{
             String buildingId = null;
 
             if (buildingService.findByName(insert.buildingName).isPresent()) {
-                buildingId = Objects.requireNonNull(buildingService.findByName(insert.buildingName).orElse(null)).getId().toString();
+                buildingId = Objects.requireNonNull(buildingService.findByName(StringUtil.toLower(insert.buildingName)).orElse(null)).getId().toString();
             }
 
             costBuildingGoodsService.post(
                     Cost_Building_GoodsDTO.builder()
-                            .goodId(Objects.requireNonNull(goodService.findByName(insert.goodName).orElse(null)).getId().toString())
+                            .goodId(Objects.requireNonNull(goodService.findByName(StringUtil.toLower(insert.goodName)).orElse(null)).getId().toString())
                             .buildingId(buildingId)
                             .amount(insert.amount)
                             .build()

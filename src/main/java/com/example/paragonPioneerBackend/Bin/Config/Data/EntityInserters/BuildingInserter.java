@@ -6,8 +6,11 @@ import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
 import com.example.paragonPioneerBackend.Service.EntityServices.BuildingService;
 import com.example.paragonPioneerBackend.Service.EntityServices.RecipeService;
 import com.example.paragonPioneerBackend.Util.OptionalUtil;
+import com.example.paragonPioneerBackend.Util.StringUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Locale;
 
 /**
  * Setup all data for Buildings
@@ -126,18 +129,18 @@ public class BuildingInserter {
      * Run the insertions
      */
     public void run() {
-        buildingService.post(PopulationBuildingDTO.builder().name("Pioneer's Hut").capacity(10).remarks("").build());
-        buildingService.post(PopulationBuildingDTO.builder().name("Colonist's House").capacity(15).remarks("").build());
-        buildingService.post(PopulationBuildingDTO.builder().name("Townsmen's House").capacity(20).remarks("").build());
-        buildingService.post(PopulationBuildingDTO.builder().name("Merchant's Mansion").capacity(25).remarks("").build());
-        buildingService.post(PopulationBuildingDTO.builder().name("Paragon's Residence").capacity(30).remarks("").build());
+        buildingService.post(PopulationBuildingDTO.builder().name(StringUtil.toLower("Pioneer's Hut")).capacity(10).remarks("").build());
+        buildingService.post(PopulationBuildingDTO.builder().name(StringUtil.toLower("Colonist's House")).capacity(15).remarks("").build());
+        buildingService.post(PopulationBuildingDTO.builder().name(StringUtil.toLower("Townsmen's House")).capacity(20).remarks("").build());
+        buildingService.post(PopulationBuildingDTO.builder().name(StringUtil.toLower("Merchant's Mansion")).capacity(25).remarks("").build());
+        buildingService.post(PopulationBuildingDTO.builder().name(StringUtil.toLower("Paragon's Residence")).capacity(30).remarks("").build());
 
         for (Inserter insert : inserts) {
 
             buildingService.post(ProductionBuildingDTO.builder()
-                    .name(insert.name)
-                    .remarks(insert.remarks)
-                    .idOfRecipe(OptionalUtil.getIdOrEmpty(recipeService.findByName(insert.recipe)))
+                    .name(StringUtil.toLower(insert.name))
+                    .remarks(StringUtil.toLower(insert.remarks))
+                    .idOfRecipe(OptionalUtil.getIdOrEmpty(recipeService.findByName(StringUtil.toLower(insert.recipe))))
                     .productionPerMinute(insert.productionPerMinute)
                     .build());
         }

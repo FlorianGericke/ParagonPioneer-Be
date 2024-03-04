@@ -4,8 +4,11 @@ import com.example.paragonPioneerBackend.Dto.Population_RequirementDTO;
 import com.example.paragonPioneerBackend.Service.EntityServices.GoodService;
 import com.example.paragonPioneerBackend.Service.EntityServices.Population_RequirementService;
 import com.example.paragonPioneerBackend.Util.OptionalUtil;
+import com.example.paragonPioneerBackend.Util.StringUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Locale;
 
 /**
  * Setup all data for relation population requirements
@@ -74,8 +77,8 @@ public class Population_RequirementInserter {
         for (Inserter insert : inserts) {
             populationRequirementService.post(
                     Population_RequirementDTO.builder()
-                            .goodId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)))
-                            .populationId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)))
+                            .goodId(OptionalUtil.getIdOrEmpty(goodService.findByName(StringUtil.toLower(insert.goodName))))
+                            .populationId(OptionalUtil.getIdOrEmpty(goodService.findByName(StringUtil.toLower(insert.goodName))))
                             .consumption(insert.consumption)
                             .produce(insert.produce)
                             .isBasic(insert.isBasic)

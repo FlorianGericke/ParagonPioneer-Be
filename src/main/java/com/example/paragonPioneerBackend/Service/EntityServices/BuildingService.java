@@ -161,4 +161,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     public List<PopulationBuilding> getAlPopulationBuilding() {
         return populationBuildingRepository.findAll();
     }
+
+    public ProductionBuilding getProductionBuildingByRecipe(String recipeName) {
+        return productionBuildingRepository.findAll().stream().filter(productionBuilding -> productionBuilding.getRecipe() != null && productionBuilding.getRecipe().getOutput().getName().equals(recipeName)).findFirst().get();
+    }
 }
