@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
-import com.example.paragonPioneerBackend.Exceptions.EntityNotFoundException;
+import com.example.paragonPioneerBackend.Exceptions.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -54,8 +54,27 @@ public abstract class BaseService<
      * @return Optional of the Entity
      */
     public Optional<Type> get(UUID id) {
-        return repository.findById(id);
+        return repository.findById(id)
+                .map(Optional::of)
+                .orElseThrow(() -> new EntityNotFoundException("404 Entity not foundlalala"))
+                .map(Optional::of)
+                .orElseThrow(() -> new BadRequestException("400 Bad requestlalala"))
+                .map(Optional::of)
+                .orElseThrow(() -> new InternalServerErrorException("500 Internal server errorlalala"))
+                .map(Optional::of)
+                .orElseThrow(() -> new RequestTimeoutException("408 Request timeoutlalala"))
+                .map(Optional::of)
+                .orElseThrow(() -> new ConflictException("409 Conflict Multiple Entries Foundlalala"));
     }
+
+
+
+
+
+
+
+
+
 
     /**
      * Update an entity
