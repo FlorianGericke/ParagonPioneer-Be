@@ -5,11 +5,12 @@ import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Repository.Cost_Building_GoodsRepository;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+
 /**
  * the Base handling the CRUD functions for the cost building goods relations. Extends BaseService
  */
@@ -20,8 +21,9 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
 
     /**
      * Constructs a new Cost_Building_GoodsService. is Autowired
-     * @param repository the repository the Service should use
-     * @param goodRepository the repository the Service should use
+     *
+     * @param repository         the repository the Service should use
+     * @param goodRepository     the repository the Service should use
      * @param buildingRepository the repository the Service should use
      */
     @Autowired
@@ -34,6 +36,7 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
     /**
      * Adds new Entity to the database
      * Overridden from BaseService
+     *
      * @param costBuildingGoodsDTO DTO responding to the Entity to add.
      * @return the added entity
      */
@@ -41,8 +44,12 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
     public Cost_Building_Goods post(Cost_Building_GoodsDTO costBuildingGoodsDTO) {
         return repository.save(
                 Cost_Building_Goods.builder()
-                        .good(goodRepository.findById(UUID.fromString(costBuildingGoodsDTO.getGoodId())).orElse(null))
-                        .building(buildingRepository.findById(UUID.fromString(costBuildingGoodsDTO.getBuildingId())).orElse(null))
+                        .good(UuidUtil.parseUuidFromStringOrNull(costBuildingGoodsDTO.getGoodId()) == null ?
+                                null :
+                                goodRepository.findById(UuidUtil.parseUuidFromStringOrNull(costBuildingGoodsDTO.getGoodId())).orElse(null))
+                        .building(UuidUtil.parseUuidFromStringOrNull(costBuildingGoodsDTO.getBuildingId()) == null ?
+                                null :
+                                buildingRepository.findById(UuidUtil.parseUuidFromStringOrNull(costBuildingGoodsDTO.getGoodId())).orElse(null))
                         .amount(costBuildingGoodsDTO.getAmount())
                         .build()
         );
@@ -51,7 +58,8 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
     /**
      * Updates an Entity
      * Overridden from BaseService
-     * @param original original entity
+     *
+     * @param original             original entity
      * @param costBuildingGoodsDTO dto containing the updated data
      * @return the updated entity
      */

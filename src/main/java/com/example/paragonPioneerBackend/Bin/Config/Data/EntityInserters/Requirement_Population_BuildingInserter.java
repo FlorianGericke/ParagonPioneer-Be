@@ -4,10 +4,9 @@ import com.example.paragonPioneerBackend.Dto.Requirement_Population_BuildingDTO;
 import com.example.paragonPioneerBackend.Service.EntityServices.BuildingService;
 import com.example.paragonPioneerBackend.Service.EntityServices.PopulationService;
 import com.example.paragonPioneerBackend.Service.EntityServices.Requirement_Building_PopulationService;
+import com.example.paragonPioneerBackend.Util.OptionalUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 /**
  * Setup all data for relation require populations for buildings
@@ -36,8 +35,8 @@ public class Requirement_Population_BuildingInserter {
         for (Inserter insert : inserts) {
             requirementBuildingPopulationService.post(
                     Requirement_Population_BuildingDTO.builder()
-                            .populationId(populationService.findAllByNameContains(insert.populationName).get(0).getId().toString())
-                            .buildingId(Objects.requireNonNull(buildingService.findByName(insert.buildingName).orElse(null)).getId().toString())
+                            .populationId(OptionalUtil.getIdOrEmpty(populationService.findByName(insert.populationName)))
+                            .buildingId(OptionalUtil.getIdOrEmpty(buildingService.findByName(insert.buildingName)))
                             .amount(insert.amount)
                             .build()
             );

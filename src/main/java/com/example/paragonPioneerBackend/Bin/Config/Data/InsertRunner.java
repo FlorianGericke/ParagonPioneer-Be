@@ -41,7 +41,7 @@ public class InsertRunner implements ApplicationRunner {
         recipeInserter.run();
         populationRequirementInserter.run();
         buildingInserter.run();
-//        costBuildingGoodsInserter.run();
-//        costBuildingPopulation.run();
+        costBuildingGoodsInserter.run();
+        costBuildingPopulation.run();
     }
 }
