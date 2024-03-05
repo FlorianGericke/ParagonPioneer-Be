@@ -18,11 +18,17 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE recipe SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-public class Recipe extends BaseEntity {
+public class Recipe extends BaseEntity implements Slugable {
+
+    @Override
+    public String getSlug() {
+        return output.getSlug();
+    }
 
     /**
      * record stores quantity of the needed input
-     * @param good the input good
+     *
+     * @param good     the input good
      * @param quantity the quantity of the input good
      */
     public record QuantityOfGood(Good good, int quantity) {
@@ -104,6 +110,7 @@ public class Recipe extends BaseEntity {
 
     /**
      * get Quantity and Good
+     *
      * @return Array containing aa record QuantityOfGood(Good good, int quantity)
      */
     public QuantityOfGood[] getQuantityOfGoods() {
