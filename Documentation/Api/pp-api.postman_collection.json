@@ -88,7 +88,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building?page=0&size=3",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -97,6 +97,21 @@
 								"api",
 								"{{ApiVersion}}",
 								"building"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -135,6 +150,45 @@
 								{
 									"key": "id",
 									"value": "13066bdb-bff0-4fe2-a327-99cba67edb79"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find population",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/find?name=well",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								"find"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "well"
 								}
 							]
 						}
@@ -377,7 +431,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good?page=2&size=4&sort",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -386,6 +440,20 @@
 								"api",
 								"{{ApiVersion}}",
 								"good"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "size",
+									"value": "4"
+								},
+								{
+									"key": "sort",
+									"value": null
+								}
 							]
 						}
 					},
@@ -423,7 +491,46 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "0dac9653-9b56-4271-9089-2e2c3fc10aa5"
+									"value": "031a2951-fefa-4463-afdd-e814f7d14ccf"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find good",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good/find?name=we",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"good",
+								"find"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "we"
 								}
 							]
 						}
@@ -590,7 +697,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe?sort",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -599,6 +706,22 @@
 								"api",
 								"{{ApiVersion}}",
 								"recipe"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": null
+								}
 							]
 						}
 					},
@@ -637,6 +760,45 @@
 								{
 									"key": "id",
 									"value": "d6f01531-8b9b-4b97-85b8-17da1a754e5f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find recipe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe/find?outputName=bow",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"recipe",
+								"find"
+							],
+							"query": [
+								{
+									"key": "outputName",
+									"value": "bow"
 								}
 							]
 						}
@@ -803,7 +965,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population?page=0&size=2&sort=",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -812,6 +974,20 @@
 								"api",
 								"{{ApiVersion}}",
 								"population"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								},
+								{
+									"key": "sort",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -849,7 +1025,46 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "a0e5d411-5243-4f8b-a7c8-2507334aab5b"
+									"value": "33e8c045-c11e-43cf-85fb-8c825cfef91f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find population",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/population/find?name=para",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"population",
+								"find"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "para"
 								}
 							]
 						}
@@ -1004,7 +1219,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement?page=2&size=2&sort",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1013,6 +1228,20 @@
 								"api",
 								"{{ApiVersion}}",
 								"requirement"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								},
+								{
+									"key": "sort",
+									"value": null
+								}
 							]
 						}
 					},
@@ -1206,7 +1435,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_good",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/cost/building_good?page=2&size=2&sort",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1216,6 +1445,20 @@
 								"{{ApiVersion}}",
 								"cost",
 								"building_good"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								},
+								{
+									"key": "sort",
+									"value": null
+								}
 							]
 						}
 					},
@@ -1256,7 +1499,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"building_id\": \"e3a02c53-4272-412c-92a4-8da4dab15f1c\",\n    \"good_id\":\"04ba4970-f2f7-424a-9e34-f928171b6bb2\",\n    \"amount\":\"5\"\n}",
+							"raw": "{\n    \"building_id\": \"22488150-319d-4440-a6d7-517e0c0e9448\",\n    \"good_id\":\"17252eb3-31ef-4745-a299-9d77dda2de37\",\n    \"amount\":\"5\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1401,7 +1644,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/building_population",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/requirement/building_population?page=0&size=4&sort=",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -1411,6 +1654,20 @@
 								"{{ApiVersion}}",
 								"requirement",
 								"building_population"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "4"
+								},
+								{
+									"key": "sort",
+									"value": ""
+								}
 							]
 						}
 					},

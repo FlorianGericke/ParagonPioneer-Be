@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Runners;
 
-import com.example.paragonPioneerBackend.Entity.Population;
-import com.example.paragonPioneerBackend.Repository.PopulationRepository;
+import com.example.paragonPioneerBackend.Dto.PopulationDTO;
+import com.example.paragonPioneerBackend.Service.PopulationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class PopulationInserter {
-    private final PopulationRepository repository;
+    private final PopulationService populationService;
 
     private record Inserter(String name) {
     }
@@ -30,7 +30,7 @@ public class PopulationInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            repository.save(Population.builder().name(insert.name).build());
+            populationService.post(PopulationDTO.builder().name(insert.name).build());
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.paragonPioneerBackend.Repository;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -15,5 +16,5 @@ public interface ProductionBuildingRepository extends JpaRepository<ProductionBu
      * @param name of the population building to find
      * @return the populationBuilding
      */
-    ProductionBuilding findByNameIs(String name);
+    Optional<ProductionBuilding> findByNameIs(String name);
 }

@@ -1,7 +1,6 @@
 package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
-import com.example.paragonPioneerBackend.Exceptions.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -44,8 +43,19 @@ public abstract class BaseService<
      * receive alle entities from the database
      * @return List of entities
      */
-    public List<Type> getAll() {
-        return repository.findAll();
+    public Page<Type> getAll(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
+    /**
+     * receive alle entities from the database with pagination
+     *
+     * @param page     the page number to display
+     * @param pageSize the amount of Items per page
+     * @return Page of Type
+     */
+    public Page<Type> getAll(int page, int pageSize) {
+        return repository.findAll(PageRequest.of(page, pageSize));
     }
 
     /**
@@ -67,19 +77,10 @@ public abstract class BaseService<
                 .orElseThrow(() -> new ConflictException("409 Conflict Multiple Entries Foundlalala"));
     }
 
-
-
-
-
-
-
-
-
-
     /**
      * Update an entity
      * @param original original entity
-     * @param dto dto containing the updated data
+     * @param dto      dto containing the updated data
      * @return updated entity
      */
     public abstract Type putPatch(Type original, Dto dto);

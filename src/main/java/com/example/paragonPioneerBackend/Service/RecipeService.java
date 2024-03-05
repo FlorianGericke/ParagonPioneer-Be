@@ -7,6 +7,8 @@ import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -18,8 +20,9 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     private final GoodRepository goodRepository;
 
     /**
-     *  Constructs a new RecipeService. is Autowired
-     * @param repository the repository the Service should use
+     * Constructs a new RecipeService. is Autowired
+     *
+     * @param repository     the repository the Service should use
      * @param goodRepository the repository the Service should use
      */
     @Autowired
@@ -29,8 +32,29 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     }
 
     /**
-     *  Adds new Entity to the database
+     * Find all Recipe whew the outputName contains
+     *
+     * @param outputName the string contained
+     * @return list of Recipe matching
+     */
+    public List<Recipe> findAllByNameContains(String outputName) {
+        return repository.findAllByOutputNameContains(outputName);
+    }
+
+    /**
+     * Find Good by Name
+     *
+     * @param name the string contained
+     * @return list of Goods matching
+     */
+    public Optional<Recipe> findByName(String name) {
+        return repository.findByOutputNameIs(name);
+    }
+
+    /**
+     * Adds new Entity to the database
      * Overridden from BaseService
+     *
      * @param recipeDTO DTO responding to the Entity to add.
      * @return the added entity
      */
@@ -64,7 +88,8 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     /**
      * Updates an Entity
      * Overridden from BaseService
-     * @param original original entity
+     *
+     * @param original  original entity
      * @param recipeDTO dto containing the updated data
      * @return the update entity
      */
@@ -104,77 +129,77 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
                 try {
                     yield UUID.fromString(recipeDTO.getInput1());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput1()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput1()).orElse(null).getId();
                 }
             }
             case 2 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput2());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput2()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput2()).orElse(null).getId();
                 }
             }
             case 3 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput3());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput3()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput3()).orElse(null).getId();
                 }
             }
             case 4 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput4());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput4()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput4()).orElse(null).getId();
                 }
             }
             case 5 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput5());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput5()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput5()).orElse(null).getId();
                 }
             }
             case 6 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput6());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput6()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput6()).orElse(null).getId();
                 }
             }
             case 7 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput7());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput7()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput7()).orElse(null).getId();
                 }
             }
             case 8 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput8());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput8()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput8()).orElse(null).getId();
                 }
             }
             case 9 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput9());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput9()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput9()).orElse(null).getId();
                 }
             }
             case 10 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getInput10());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getInput10()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getInput10()).orElse(null).getId();
                 }
             }
             case 11 -> {
                 try {
                     yield UUID.fromString(recipeDTO.getOutput());
                 } catch (IllegalArgumentException e) {
-                    yield goodRepository.findByNameIs(recipeDTO.getOutput()).getId();
+                    yield goodRepository.findByNameIs(recipeDTO.getOutput()).orElse(null).getId();
                 }
             }
 

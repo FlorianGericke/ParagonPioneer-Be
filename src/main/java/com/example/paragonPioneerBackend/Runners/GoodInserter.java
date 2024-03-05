@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Runners;
 
-import com.example.paragonPioneerBackend.Entity.Good;
-import com.example.paragonPioneerBackend.Repository.GoodRepository;
+import com.example.paragonPioneerBackend.Dto.GoodDTO;
+import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,12 +11,25 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class GoodInserter{
-    private final GoodRepository repository;
+    private final GoodService service;
 
     private record Inserter(String name, String remarks) {
     }
 
     private final Inserter[] inserts = {
+            new Inserter("Land tile", ""),
+            new Inserter("Water tile", ""),
+            new Inserter("Mountain tile", ""),
+            new Inserter("Hop Field", ""),
+            new Inserter("Horse Field", ""),
+            new Inserter("Indigo Field", ""),
+            new Inserter("Linseed Field", ""),
+            new Inserter("Potato Field", ""),
+            new Inserter("Sheep Field", ""),
+            new Inserter("Cotton Field", ""),
+            new Inserter("Mulberry Trees", ""),
+            new Inserter("Tobacco Field", ""),
+            new Inserter("Wheat Field", ""),
             new Inserter("Coin", "Global"),
             new Inserter("Cartography", "Global, used for Discovery"),
             new Inserter("Favor", "Global, needed for more island slots"),
@@ -91,18 +104,6 @@ public class GoodInserter{
             new Inserter("Cannon", ""),
             new Inserter("Metal Cuttings", ""),
             new Inserter("Fireworks", ""),
-            new Inserter("Land tile", ""),
-            new Inserter("Mountain tile", ""),
-            new Inserter("Hop Field", ""),
-            new Inserter("Horse Field", ""),
-            new Inserter("Indigo Field", ""),
-            new Inserter("Linseed Field", ""),
-            new Inserter("Potato Field", ""),
-            new Inserter("Water tile", ""),
-            new Inserter("Sheep Field", ""),
-            new Inserter("Mulberry Trees", ""),
-            new Inserter("Tobacco Field", ""),
-            new Inserter("Wheat Field", ""),
             new Inserter("Vineyard", ""),
     };
 
@@ -111,7 +112,7 @@ public class GoodInserter{
      */
     public void run() {
         for (Inserter insert : inserts) {
-            repository.save(Good.builder().name(insert.name).remarks(insert.remarks).build());
+            service.post(GoodDTO.builder().name(insert.name).remarks(insert.remarks).build());
         }
     }
 }
