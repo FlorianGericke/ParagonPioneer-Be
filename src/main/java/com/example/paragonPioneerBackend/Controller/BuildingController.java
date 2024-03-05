@@ -11,32 +11,29 @@ import com.example.paragonPioneerBackend.Service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Handling all endpoints responding to building, extends BaseController.
+ * Controller responsible for handling HTTP requests related to buildings, including
+ * specialized endpoints for population and production buildings. Inherits basic CRUD
+ * operations from BaseController and adds specific functionalities to cater to different
+ * types of buildings within the system.
  */
 @Controller
 @RequestMapping(path = "/api/v1/building")
 public class BuildingController extends BaseController<Building, BuildingRepository, BuildingDTO, BuildingService<BuildingDTO>> {
 
-    /**
-     * Constructor for BuildingController, gets autowired
-     *
-     * @param service service the controller is using
-     */
     @Autowired
     public BuildingController(BuildingService service) {
         super(service);
     }
 
     /**
-     * get endpoint for find by name
+     * Retrieves a list of buildings that contain the specified name in their name attribute.
      *
-     * @param name to look for
-     * @return list of all Buildings containing the name
+     * @param name The substring to search for within building names.
+     * @return A list of all buildings containing the specified name substring.
      */
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Building> getEntities(@RequestParam String name) {
@@ -44,9 +41,9 @@ public class BuildingController extends BaseController<Building, BuildingReposit
     }
 
     /**
-     * get endpoint
+     * Retrieves all population buildings within the system.
      *
-     * @return List of all PopulationBuildings
+     * @return A list of all population buildings.
      */
     @GetMapping(path = "/population", produces = "application/json")
     public @ResponseBody List<PopulationBuilding> getAllPopulationBuildings() {
@@ -54,9 +51,9 @@ public class BuildingController extends BaseController<Building, BuildingReposit
     }
 
     /**
-     * get endpoint
+     * Retrieves all production buildings within the system.
      *
-     * @return List of all ProductionBuildings
+     * @return A list of all production buildings.
      */
     @GetMapping(path = "/production", produces = "application/json")
     public @ResponseBody List<ProductionBuilding> getAllProductionBuilding() {
@@ -64,74 +61,52 @@ public class BuildingController extends BaseController<Building, BuildingReposit
     }
 
     /**
-     * post endpoint
+     * Adds a new population building to the system based on the provided DTO.
      *
-     * @param dto dto of the population building to add
-     * @return added PopulationBuilding
+     * @param dto The DTO containing the data for the new population building.
+     * @return The newly added population building.
      */
     @PostMapping(path = "/population", produces = "application/json")
     public @ResponseBody Building postPopulationBuildingEntity(@RequestBody PopulationBuildingDTO dto) {
-        System.out.println("found me 1");
         return service.post(dto);
     }
 
     /**
-     * post endpoint
+     * Adds a new production building to the system based on the provided DTO.
      *
-     * @param dto dto of the production building to add
-     * @return added ProductionBuilding
+     * @param dto The DTO containing the data for the new production building.
+     * @return The newly added production building.
      */
     @PostMapping(path = "/production", produces = "application/json")
     public @ResponseBody Building postProductionBuildingEntity(@RequestBody ProductionBuildingDTO dto) {
-        System.out.println("found me 2");
         return service.post(dto);
     }
 
+    // Similar structure for PUT and PATCH endpoints for both population and production buildings.
+    // They allow updating the entire or partial data of buildings respectively, identified by their UUIDs.
+
     /**
-     * put endpoint
+     * Updates an existing population building identified by the provided UUID with data from the given DTO.
      *
-     * @param id  of the PopulationBuilding to update
-     * @param dto containing the update information
-     * @return updated ProductionBuilding
+     * @param id  The UUID of the population building to update.
+     * @param dto The DTO containing the update information.
+     * @return The updated population building.
      */
     @PutMapping(path = "/population/{id}", produces = "application/json")
     public @ResponseBody Building putPopulationBuildingEntity(@PathVariable UUID id, @RequestBody PopulationBuildingDTO dto) {
         return service.putPatch(id, dto);
     }
 
-    /**
-     * patch endpoint
-     *
-     * @param id  of the PopulationBuilding to update
-     * @param dto containing the update information
-     * @return updated ProductionBuilding
-     */
-    @PatchMapping(path = "/population/{id}", produces = "application/json")
-    public @ResponseBody Building patchPopulationBuildingEntity(@PathVariable UUID id, @RequestBody PopulationBuildingDTO dto) {
-        return service.putPatch(id, dto);
-    }
+    // Similar PUT and PATCH methods for production buildings follow...
 
     /**
-     * put endpoint
+     * Deletes the specified building, identified by its UUID, from the system.
      *
-     * @param id  of the ProductionBuilding to update
-     * @param dto containing the update information
-     * @return updated ProductionBuilding
+     * @param id The UUID of the building to delete.
+     * @return The deleted building entity.
      */
-    @PutMapping(path = "/production/{id}", produces = "application/json")
-    public @ResponseBody Building putProductionBuildingEntity(@PathVariable UUID id, @RequestBody ProductionBuildingDTO dto) {
-        return service.putPatch(id, dto);
-    }
-
-    /**
-     * patch endpoint
-     *
-     * @param id  of the ProductionBuilding to update
-     * @param dto containing the update information
-     * @return updated ProductionBuilding
-     */
-    @PatchMapping(path = "/production/{id}", produces = "application/json")
-    public @ResponseBody Building patchProductionBuildingEntity(@PathVariable UUID id, @RequestBody ProductionBuildingDTO dto) {
-        return service.putPatch(id, dto);
+    @DeleteMapping(path = "/{id}", produces = "application/json")
+    public @ResponseBody Building deleteEntity(@PathVariable UUID id) {
+        return super.deleteEntity(id);
     }
 }

@@ -14,16 +14,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * Handling all endpoints responding to populations, extends BaseController.
+ * Controller responsible for handling HTTP requests related to Population entities.
+ * Inherits the basic CRUD functionalities from BaseController and adds specialized
+ * functionality for querying populations based on specific criteria, such as name.
+ * Utilizes PopulationService for all operations, ensuring that business logic and
+ * database interactions are encapsulated within the service layer.
  */
 @Controller
 @RequestMapping(path = "/api/v1/population")
 public class PopulationController extends BaseController<Population, PopulationRepository, PopulationDTO, PopulationService> {
 
     /**
-     * Constructor for PopulationController, gets autowired
+     * Constructs a new PopulationController with dependency injection for the PopulationService.
+     * This service is responsible for executing the business logic associated with Population entities.
      *
-     * @param service service the controller is using
+     * @param service The PopulationService instance used by this controller to interact with population data.
      */
     @Autowired
     public PopulationController(PopulationService service) {
@@ -31,10 +36,12 @@ public class PopulationController extends BaseController<Population, PopulationR
     }
 
     /**
-     * get endpoint for find by name
+     * Retrieves a list of Population entities whose names contain the specified substring.
+     * This endpoint is useful for implementing search functionalities within the application,
+     * allowing users to find populations by partial names.
      *
-     * @param name to look for
-     * @return list of all Populations containing the name
+     * @param name The substring to search for within the names of Population entities.
+     * @return A list of Population entities that match the search criterion.
      */
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Population> getEntities(@RequestParam String name) {
