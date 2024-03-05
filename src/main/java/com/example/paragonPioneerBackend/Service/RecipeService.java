@@ -206,4 +206,13 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
             default -> null;
         };
     }
+
+    public Optional<Recipe> findAllByOutputId(UUID id) {
+        var output = goodRepository.findById(id).orElse(null);
+
+        if (output == null) {
+            return Optional.empty();
+        }
+        return findByName(output.getName());
+    }
 }

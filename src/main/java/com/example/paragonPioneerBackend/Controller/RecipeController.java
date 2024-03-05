@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Handling all endpoints responding to recipes, extends BaseController.
@@ -36,5 +38,10 @@ public class RecipeController extends BaseController<Recipe, RecipeRepository, R
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Recipe> getEntities(@RequestParam String outputName) {
         return service.findAllByNameContains(outputName);
+    }
+
+    @GetMapping(path = "/output/{id}", produces = "application/json")
+    public @ResponseBody Optional<Recipe> getEntity(@PathVariable UUID id) {
+        return service.findAllByOutputId(id);
     }
 }
