@@ -4,6 +4,7 @@ import com.example.paragonPioneerBackend.Dto.GoodDTO;
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,8 +53,9 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
      * @param name the string contained
      * @return list of Goods matching
      */
-    public Optional<Good> findByName(String name) {
-        return repository.findByNameIs(name);
+    public Good findByName(String name) {
+
+        return repository.findByNameIs(name).orElseThrow(() -> new EntityNotFoundException(name));
     }
 
     /**

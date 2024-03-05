@@ -4,6 +4,7 @@ import com.example.paragonPioneerBackend.Dto.PopulationDTO;
 import com.example.paragonPioneerBackend.Entity.Population;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -71,8 +72,9 @@ public class PopulationService extends BaseService<Population, PopulationReposit
      * @param name the string contained
      * @return list of Goods matching
      */
-    public Optional<Population> findByName(String name) {
-        return repository.findByNameIs(name);
+    public Population findByName(String name) {
+
+        return repository.findByNameIs(name).orElseThrow(() -> new EntityNotFoundException(name));
     }
 
     /**

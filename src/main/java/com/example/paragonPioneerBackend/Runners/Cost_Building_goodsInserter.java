@@ -40,13 +40,12 @@ public class Cost_Building_goodsInserter{
         for (Inserter insert : inserts) {
             String buildingId = null;
 
-            if (buildingService.findByName(insert.buildingName).isPresent()) {
-                buildingId = Objects.requireNonNull(buildingService.findByName(insert.buildingName).orElse(null)).getId().toString();
-            }
+
+                buildingId = buildingService.findByName(insert.buildingName).getId().toString();
 
             costBuildingGoodsService.post(
                     Cost_Building_GoodsDTO.builder()
-                            .goodId(Objects.requireNonNull(goodService.findByName(insert.goodName).orElse(null)).getId().toString())
+                            .goodId(Objects.requireNonNull(goodService.findByName(insert.goodName)).getId().toString())
                             .buildingId(buildingId)
                             .amount(insert.amount)
                             .build()

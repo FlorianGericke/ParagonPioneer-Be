@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Runners;
 
 import com.example.paragonPioneerBackend.Dto.RecipeDTO;
+import com.example.paragonPioneerBackend.Exceptions.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -159,9 +160,11 @@ public class RecipeInserter {
     }
 
     private String getIdOrNull(String name) {
-        if (goodService.findByName(name).isEmpty()) {
+        try {
+            return goodService.findByName(name).getId().toString();
+        } catch (EntityNotFoundException ex) {
             return null;
         }
-        return goodService.findByName(name).get().getId().toString();
     }
+
 }

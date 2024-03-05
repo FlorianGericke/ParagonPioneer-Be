@@ -68,7 +68,7 @@ public class BaseController<
      * @return entity responding to the uuid
      */
     @GetMapping(path = "/{id}", produces = "application/json")
-    public @ResponseBody Optional<Type> getEntity(@PathVariable UUID id) {
+    public @ResponseBody Type getEntity(@PathVariable UUID id) {
         return service.get(id);
     }
 

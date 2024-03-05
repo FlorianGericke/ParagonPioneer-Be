@@ -5,12 +5,12 @@ import java.util.Optional;
 
 public class OptionalUtil {
 
-    public static String getIdOrEmpty(Optional<? extends BaseEntity> entity) {
-        if (entity.isEmpty()) {
+    public static <T extends BaseEntity> String getIdOrEmpty(T entity) {
+        if (entity == null) {
             return "";
         }
 
-        var baseEntity = entity.get();
-        return baseEntity.getId().toString();
+        return entity.getId().toString();
     }
+
 }

@@ -4,6 +4,7 @@ import com.example.paragonPioneerBackend.Dto.RecipeDTO;
 import com.example.paragonPioneerBackend.Entity.Recipe;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,8 +48,9 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
      * @param name the string contained
      * @return list of Goods matching
      */
-    public Optional<Recipe> findByName(String name) {
-        return repository.findByOutputNameIs(name);
+    public Recipe findByName(String name) {
+
+        return repository.findByOutputNameIs(name).orElseThrow(() -> new EntityNotFoundException(name));
     }
 
     /**

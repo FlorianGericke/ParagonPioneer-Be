@@ -12,6 +12,7 @@ import com.example.paragonPioneerBackend.Repository.ProductionBuildingRepository
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
 import com.example.paragonPioneerBackend.Util.UuidUtil;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -77,8 +78,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
      * @param name the string contained
      * @return list of Goods matching
      */
-    public Optional<Building> findByName(String name) {
-        return repository.findByNameIs(name);
+    public Building findByName(String name) {
+        return repository.findByNameIs(name).orElseThrow(() -> new EntityNotFoundException(name));
     }
 
     /**

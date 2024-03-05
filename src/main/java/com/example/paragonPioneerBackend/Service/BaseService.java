@@ -1,10 +1,12 @@
 package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
+import com.example.paragonPioneerBackend.Exceptions.EntityNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -63,18 +65,8 @@ public abstract class BaseService<
      * @param id uuid if the entity to receive
      * @return Optional of the Entity
      */
-    public Optional<Type> get(UUID id) {
-        return repository.findById(id)
-                .map(Optional::of)
-                .orElseThrow(() -> new EntityNotFoundException("404 Entity not foundlalala"))
-                .map(Optional::of)
-                .orElseThrow(() -> new BadRequestException("400 Bad requestlalala"))
-                .map(Optional::of)
-                .orElseThrow(() -> new InternalServerErrorException("500 Internal server errorlalala"))
-                .map(Optional::of)
-                .orElseThrow(() -> new RequestTimeoutException("408 Request timeoutlalala"))
-                .map(Optional::of)
-                .orElseThrow(() -> new ConflictException("409 Conflict Multiple Entries Foundlalala"));
+    public Type get(UUID id) {
+        return repository.findById(id).orElseThrow(() ->  new EntityNotFoundException(id));
     }
 
     /**
@@ -92,7 +84,7 @@ public abstract class BaseService<
      * @return updated entity
      */
     public Type putPatch(UUID id, Dto dto) {
-        Type original = repository.findById(id).orElseThrow();
+        Type original = repository.findById(id).orElseThrow(() ->  new EntityNotFoundException(id));
         return repository.save(putPatch(original, dto));
     }
 
@@ -102,7 +94,7 @@ public abstract class BaseService<
      * @return deleted entity
      */
     public Type delete(UUID id) {
-        Type entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("No Entity with Id " + id ));
+        Type entity = repository.findById(id).orElseThrow(() ->  new EntityNotFoundException(id));
         repository.deleteById(id);
         return entity;
     }

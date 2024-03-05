@@ -37,7 +37,7 @@ public class Requirement_Population_BuildingInserter {
             requirementBuildingPopulationService.post(
                     Requirement_Population_BuildingDTO.builder()
                             .populationId(populationService.findAllByNameContains(insert.populationName).get(0).getId().toString())
-                            .buildingId(Objects.requireNonNull(buildingService.findByName(insert.buildingName).orElse(null)).getId().toString())
+                            .buildingId(Objects.requireNonNull(buildingService.findByName(insert.buildingName)).getId().toString())
                             .amount(insert.amount)
                             .build()
             );
