@@ -7,19 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+
 /**
- * Service handling the functionality of the required Population for a building. Extends BaseService
+ * Service class for managing relationships between buildings and their required populations.
+ * It facilitates CRUD operations on Requirement_Population_Building entities, leveraging
+ * Requirement_Population_BuildingRepository for database interactions. Additionally, it
+ * utilizes PopulationRepository and BuildingRepository for operations related to Population
+ * and Building entities that are part of these relationships.
  */
 @Component(value = "costBuildingPopulationService")
 public class Requirement_Building_PopulationService extends BaseService<Requirement_Population_Building, Requirement_Population_BuildingRepository, Requirement_Population_BuildingDTO> {
+
     private final PopulationRepository populationRepository;
     private final BuildingRepository buildingRepository;
 
     /**
-     * Constructs a new Requirement_Building_PopulationService. is Autowired
-     * @param repository the repository the Service should use
-     * @param populationRepository repository the Service should use
-     * @param buildingRepository repository the Service should use
+     * Autowires the necessary repositories for managing relationships between buildings
+     * and population requirements, providing database access for CRUD operations.
+     *
+     * @param repository           The Requirement_Population_BuildingRepository for database operations on requirement relations.
+     * @param populationRepository The PopulationRepository for accessing Population entities.
+     * @param buildingRepository   The BuildingRepository for accessing Building entities.
      */
     @Autowired
     public Requirement_Building_PopulationService(Requirement_Population_BuildingRepository repository, PopulationRepository populationRepository, BuildingRepository buildingRepository) {
@@ -29,10 +37,12 @@ public class Requirement_Building_PopulationService extends BaseService<Requirem
     }
 
     /**
-     * Adds new Entity to the database
-     * Overridden from BaseService
-     * @param costBuildingPopulationDTO DTO responding to the Entity to add.
-     * @return the added entity
+     * Creates and saves a new Requirement_Population_Building entity based on the provided DTO,
+     * establishing a relationship between a building and the population required for that building.
+     * Overrides the abstract post method from BaseService tailored to Requirement_Population_Building entities.
+     *
+     * @param costBuildingPopulationDTO The DTO containing data for creating a new requirement relationship.
+     * @return The newly created Requirement_Population_Building entity.
      */
     @Override
     public Requirement_Population_Building post(Requirement_Population_BuildingDTO costBuildingPopulationDTO) {
@@ -46,11 +56,13 @@ public class Requirement_Building_PopulationService extends BaseService<Requirem
     }
 
     /**
-     * Updates an Entity
-     * Overridden from BaseService
-     * @param original original entity
-     * @param costBuildingPopulationDTO dto containing the updated data
-     * @return the update entity
+     * Updates an existing Requirement_Population_Building entity with the data provided in the DTO.
+     * This method allows modifying the building, population, and the amount required.
+     * Overrides the abstract putPatch method from BaseService tailored to Requirement_Population_Building entities.
+     *
+     * @param original                  The original Requirement_Population_Building entity to be updated.
+     * @param costBuildingPopulationDTO The DTO containing the updated relationship data.
+     * @return The updated Requirement_Population_Building entity.
      */
     @Override
     public Requirement_Population_Building putPatch(Requirement_Population_Building original, Requirement_Population_BuildingDTO costBuildingPopulationDTO) {

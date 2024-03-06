@@ -47,7 +47,7 @@ public class BuildingController extends BaseController<Building, BuildingReposit
      */
     @GetMapping(path = "/population", produces = "application/json")
     public @ResponseBody List<PopulationBuilding> getAllPopulationBuildings() {
-        return service.getAlPopulationBuilding();
+        return service.getAllPopulationBuilding();
     }
 
     /**

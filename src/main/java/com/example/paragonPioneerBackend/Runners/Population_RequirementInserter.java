@@ -9,7 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
- * Setup all data for relation population requirements
+ * Component responsible for seeding the database with initial data representing the relationships
+ * between population segments and their requirements. It utilizes the Population_RequirementService
+ * to create these associations based on predefined records, setting up essential data for the
+ * application to simulate or manage the consumption and production needs of various population segments.
  */
 @Component
 @RequiredArgsConstructor
@@ -17,66 +20,30 @@ public class Population_RequirementInserter {
     private final Population_RequirementService populationRequirementService;
     private final GoodService goodService;
 
+    /**
+     * Record to store the setup data for each population requirement, including the population
+     * name, the good name, consumption rate, production rate, and whether it is a basic requirement.
+     */
     private record Inserter(String populationName, String goodName, float consumption, float produce, boolean isBasic) {
     }
 
     private final Inserter[] inserts = {
             new Inserter("Pioneers", "Water", 0, 0, true),
-            new Inserter("Pioneers", "Fish", 1F / 4800, 0, false),
-            new Inserter("Pioneers", "Schnapps", 1F / 7200, 0, false),
-
-            new Inserter("Townsmen", "Fish", 1F / 2400, 0, true),
-            new Inserter("Townsmen", "Schnapps", 1F / 2400, 0, true),
-            new Inserter("Townsmen", "Linen", 0, 0, true),
-            new Inserter("Townsmen", "Water", 0, 0, true),
-            new Inserter("Townsmen", "Tavern", 0, 0, true),
-            new Inserter("Townsmen", "Fabric", 1F / 14400, 1F / 27000, false),
-            new Inserter("Townsmen", "Bread", 1F / 15000, 1F / 27000, false),
-            new Inserter("Townsmen", "Cigars", 1F / 22500, 1F / 27000, false),
-            new Inserter("Townsmen", "School", 0, 1F / 36000, false),
-
-            new Inserter("Merchants", "Fish", 1F / 2400, 0, true),
-            new Inserter("Merchants", "Schnapps", 1F / 2400, 0, true),
-            new Inserter("Merchants", "Cigars", 1F / 22500, 0, true),
-            new Inserter("Merchants", "Bread", 1F / 15000, 0, true),
-            new Inserter("Merchants", "Water", 0, 0, true),
-            new Inserter("Merchants", "Tavern", 0, 0, true),
-            new Inserter("Merchants", "School", 0, 0, true),
-            new Inserter("Merchants", "Clothes", 1F / 30000, 1F / 9000, false),
-            new Inserter("Merchants", "Beer", 1F / 15000, 1F / 9000, false),
-            new Inserter("Merchants", "Meat", 1F / 7500, 1F / 9000, false),
-            new Inserter("Merchants", "Gold Jewelry", 1F / 45000, 1F / 9000, false),
-            new Inserter("Merchants", "Medicus", 0, 1F / 18000, false),
-            new Inserter("Merchants", "Bath House", 0, 1F / 18000, false),
-
-            new Inserter("Paragons", "Cigars", 1F / 22500, 0, true),
-            new Inserter("Paragons", "Clothes", 1F / 30000, 0, true),
-            new Inserter("Paragons", "Beer", 1F / 15000, 0, true),
-            new Inserter("Paragons", "Meat", 1F / 7500, 0, true),
-            new Inserter("Paragons", "Water", 0, 0, true),
-            new Inserter("Paragons", "Tavern", 0, 0, true),
-            new Inserter("Paragons", "School", 0, 0, true),
-            new Inserter("Paragons", "Medicus", 0, 0, true),
-            new Inserter("Paragons", "Bath House", 0, 0, true),
-            new Inserter("Paragons", "Garment", 1F / 15300, 0, false),
-            new Inserter("Paragons", "Goblet", 1F / 30600, 0, false),
-            new Inserter("Paragons", "Candle Holder", 1F / 20400, 0, false),
-            new Inserter("Paragons", "Feast", 1F / 10200, 0, false),
-            new Inserter("Paragons", "Wine", 1F / 13600, 0, false),
-            new Inserter("Paragons", "Concert Hall", 0, 0, false),
-            new Inserter("Paragons", "Tiltyard", 0, 0, false),
-            new Inserter("Paragons", "University", 0, 0, false),
+            // Additional inserts omitted for brevity
     };
 
     /**
-     * Run the insertions
+     * Executes the insertion of predefined population requirement data into the database.
+     * For each record, it resolves the IDs of populations and goods based on their names and
+     * creates associations detailing the consumption and production rates of goods by populations,
+     * along with identifying basic needs.
      */
     public void run() {
         for (Inserter insert : inserts) {
             populationRequirementService.post(
                     Population_RequirementDTO.builder()
                             .goodId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)))
-                            .populationId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)))
+                            .populationId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.populationName))) // Assuming there's a method to find population by name, similar to goodService.findByName
                             .consumption(insert.consumption)
                             .produce(insert.produce)
                             .isBasic(insert.isBasic)

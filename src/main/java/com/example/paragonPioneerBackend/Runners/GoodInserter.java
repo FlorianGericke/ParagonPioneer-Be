@@ -6,13 +6,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
- * Setup all data for goods
+ * A component responsible for populating the database with initial goods data.
+ * Utilizes the GoodService to create goods entities based on a predefined set of records,
+ * ensuring the application has a base set of goods for various operations like crafting or building.
+ * This class is particularly useful in development and testing environments, where a consistent
+ * dataset is necessary for application functionality testing.
  */
 @Component
 @RequiredArgsConstructor
-public class GoodInserter{
+public class GoodInserter {
     private final GoodService service;
 
+    /**
+     * Record to store the initial setup data for goods, including their name and any remarks.
+     */
     private record Inserter(String name, String remarks) {
     }
 
@@ -108,11 +115,17 @@ public class GoodInserter{
     };
 
     /**
-     * Run the insertions
+     * Executes the insertion of predefined goods data into the database.
+     * Iterates through each record in the predefined list and uses the GoodService
+     * to create a new Good entity for each, populating the application's database
+     * with essential goods data.
      */
     public void run() {
         for (Inserter insert : inserts) {
-            service.post(GoodDTO.builder().name(insert.name).remarks(insert.remarks).build());
+            service.post(GoodDTO.builder()
+                    .name(insert.name)
+                    .remarks(insert.remarks)
+                    .build());
         }
     }
 }
