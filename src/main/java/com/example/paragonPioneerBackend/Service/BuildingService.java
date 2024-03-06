@@ -21,9 +21,13 @@ import java.util.UUID;
 
 
 /**
- * the Base handling the CRUD functions for the Building Entities. Extends BaseService
+ * Service class for managing building-related operations in the application.
+ * This class extends the generic BaseService to provide specialized functionality
+ * for handling operations related to Building entities, including PopulationBuilding
+ * and ProductionBuilding subtypes.
  *
- * @param <BuildingTypeDTO> The DTO the Service should use
+ * @param <BuildingTypeDTO> A generic type parameter that extends BuildingDTO,
+ *                          allowing the service to work with different types of building DTOs.
  */
 @Component(value = "buildingService")
 public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseService<Building, BuildingRepository, BuildingTypeDTO> {
@@ -34,16 +38,19 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     private final RecipeRepository recipeRepository;
 
     /**
-     * Constructs a new BuildingService. is Autowired
+     * Autowired constructor to inject repository dependencies.
      *
-     * @param repository                   the repository the Service should use
-     * @param buildingRepository           the repository the Service should use
-     * @param populationBuildingRepository the repository the Service should use
-     * @param productionBuildingRepository the repository the Service should use
-     * @param recipeRepository             the repository the Service should use
+     * @param repository                   General repository for Building entities.
+     * @param buildingRepository           Specific repository for Building entities.
+     * @param populationBuildingRepository Repository for PopulationBuilding entities.
+     * @param productionBuildingRepository Repository for ProductionBuilding entities.
+     * @param recipeRepository             Repository for managing Recipe entities related to ProductionBuildings.
      */
     @Autowired
-    public BuildingService(BuildingRepository repository, BuildingRepository buildingRepository, PopulationBuildingRepository populationBuildingRepository, ProductionBuildingRepository productionBuildingRepository, RecipeRepository recipeRepository) {
+    public BuildingService(BuildingRepository repository, BuildingRepository buildingRepository,
+                           PopulationBuildingRepository populationBuildingRepository,
+                           ProductionBuildingRepository productionBuildingRepository,
+                           RecipeRepository recipeRepository) {
         super(repository);
         this.buildingRepository = buildingRepository;
         this.populationBuildingRepository = populationBuildingRepository;
@@ -52,41 +59,40 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     }
 
     /**
-     * Find Good by slug
+     * Searches for a building entity by its slug.
      *
-     * @param slug the string contained
-     * @return list of Goods matching
+     * @param slug The slug to search for.
+     * @return An Optional containing the Building entity if found, or empty otherwise.
      */
     public Optional<Building> findBySlug(String slug) {
         return repository.findBySlugIs(slug);
     }
 
     /**
-     * Find all Buildings with name contains
+     * Retrieves all building entities that contain the specified name.
      *
-     * @param name the string contained
-     * @return list of Recipe matching
+     * @param name The name to search for.
+     * @return A list of Building entities that contain the given name.
      */
     public List<Building> findAllByNameContains(String name) {
         return repository.findAllByNameContains(name);
     }
 
     /**
-     * Find Good by Name
+     * Searches for a building entity by its name.
      *
-     * @param name the string contained
-     * @return list of Goods matching
+     * @param name The name to search for.
+     * @return An Optional containing the Building entity if found, or empty otherwise.
      */
     public Optional<Building> findByName(String name) {
         return repository.findByNameIs(name);
     }
 
     /**
-     * Adds new Entity to the database
-     * Overridden from BaseService
+     * Adds a new building entity to the database based on the provided DTO.
      *
-     * @param buildingTypeDTO DTO responding to the Entity to add.
-     * @return the added entity
+     * @param buildingTypeDTO The DTO containing the data for the new building entity.
+     * @return The newly added Building entity.
      */
     @Override
     public Building post(BuildingTypeDTO buildingTypeDTO) {
@@ -98,7 +104,6 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
                     .slug(populationBuildingDTO.getSlug().isEmpty() ? SlugUtil.createSlug(populationBuildingDTO.getName()) : populationBuildingDTO.getSlug())
                     .build());
         }
-
         if (buildingTypeDTO instanceof ProductionBuildingDTO productionBuildingDTO) {
             ProductionBuilding building = ProductionBuilding.builder()
                     .name(productionBuildingDTO.getName())
@@ -116,12 +121,11 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     }
 
     /**
-     * Updates an Entity
-     * Overridden from BaseService
+     * Updates an existing building entity with the data provided in the DTO.
      *
-     * @param original        original entity
-     * @param buildingTypeDTO dto containing the updated data
-     * @return the updated entity
+     * @param original        The original building entity to be updated.
+     * @param buildingTypeDTO The DTO containing the updated data.
+     * @return The updated Building entity.
      */
     @Override
     public Building putPatch(Building original, BuildingTypeDTO buildingTypeDTO) {
@@ -144,20 +148,20 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
     }
 
     /**
-     * get all ProductionBuildings
+     * Retrieves all ProductionBuilding entities.
      *
-     * @return List of all ProductionBuildings
+     * @return A list of all ProductionBuilding entities.
      */
     public List<ProductionBuilding> getAllProductionBuilding() {
         return productionBuildingRepository.findAll();
     }
 
     /**
-     * get all PopulationBuildings
+     * Retrieves all PopulationBuilding entities.
      *
-     * @return List of all PopulationBuildings
+     * @return A list of all PopulationBuilding entities.
      */
-    public List<PopulationBuilding> getAlPopulationBuilding() {
+    public List<PopulationBuilding> getAllPopulationBuilding() {
         return populationBuildingRepository.findAll();
     }
 }

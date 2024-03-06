@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 /**
- * the Base handling the CRUD functions for the cost building goods relations. Extends BaseService
+ * Service class for managing the relationships between buildings and goods within the application.
+ * This class extends the BaseService to offer specialized CRUD operations for the Cost_Building_Goods entity.
+ * It interacts with the GoodRepository and BuildingRepository to handle operations related to building costs and goods.
  */
 @Component(value = "costBuildingGoodsService")
 public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods, Cost_Building_GoodsRepository, Cost_Building_GoodsDTO> {
@@ -18,10 +20,11 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
     private final BuildingRepository buildingRepository;
 
     /**
-     * Constructs a new Cost_Building_GoodsService. is Autowired
-     * @param repository the repository the Service should use
-     * @param goodRepository the repository the Service should use
-     * @param buildingRepository the repository the Service should use
+     * Autowired constructor to inject repository dependencies. Initializes the service with necessary repositories.
+     *
+     * @param repository The primary repository for Cost_Building_Goods entities.
+     * @param goodRepository Repository for Good entities, enabling lookups of goods by ID.
+     * @param buildingRepository Repository for Building entities, enabling lookups of buildings by ID.
      */
     @Autowired
     public Cost_Building_GoodsService(Cost_Building_GoodsRepository repository, GoodRepository goodRepository, BuildingRepository buildingRepository) {
@@ -31,10 +34,10 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
     }
 
     /**
-     * Adds new Entity to the database
-     * Overridden from BaseService
-     * @param costBuildingGoodsDTO DTO responding to the Entity to add.
-     * @return the added entity
+     * Creates and saves a new Cost_Building_Goods entity based on the provided DTO.
+     *
+     * @param costBuildingGoodsDTO The DTO containing the data for the new Cost_Building_Goods entity.
+     * @return The newly created and saved Cost_Building_Goods entity.
      */
     @Override
     public Cost_Building_Goods post(Cost_Building_GoodsDTO costBuildingGoodsDTO) {
@@ -48,11 +51,12 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
     }
 
     /**
-     * Updates an Entity
-     * Overridden from BaseService
-     * @param original original entity
-     * @param costBuildingGoodsDTO dto containing the updated data
-     * @return the updated entity
+     * Updates an existing Cost_Building_Goods entity with data from the provided DTO.
+     * Allows for updating the related good, building, and the amount of goods required.
+     *
+     * @param original The original Cost_Building_Goods entity to be updated.
+     * @param costBuildingGoodsDTO The DTO containing updated data.
+     * @return The updated Cost_Building_Goods entity.
      */
     @Override
     public Cost_Building_Goods putPatch(Cost_Building_Goods original, Cost_Building_GoodsDTO costBuildingGoodsDTO) {

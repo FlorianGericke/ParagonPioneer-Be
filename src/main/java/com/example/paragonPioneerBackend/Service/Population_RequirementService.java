@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 /**
- * the Base handling the CRUD functions for the population requirement relations. Extends BaseService
+ * Service class responsible for managing relationships between populations and their requirements.
+ * This class extends the generic BaseService to provide specific CRUD operations for Population_Requirement entities.
+ * It leverages Population_RequirementDTO for data transfer and interacts with Population_RequirementRepository for persistence operations.
  */
 @Component(value = "population_RequirementService")
 public class Population_RequirementService extends BaseService<Population_Requirement, Population_RequirementRepository, Population_RequirementDTO> {
@@ -20,11 +22,11 @@ public class Population_RequirementService extends BaseService<Population_Requir
     private final PopulationRepository populationRepository;
 
     /**
-     * Constructs a new Population_RequirementService. is Autowired
+     * Autowired constructor initializing the service with necessary repositories for interaction with database.
      *
-     * @param repository           the repository the Service should use
-     * @param goodRepository       the repository the Service should use
-     * @param populationRepository the repository the Service should use
+     * @param repository Population_RequirementRepository instance for handling population requirement data.
+     * @param goodRepository GoodRepository instance for accessing good-related data.
+     * @param populationRepository PopulationRepository instance for accessing population-related data.
      */
     @Autowired
     public Population_RequirementService(Population_RequirementRepository repository, GoodRepository goodRepository, PopulationRepository populationRepository) {
@@ -34,11 +36,10 @@ public class Population_RequirementService extends BaseService<Population_Requir
     }
 
     /**
-     * Adds new Entity to the database
-     * Overridden from BaseService
+     * Creates and saves a new population requirement relationship in the database based on the provided DTO.
      *
-     * @param populationRequirementDTO DTO responding to the Entity to add.
-     * @return the added entity
+     * @param populationRequirementDTO Data Transfer Object containing the data for the new relationship.
+     * @return The newly created and persisted Population_Requirement entity.
      */
     @Override
     public Population_Requirement post(Population_RequirementDTO populationRequirementDTO) {
@@ -56,17 +57,20 @@ public class Population_RequirementService extends BaseService<Population_Requir
     }
 
     /**
-     * Updates an Entity
-     * Overridden from BaseService
+     * Updates an existing Population_Requirement entity with data from the provided DTO.
      *
-     * @param original                 original entity
-     * @param populationRequirementDTO dto containing the updated data
-     * @return the update entity
+     * @param original The original entity to be updated.
+     * @param populationRequirementDTO DTO containing the new data for the entity.
+     * @return The updated Population_Requirement entity.
      */
     @Override
     public Population_Requirement putPatch(Population_Requirement original, Population_RequirementDTO populationRequirementDTO) {
-        original.setPopulation(populationRequirementDTO.getPopulationId() == null ? original.getPopulation() : populationRepository.findById(UUID.fromString(populationRequirementDTO.getPopulationId())).get());
-        original.setGood(populationRequirementDTO.getGoodId() == null ? original.getGood() : goodRepository.findById(UUID.fromString(populationRequirementDTO.getGoodId())).get());
+        original.setPopulation(populationRequirementDTO.getPopulationId() == null ?
+                original.getPopulation() :
+                populationRepository.findById(UUID.fromString(populationRequirementDTO.getPopulationId())).get());
+        original.setGood(populationRequirementDTO.getGoodId() == null ?
+                original.getGood() :
+                goodRepository.findById(UUID.fromString(populationRequirementDTO.getGoodId())).get());
         if (original.getProduce() != populationRequirementDTO.getProduce()) {
             original.setProduce(populationRequirementDTO.getProduce());
         }
