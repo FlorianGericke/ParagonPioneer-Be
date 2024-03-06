@@ -42,12 +42,10 @@ public class InsertRunner implements ApplicationRunner {
         buildingInserter.run(); // Insert buildings that may rely on recipes and goods.
 
         /*
-        todo: The following inserters are commented out, indicating conditional
-         execution or work in progress. Uncomment these lines as necessary when
-         their dependencies are resolved.
+        todo: the following inserter are not havely required, and will be implemented after the 0.1 release
          */
 
-        // costBuildingGoodsInserter.run(); // Insert cost-building-goods relations.
-        // costBuildingPopulation.run(); // Insert requirement-population-building relations.
+//         costBuildingGoodsInserter.run(); // Insert cost-building-goods relations.
+//         costBuildingPopulation.run(); // Insert requirement-population-building relations.
     }
 }
