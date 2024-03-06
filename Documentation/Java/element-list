@@ -1,0 +1,9 @@
+com.example.paragonPioneerBackend
+com.example.paragonPioneerBackend.Controller
+com.example.paragonPioneerBackend.Dto
+com.example.paragonPioneerBackend.Entity
+com.example.paragonPioneerBackend.Entity.JoinTables
+com.example.paragonPioneerBackend.Repository
+com.example.paragonPioneerBackend.Runners
+com.example.paragonPioneerBackend.Service
+com.example.paragonPioneerBackend.Util
