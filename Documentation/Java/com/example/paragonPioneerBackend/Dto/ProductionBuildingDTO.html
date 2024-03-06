@@ -93,7 +93,10 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ProductionBuildingDTO</span>
 <span class="extends-implements">extends <a href="BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a></span></div>
-<div class="block">DTO for sending Production Building data</div>
+<div class="block">Extends <a href="BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto"><code>BuildingDTO</code></a> to provide a Data Transfer Object specific to production buildings.
+ This DTO includes additional fields pertinent to production buildings, such as their production rate
+ and associated recipe ID, facilitating the transfer of production building data within the application
+ and to external interfaces like RESTful APIs.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,20 +110,22 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">ProductionBuildingDTO</a>()</code></div>
 <div class="col-last even-row-color">
-<div class="block">default constructor</div>
+<div class="block">Default constructor for creating an instance of ProductionBuildingDTO without initialization.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(float,java.util.UUID)" class="member-name-link">ProductionBuildingDTO</a><wbr>(float&nbsp;productionPerMinute,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idOfRecipe)</code></div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(float,java.lang.String)" class="member-name-link">ProductionBuildingDTO</a><wbr>(float&nbsp;productionPerMinute,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;idOfRecipe)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Constructor for creating a new instance of ProductionBuildingDTO</div>
+<div class="block">Constructs a new instance of ProductionBuildingDTO specifying only the production-specific attributes.</div>
 </div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.UUID,java.lang.String,java.lang.String,float,java.util.UUID)" class="member-name-link">ProductionBuildingDTO</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,float,java.lang.String,java.lang.String)" class="member-name-link">ProductionBuildingDTO</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;remarks,
  float&nbsp;productionPerMinute,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idOfRecipe)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;idOfRecipe,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructor for creating a new instance of ProductionBuildingDTO</div>
+<div class="block">Constructs a new instance of ProductionBuildingDTO with detailed attributes including production rate
+ and recipe ID, in addition to the base building attributes.</div>
 </div>
 </div>
 </section>
@@ -147,38 +152,41 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>ProductionBuildingDTO</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ProductionBuildingDTO</span>()</div>
-<div class="block">default constructor</div>
+<div class="block">Default constructor for creating an instance of ProductionBuildingDTO without initialization.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(java.util.UUID,java.lang.String,java.lang.String,float,java.util.UUID)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String,java.lang.String,float,java.lang.String,java.lang.String)">
 <h3>ProductionBuildingDTO</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ProductionBuildingDTO</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ProductionBuildingDTO</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;remarks,
  float&nbsp;productionPerMinute,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idOfRecipe)</span></div>
-<div class="block">Constructor for creating a new instance of ProductionBuildingDTO</div>
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;idOfRecipe,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
+<div class="block">Constructs a new instance of ProductionBuildingDTO with detailed attributes including production rate
+ and recipe ID, in addition to the base building attributes.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - of the instance</dd>
-<dd><code>name</code> - of the instance</dd>
-<dd><code>remarks</code> - of the instance</dd>
-<dd><code>productionPerMinute</code> - of the instance</dd>
-<dd><code>idOfRecipe</code> - of the instance</dd>
+<dd><code>id</code> - The unique identifier of the building.</dd>
+<dd><code>name</code> - The name of the building.</dd>
+<dd><code>remarks</code> - Additional information or comments about the building.</dd>
+<dd><code>productionPerMinute</code> - The production rate of the building.</dd>
+<dd><code>idOfRecipe</code> - The unique identifier of the recipe associated with this building.</dd>
+<dd><code>slug</code> - The slug for URL-friendly identification of the building.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(float,java.util.UUID)">
+<section class="detail" id="&lt;init&gt;(float,java.lang.String)">
 <h3>ProductionBuildingDTO</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ProductionBuildingDTO</span><wbr><span class="parameters">(float&nbsp;productionPerMinute,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;idOfRecipe)</span></div>
-<div class="block">Constructor for creating a new instance of ProductionBuildingDTO</div>
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;idOfRecipe)</span></div>
+<div class="block">Constructs a new instance of ProductionBuildingDTO specifying only the production-specific attributes.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>productionPerMinute</code> - of the instance</dd>
-<dd><code>idOfRecipe</code> - of the instance</dd>
+<dd><code>productionPerMinute</code> - The production rate of the building.</dd>
+<dd><code>idOfRecipe</code> - The unique identifier of the recipe associated with this building.</dd>
 </dl>
 </section>
 </li>

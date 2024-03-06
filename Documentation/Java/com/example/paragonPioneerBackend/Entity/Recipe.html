@@ -90,11 +90,18 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="annotations">@Entity
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">Recipe</span>
-<span class="extends-implements">extends <a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a></span></div>
-<div class="block">Entity representing a Recipe</div>
+<span class="extends-implements">extends <a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a>
+implements <a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></span></div>
+<div class="block">Represents a recipe within the application. A recipe is defined by a series of input goods along with their quantities
+ that are required to produce an output good. This entity extends the <a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity"><code>BaseEntity</code></a> for common attributes like ID,
+ and implements the <a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity"><code>Slugable</code></a> interface to use the slug of the output good for unique identification.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -110,7 +117,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Recipe.QuantityOfGood.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Recipe.QuantityOfGood</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">record stores quantity of the needed input</div>
+<div class="block">Defines a record to encapsulate a Good along with its required quantity within the recipe.</div>
 </div>
 </div>
 </section>
@@ -142,7 +149,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Recipe.QuantityOfGood.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe.QuantityOfGood</a>[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getQuantityOfGoods()" class="member-name-link">getQuantityOfGoods</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">get Quantity and Good</div>
+<div class="block">Constructs an array of <a href="Recipe.QuantityOfGood.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Recipe.QuantityOfGood</code></a> objects representing each input good and its required quantity.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSlug()" class="member-name-link">getSlug</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the slug of the output good, uniquely identifying the recipe.</div>
 </div>
 </div>
 </div>
@@ -179,13 +191,27 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="getSlug()">
+<h3>getSlug</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSlug</span>()</div>
+<div class="block">Returns the slug of the output good, uniquely identifying the recipe.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Slugable.html#getSlug()">getSlug</a></code>&nbsp;in interface&nbsp;<code><a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></code></dd>
+<dt>Returns:</dt>
+<dd>The slug of the output good.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getQuantityOfGoods()">
 <h3>getQuantityOfGoods</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Recipe.QuantityOfGood.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe.QuantityOfGood</a>[]</span>&nbsp;<span class="element-name">getQuantityOfGoods</span>()</div>
-<div class="block">get Quantity and Good</div>
+<div class="block">Constructs an array of <a href="Recipe.QuantityOfGood.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Recipe.QuantityOfGood</code></a> objects representing each input good and its required quantity.
+ This method facilitates the aggregation of input goods and their quantities into a single array.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>Array containing aa record QuantityOfGood(Good good, int quantity)</dd>
+<dd>An array of <a href="Recipe.QuantityOfGood.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Recipe.QuantityOfGood</code></a> objects for the recipe.</dd>
 </dl>
 </section>
 </li>

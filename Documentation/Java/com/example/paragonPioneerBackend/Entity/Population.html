@@ -90,11 +90,18 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="annotations">@Entity
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">Population</span>
-<span class="extends-implements">extends <a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a></span></div>
-<div class="block">Entity representing a Population</div>
+<span class="extends-implements">extends <a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a>
+implements <a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></span></div>
+<div class="block">Entity class representing a population segment within the game.
+ Populations can produce various units or resources, represented by the <a href="Population.PopulationProductionUnit.html" title="enum class in com.example.paragonPioneerBackend.Entity"><code>Population.PopulationProductionUnit</code></a> enum.
+ This class includes information about the population name, the slug for URL representation, and relationships with goods and buildings.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -110,7 +117,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Population.PopulationProductionUnit.html" class="type-name-link" title="enum class in com.example.paragonPioneerBackend.Entity">Population.PopulationProductionUnit</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Enum of all possible procurements ot a population</div>
+<div class="block">Enum defining the possible production units of a population.</div>
 </div>
 </div>
 </section>
@@ -142,7 +149,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Population.PopulationProductionUnit.html" title="enum class in com.example.paragonPioneerBackend.Entity">Population.PopulationProductionUnit</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPopulationProductionUnit()" class="member-name-link">getPopulationProductionUnit</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">get the Type of the production for this population</div>
+<div class="block">Determines the type of production unit associated with this population based on its name.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSlug()" class="member-name-link">getSlug</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves the slug associated with this population.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSlug(java.lang.String)" class="member-name-link">setSlug</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets and validates the slug for this population.</div>
 </div>
 </div>
 </div>
@@ -182,10 +199,36 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getPopulationProductionUnit()">
 <h3>getPopulationProductionUnit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Population.PopulationProductionUnit.html" title="enum class in com.example.paragonPioneerBackend.Entity">Population.PopulationProductionUnit</a></span>&nbsp;<span class="element-name">getPopulationProductionUnit</span>()</div>
-<div class="block">get the Type of the production for this population</div>
+<div class="block">Determines the type of production unit associated with this population based on its name.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>PopulationProductionUnit of this entity</dd>
+<dd>The <a href="Population.PopulationProductionUnit.html" title="enum class in com.example.paragonPioneerBackend.Entity"><code>Population.PopulationProductionUnit</code></a> representing the type of production this population contributes to.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSlug()">
+<h3>getSlug</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSlug</span>()</div>
+<div class="block">Retrieves the slug associated with this population.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Slugable.html#getSlug()">getSlug</a></code>&nbsp;in interface&nbsp;<code><a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></code></dd>
+<dt>Returns:</dt>
+<dd>The slug as a <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link"><code>String</code></a>.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setSlug(java.lang.String)">
+<h3>setSlug</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSlug</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
+<div class="block">Sets and validates the slug for this population. If the slug is invalid, an exception is thrown.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>slug</code> - The slug to set for this population.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if the slug is invalid as determined by <a href="../Util/SlugUtil.html" title="class in com.example.paragonPioneerBackend.Util"><code>SlugUtil</code></a>.</dd>
 </dl>
 </section>
 </li>

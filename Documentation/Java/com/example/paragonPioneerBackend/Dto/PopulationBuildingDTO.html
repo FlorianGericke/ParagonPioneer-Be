@@ -93,7 +93,10 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PopulationBuildingDTO</span>
 <span class="extends-implements">extends <a href="BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a></span></div>
-<div class="block">DTO for sending Population Building data</div>
+<div class="block">Data Transfer Object (DTO) for conveying population building information between application layers,
+ particularly useful for operations involving the creation, update, or retrieval of population building data
+ through user interfaces or APIs. This DTO extends <a href="BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto"><code>BuildingDTO</code></a> with additional attributes specific
+ to buildings that accommodate population, such as their capacity.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,14 +110,16 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">PopulationBuildingDTO</a><wbr>(int&nbsp;capacity)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructor for creating a new instance of PopulationBuildingDTO</div>
+<div class="block">Constructs a new instance of PopulationBuildingDTO with a specified capacity.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.UUID,java.lang.String,java.lang.String,int)" class="member-name-link">PopulationBuildingDTO</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,int,java.lang.String)" class="member-name-link">PopulationBuildingDTO</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;remarks,
- int&nbsp;capacity)</code></div>
+ int&nbsp;capacity,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Constructor for creating a new instance of PopulationBuildingDTO</div>
+<div class="block">Constructs a new instance of PopulationBuildingDTO with specified details including ID, name,
+ remarks, capacity, and slug.</div>
 </div>
 </div>
 </section>
@@ -138,19 +143,23 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.util.UUID,java.lang.String,java.lang.String,int)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String,java.lang.String,int,java.lang.String)">
 <h3>PopulationBuildingDTO</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PopulationBuildingDTO</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PopulationBuildingDTO</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;remarks,
- int&nbsp;capacity)</span></div>
-<div class="block">Constructor for creating a new instance of PopulationBuildingDTO</div>
+ int&nbsp;capacity,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
+<div class="block">Constructs a new instance of PopulationBuildingDTO with specified details including ID, name,
+ remarks, capacity, and slug. This constructor allows for the detailed initialization of a
+ population building data transfer object.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - of the new instance</dd>
-<dd><code>name</code> - of the new instance</dd>
-<dd><code>remarks</code> - of the new instance</dd>
-<dd><code>capacity</code> - of the new instance</dd>
+<dd><code>id</code> - The unique identifier of the building.</dd>
+<dd><code>name</code> - The name of the building.</dd>
+<dd><code>remarks</code> - Additional remarks or notes about the building.</dd>
+<dd><code>capacity</code> - The capacity of the population building.</dd>
+<dd><code>slug</code> - The slug for URL-friendly identification of the building.</dd>
 </dl>
 </section>
 </li>
@@ -158,10 +167,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>PopulationBuildingDTO</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PopulationBuildingDTO</span><wbr><span class="parameters">(int&nbsp;capacity)</span></div>
-<div class="block">Constructor for creating a new instance of PopulationBuildingDTO</div>
+<div class="block">Constructs a new instance of PopulationBuildingDTO with a specified capacity. This constructor
+ can be used when only the capacity of the population building needs to be specified, without
+ other details.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>capacity</code> - of the new instance</dd>
+<dd><code>capacity</code> - The capacity of the population building.</dd>
 </dl>
 </section>
 </li>

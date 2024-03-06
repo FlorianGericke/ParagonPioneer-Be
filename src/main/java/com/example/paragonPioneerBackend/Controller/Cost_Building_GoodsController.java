@@ -9,16 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Handling all endpoints responding to the cost building goods relation, extends BaseController.
- *
+ * Controller for managing the relationships between costs, buildings, and goods.
+ * This controller handles CRUD operations for the cost-building-goods relationship,
+ * enabling the management of how goods serve as resources or requirements for buildings.
+ * Inherits common CRUD operations from BaseController and utilizes the Cost_Building_GoodsService
+ * to perform business logic specific to cost-building-goods relationships.
  */
 @Controller
 @RequestMapping(path = "/api/v1/cost/building_good")
 public class Cost_Building_GoodsController extends BaseController<Cost_Building_Goods, Cost_Building_GoodsRepository, Cost_Building_GoodsDTO, Cost_Building_GoodsService> {
 
     /**
-     * Constructor for Cost_Building_GoodsController, gets autowired
-     * @param service service the controller is using
+     * Constructs a new Cost_Building_GoodsController with the specified service.
+     * The service is injected by Spring's dependency injection mechanism and is used
+     * to perform the necessary CRUD operations on cost-building-goods data.
+     *
+     * @param service The service handling business logic for cost-building-goods relationships.
      */
     @Autowired
     public Cost_Building_GoodsController(Cost_Building_GoodsService service) {

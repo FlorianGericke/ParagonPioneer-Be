@@ -90,9 +90,9 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>Type Parameters:</dt>
-<dd><code>Type</code> - of the Entity the service is for</dd>
-<dd><code>Repository</code> - of the repository the service should use. he Repository has to extend JpaRepository for the Entity und UUD as identifier</dd>
-<dd><code>Dto</code> - containing the data for the Entity</dd>
+<dd><code>Type</code> - The entity type this service is responsible for. Must extend BaseEntity.</dd>
+<dd><code>Repository</code> - The JPA repository type used by this service. Must extend JpaRepository.</dd>
+<dd><code>Dto</code> - The data transfer object (DTO) type used for transferring data between processes.</dd>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
@@ -101,7 +101,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">BaseService&lt;Type extends <a href="../Entity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a>,<wbr>Repository extends org.springframework.data.jpa.repository.JpaRepository&lt;Type,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;,<wbr>Dto&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">The Base Service handling the CRUD functions for the Entities</div>
+<div class="block">Abstract base service class providing CRUD functionalities for entities.
+ This class encapsulates common service layer operations, offering a foundation for entity-specific services.
+ It leverages Spring Data JPA repositories for database interactions.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -117,7 +119,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>protected final <a href="BaseService.html" title="type parameter in BaseService">Repository</a></code></div>
 <div class="col-second even-row-color"><code><a href="#repository" class="member-name-link">repository</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">the repository the Service is using</div>
+<div class="block">Repository instance used for database operations.</div>
 </div>
 </div>
 </section>
@@ -132,7 +134,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(Repository)" class="member-name-link">BaseService</a><wbr>(<a href="BaseService.html" title="type parameter in BaseService">Repository</a>&nbsp;repository)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructor of the BaseService</div>
+<div class="block">Constructs a BaseService with the specified repository.</div>
 </div>
 </div>
 </section>
@@ -151,34 +153,40 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="BaseService.html" title="type parameter in BaseService">Type</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#delete(java.util.UUID)" class="member-name-link">delete</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">delete an entity</div>
+<div class="block">Deletes an entity by its ID.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get(java.util.UUID)" class="member-name-link">get</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get single entity</div>
+<div class="block">Retrieves a single entity by its ID.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAll()" class="member-name-link">getAll</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.data.domain.Page&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAll(int,int)" class="member-name-link">getAll</a><wbr>(int&nbsp;page,
+ int&nbsp;pageSize)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">receive alle entities from the database</div>
+<div class="block">Retrieves all entities, with pagination and sorting based on page number and page size.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="BaseService.html" title="type parameter in BaseService">Type</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#post(Dto)" class="member-name-link">post</a><wbr>(<a href="BaseService.html" title="type parameter in BaseService">Dto</a>&nbsp;dto)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Post function</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.data.domain.Page&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAll(org.springframework.data.domain.Pageable)" class="member-name-link">getAll</a><wbr>(org.springframework.data.domain.Pageable&nbsp;pageable)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves all entities, paginated according to the provided Pageable object.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="BaseService.html" title="type parameter in BaseService">Type</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPatch(java.util.UUID,Dto)" class="member-name-link">putPatch</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="BaseService.html" title="type parameter in BaseService">Type</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#post(Dto)" class="member-name-link">post</a><wbr>(<a href="BaseService.html" title="type parameter in BaseService">Dto</a>&nbsp;dto)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Creates a new entity based on the provided DTO.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="BaseService.html" title="type parameter in BaseService">Type</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPatch(java.util.UUID,Dto)" class="member-name-link">putPatch</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  <a href="BaseService.html" title="type parameter in BaseService">Dto</a>&nbsp;dto)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Update an entity</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Updates an entity identified by the given ID with data from the provided DTO.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="BaseService.html" title="type parameter in BaseService">Type</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#putPatch(Type,Dto)" class="member-name-link">putPatch</a><wbr>(<a href="BaseService.html" title="type parameter in BaseService">Type</a>&nbsp;original,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="BaseService.html" title="type parameter in BaseService">Type</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#putPatch(Type,Dto)" class="member-name-link">putPatch</a><wbr>(<a href="BaseService.html" title="type parameter in BaseService">Type</a>&nbsp;original,
  <a href="BaseService.html" title="type parameter in BaseService">Dto</a>&nbsp;dto)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Update an entity</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Updates an existing entity with data from the provided DTO.</div>
 </div>
 </div>
 </div>
@@ -201,7 +209,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="repository">
 <h3>repository</h3>
 <div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="BaseService.html" title="type parameter in BaseService">Repository</a> extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span>&nbsp;<span class="element-name">repository</span></div>
-<div class="block">the repository the Service is using</div>
+<div class="block">Repository instance used for database operations.</div>
 </section>
 </li>
 </ul>
@@ -216,10 +224,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(Repository)">
 <h3 id="&lt;init&gt;(org.springframework.data.jpa.repository.JpaRepository)">BaseService</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BaseService</span><wbr><span class="parameters">(<a href="BaseService.html" title="type parameter in BaseService">Repository</a>&nbsp;repository)</span></div>
-<div class="block">Constructor of the BaseService</div>
+<div class="block">Constructs a BaseService with the specified repository.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>repository</code> - the repository the Service is using</dd>
+<dd><code>repository</code> - The repository used for database operations.</dd>
 </dl>
 </section>
 </li>
@@ -235,23 +243,40 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="post(Dto)">
 <h3 id="post(java.lang.Object)">post</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="BaseService.html" title="type parameter in BaseService">Type</a></span>&nbsp;<span class="element-name">post</span><wbr><span class="parameters">(<a href="BaseService.html" title="type parameter in BaseService">Dto</a>&nbsp;dto)</span></div>
-<div class="block">Post function</div>
+<div class="block">Creates a new entity based on the provided DTO.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>dto</code> - DTO responding to the Entity to add.</dd>
+<dd><code>dto</code> - DTO representing the data for the new entity.</dd>
 <dt>Returns:</dt>
-<dd>the created entity</dd>
+<dd>The newly created entity.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getAll()">
+<section class="detail" id="getAll(org.springframework.data.domain.Pageable)">
 <h3>getAll</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>&gt;</span>&nbsp;<span class="element-name">getAll</span>()</div>
-<div class="block">receive alle entities from the database</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.data.domain.Page&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>&gt;</span>&nbsp;<span class="element-name">getAll</span><wbr><span class="parameters">(org.springframework.data.domain.Pageable&nbsp;pageable)</span></div>
+<div class="block">Retrieves all entities, paginated according to the provided Pageable object.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pageable</code> - Pagination and sorting information.</dd>
 <dt>Returns:</dt>
-<dd>List of entities</dd>
+<dd>A page of entities.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getAll(int,int)">
+<h3>getAll</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.data.domain.Page&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>&gt;</span>&nbsp;<span class="element-name">getAll</span><wbr><span class="parameters">(int&nbsp;page,
+ int&nbsp;pageSize)</span></div>
+<div class="block">Retrieves all entities, with pagination and sorting based on page number and page size.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>page</code> - The page number to retrieve.</dd>
+<dd><code>pageSize</code> - The number of entities per page.</dd>
+<dt>Returns:</dt>
+<dd>A page of entities.</dd>
 </dl>
 </section>
 </li>
@@ -259,12 +284,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="get(java.util.UUID)">
 <h3>get</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="BaseService.html" title="type parameter in BaseService">Type</a>&gt;</span>&nbsp;<span class="element-name">get</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
-<div class="block">Get single entity</div>
+<div class="block">Retrieves a single entity by its ID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - uuid if the entity to receive</dd>
+<dd><code>id</code> - The UUID of the entity to retrieve.</dd>
 <dt>Returns:</dt>
-<dd>Optional of the Entity</dd>
+<dd>An Optional containing the entity if found, or empty otherwise.</dd>
 </dl>
 </section>
 </li>
@@ -273,13 +298,14 @@ loadScripts(document, 'script');</script>
 <h3 id="putPatch(com.example.paragonPioneerBackend.Entity.BaseEntity,java.lang.Object)">putPatch</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="BaseService.html" title="type parameter in BaseService">Type</a></span>&nbsp;<span class="element-name">putPatch</span><wbr><span class="parameters">(<a href="BaseService.html" title="type parameter in BaseService">Type</a>&nbsp;original,
  <a href="BaseService.html" title="type parameter in BaseService">Dto</a>&nbsp;dto)</span></div>
-<div class="block">Update an entity</div>
+<div class="block">Updates an existing entity with data from the provided DTO.
+ This method must be implemented by subclasses to define entity-specific update logic.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>original</code> - original entity</dd>
-<dd><code>dto</code> - dto containing the updated data</dd>
+<dd><code>original</code> - The original entity to update.</dd>
+<dd><code>dto</code> - The DTO containing updated data.</dd>
 <dt>Returns:</dt>
-<dd>updated entity</dd>
+<dd>The updated entity.</dd>
 </dl>
 </section>
 </li>
@@ -288,13 +314,13 @@ loadScripts(document, 'script');</script>
 <h3 id="putPatch(java.util.UUID,java.lang.Object)">putPatch</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="BaseService.html" title="type parameter in BaseService">Type</a></span>&nbsp;<span class="element-name">putPatch</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  <a href="BaseService.html" title="type parameter in BaseService">Dto</a>&nbsp;dto)</span></div>
-<div class="block">Update an entity</div>
+<div class="block">Updates an entity identified by the given ID with data from the provided DTO.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - id of the entity to update</dd>
-<dd><code>dto</code> - dto containing the updated data</dd>
+<dd><code>id</code> - The ID of the entity to update.</dd>
+<dd><code>dto</code> - The DTO containing updated data.</dd>
 <dt>Returns:</dt>
-<dd>updated entity</dd>
+<dd>The updated entity.</dd>
 </dl>
 </section>
 </li>
@@ -302,12 +328,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="delete(java.util.UUID)">
 <h3>delete</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="BaseService.html" title="type parameter in BaseService">Type</a></span>&nbsp;<span class="element-name">delete</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
-<div class="block">delete an entity</div>
+<div class="block">Deletes an entity by its ID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - of the entity to delete</dd>
+<dd><code>id</code> - The UUID of the entity to delete.</dd>
 <dt>Returns:</dt>
-<dd>deleted entity</dd>
+<dd>The deleted entity.</dd>
 </dl>
 </section>
 </li>

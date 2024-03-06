@@ -8,33 +8,38 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Repository for populations
+ * Spring Data JPA repository interface for {@link Population} entities.
+ * This repository extends JpaRepository to provide standardized CRUD operations and
+ * extends functionality with custom query methods for finding populations by specific criteria.
+ * It supports operations such as finding a population by name or slug and searching for populations
+ * based on a name substring, enhancing the application's ability to interact with population data.
  */
 public interface PopulationRepository extends JpaRepository<Population, UUID> {
 
     /**
-     * * find a populations by its name
+     * Finds a specific population by its exact name.
      *
-     * @param name of the population to find
-     * @return the population
+     * @param name The exact name of the population to find.
+     * @return An Optional containing the population if found; otherwise, an empty Optional.
      */
     Optional<Population> findByNameIs(String name);
 
     /**
-     * * find a population by its name
+     * Finds a population by its slug. Slugs provide a URL-friendly string representation of a population's name,
+     * typically used for identification in web interfaces.
      *
-     * @param slug of the good to find
-     * @return the good
+     * @param slug The slug of the population to find.
+     * @return An Optional containing the population if found; otherwise, an empty Optional.
      */
     Optional<Population> findBySlugIs(String slug);
 
-
     /**
-     * find all population by name contains
+     * Finds all populations whose names contain the specified substring.
+     * This method is useful for implementing search functionalities within the application,
+     * allowing for the retrieval of populations based on partial name matches.
      *
-     * @param name contained string
-     * @return list of all matching
+     * @param name The substring to search for within the names of populations.
+     * @return A list of populations that contain the specified substring in their names.
      */
     List<Population> findAllByNameContains(String name);
 }
-

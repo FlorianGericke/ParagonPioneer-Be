@@ -6,7 +6,9 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 /**
- * Entity representing a Recipe
+ * Represents a recipe within the application. A recipe is defined by a series of input goods along with their quantities
+ * that are required to produce an output good. This entity extends the {@link BaseEntity} for common attributes like ID,
+ * and implements the {@link Slugable} interface to use the slug of the output good for unique identification.
  */
 @Entity
 @Getter
@@ -20,98 +22,171 @@ import org.hibernate.annotations.Where;
 @Where(clause = "deleted_at IS NULL")
 public class Recipe extends BaseEntity implements Slugable {
 
-    @Override
-    public String getSlug() {
-        return output.getSlug();
-    }
-
     /**
-     * record stores quantity of the needed input
-     *
-     * @param good     the input good
-     * @param quantity the quantity of the input good
+     * Defines a record to encapsulate a Good along with its required quantity within the recipe.
      */
     public record QuantityOfGood(Good good, int quantity) {
     }
 
+    /**
+     * The first input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_1")
     private Good input1;
 
+    /**
+     * The quantity of the first input good required.
+     */
     @Column(name = "quantity_of_input_1")
     private int quantityOfInput1;
 
+    /**
+     * The second input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_2")
     private Good input2;
 
+    /**
+     * The quantity of the second input good required.
+     */
     @Column(name = "quantity_of_input_2")
     private int quantityOfInput2;
 
+    /**
+     * The third input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_3")
     private Good input3;
 
+    /**
+     * The quantity of the third input good required.
+     */
     @Column(name = "quantity_of_input_3")
     private int quantityOfInput3;
 
+    /**
+     * The fourth input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_4")
     private Good input4;
 
+    /**
+     * The quantity of the fourth input good required.
+     */
     @Column(name = "quantity_of_input_4")
     private int quantityOfInput4;
 
+    /**
+     * The fifth input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_5")
     private Good input5;
 
+    /**
+     * The quantity of the fifth input good required.
+     */
     @Column(name = "quantity_of_input_5")
     private int quantityOfInput5;
 
+    /**
+     * The sixth input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_6")
     private Good input6;
 
+    /**
+     * The quantity of the sixth input good required.
+     */
     @Column(name = "quantity_of_input_6")
     private int quantityOfInput6;
 
+    /**
+     * The seventh input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_7")
     private Good input7;
 
+    /**
+     * The quantity of the seventh input good required.
+     */
     @Column(name = "quantity_of_input_7")
     private int quantityOfInput7;
 
+
+    /**
+     * The eighth input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_8")
     private Good input8;
 
+    /**
+     * The quantity of the eighth input good required.
+     */
     @Column(name = "quantity_of_input_8")
     private int quantityOfInput8;
 
+    /**
+     * The ninth input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_9")
     private Good input9;
 
+    /**
+     * The quantity of the ninth input good required.
+     */
     @Column(name = "quantity_of_input_9")
     private int quantityOfInput9;
 
+
+    
+    /**
+     * The tenth input good required for the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "input_10")
     private Good input10;
 
+    /**
+     * The quantity of the tenth input good required.
+     */
     @Column(name = "quantity_of_input_10")
     private int quantityOfInput10;
 
+    /**
+     * The output good produced by the recipe.
+     */
     @ManyToOne()
     @JoinColumn(name = "output")
     private Good output;
 
     /**
-     * get Quantity and Good
+     * Returns the slug of the output good, uniquely identifying the recipe.
      *
-     * @return Array containing aa record QuantityOfGood(Good good, int quantity)
+     * @return The slug of the output good.
+     */
+    @Override
+    public String getSlug() {
+        if (output == null){
+            return "";
+        }
+
+        return output.getSlug();
+    }
+
+    /**
+     * Constructs an array of {@link QuantityOfGood} objects representing each input good and its required quantity.
+     * This method facilitates the aggregation of input goods and their quantities into a single array.
+     *
+     * @return An array of {@link QuantityOfGood} objects for the recipe.
      */
     public QuantityOfGood[] getQuantityOfGoods() {
         QuantityOfGood[] re = new QuantityOfGood[10];

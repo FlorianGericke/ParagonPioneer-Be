@@ -92,7 +92,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">PopulationRepository</span><span class="extends-implements">
 extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span></div>
-<div class="block">Repository for populations</div>
+<div class="block">Spring Data JPA repository interface for <a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Population</code></a> entities.
+ This repository extends JpaRepository to provide standardized CRUD operations and
+ extends functionality with custom query methods for finding populations by specific criteria.
+ It supports operations such as finding a population by name or slug and searching for populations
+ based on a name substring, enhancing the application's ability to interact with population data.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,10 +111,20 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByNameIs(java.lang.String)" class="member-name-link">findByNameIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findAllByNameContains(java.lang.String)" class="member-name-link">findAllByNameContains</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">* find a populations by its name</div>
+<div class="block">Finds all populations whose names contain the specified substring.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByNameIs(java.lang.String)" class="member-name-link">findByNameIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finds a specific population by its exact name.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findBySlugIs(java.lang.String)" class="member-name-link">findBySlugIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finds a population by its slug.</div>
 </div>
 </div>
 </div>
@@ -147,13 +161,42 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <li>
 <section class="detail" id="findByNameIs(java.lang.String)">
 <h3>findByNameIs</h3>
-<div class="member-signature"><span class="return-type"><a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></span>&nbsp;<span class="element-name">findByNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">* find a populations by its name</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</span>&nbsp;<span class="element-name">findByNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Finds a specific population by its exact name.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>name</code> - of the population to find</dd>
+<dd><code>name</code> - The exact name of the population to find.</dd>
 <dt>Returns:</dt>
-<dd>the population</dd>
+<dd>An Optional containing the population if found; otherwise, an empty Optional.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findBySlugIs(java.lang.String)">
+<h3>findBySlugIs</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</span>&nbsp;<span class="element-name">findBySlugIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
+<div class="block">Finds a population by its slug. Slugs provide a URL-friendly string representation of a population's name,
+ typically used for identification in web interfaces.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>slug</code> - The slug of the population to find.</dd>
+<dt>Returns:</dt>
+<dd>An Optional containing the population if found; otherwise, an empty Optional.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findAllByNameContains(java.lang.String)">
+<h3>findAllByNameContains</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</span>&nbsp;<span class="element-name">findAllByNameContains</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Finds all populations whose names contain the specified substring.
+ This method is useful for implementing search functionalities within the application,
+ allowing for the retrieval of populations based on partial name matches.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - The substring to search for within the names of populations.</dd>
+<dt>Returns:</dt>
+<dd>A list of populations that contain the specified substring in their names.</dd>
 </dl>
 </section>
 </li>

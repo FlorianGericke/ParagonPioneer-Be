@@ -96,8 +96,9 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@MappedSuperclass
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">BaseEntity</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">BaseClass for entities
- Contains all attributes and properties the entity has to provide</div>
+<div class="block">Represents a base class for entities within the application.
+ It includes common attributes such as identifiers and timestamps for creation, update, and deletion.
+ This class serves as a foundation for entity classes, providing essential fields and lifecycle event handling.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -128,7 +129,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="EntityState.html" title="enum class in com.example.paragonPioneerBackend.Entity">EntityState</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getState()" class="member-name-link">getState</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">get state of the entity</div>
+<div class="block">Determines the current state of the entity based on its timestamps.</div>
 </div>
 </div>
 </div>
@@ -165,10 +166,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getState()">
 <h3>getState</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="EntityState.html" title="enum class in com.example.paragonPioneerBackend.Entity">EntityState</a></span>&nbsp;<span class="element-name">getState</span>()</div>
-<div class="block">get state of the entity</div>
+<div class="block">Determines the current state of the entity based on its timestamps.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>EntityState of the entity</dd>
+<dd><a href="EntityState.html" title="enum class in com.example.paragonPioneerBackend.Entity"><code>EntityState</code></a> indicating whether the entity is created, updated, or deleted.</dd>
 </dl>
 </section>
 </li>

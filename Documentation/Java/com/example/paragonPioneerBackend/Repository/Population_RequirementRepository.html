@@ -92,7 +92,14 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Population_RequirementRepository</span><span class="extends-implements">
 extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/JoinTables/Population_Requirement.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Population_Requirement</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span></div>
-<div class="block">Repository for population requirements relations</div>
+<div class="block">Spring Data JPA repository for <a href="../Entity/JoinTables/Population_Requirement.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Population_Requirement</code></a> entities.
+ This interface facilitates the creation, retrieval, update, and deletion (CRUD) of population requirement relations,
+ along with providing automatic pagination and sorting capabilities. The <a href="../Entity/JoinTables/Population_Requirement.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Population_Requirement</code></a> entity
+ represents the many-to-many relationship between populations and their specific requirements, such as goods
+ consumption or production rates.
+
+ This repository abstracts the underlying data storage mechanism, enabling easy access and manipulation of
+ population requirement data without directly dealing with database queries.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">

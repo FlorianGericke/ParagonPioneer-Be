@@ -97,7 +97,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">EntityState</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="EntityState.html" title="enum class in com.example.paragonPioneerBackend.Entity">EntityState</a>&gt;</span></div>
-<div class="block">enum of all states an Entity can have</div>
+<div class="block">Defines the possible states of entities in the application.
+ This enumeration is used to represent the lifecycle state of an entity, such as whether it has been created,
+ updated, or logically deleted (soft delete).</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -120,15 +122,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="#CREATED" class="member-name-link">CREATED</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">represents an unchanged created entity</div>
+<div class="block">Indicates that the entity has been newly created and not yet modified.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#DELETED" class="member-name-link">DELETED</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">represents a deleted entity</div>
+<div class="block">Indicates that the entity has been marked as deleted.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#UPDATED" class="member-name-link">UPDATED</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">represents a changed entity</div>
+<div class="block">Indicates that the entity has been modified after its initial creation.</div>
 </div>
 </div>
 </section>
@@ -179,21 +181,25 @@ the order they are declared.</div>
 <section class="detail" id="CREATED">
 <h3>CREATED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="EntityState.html" title="enum class in com.example.paragonPioneerBackend.Entity">EntityState</a></span>&nbsp;<span class="element-name">CREATED</span></div>
-<div class="block">represents an unchanged created entity</div>
+<div class="block">Indicates that the entity has been newly created and not yet modified.
+ This state represents the initial status of an entity after it is persisted for the first time.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="UPDATED">
 <h3>UPDATED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="EntityState.html" title="enum class in com.example.paragonPioneerBackend.Entity">EntityState</a></span>&nbsp;<span class="element-name">UPDATED</span></div>
-<div class="block">represents a changed entity</div>
+<div class="block">Indicates that the entity has been modified after its initial creation.
+ This state is used to signify that an entity has undergone changes since it was first persisted.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="DELETED">
 <h3>DELETED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="EntityState.html" title="enum class in com.example.paragonPioneerBackend.Entity">EntityState</a></span>&nbsp;<span class="element-name">DELETED</span></div>
-<div class="block">represents a deleted entity</div>
+<div class="block">Indicates that the entity has been marked as deleted.
+ This state is typically used in systems implementing soft delete functionality, where entities are
+ marked as deleted without being physically removed from the database.</div>
 </section>
 </li>
 </ul>

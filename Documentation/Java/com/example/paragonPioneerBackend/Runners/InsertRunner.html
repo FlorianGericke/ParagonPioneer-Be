@@ -97,7 +97,13 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">InsertRunner</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements org.springframework.boot.ApplicationRunner</span></div>
-<div class="block">Execute all runner in correct Order. To set up relations correctly</div>
+<div class="block">Application runner that orchestrates the execution of various data inserter components
+ to populate the database with initial data upon application startup. Ensures that data
+ insertions are executed in a specific order to maintain data integrity and correctly set up
+ entity relationships.
+ <p>
+ This component is crucial for initializing the application with a consistent and comprehensive
+ set of data, facilitating development, testing, and demonstration scenarios.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -128,7 +134,7 @@ implements org.springframework.boot.ApplicationRunner</span></div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run(org.springframework.boot.ApplicationArguments)" class="member-name-link">run</a><wbr>(org.springframework.boot.ApplicationArguments&nbsp;args)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">function called when application is started</div>
+<div class="block">Executes the data insertion tasks in the prescribed order when the application starts.</div>
 </div>
 </div>
 </div>
@@ -165,12 +171,14 @@ implements org.springframework.boot.ApplicationRunner</span></div>
 <section class="detail" id="run(org.springframework.boot.ApplicationArguments)">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span><wbr><span class="parameters">(org.springframework.boot.ApplicationArguments&nbsp;args)</span></div>
-<div class="block">function called when application is started</div>
+<div class="block">Executes the data insertion tasks in the prescribed order when the application starts.
+ This method is automatically called by the Spring Boot framework, providing an entry point
+ for running the inserter components.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>run</code>&nbsp;in interface&nbsp;<code>org.springframework.boot.ApplicationRunner</code></dd>
 <dt>Parameters:</dt>
-<dd><code>args</code> - the application arguments</dd>
+<dd><code>args</code> - Application arguments passed at startup, not directly used by this method.</dd>
 </dl>
 </section>
 </li>
