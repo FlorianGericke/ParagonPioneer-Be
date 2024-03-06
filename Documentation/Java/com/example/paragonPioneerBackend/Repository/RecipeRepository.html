@@ -92,7 +92,10 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">RecipeRepository</span><span class="extends-implements">
 extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span></div>
-<div class="block">Repository for the recipes</div>
+<div class="block">Spring Data JPA repository for <a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Recipe</code></a> entities. Provides standard CRUD operations inherited
+ from JpaRepository, along with custom query methods to find recipes by their output or the name of their output.
+ This repository plays a crucial role in managing the data access layer for recipe entities, facilitating
+ the retrieval of recipes based on specific criteria related to the product they generate.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,15 +110,20 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByOutputIs(com.example.paragonPioneerBackend.Entity.Good)" class="member-name-link">findByOutputIs</a><wbr>(<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&nbsp;output)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findAllByOutputNameContains(java.lang.String)" class="member-name-link">findAllByOutputNameContains</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;outputName)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">* find a populationBuilding by its output</div>
+<div class="block">Finds all recipes where the name of the output good contains the specified substring.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByOutputNameIs(java.lang.String)" class="member-name-link">findByOutputNameIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;outputName)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByOutputIs(com.example.paragonPioneerBackend.Entity.Good)" class="member-name-link">findByOutputIs</a><wbr>(<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&nbsp;output)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">* find a populationBuilding by its output name</div>
+<div class="block">Finds a recipe by its output good.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByOutputNameIs(java.lang.String)" class="member-name-link">findByOutputNameIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;outputName)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finds a recipe by the name of its output good.</div>
 </div>
 </div>
 </div>
@@ -152,26 +160,41 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <li>
 <section class="detail" id="findByOutputIs(com.example.paragonPioneerBackend.Entity.Good)">
 <h3>findByOutputIs</h3>
-<div class="member-signature"><span class="return-type"><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></span>&nbsp;<span class="element-name">findByOutputIs</span><wbr><span class="parameters">(<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&nbsp;output)</span></div>
-<div class="block">* find a populationBuilding by its output</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</span>&nbsp;<span class="element-name">findByOutputIs</span><wbr><span class="parameters">(<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&nbsp;output)</span></div>
+<div class="block">Finds a recipe by its output good.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>output</code> - the output good of the recipe  to find</dd>
+<dd><code>output</code> - The output <a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Good</code></a> of the recipe to find.</dd>
 <dt>Returns:</dt>
-<dd>the recipe</dd>
+<dd>An Optional containing the recipe if a matching output is found; otherwise, an empty Optional.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="findByOutputNameIs(java.lang.String)">
 <h3>findByOutputNameIs</h3>
-<div class="member-signature"><span class="return-type"><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></span>&nbsp;<span class="element-name">findByOutputNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;outputName)</span></div>
-<div class="block">* find a populationBuilding by its output name</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</span>&nbsp;<span class="element-name">findByOutputNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;outputName)</span></div>
+<div class="block">Finds a recipe by the name of its output good.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>outputName</code> - the output good name of the recipe  to find</dd>
+<dd><code>outputName</code> - The name of the output good of the recipe to find.</dd>
 <dt>Returns:</dt>
-<dd>the recipe</dd>
+<dd>An Optional containing the recipe if a matching output name is found; otherwise, an empty Optional.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findAllByOutputNameContains(java.lang.String)">
+<h3>findAllByOutputNameContains</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</span>&nbsp;<span class="element-name">findAllByOutputNameContains</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;outputName)</span></div>
+<div class="block">Finds all recipes where the name of the output good contains the specified substring.
+ This method is particularly useful for implementing search functionalities within the application,
+ allowing users to find recipes based on partial names of the product they are looking to produce.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>outputName</code> - The substring to search for within the names of the output goods.</dd>
+<dt>Returns:</dt>
+<dd>A list of recipes that contain the specified substring in the name of their output goods.</dd>
 </dl>
 </section>
 </li>

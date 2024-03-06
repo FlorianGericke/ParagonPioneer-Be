@@ -57,227 +57,253 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;<a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="type parameter in BaseController">Type</a> extends <a href="com/example/paragonPioneerBackend/Entity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a>,<wbr><a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="type parameter in BaseController">Repository</a> extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="type parameter in BaseController">Type</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;,<wbr><a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="type parameter in BaseController">Dto</a>,<wbr><a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="type parameter in BaseController">Service</a> extends <a href="com/example/paragonPioneerBackend/Service/BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="type parameter in BaseController">Type</a>,<wbr><a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="type parameter in BaseController">Repository</a>,<wbr><a href="com/example/paragonPioneerBackend/Controller/BaseController.html" title="type parameter in BaseController">Dto</a>&gt;&gt;</div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">The BaseBaseController Handles the Basic CRUD Endpoints.</div>
+<div class="block">Generic base controller class that handles basic CRUD operations for a specified entity type.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">BaseClass for entities
- Contains all attributes and properties the entity has to provide</div>
+<div class="block">Represents a base class for entities within the application.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="com/example/paragonPioneerBackend/Service/BaseService.html" title="type parameter in BaseService">Type</a> extends <a href="com/example/paragonPioneerBackend/Entity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a>,<wbr><a href="com/example/paragonPioneerBackend/Service/BaseService.html" title="type parameter in BaseService">Repository</a> extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="com/example/paragonPioneerBackend/Service/BaseService.html" title="type parameter in BaseService">Type</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;,<wbr><a href="com/example/paragonPioneerBackend/Service/BaseService.html" title="type parameter in BaseService">Dto</a>&gt;</div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">The Base Service handling the CRUD functions for the Entities</div>
+<div class="block">Abstract base service class providing CRUD functionalities for entities.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">BaseClass for Buildings
- Contains all attributes and properties a building has to provide</div>
+<div class="block">Represents an abstract base class for different types of buildings within the application.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/BuildingController.html" title="class in com.example.paragonPioneerBackend.Controller">BuildingController</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Handling all endpoints responding to building, extends BaseController.</div>
+<div class="block">Controller responsible for handling HTTP requests related to buildings, including
+ specialized endpoints for population and production buildings.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">DTO for sending Building data</div>
+<div class="block">Data Transfer Object (DTO) class for transferring building data between the application's layers,
+ such as from the service layer to the presentation layer or through RESTful APIs.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/BuildingInserter.html" title="class in com.example.paragonPioneerBackend.Runners">BuildingInserter</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Setup all data for Buildings</div>
+<div class="block">A component responsible for seeding the database with initial data for buildings at application startup.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for building</div>
+<div class="block">Spring Data JPA repository interface for <a href="com/example/paragonPioneerBackend/Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a> entities.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="com/example/paragonPioneerBackend/Service/BuildingService.html" title="type parameter in BuildingService">BuildingTypeDTO</a> extends <a href="com/example/paragonPioneerBackend/Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>&gt;</div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">the Base handling the CRUD functions for the Building Entities.</div>
+<div class="block">Service class for managing building-related operations in the application.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Entity for join table Cost_Building</div>
+<div class="block">Represents a join table entity that links the <a href="com/example/paragonPioneerBackend/Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a> and <a href="com/example/paragonPioneerBackend/Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Good</code></a> entities to define the cost of a building in terms of goods.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/Cost_Building_GoodsController.html" title="class in com.example.paragonPioneerBackend.Controller">Cost_Building_GoodsController</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Handling all endpoints responding to the cost building goods relation, extends BaseController.</div>
+<div class="block">Controller for managing the relationships between costs, buildings, and goods.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">DTO for sending cost building goods relation data</div>
+<div class="block">Data Transfer Object (DTO) for conveying information about the association between buildings and goods,
+ particularly focusing on the cost aspect.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/Cost_Building_goodsInserter.html" title="class in com.example.paragonPioneerBackend.Runners">Cost_Building_goodsInserter</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Setup all data for relation cost building goods</div>
+<div class="block">Component responsible for seeding the database with initial data for cost-building-goods relations.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/Cost_Building_GoodsRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Cost_Building_GoodsRepository</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for cost building good relations</div>
+<div class="block">Spring Data JPA repository interface for <a href="com/example/paragonPioneerBackend/Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Cost_Building_Goods</code></a> entities.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/Cost_Building_GoodsService.html" title="class in com.example.paragonPioneerBackend.Service">Cost_Building_GoodsService</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">the Base handling the CRUD functions for the cost building goods relations.</div>
+<div class="block">Service class for managing the relationships between buildings and goods within the application.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/example/paragonPioneerBackend/Entity/EntityState.html" title="enum class in com.example.paragonPioneerBackend.Entity">EntityState</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
-<div class="block">enum of all states an Entity can have</div>
+<div class="block">Defines the possible states of entities in the application.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Entity representing a Good</div>
+<div class="block">Represents a good within the application.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/GoodController.html" title="class in com.example.paragonPioneerBackend.Controller">GoodController</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Handling all endpoints responding to goods, extends BaseController.</div>
+<div class="block">Controller responsible for handling HTTP requests related to the Good entity.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">DTO for sending Good data</div>
+<div class="block">Data Transfer Object (DTO) for conveying good-related information between the application layers,
+ particularly useful for transferring good data to and from the user interface or API endpoints.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/GoodInserter.html" title="class in com.example.paragonPioneerBackend.Runners">GoodInserter</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Setup all data for goods</div>
+<div class="block">A component responsible for populating the database with initial goods data.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for goods</div>
+<div class="block">Spring Data JPA repository for <a href="com/example/paragonPioneerBackend/Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Good</code></a> entities.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">the Base handling the CRUD functions for the Goods Entities.</div>
+<div class="block">Service class for managing goods in the application.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/InsertRunner.html" title="class in com.example.paragonPioneerBackend.Runners">InsertRunner</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Execute all runner in correct Order.</div>
+<div class="block">Application runner that orchestrates the execution of various data inserter components
+ to populate the database with initial data upon application startup.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Util/OptionalUtil.html" title="class in com.example.paragonPioneerBackend.Util">OptionalUtil</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Entity representing a Population</div>
+<div class="block">Utility class providing helper methods for working with <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link"><code>Optional</code></a> instances,
+ especially in the context of entities derived from <a href="com/example/paragonPioneerBackend/Entity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity"><code>BaseEntity</code></a>.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/JoinTables/Population_Requirement.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Population_Requirement</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Entity for join table Population_Requirement</div>
+<div class="block">Entity class representing a population segment within the game.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/Population_RequirementController.html" title="class in com.example.paragonPioneerBackend.Controller">Population_RequirementController</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/JoinTables/Population_Requirement.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Population_Requirement</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Handling all endpoints responding to population requirement relation, extends BaseController.</div>
+<div class="block">Represents a join table entity that captures the relationship between <a href="com/example/paragonPioneerBackend/Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Population</code></a> entities and <a href="com/example/paragonPioneerBackend/Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Good</code></a> entities,
+ specifying the goods required by a population segment for consumption or production, as well as identifying basic necessities.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/Population_RequirementDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Population_RequirementDTO</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/Population_RequirementController.html" title="class in com.example.paragonPioneerBackend.Controller">Population_RequirementController</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">for sending cost population requirement relation data</div>
+<div class="block">Controller for managing HTTP requests related to population requirement relations within the application.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/Population_RequirementInserter.html" title="class in com.example.paragonPioneerBackend.Runners">Population_RequirementInserter</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/Population_RequirementDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Population_RequirementDTO</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Setup all data for relation population requirements</div>
+<div class="block">DTO class for transferring data related to the requirements of a population segment within the application.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/Population_RequirementRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Population_RequirementRepository</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for population requirements relations</div>
-</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/Population_RequirementService.html" title="class in com.example.paragonPioneerBackend.Service">Population_RequirementService</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">the Base handling the CRUD functions for the population requirement relations.</div>
-</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="com/example/paragonPioneerBackend/Entity/Population.PopulationProductionUnit.html" title="enum class in com.example.paragonPioneerBackend.Entity">Population.PopulationProductionUnit</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
-<div class="block">Enum of all possible procurements ot a population</div>
-</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Entity representing a PopulationBuilding</div>
-</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/Population_RequirementInserter.html" title="class in com.example.paragonPioneerBackend.Runners">Population_RequirementInserter</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">DTO for sending Population Building data</div>
+<div class="block">Component responsible for seeding the database with initial data representing the relationships
+ between population segments and their requirements.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/PopulationBuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationBuildingRepository</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/Population_RequirementRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Population_RequirementRepository</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for populationBuildings</div>
+<div class="block">Spring Data JPA repository for <a href="com/example/paragonPioneerBackend/Entity/JoinTables/Population_Requirement.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Population_Requirement</code></a> entities.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/PopulationController.html" title="class in com.example.paragonPioneerBackend.Controller">PopulationController</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/Population_RequirementService.html" title="class in com.example.paragonPioneerBackend.Service">Population_RequirementService</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Handling all endpoints responding to populations, extends BaseController.</div>
+<div class="block">Service class responsible for managing relationships between populations and their requirements.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/example/paragonPioneerBackend/Entity/Population.PopulationProductionUnit.html" title="enum class in com.example.paragonPioneerBackend.Entity">Population.PopulationProductionUnit</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="block">Enum defining the possible production units of a population.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Represents a specific type of building that houses a population within the application.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">DTO for sending Population data</div>
+<div class="block">Data Transfer Object (DTO) for conveying population building information between application layers,
+ particularly useful for operations involving the creation, update, or retrieval of population building data
+ through user interfaces or APIs.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/PopulationInserter.html" title="class in com.example.paragonPioneerBackend.Runners">PopulationInserter</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Setup all data for populations</div>
-</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/PopulationRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationRepository</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for populations</div>
-</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/PopulationService.html" title="class in com.example.paragonPioneerBackend.Service">PopulationService</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">the Base handling the CRUD functions for the Populations Entities.</div>
-</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/PpApiApplication.html" title="class in com.example.paragonPioneerBackend">PpApiApplication</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Entity representing a ProductionBuilding</div>
-</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">DTO for sending Production Building data</div>
-</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/ProductionBuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">ProductionBuildingRepository</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/PopulationBuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationBuildingRepository</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for populationsBuilding</div>
+<div class="block">Spring Data JPA repository for <a href="com/example/paragonPioneerBackend/Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity"><code>PopulationBuilding</code></a> entities.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/PopulationController.html" title="class in com.example.paragonPioneerBackend.Controller">PopulationController</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Entity representing a Recipe</div>
+<div class="block">Controller responsible for handling HTTP requests related to Population entities.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="com/example/paragonPioneerBackend/Entity/Recipe.QuantityOfGood.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe.QuantityOfGood</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
-<div class="block">record stores quantity of the needed input</div>
-</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/RecipeController.html" title="class in com.example.paragonPioneerBackend.Controller">RecipeController</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Handling all endpoints responding to recipes, extends BaseController.</div>
-</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">DTO for sending Recipe data</div>
+<div class="block">Data Transfer Object (DTO) for conveying population-related information within the application.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/RecipeInserter.html" title="class in com.example.paragonPioneerBackend.Runners">RecipeInserter</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/PopulationInserter.html" title="class in com.example.paragonPioneerBackend.Runners">PopulationInserter</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Setup all data for recipes</div>
+<div class="block">A component designed to seed the application's database with initial population data.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/PopulationRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationRepository</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for the recipes</div>
+<div class="block">Spring Data JPA repository interface for <a href="com/example/paragonPioneerBackend/Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Population</code></a> entities.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/RecipeService.html" title="class in com.example.paragonPioneerBackend.Service">RecipeService</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/PopulationService.html" title="class in com.example.paragonPioneerBackend.Service">PopulationService</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">the Base handling the CRUD functions for the Recipe Entities.</div>
+<div class="block">Service for managing populations within the application.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/Requirement_Building_PopulationController.html" title="class in com.example.paragonPioneerBackend.Controller">Requirement_Building_PopulationController</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Handling all endpoints responding to requirement building populationController relations, extends BaseController.</div>
-</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/Requirement_Building_PopulationService.html" title="class in com.example.paragonPioneerBackend.Service">Requirement_Building_PopulationService</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/PpApiApplication.html" title="class in com.example.paragonPioneerBackend">PpApiApplication</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Service handling the functionality of the required Population for a building.</div>
+<div class="block">Represents a production building within the application.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/JoinTables/Requirement_Population_Building.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Requirement_Population_Building</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Entity for join table Required_Populations_Building</div>
+<div class="block">Extends <a href="com/example/paragonPioneerBackend/Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto"><code>BuildingDTO</code></a> to provide a Data Transfer Object specific to production buildings.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/Requirement_Population_BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Requirement_Population_BuildingDTO</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">for sending requirement population building relation data</div>
-</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/Requirement_Population_BuildingInserter.html" title="class in com.example.paragonPioneerBackend.Runners">Requirement_Population_BuildingInserter</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Setup all data for relation require populations for buildings</div>
-</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/Requirement_Population_BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Requirement_Population_BuildingRepository</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/ProductionBuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">ProductionBuildingRepository</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Repository for required population for building relations</div>
+<div class="block">Spring Data JPA repository for <a href="com/example/paragonPioneerBackend/Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity"><code>ProductionBuilding</code></a> entities.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Represents a recipe within the application.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="com/example/paragonPioneerBackend/Entity/Recipe.QuantityOfGood.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe.QuantityOfGood</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="block">Defines a record to encapsulate a Good along with its required quantity within the recipe.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/RecipeController.html" title="class in com.example.paragonPioneerBackend.Controller">RecipeController</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Controller for managing HTTP requests related to Recipe entities.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Data Transfer Object (DTO) for encapsulating and transferring detailed recipe information within the application.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/RecipeInserter.html" title="class in com.example.paragonPioneerBackend.Runners">RecipeInserter</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A component designed to seed the database with initial recipe data upon application startup.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">Spring Data JPA repository for <a href="com/example/paragonPioneerBackend/Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Recipe</code></a> entities.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/RecipeService.html" title="class in com.example.paragonPioneerBackend.Service">RecipeService</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Service class for managing recipes in the application.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Controller/Requirement_Building_PopulationController.html" title="class in com.example.paragonPioneerBackend.Controller">Requirement_Building_PopulationController</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Controller for managing the complex relationships between building requirements and population segments.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Service/Requirement_Building_PopulationService.html" title="class in com.example.paragonPioneerBackend.Service">Requirement_Building_PopulationService</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Service class for managing relationships between buildings and their required populations.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Entity/JoinTables/Requirement_Population_Building.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Requirement_Population_Building</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Represents a join table entity that links <a href="com/example/paragonPioneerBackend/Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a> entities with <a href="com/example/paragonPioneerBackend/Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Population</code></a> entities to specify
+ the required population amounts necessary for a building.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Dto/Requirement_Population_BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Requirement_Population_BuildingDTO</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Data Transfer Object (DTO) for sending data about the relationship between buildings and population segments
+ within the application.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Runners/Requirement_Population_BuildingInserter.html" title="class in com.example.paragonPioneerBackend.Runners">Requirement_Population_BuildingInserter</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Component for seeding the database with initial data on the population requirements for buildings.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Repository/Requirement_Population_BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Requirement_Population_BuildingRepository</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="block">Spring Data JPA repository interface for <a href="com/example/paragonPioneerBackend/Entity/JoinTables/Requirement_Population_Building.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Requirement_Population_Building</code></a> entities.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/example/paragonPioneerBackend/Entity/Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">Defines the contract for entities that can be identified by a slug.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Util/SlugUtil.html" title="class in com.example.paragonPioneerBackend.Util">SlugUtil</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Utility class providing static methods for handling slugs.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/example/paragonPioneerBackend/Util/UuidUtil.html" title="class in com.example.paragonPioneerBackend.Util">UuidUtil</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Utility class for operations related to <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>UUID</code></a>s.</div>
 </div>
 </div>
 </div>

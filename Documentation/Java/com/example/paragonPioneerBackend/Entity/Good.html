@@ -48,7 +48,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li>Field</li>
 <li><a href="#constructor-detail">Constr</a></li>
-<li>Method</li>
+<li><a href="#method-detail">Method</a></li>
 </ul>
 </li>
 </ul>
@@ -66,7 +66,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method-detail">Method</a></li>
 </ul>
 </div>
 <div class="nav-list-search"><a href="../../../../search.html">SEARCH</a>
@@ -90,11 +90,18 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="annotations">@Entity
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">Good</span>
-<span class="extends-implements">extends <a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a></span></div>
-<div class="block">Entity representing a Good</div>
+<span class="extends-implements">extends <a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a>
+implements <a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></span></div>
+<div class="block">Represents a good within the application.
+ Goods are essential entities used within the application, associated with buildings and their construction or usage.
+ This class extends <a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity"><code>BaseEntity</code></a> and implements <a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity"><code>Slugable</code></a> to ensure it has a unique identifier and supports URL-friendly identifiers.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -115,6 +122,26 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
+<div id="method-summary-table">
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div id="method-summary-table.tabpanel" role="tabpanel">
+<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSlug()" class="member-name-link">getSlug</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves the slug associated with this good.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSlug(java.lang.String)" class="member-name-link">setSlug</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets and validates the slug for this good.</div>
+</div>
+</div>
+</div>
+</div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Entity.BaseEntity">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Entity.<a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a></h3>
 <code><a href="BaseEntity.html#getState()">getState</a></code></div>
@@ -136,6 +163,40 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>Good</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Good</span>()</div>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<!-- ============ METHOD DETAIL ========== -->
+<li>
+<section class="method-details" id="method-detail">
+<h2>Method Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="getSlug()">
+<h3>getSlug</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSlug</span>()</div>
+<div class="block">Retrieves the slug associated with this good.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Slugable.html#getSlug()">getSlug</a></code>&nbsp;in interface&nbsp;<code><a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></code></dd>
+<dt>Returns:</dt>
+<dd>The slug as a <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link"><code>String</code></a>.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setSlug(java.lang.String)">
+<h3>setSlug</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSlug</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
+<div class="block">Sets and validates the slug for this good. If the slug is invalid, an exception is thrown.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>slug</code> - The slug to set for this good.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if the slug is invalid as determined by <a href="../Util/SlugUtil.html" title="class in com.example.paragonPioneerBackend.Util"><code>SlugUtil</code></a>.</dd>
+</dl>
 </section>
 </li>
 </ul>

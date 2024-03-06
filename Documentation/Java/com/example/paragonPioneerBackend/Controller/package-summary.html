@@ -78,16 +78,6 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><a href="../package-summary.html">com.example.paragonPioneerBackend</a></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><a href="../Dto/package-summary.html">com.example.paragonPioneerBackend.Dto</a></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><a href="../Entity/package-summary.html">com.example.paragonPioneerBackend.Entity</a></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><a href="../Repository/package-summary.html">com.example.paragonPioneerBackend.Repository</a></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><a href="../Runners/package-summary.html">com.example.paragonPioneerBackend.Runners</a></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><a href="../Service/package-summary.html">com.example.paragonPioneerBackend.Service</a></div>
-<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </div>
 </li>
@@ -99,35 +89,36 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color class-summary class-summary-tab2"><a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;Type extends <a href="../Entity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a>,<wbr>Repository extends org.springframework.data.jpa.repository.JpaRepository&lt;Type,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;,<wbr>Dto,<wbr>Service extends <a href="../Service/BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;Type,<wbr>Repository,<wbr>Dto&gt;&gt;</div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">The BaseBaseController Handles the Basic CRUD Endpoints.</div>
+<div class="block">Generic base controller class that handles basic CRUD operations for a specified entity type.</div>
 </div>
 <div class="col-first odd-row-color class-summary class-summary-tab2"><a href="BuildingController.html" title="class in com.example.paragonPioneerBackend.Controller">BuildingController</a></div>
 <div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Handling all endpoints responding to building, extends BaseController.</div>
+<div class="block">Controller responsible for handling HTTP requests related to buildings, including
+ specialized endpoints for population and production buildings.</div>
 </div>
 <div class="col-first even-row-color class-summary class-summary-tab2"><a href="Cost_Building_GoodsController.html" title="class in com.example.paragonPioneerBackend.Controller">Cost_Building_GoodsController</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Handling all endpoints responding to the cost building goods relation, extends BaseController.</div>
+<div class="block">Controller for managing the relationships between costs, buildings, and goods.</div>
 </div>
 <div class="col-first odd-row-color class-summary class-summary-tab2"><a href="GoodController.html" title="class in com.example.paragonPioneerBackend.Controller">GoodController</a></div>
 <div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Handling all endpoints responding to goods, extends BaseController.</div>
+<div class="block">Controller responsible for handling HTTP requests related to the Good entity.</div>
 </div>
 <div class="col-first even-row-color class-summary class-summary-tab2"><a href="Population_RequirementController.html" title="class in com.example.paragonPioneerBackend.Controller">Population_RequirementController</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Handling all endpoints responding to population requirement relation, extends BaseController.</div>
+<div class="block">Controller for managing HTTP requests related to population requirement relations within the application.</div>
 </div>
 <div class="col-first odd-row-color class-summary class-summary-tab2"><a href="PopulationController.html" title="class in com.example.paragonPioneerBackend.Controller">PopulationController</a></div>
 <div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Handling all endpoints responding to populations, extends BaseController.</div>
+<div class="block">Controller responsible for handling HTTP requests related to Population entities.</div>
 </div>
 <div class="col-first even-row-color class-summary class-summary-tab2"><a href="RecipeController.html" title="class in com.example.paragonPioneerBackend.Controller">RecipeController</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Handling all endpoints responding to recipes, extends BaseController.</div>
+<div class="block">Controller for managing HTTP requests related to Recipe entities.</div>
 </div>
 <div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Requirement_Building_PopulationController.html" title="class in com.example.paragonPioneerBackend.Controller">Requirement_Building_PopulationController</a></div>
 <div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Handling all endpoints responding to requirement building populationController relations, extends BaseController.</div>
+<div class="block">Controller for managing the complex relationships between building requirements and population segments.</div>
 </div>
 </div>
 </div>

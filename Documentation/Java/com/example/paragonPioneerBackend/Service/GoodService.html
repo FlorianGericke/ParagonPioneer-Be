@@ -94,7 +94,9 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Component("goodService")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">GoodService</span>
 <span class="extends-implements">extends <a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>,<wbr><a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>,<wbr><a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&gt;</span></div>
-<div class="block">the Base handling the CRUD functions for the Goods Entities. Extends BaseService</div>
+<div class="block">Service class for managing goods in the application.
+ This class extends the generic BaseService to offer CRUD operations tailored to the Good entity.
+ It utilizes GoodDTO for data transfer and interacts with the GoodRepository for persistence operations.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -117,7 +119,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Repository.GoodRepository)" class="member-name-link">GoodService</a><wbr>(<a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>&nbsp;repository)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs a new GoodService.</div>
+<div class="block">Constructor for GoodService, automatically wired with its repository.</div>
 </div>
 </div>
 </section>
@@ -133,25 +135,38 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#post(com.example.paragonPioneerBackend.Dto.GoodDTO)" class="member-name-link">post</a><wbr>(<a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&nbsp;goodDTO)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findAllByNameContains(java.lang.String)" class="member-name-link">findAllByNameContains</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds new Entity to the database
- Overridden from BaseService</div>
+<div class="block">Retrieves a list of goods whose names contain the specified string.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findByName(java.lang.String)" class="member-name-link">findByName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finds a good by its exact name.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findBySlug(java.lang.String)" class="member-name-link">findBySlug</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finds a good by its unique slug.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPatch(com.example.paragonPioneerBackend.Entity.Good,com.example.paragonPioneerBackend.Dto.GoodDTO)" class="member-name-link">putPatch</a><wbr>(<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&nbsp;original,
- <a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&nbsp;goodDTO)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#post(com.example.paragonPioneerBackend.Dto.GoodDTO)" class="member-name-link">post</a><wbr>(<a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&nbsp;goodDTO)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Updates an Entity
- Overridden from BaseService</div>
+<div class="block">Creates a new Good entity based on the provided DTO and saves it to the database.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPatch(com.example.paragonPioneerBackend.Entity.Good,com.example.paragonPioneerBackend.Dto.GoodDTO)" class="member-name-link">putPatch</a><wbr>(<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&nbsp;original,
+ <a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&nbsp;goodDTO)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Updates an existing Good entity with data from the provided DTO.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Service.BaseService">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Service.<a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a></h3>
-<code><a href="BaseService.html#delete(java.util.UUID)">delete</a>, <a href="BaseService.html#get(java.util.UUID)">get</a>, <a href="BaseService.html#getAll()">getAll</a>, <a href="BaseService.html#putPatch(java.util.UUID,Dto)">putPatch</a></code></div>
+<code><a href="BaseService.html#delete(java.util.UUID)">delete</a>, <a href="BaseService.html#get(java.util.UUID)">get</a>, <a href="BaseService.html#getAll(int,int)">getAll</a>, <a href="BaseService.html#getAll(org.springframework.data.domain.Pageable)">getAll</a>, <a href="BaseService.html#putPatch(java.util.UUID,Dto)">putPatch</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -171,10 +186,11 @@ loadScripts(document, 'script');</script>
 <h3>GoodService</h3>
 <div class="member-signature"><span class="annotations">@Autowired
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">GoodService</span><wbr><span class="parameters">(<a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>&nbsp;repository)</span></div>
-<div class="block">Constructs a new GoodService. is Autowired</div>
+<div class="block">Constructor for GoodService, automatically wired with its repository.
+ Initializes the service with the GoodRepository to interact with the database.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>repository</code> - the repository the Service should use</dd>
+<dd><code>repository</code> - The GoodRepository instance for database operations.</dd>
 </dl>
 </section>
 </li>
@@ -187,18 +203,56 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="findAllByNameContains(java.lang.String)">
+<h3>findAllByNameContains</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&gt;</span>&nbsp;<span class="element-name">findAllByNameContains</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Retrieves a list of goods whose names contain the specified string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - The substring to search within goods' names.</dd>
+<dt>Returns:</dt>
+<dd>A list of Good entities that match the search criteria.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findBySlug(java.lang.String)">
+<h3>findBySlug</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&gt;</span>&nbsp;<span class="element-name">findBySlug</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
+<div class="block">Finds a good by its unique slug.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>slug</code> - The slug representing the good.</dd>
+<dt>Returns:</dt>
+<dd>An Optional containing the Good if found, or an empty Optional otherwise.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findByName(java.lang.String)">
+<h3>findByName</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&gt;</span>&nbsp;<span class="element-name">findByName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Finds a good by its exact name.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - The name of the good to find.</dd>
+<dt>Returns:</dt>
+<dd>An Optional containing the Good if found, or an empty Optional otherwise.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="post(com.example.paragonPioneerBackend.Dto.GoodDTO)">
 <h3>post</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a></span>&nbsp;<span class="element-name">post</span><wbr><span class="parameters">(<a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&nbsp;goodDTO)</span></div>
-<div class="block">Adds new Entity to the database
- Overridden from BaseService</div>
+<div class="block">Creates a new Good entity based on the provided DTO and saves it to the database.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BaseService.html#post(Dto)">post</a></code>&nbsp;in class&nbsp;<code><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>,<wbr><a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>,<wbr><a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>goodDTO</code> - DTO responding to the Entity to add.</dd>
+<dd><code>goodDTO</code> - The DTO containing data for the new Good entity.</dd>
 <dt>Returns:</dt>
-<dd>the added entity</dd>
+<dd>The newly created and saved Good entity.</dd>
 </dl>
 </section>
 </li>
@@ -207,16 +261,15 @@ loadScripts(document, 'script');</script>
 <h3>putPatch</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a></span>&nbsp;<span class="element-name">putPatch</span><wbr><span class="parameters">(<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&nbsp;original,
  <a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&nbsp;goodDTO)</span></div>
-<div class="block">Updates an Entity
- Overridden from BaseService</div>
+<div class="block">Updates an existing Good entity with data from the provided DTO.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BaseService.html#putPatch(Type,Dto)">putPatch</a></code>&nbsp;in class&nbsp;<code><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>,<wbr><a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>,<wbr><a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>original</code> - original entity</dd>
-<dd><code>goodDTO</code> - dto containing the updated data</dd>
+<dd><code>original</code> - The original Good entity to update.</dd>
+<dd><code>goodDTO</code> - The DTO containing updated data.</dd>
 <dt>Returns:</dt>
-<dd>the updated entity</dd>
+<dd>The updated Good entity.</dd>
 </dl>
 </section>
 </li>

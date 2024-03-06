@@ -95,7 +95,10 @@ loadScripts(document, 'script');</script>
 @RequestMapping(path="/api/v1/building")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">BuildingController</span>
 <span class="extends-implements">extends <a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>&gt;&gt;</span></div>
-<div class="block">Handling all endpoints responding to building, extends BaseController.</div>
+<div class="block">Controller responsible for handling HTTP requests related to buildings, including
+ specialized endpoints for population and production buildings. Inherits basic CRUD
+ operations from BaseController and adds specific functionalities to cater to different
+ types of buildings within the system.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -117,9 +120,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Service.BuildingService)" class="member-name-link">BuildingController</a><wbr>(<a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&nbsp;service)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Constructor for BuildingController, gets autowired</div>
-</div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -134,56 +135,48 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllPopulationBuildings()" class="member-name-link">getAllPopulationBuildings</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">get endpoint</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllProductionBuilding()" class="member-name-link">getAllProductionBuilding</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">get endpoint</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#patchPopulationBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO)" class="member-name-link">patchPopulationBuildingEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- <a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#deleteEntity(java.util.UUID)" class="member-name-link">deleteEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">patch endpoint</div>
+<div class="block">Deletes the specified building, identified by its UUID, from the system.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#patchProductionBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO)" class="member-name-link">patchProductionBuildingEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- <a href="../Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a>&nbsp;dto)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllPopulationBuildings()" class="member-name-link">getAllPopulationBuildings</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">patch endpoint</div>
+<div class="block">Retrieves all population buildings within the system.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllProductionBuilding()" class="member-name-link">getAllProductionBuilding</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves all production buildings within the system.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEntities(java.lang.String)" class="member-name-link">getEntities</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves a list of buildings that contain the specified name in their name attribute.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#postPopulationBuildingEntity(com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO)" class="member-name-link">postPopulationBuildingEntity</a><wbr>(<a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">post endpoint</div>
+<div class="block">Adds a new population building to the system based on the provided DTO.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#postProductionBuildingEntity(com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO)" class="member-name-link">postProductionBuildingEntity</a><wbr>(<a href="../Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a>&nbsp;dto)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">post endpoint</div>
+<div class="block">Adds a new production building to the system based on the provided DTO.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPopulationBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO)" class="member-name-link">putPopulationBuildingEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  <a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">put endpoint</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putProductionBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO)" class="member-name-link">putProductionBuildingEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- <a href="../Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a>&nbsp;dto)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">put endpoint</div>
+<div class="block">Updates an existing population building identified by the provided UUID with data from the given DTO.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.BaseController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.<a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a></h3>
-<code><a href="BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a>, <a href="BaseController.html#getEntities()">getEntities</a>, <a href="BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="BaseController.html#patchEntity(java.util.UUID,Dto)">patchEntity</a>, <a href="BaseController.html#postEntity(Dto)">postEntity</a>, <a href="BaseController.html#putEntity(java.util.UUID,Dto)">putEntity</a></code></div>
+<code><a href="BaseController.html#getEntities(org.springframework.data.domain.Pageable)">getEntities</a>, <a href="BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="BaseController.html#patchEntity(java.util.UUID,Dto)">patchEntity</a>, <a href="BaseController.html#postEntity(Dto)">postEntity</a>, <a href="BaseController.html#putEntity(java.util.UUID,Dto)">putEntity</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -203,11 +196,6 @@ loadScripts(document, 'script');</script>
 <h3>BuildingController</h3>
 <div class="member-signature"><span class="annotations">@Autowired
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">BuildingController</span><wbr><span class="parameters">(<a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&nbsp;service)</span></div>
-<div class="block">Constructor for BuildingController, gets autowired</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>service</code> - service the controller is using</dd>
-</dl>
 </section>
 </li>
 </ul>
@@ -219,16 +207,33 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="getEntities(java.lang.String)">
+<h3>getEntities</h3>
+<div class="member-signature"><span class="annotations">@GetMapping(value="/find",
+            produces="application/json")
+@ResponseBody
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</span>&nbsp;<span class="element-name">getEntities</span><wbr><span class="parameters">(@RequestParam
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Retrieves a list of buildings that contain the specified name in their name attribute.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - The substring to search for within building names.</dd>
+<dt>Returns:</dt>
+<dd>A list of all buildings containing the specified name substring.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getAllPopulationBuildings()">
 <h3>getAllPopulationBuildings</h3>
 <div class="member-signature"><span class="annotations">@GetMapping(path="/population",
             produces="application/json")
 @ResponseBody
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a>&gt;</span>&nbsp;<span class="element-name">getAllPopulationBuildings</span>()</div>
-<div class="block">get endpoint</div>
+<div class="block">Retrieves all population buildings within the system.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>List of all PopulationBuildings</dd>
+<dd>A list of all population buildings.</dd>
 </dl>
 </section>
 </li>
@@ -239,10 +244,10 @@ loadScripts(document, 'script');</script>
             produces="application/json")
 @ResponseBody
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</span>&nbsp;<span class="element-name">getAllProductionBuilding</span>()</div>
-<div class="block">get endpoint</div>
+<div class="block">Retrieves all production buildings within the system.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>List of all ProductionBuildings</dd>
+<dd>A list of all production buildings.</dd>
 </dl>
 </section>
 </li>
@@ -254,12 +259,12 @@ loadScripts(document, 'script');</script>
 @ResponseBody
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">postPopulationBuildingEntity</span><wbr><span class="parameters">(@RequestBody
  <a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">post endpoint</div>
+<div class="block">Adds a new population building to the system based on the provided DTO.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>dto</code> - dto of the population building to add</dd>
+<dd><code>dto</code> - The DTO containing the data for the new population building.</dd>
 <dt>Returns:</dt>
-<dd>added PopulationBuilding</dd>
+<dd>The newly added population building.</dd>
 </dl>
 </section>
 </li>
@@ -271,12 +276,12 @@ loadScripts(document, 'script');</script>
 @ResponseBody
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">postProductionBuildingEntity</span><wbr><span class="parameters">(@RequestBody
  <a href="../Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">post endpoint</div>
+<div class="block">Adds a new production building to the system based on the provided DTO.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>dto</code> - dto of the production building to add</dd>
+<dd><code>dto</code> - The DTO containing the data for the new production building.</dd>
 <dt>Returns:</dt>
-<dd>added ProductionBuilding</dd>
+<dd>The newly added production building.</dd>
 </dl>
 </section>
 </li>
@@ -290,73 +295,32 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  @RequestBody
  <a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">put endpoint</div>
+<div class="block">Updates an existing population building identified by the provided UUID with data from the given DTO.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - of the PopulationBuilding to update</dd>
-<dd><code>dto</code> - containing the update information</dd>
+<dd><code>id</code> - The UUID of the population building to update.</dd>
+<dd><code>dto</code> - The DTO containing the update information.</dd>
 <dt>Returns:</dt>
-<dd>updated ProductionBuilding</dd>
+<dd>The updated population building.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="patchPopulationBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO)">
-<h3>patchPopulationBuildingEntity</h3>
-<div class="member-signature"><span class="annotations">@PatchMapping(path="/population/{id}",
-              produces="application/json")
+<section class="detail" id="deleteEntity(java.util.UUID)">
+<h3>deleteEntity</h3>
+<div class="member-signature"><span class="annotations">@DeleteMapping(path="/{id}",
+               produces="application/json")
 @ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">patchPopulationBuildingEntity</span><wbr><span class="parameters">(@PathVariable
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- @RequestBody
- <a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">patch endpoint</div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">deleteEntity</span><wbr><span class="parameters">(@PathVariable
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
+<div class="block">Deletes the specified building, identified by its UUID, from the system.</div>
 <dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a></code>&nbsp;in class&nbsp;<code><a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>&gt;&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>id</code> - of the PopulationBuilding to update</dd>
-<dd><code>dto</code> - containing the update information</dd>
+<dd><code>id</code> - The UUID of the building to delete.</dd>
 <dt>Returns:</dt>
-<dd>updated ProductionBuilding</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="putProductionBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO)">
-<h3>putProductionBuildingEntity</h3>
-<div class="member-signature"><span class="annotations">@PutMapping(path="/production/{id}",
-            produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">putProductionBuildingEntity</span><wbr><span class="parameters">(@PathVariable
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- @RequestBody
- <a href="../Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">put endpoint</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - of the ProductionBuilding to update</dd>
-<dd><code>dto</code> - containing the update information</dd>
-<dt>Returns:</dt>
-<dd>updated ProductionBuilding</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="patchProductionBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO)">
-<h3>patchProductionBuildingEntity</h3>
-<div class="member-signature"><span class="annotations">@PatchMapping(path="/production/{id}",
-              produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">patchProductionBuildingEntity</span><wbr><span class="parameters">(@PathVariable
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- @RequestBody
- <a href="../Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">patch endpoint</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - of the ProductionBuilding to update</dd>
-<dd><code>dto</code> - containing the update information</dd>
-<dt>Returns:</dt>
-<dd>updated ProductionBuilding</dd>
+<dd>The deleted building entity.</dd>
 </dl>
 </section>
 </li>

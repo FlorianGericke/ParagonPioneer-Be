@@ -92,7 +92,10 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Component
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">BuildingInserter</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Setup all data for Buildings</div>
+<div class="block">A component responsible for seeding the database with initial data for buildings at application startup.
+ Utilizes BuildingService and RecipeService to create population and production buildings, ensuring
+ the application has a baseline set of building data to work with. This class is particularly useful
+ for development and testing environments, providing a consistent starting point for building-related functionalities.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -123,7 +126,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Run the insertions</div>
+<div class="block">Executes the insertion of the predefined building data into the database.</div>
 </div>
 </div>
 </div>
@@ -160,7 +163,9 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="run()">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
-<div class="block">Run the insertions</div>
+<div class="block">Executes the insertion of the predefined building data into the database.
+ Population buildings are added directly, while production buildings are added
+ with references to their corresponding recipes, identified by name through the RecipeService.</div>
 </section>
 </li>
 </ul>

@@ -92,7 +92,11 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Component
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">Cost_Building_goodsInserter</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Setup all data for relation cost building goods</div>
+<div class="block">Component responsible for seeding the database with initial data for cost-building-goods relations.
+ It utilizes the Cost_Building_GoodsService, BuildingService, and GoodService to create associations
+ based on predefined records, ensuring the application has a baseline set of data for managing
+ the cost requirements of various buildings in relation to specific goods. This class is particularly
+ useful for development and testing environments, where a consistent starting point for data is beneficial.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -123,7 +127,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Run the insertions</div>
+<div class="block">Executes the insertion of the predefined cost-building-goods data into the database.</div>
 </div>
 </div>
 </div>
@@ -160,7 +164,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="run()">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
-<div class="block">Run the insertions</div>
+<div class="block">Executes the insertion of the predefined cost-building-goods data into the database.
+ It resolves the IDs of buildings and goods based on their names and creates associations
+ that specify the cost in terms of goods required for each building. This method ensures
+ the application is populated with essential data regarding the construction costs of buildings.</div>
 </section>
 </li>
 </ul>

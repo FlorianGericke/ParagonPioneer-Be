@@ -95,7 +95,11 @@ loadScripts(document, 'script');</script>
 @RequestMapping(path="/api/v1/cost/building_good")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">Cost_Building_GoodsController</span>
 <span class="extends-implements">extends <a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;<a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>,<wbr><a href="../Repository/Cost_Building_GoodsRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Cost_Building_GoodsRepository</a>,<wbr><a href="../Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a>,<wbr><a href="../Service/Cost_Building_GoodsService.html" title="class in com.example.paragonPioneerBackend.Service">Cost_Building_GoodsService</a>&gt;</span></div>
-<div class="block">Handling all endpoints responding to the cost building goods relation, extends BaseController.</div>
+<div class="block">Controller for managing the relationships between costs, buildings, and goods.
+ This controller handles CRUD operations for the cost-building-goods relationship,
+ enabling the management of how goods serve as resources or requirements for buildings.
+ Inherits common CRUD operations from BaseController and utilizes the Cost_Building_GoodsService
+ to perform business logic specific to cost-building-goods relationships.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -118,7 +122,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Service.Cost_Building_GoodsService)" class="member-name-link">Cost_Building_GoodsController</a><wbr>(<a href="../Service/Cost_Building_GoodsService.html" title="class in com.example.paragonPioneerBackend.Service">Cost_Building_GoodsService</a>&nbsp;service)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructor for Cost_Building_GoodsController, gets autowired</div>
+<div class="block">Constructs a new Cost_Building_GoodsController with the specified service.</div>
 </div>
 </div>
 </section>
@@ -129,7 +133,7 @@ loadScripts(document, 'script');</script>
 <h2>Method Summary</h2>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.BaseController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.<a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a></h3>
-<code><a href="BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a>, <a href="BaseController.html#getEntities()">getEntities</a>, <a href="BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="BaseController.html#patchEntity(java.util.UUID,Dto)">patchEntity</a>, <a href="BaseController.html#postEntity(Dto)">postEntity</a>, <a href="BaseController.html#putEntity(java.util.UUID,Dto)">putEntity</a></code></div>
+<code><a href="BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a>, <a href="BaseController.html#getEntities(org.springframework.data.domain.Pageable)">getEntities</a>, <a href="BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="BaseController.html#patchEntity(java.util.UUID,Dto)">patchEntity</a>, <a href="BaseController.html#postEntity(Dto)">postEntity</a>, <a href="BaseController.html#putEntity(java.util.UUID,Dto)">putEntity</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -149,10 +153,12 @@ loadScripts(document, 'script');</script>
 <h3>Cost_Building_GoodsController</h3>
 <div class="member-signature"><span class="annotations">@Autowired
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">Cost_Building_GoodsController</span><wbr><span class="parameters">(<a href="../Service/Cost_Building_GoodsService.html" title="class in com.example.paragonPioneerBackend.Service">Cost_Building_GoodsService</a>&nbsp;service)</span></div>
-<div class="block">Constructor for Cost_Building_GoodsController, gets autowired</div>
+<div class="block">Constructs a new Cost_Building_GoodsController with the specified service.
+ The service is injected by Spring's dependency injection mechanism and is used
+ to perform the necessary CRUD operations on cost-building-goods data.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>service</code> - service the controller is using</dd>
+<dd><code>service</code> - The service handling business logic for cost-building-goods relationships.</dd>
 </dl>
 </section>
 </li>

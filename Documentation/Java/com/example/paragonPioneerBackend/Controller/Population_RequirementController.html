@@ -95,7 +95,20 @@ loadScripts(document, 'script');</script>
 @RequestMapping(path="/api/v1/requirement")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">Population_RequirementController</span>
 <span class="extends-implements">extends <a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;<a href="../Entity/JoinTables/Population_Requirement.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Population_Requirement</a>,<wbr><a href="../Repository/Population_RequirementRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Population_RequirementRepository</a>,<wbr><a href="../Dto/Population_RequirementDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Population_RequirementDTO</a>,<wbr><a href="../Service/Population_RequirementService.html" title="class in com.example.paragonPioneerBackend.Service">Population_RequirementService</a>&gt;</span></div>
-<div class="block">Handling all endpoints responding to population requirement relation, extends BaseController.</div>
+<div class="block">Controller for managing HTTP requests related to population requirement relations within the application.
+ This controller extends the generic BaseController, providing tailored CRUD operations and additional functionalities
+ for handling the complex relationships between population segments and their requirements.
+
+ The controller makes use of the Population_RequirementService for executing business logic associated with
+ population requirements, ensuring that requests are processed efficiently and effectively.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller"><code>for base functionality</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -118,7 +131,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Service.Population_RequirementService)" class="member-name-link">Population_RequirementController</a><wbr>(<a href="../Service/Population_RequirementService.html" title="class in com.example.paragonPioneerBackend.Service">Population_RequirementService</a>&nbsp;service)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructor for Population_RequirementController, gets autowired</div>
+<div class="block">Autowired constructor for injecting the Population_RequirementService into this controller.</div>
 </div>
 </div>
 </section>
@@ -129,7 +142,7 @@ loadScripts(document, 'script');</script>
 <h2>Method Summary</h2>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.BaseController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.<a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a></h3>
-<code><a href="BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a>, <a href="BaseController.html#getEntities()">getEntities</a>, <a href="BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="BaseController.html#patchEntity(java.util.UUID,Dto)">patchEntity</a>, <a href="BaseController.html#postEntity(Dto)">postEntity</a>, <a href="BaseController.html#putEntity(java.util.UUID,Dto)">putEntity</a></code></div>
+<code><a href="BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a>, <a href="BaseController.html#getEntities(org.springframework.data.domain.Pageable)">getEntities</a>, <a href="BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="BaseController.html#patchEntity(java.util.UUID,Dto)">patchEntity</a>, <a href="BaseController.html#postEntity(Dto)">postEntity</a>, <a href="BaseController.html#putEntity(java.util.UUID,Dto)">putEntity</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -149,10 +162,12 @@ loadScripts(document, 'script');</script>
 <h3>Population_RequirementController</h3>
 <div class="member-signature"><span class="annotations">@Autowired
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">Population_RequirementController</span><wbr><span class="parameters">(<a href="../Service/Population_RequirementService.html" title="class in com.example.paragonPioneerBackend.Service">Population_RequirementService</a>&nbsp;service)</span></div>
-<div class="block">Constructor for Population_RequirementController, gets autowired</div>
+<div class="block">Autowired constructor for injecting the Population_RequirementService into this controller.
+ The service is responsible for all the business logic and database interactions related to
+ population requirements.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>service</code> - service the controller is using</dd>
+<dd><code>service</code> - The Population_RequirementService instance that handles business logic for population requirement relations.</dd>
 </dl>
 </section>
 </li>

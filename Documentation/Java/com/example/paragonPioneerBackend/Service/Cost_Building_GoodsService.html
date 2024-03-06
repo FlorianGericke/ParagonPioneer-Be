@@ -94,7 +94,9 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Component("costBuildingGoodsService")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">Cost_Building_GoodsService</span>
 <span class="extends-implements">extends <a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>,<wbr><a href="../Repository/Cost_Building_GoodsRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Cost_Building_GoodsRepository</a>,<wbr><a href="../Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a>&gt;</span></div>
-<div class="block">the Base handling the CRUD functions for the cost building goods relations. Extends BaseService</div>
+<div class="block">Service class for managing the relationships between buildings and goods within the application.
+ This class extends the BaseService to offer specialized CRUD operations for the Cost_Building_Goods entity.
+ It interacts with the GoodRepository and BuildingRepository to handle operations related to building costs and goods.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -119,7 +121,7 @@ loadScripts(document, 'script');</script>
  <a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>&nbsp;goodRepository,
  <a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>&nbsp;buildingRepository)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs a new Cost_Building_GoodsService.</div>
+<div class="block">Autowired constructor to inject repository dependencies.</div>
 </div>
 </div>
 </section>
@@ -138,22 +140,20 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#post(com.example.paragonPioneerBackend.Dto.Cost_Building_GoodsDTO)" class="member-name-link">post</a><wbr>(<a href="../Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a>&nbsp;costBuildingGoodsDTO)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds new Entity to the database
- Overridden from BaseService</div>
+<div class="block">Creates and saves a new Cost_Building_Goods entity based on the provided DTO.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPatch(com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods,com.example.paragonPioneerBackend.Dto.Cost_Building_GoodsDTO)" class="member-name-link">putPatch</a><wbr>(<a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>&nbsp;original,
  <a href="../Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a>&nbsp;costBuildingGoodsDTO)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Updates an Entity
- Overridden from BaseService</div>
+<div class="block">Updates an existing Cost_Building_Goods entity with data from the provided DTO.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Service.BaseService">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Service.<a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a></h3>
-<code><a href="BaseService.html#delete(java.util.UUID)">delete</a>, <a href="BaseService.html#get(java.util.UUID)">get</a>, <a href="BaseService.html#getAll()">getAll</a>, <a href="BaseService.html#putPatch(java.util.UUID,Dto)">putPatch</a></code></div>
+<code><a href="BaseService.html#delete(java.util.UUID)">delete</a>, <a href="BaseService.html#get(java.util.UUID)">get</a>, <a href="BaseService.html#getAll(int,int)">getAll</a>, <a href="BaseService.html#getAll(org.springframework.data.domain.Pageable)">getAll</a>, <a href="BaseService.html#putPatch(java.util.UUID,Dto)">putPatch</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -175,12 +175,12 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">Cost_Building_GoodsService</span><wbr><span class="parameters">(<a href="../Repository/Cost_Building_GoodsRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Cost_Building_GoodsRepository</a>&nbsp;repository,
  <a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>&nbsp;goodRepository,
  <a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>&nbsp;buildingRepository)</span></div>
-<div class="block">Constructs a new Cost_Building_GoodsService. is Autowired</div>
+<div class="block">Autowired constructor to inject repository dependencies. Initializes the service with necessary repositories.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>repository</code> - the repository the Service should use</dd>
-<dd><code>goodRepository</code> - the repository the Service should use</dd>
-<dd><code>buildingRepository</code> - the repository the Service should use</dd>
+<dd><code>repository</code> - The primary repository for Cost_Building_Goods entities.</dd>
+<dd><code>goodRepository</code> - Repository for Good entities, enabling lookups of goods by ID.</dd>
+<dd><code>buildingRepository</code> - Repository for Building entities, enabling lookups of buildings by ID.</dd>
 </dl>
 </section>
 </li>
@@ -196,15 +196,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="post(com.example.paragonPioneerBackend.Dto.Cost_Building_GoodsDTO)">
 <h3>post</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a></span>&nbsp;<span class="element-name">post</span><wbr><span class="parameters">(<a href="../Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a>&nbsp;costBuildingGoodsDTO)</span></div>
-<div class="block">Adds new Entity to the database
- Overridden from BaseService</div>
+<div class="block">Creates and saves a new Cost_Building_Goods entity based on the provided DTO.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BaseService.html#post(Dto)">post</a></code>&nbsp;in class&nbsp;<code><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>,<wbr><a href="../Repository/Cost_Building_GoodsRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Cost_Building_GoodsRepository</a>,<wbr><a href="../Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>costBuildingGoodsDTO</code> - DTO responding to the Entity to add.</dd>
+<dd><code>costBuildingGoodsDTO</code> - The DTO containing the data for the new Cost_Building_Goods entity.</dd>
 <dt>Returns:</dt>
-<dd>the added entity</dd>
+<dd>The newly created and saved Cost_Building_Goods entity.</dd>
 </dl>
 </section>
 </li>
@@ -213,16 +212,16 @@ loadScripts(document, 'script');</script>
 <h3>putPatch</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a></span>&nbsp;<span class="element-name">putPatch</span><wbr><span class="parameters">(<a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>&nbsp;original,
  <a href="../Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a>&nbsp;costBuildingGoodsDTO)</span></div>
-<div class="block">Updates an Entity
- Overridden from BaseService</div>
+<div class="block">Updates an existing Cost_Building_Goods entity with data from the provided DTO.
+ Allows for updating the related good, building, and the amount of goods required.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BaseService.html#putPatch(Type,Dto)">putPatch</a></code>&nbsp;in class&nbsp;<code><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>,<wbr><a href="../Repository/Cost_Building_GoodsRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">Cost_Building_GoodsRepository</a>,<wbr><a href="../Dto/Cost_Building_GoodsDTO.html" title="class in com.example.paragonPioneerBackend.Dto">Cost_Building_GoodsDTO</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>original</code> - original entity</dd>
-<dd><code>costBuildingGoodsDTO</code> - dto containing the updated data</dd>
+<dd><code>original</code> - The original Cost_Building_Goods entity to be updated.</dd>
+<dd><code>costBuildingGoodsDTO</code> - The DTO containing updated data.</dd>
 <dt>Returns:</dt>
-<dd>the updated entity</dd>
+<dd>The updated Cost_Building_Goods entity.</dd>
 </dl>
 </section>
 </li>

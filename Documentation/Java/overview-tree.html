@@ -58,7 +58,8 @@ loadScripts(document, 'script');</script>
 <li><a href="com/example/paragonPioneerBackend/Entity/JoinTables/package-tree.html">com.example.paragonPioneerBackend.Entity.JoinTables</a>, </li>
 <li><a href="com/example/paragonPioneerBackend/Repository/package-tree.html">com.example.paragonPioneerBackend.Repository</a>, </li>
 <li><a href="com/example/paragonPioneerBackend/Runners/package-tree.html">com.example.paragonPioneerBackend.Runners</a>, </li>
-<li><a href="com/example/paragonPioneerBackend/Service/package-tree.html">com.example.paragonPioneerBackend.Service</a></li>
+<li><a href="com/example/paragonPioneerBackend/Service/package-tree.html">com.example.paragonPioneerBackend.Service</a>, </li>
+<li><a href="com/example/paragonPioneerBackend/Util/package-tree.html">com.example.paragonPioneerBackend.Util</a></li>
 </ul>
 <section class="hierarchy">
 <h2 title="Class Hierarchy">Class Hierarchy</h2>
@@ -78,17 +79,17 @@ loadScripts(document, 'script');</script>
 </li>
 <li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/BaseEntity.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a>
 <ul>
-<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Building.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Building</a>
+<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Building.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Building</a> (implements com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a>)
 <ul>
 <li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/PopulationBuilding.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a></li>
 <li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/ProductionBuilding.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a></li>
 </ul>
 </li>
 <li class="circle">com.example.paragonPioneerBackend.Entity.JoinTables.<a href="com/example/paragonPioneerBackend/Entity/JoinTables/Cost_Building_Goods.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a></li>
-<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Good.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Good</a></li>
-<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Population.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Population</a></li>
+<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Good.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Good</a> (implements com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a>)</li>
+<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Population.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Population</a> (implements com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a>)</li>
 <li class="circle">com.example.paragonPioneerBackend.Entity.JoinTables.<a href="com/example/paragonPioneerBackend/Entity/JoinTables/Population_Requirement.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Population_Requirement</a></li>
-<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Recipe.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></li>
+<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Recipe.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a> (implements com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a>)</li>
 <li class="circle">com.example.paragonPioneerBackend.Entity.JoinTables.<a href="com/example/paragonPioneerBackend/Entity/JoinTables/Requirement_Population_Building.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Requirement_Population_Building</a></li>
 </ul>
 </li>
@@ -115,6 +116,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.example.paragonPioneerBackend.Dto.<a href="com/example/paragonPioneerBackend/Dto/GoodDTO.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a></li>
 <li class="circle">com.example.paragonPioneerBackend.Runners.<a href="com/example/paragonPioneerBackend/Runners/GoodInserter.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Runners">GoodInserter</a></li>
 <li class="circle">com.example.paragonPioneerBackend.Runners.<a href="com/example/paragonPioneerBackend/Runners/InsertRunner.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Runners">InsertRunner</a> (implements org.springframework.boot.ApplicationRunner)</li>
+<li class="circle">com.example.paragonPioneerBackend.Util.<a href="com/example/paragonPioneerBackend/Util/OptionalUtil.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Util">OptionalUtil</a></li>
 <li class="circle">com.example.paragonPioneerBackend.Dto.<a href="com/example/paragonPioneerBackend/Dto/Population_RequirementDTO.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Dto">Population_RequirementDTO</a></li>
 <li class="circle">com.example.paragonPioneerBackend.Runners.<a href="com/example/paragonPioneerBackend/Runners/Population_RequirementInserter.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Runners">Population_RequirementInserter</a></li>
 <li class="circle">com.example.paragonPioneerBackend.Dto.<a href="com/example/paragonPioneerBackend/Dto/PopulationDTO.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a></li>
@@ -124,6 +126,8 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.example.paragonPioneerBackend.Runners.<a href="com/example/paragonPioneerBackend/Runners/RecipeInserter.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Runners">RecipeInserter</a></li>
 <li class="circle">com.example.paragonPioneerBackend.Dto.<a href="com/example/paragonPioneerBackend/Dto/Requirement_Population_BuildingDTO.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Dto">Requirement_Population_BuildingDTO</a></li>
 <li class="circle">com.example.paragonPioneerBackend.Runners.<a href="com/example/paragonPioneerBackend/Runners/Requirement_Population_BuildingInserter.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Runners">Requirement_Population_BuildingInserter</a></li>
+<li class="circle">com.example.paragonPioneerBackend.Util.<a href="com/example/paragonPioneerBackend/Util/SlugUtil.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Util">SlugUtil</a></li>
+<li class="circle">com.example.paragonPioneerBackend.Util.<a href="com/example/paragonPioneerBackend/Util/UuidUtil.html" class="type-name-link" title="class in com.example.paragonPioneerBackend.Util">UuidUtil</a></li>
 </ul>
 </li>
 </ul>
@@ -194,6 +198,7 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
+<li class="circle">com.example.paragonPioneerBackend.Entity.<a href="com/example/paragonPioneerBackend/Entity/Slugable.html" class="type-name-link" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></li>
 </ul>
 </section>
 <section class="hierarchy">

@@ -94,7 +94,10 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Component("populationService")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">PopulationService</span>
 <span class="extends-implements">extends <a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>,<wbr><a href="../Repository/PopulationRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationRepository</a>,<wbr><a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&gt;</span></div>
-<div class="block">the Base handling the CRUD functions for the Populations Entities. Extends BaseService</div>
+<div class="block">Service for managing populations within the application. It provides functionality to add, retrieve,
+ update, and find populations based on various criteria. This service extends the generic BaseService,
+ specifying Population as the entity type, PopulationRepository as the repository, and PopulationDTO
+ as the data transfer object (DTO).</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -117,7 +120,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Repository.PopulationRepository)" class="member-name-link">PopulationService</a><wbr>(<a href="../Repository/PopulationRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationRepository</a>&nbsp;repository)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs a new PopulationService.</div>
+<div class="block">Autowired constructor to inject PopulationRepository dependency.</div>
 </div>
 </div>
 </section>
@@ -133,25 +136,38 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#post(com.example.paragonPioneerBackend.Dto.PopulationDTO)" class="member-name-link">post</a><wbr>(<a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&nbsp;populationDTO)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findAllByNameContains(java.lang.String)" class="member-name-link">findAllByNameContains</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds new Entity to the database
- Overridden from BaseService</div>
+<div class="block">Retrieves a list of all Population entities that contain the given name string.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findByName(java.lang.String)" class="member-name-link">findByName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finds a Population entity by its name.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findBySlug(java.lang.String)" class="member-name-link">findBySlug</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finds a Population entity by its slug.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPatch(com.example.paragonPioneerBackend.Entity.Population,com.example.paragonPioneerBackend.Dto.PopulationDTO)" class="member-name-link">putPatch</a><wbr>(<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&nbsp;original,
- <a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&nbsp;populationDTO)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#post(com.example.paragonPioneerBackend.Dto.PopulationDTO)" class="member-name-link">post</a><wbr>(<a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&nbsp;populationDTO)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Updates an Entity
- Overridden from BaseService</div>
+<div class="block">Creates a new Population entity based on the provided DTO and saves it to the database.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPatch(com.example.paragonPioneerBackend.Entity.Population,com.example.paragonPioneerBackend.Dto.PopulationDTO)" class="member-name-link">putPatch</a><wbr>(<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&nbsp;original,
+ <a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&nbsp;populationDTO)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Updates an existing Population entity with data from the provided DTO.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Service.BaseService">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Service.<a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a></h3>
-<code><a href="BaseService.html#delete(java.util.UUID)">delete</a>, <a href="BaseService.html#get(java.util.UUID)">get</a>, <a href="BaseService.html#getAll()">getAll</a>, <a href="BaseService.html#putPatch(java.util.UUID,Dto)">putPatch</a></code></div>
+<code><a href="BaseService.html#delete(java.util.UUID)">delete</a>, <a href="BaseService.html#get(java.util.UUID)">get</a>, <a href="BaseService.html#getAll(int,int)">getAll</a>, <a href="BaseService.html#getAll(org.springframework.data.domain.Pageable)">getAll</a>, <a href="BaseService.html#putPatch(java.util.UUID,Dto)">putPatch</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -171,10 +187,11 @@ loadScripts(document, 'script');</script>
 <h3>PopulationService</h3>
 <div class="member-signature"><span class="annotations">@Autowired
 </span><span class="modifiers">public</span>&nbsp;<span class="element-name">PopulationService</span><wbr><span class="parameters">(<a href="../Repository/PopulationRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationRepository</a>&nbsp;repository)</span></div>
-<div class="block">Constructs a new PopulationService. is Autowired</div>
+<div class="block">Autowired constructor to inject PopulationRepository dependency. This setup facilitates
+ interaction with the database regarding Population entities.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>repository</code> - the repository the Service should use</dd>
+<dd><code>repository</code> - The PopulationRepository instance for database operations.</dd>
 </dl>
 </section>
 </li>
@@ -190,15 +207,57 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="post(com.example.paragonPioneerBackend.Dto.PopulationDTO)">
 <h3>post</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></span>&nbsp;<span class="element-name">post</span><wbr><span class="parameters">(<a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&nbsp;populationDTO)</span></div>
-<div class="block">Adds new Entity to the database
- Overridden from BaseService</div>
+<div class="block">Creates a new Population entity based on the provided DTO and saves it to the database. This method
+ overrides the abstract post method from BaseService.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BaseService.html#post(Dto)">post</a></code>&nbsp;in class&nbsp;<code><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>,<wbr><a href="../Repository/PopulationRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationRepository</a>,<wbr><a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>populationDTO</code> - DTO responding to the Entity to add.</dd>
+<dd><code>populationDTO</code> - The DTO containing data for the new population entity.</dd>
 <dt>Returns:</dt>
-<dd>the added entity</dd>
+<dd>The newly created and saved Population entity.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findAllByNameContains(java.lang.String)">
+<h3>findAllByNameContains</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</span>&nbsp;<span class="element-name">findAllByNameContains</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Retrieves a list of all Population entities that contain the given name string. This method
+ utilizes the repository to perform a search based on name containment.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - The string to be contained within the population name.</dd>
+<dt>Returns:</dt>
+<dd>A list of Population entities matching the search criteria.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findBySlug(java.lang.String)">
+<h3>findBySlug</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</span>&nbsp;<span class="element-name">findBySlug</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
+<div class="block">Finds a Population entity by its slug. This method provides a way to retrieve populations based on
+ a unique slug value.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>slug</code> - The slug associated with a specific population.</dd>
+<dt>Returns:</dt>
+<dd>An Optional containing the found Population entity, if any.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findByName(java.lang.String)">
+<h3>findByName</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&gt;</span>&nbsp;<span class="element-name">findByName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Finds a Population entity by its name. This method offers an alternative way to retrieve populations
+ by their exact name.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - The exact name of the population to find.</dd>
+<dt>Returns:</dt>
+<dd>An Optional containing the found Population entity, if any.</dd>
 </dl>
 </section>
 </li>
@@ -207,16 +266,16 @@ loadScripts(document, 'script');</script>
 <h3>putPatch</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a></span>&nbsp;<span class="element-name">putPatch</span><wbr><span class="parameters">(<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>&nbsp;original,
  <a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&nbsp;populationDTO)</span></div>
-<div class="block">Updates an Entity
- Overridden from BaseService</div>
+<div class="block">Updates an existing Population entity with data from the provided DTO. This method overrides the
+ abstract putPatch method from BaseService to apply the updates to the Population entity.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BaseService.html#putPatch(Type,Dto)">putPatch</a></code>&nbsp;in class&nbsp;<code><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Population.html" title="class in com.example.paragonPioneerBackend.Entity">Population</a>,<wbr><a href="../Repository/PopulationRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">PopulationRepository</a>,<wbr><a href="../Dto/PopulationDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationDTO</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>original</code> - original entity</dd>
-<dd><code>populationDTO</code> - dto containing the updated data</dd>
+<dd><code>original</code> - The original Population entity to be updated.</dd>
+<dd><code>populationDTO</code> - The DTO containing the updated data for the population.</dd>
 <dt>Returns:</dt>
-<dd>the update entity</dd>
+<dd>The updated Population entity.</dd>
 </dl>
 </section>
 </li>

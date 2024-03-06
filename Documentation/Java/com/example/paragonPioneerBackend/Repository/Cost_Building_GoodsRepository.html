@@ -92,7 +92,14 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Cost_Building_GoodsRepository</span><span class="extends-implements">
 extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span></div>
-<div class="block">Repository for cost building good relations</div>
+<div class="block">Spring Data JPA repository interface for <a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Cost_Building_Goods</code></a> entities.
+ This repository facilitates the creation, retrieval, update, and deletion (CRUD) operations
+ for cost-building-goods relations, along with pagination and sorting capabilities inherited
+ from the JpaRepository interface. The <a href="../Entity/JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Cost_Building_Goods</code></a> entity links buildings and goods
+ in a many-to-many relationship, specifying the amount of a good required for a building.
+
+ As a part of the application's data access layer, this repository abstracts the underlying
+ data store, enabling easy data access and manipulation without the need for custom SQL.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">

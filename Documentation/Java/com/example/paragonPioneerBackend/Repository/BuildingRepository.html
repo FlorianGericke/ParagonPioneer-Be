@@ -92,7 +92,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">BuildingRepository</span><span class="extends-implements">
 extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span></div>
-<div class="block">Repository for building</div>
+<div class="block">Spring Data JPA repository interface for <a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a> entities.
+ Provides methods to perform CRUD operations and additional queries to find buildings by name or slug.
+ Inherits standard CRUD and pagination methods from JpaRepository.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,10 +109,20 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByNameIs(java.lang.String)" class="member-name-link">findByNameIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findAllByNameContains(java.lang.String)" class="member-name-link">findAllByNameContains</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">find a building by its name</div>
+<div class="block">Finds all buildings where the name contains the specified substring.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByNameIs(java.lang.String)" class="member-name-link">findByNameIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finds a building exactly matching the specified name.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findBySlugIs(java.lang.String)" class="member-name-link">findBySlugIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finds a building based on its slug.</div>
 </div>
 </div>
 </div>
@@ -147,13 +159,40 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <li>
 <section class="detail" id="findByNameIs(java.lang.String)">
 <h3>findByNameIs</h3>
-<div class="member-signature"><span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">findByNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">find a building by its name</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</span>&nbsp;<span class="element-name">findByNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Finds a building exactly matching the specified name.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>name</code> - of the building to find</dd>
+<dd><code>name</code> - The exact name of the building to find.</dd>
 <dt>Returns:</dt>
-<dd>the building</dd>
+<dd>An Optional containing the building if found; otherwise, an empty Optional.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findAllByNameContains(java.lang.String)">
+<h3>findAllByNameContains</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</span>&nbsp;<span class="element-name">findAllByNameContains</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Finds all buildings where the name contains the specified substring.
+ This method is useful for implementing search functionalities where a partial match is acceptable.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - The substring to search for within the building names.</dd>
+<dt>Returns:</dt>
+<dd>A list of buildings that contain the specified substring in their names.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="findBySlugIs(java.lang.String)">
+<h3>findBySlugIs</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</span>&nbsp;<span class="element-name">findBySlugIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
+<div class="block">Finds a building based on its slug. Slugs are typically used in URLs and are unique for each building.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>slug</code> - The slug of the building to find.</dd>
+<dt>Returns:</dt>
+<dd>An Optional containing the building if a matching slug is found; otherwise, an empty Optional.</dd>
 </dl>
 </section>
 </li>

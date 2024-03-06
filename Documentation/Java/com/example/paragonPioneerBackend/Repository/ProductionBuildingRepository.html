@@ -92,7 +92,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">ProductionBuildingRepository</span><span class="extends-implements">
 extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span></div>
-<div class="block">Repository for populationsBuilding</div>
+<div class="block">Spring Data JPA repository for <a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity"><code>ProductionBuilding</code></a> entities.
+ This interface provides automated CRUD functionalities inherited from JpaRepository,
+ along with a custom method for querying production buildings by their exact name.
+ It simplifies the management of production building data by abstracting direct database interactions,
+ enabling straightforward data access and manipulation.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,10 +111,10 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByNameIs(java.lang.String)" class="member-name-link">findByNameIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">* find a populationBuilding by its name</div>
+<div class="block">Searches for a ProductionBuilding entity that exactly matches the specified name.</div>
 </div>
 </div>
 </div>
@@ -147,13 +151,17 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <li>
 <section class="detail" id="findByNameIs(java.lang.String)">
 <h3>findByNameIs</h3>
-<div class="member-signature"><span class="return-type"><a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a></span>&nbsp;<span class="element-name">findByNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">* find a populationBuilding by its name</div>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</span>&nbsp;<span class="element-name">findByNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Searches for a ProductionBuilding entity that exactly matches the specified name.
+ This method is particularly useful for retrieving specific production buildings
+ when the exact name is known, facilitating operations like data validation, lookup,
+ or display in user interfaces.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>name</code> - of the population building to find</dd>
+<dd><code>name</code> - The exact name of the production building to find.</dd>
 <dt>Returns:</dt>
-<dd>the populationBuilding</dd>
+<dd>An Optional containing the found production building if available;
+         otherwise, an empty Optional.</dd>
 </dl>
 </section>
 </li>
