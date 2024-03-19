@@ -7,7 +7,7 @@ import com.example.paragonPioneerBackend.Entity.Building;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
-import com.example.paragonPioneerBackend.Service.EntityServices.BuildingService;
+import com.example.paragonPioneerBackend.Service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Controller;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
-import com.example.paragonPioneerBackend.Service.EntityServices.BaseService;
+import com.example.paragonPioneerBackend.Service.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;

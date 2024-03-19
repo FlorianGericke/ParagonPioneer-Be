@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data;
 
-import com.example.paragonPioneerBackend.Service.Authservices.AuthenticationService;
-import com.example.paragonPioneerBackend.Dto.RegisterRequest;
+import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
+import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;

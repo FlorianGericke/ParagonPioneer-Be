@@ -3,7 +3,7 @@ package com.example.paragonPioneerBackend.Controller;
 import com.example.paragonPioneerBackend.Dto.Cost_Building_GoodsDTO;
 import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
 import com.example.paragonPioneerBackend.Repository.Cost_Building_GoodsRepository;
-import com.example.paragonPioneerBackend.Service.EntityServices.Cost_Building_GoodsService;
+import com.example.paragonPioneerBackend.Service.Cost_Building_GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
