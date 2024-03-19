@@ -49,8 +49,6 @@ public class InsertRunner implements ApplicationRunner {
         recipeInserter.run();
         populationRequirementInserter.run();
         buildingInserter.run();
-        costBuildingGoodsInserter.run();
-        costBuildingPopulation.run();
 
         /*
         todo: the following inserter are not havely required, and will be implemented after the 0.1 release
