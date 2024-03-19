@@ -9,16 +9,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Handling all endpoints responding to requirement building populationController relations, extends BaseController.
- *
+ * Controller for managing the complex relationships between building requirements and population segments.
+ * It extends the generic BaseController to provide tailored CRUD operations and additional functionality
+ * for handling associations that specify the population requirements for buildings. This controller uses
+ * the Requirement_Building_PopulationService to perform operations on Requirement_Population_Building entities,
+ * facilitating the creation, retrieval, updating, and deletion of these associations within the application.
  */
 @Controller
 @RequestMapping(path = "/api/v1/requirement/building_population")
 public class Requirement_Building_PopulationController extends BaseController<Requirement_Population_Building, Requirement_Population_BuildingRepository, Requirement_Population_BuildingDTO, Requirement_Building_PopulationService> {
 
     /**
-     * Constructor for Requirement_Building_PopulationController, gets autowired
-     * @param service service the controller is using
+     * Autowired constructor for Dependency Injection of Requirement_Building_PopulationService.
+     * The service is responsible for the business logic and database interactions related
+     * to the requirement-building-population relationships, ensuring that the controller
+     * can delegate complex operations to the service layer.
+     *
+     * @param service The Requirement_Building_PopulationService instance managing the underlying business logic.
      */
     @Autowired
     public Requirement_Building_PopulationController(Requirement_Building_PopulationService service) {

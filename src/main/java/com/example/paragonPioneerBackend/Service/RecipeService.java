@@ -12,7 +12,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * the Base handling the CRUD functions for the Recipe Entities. Extends BaseService
+ * Service class for managing recipes in the application. It provides methods for creating,
+ * updating, and retrieving recipes, with a focus on manipulating Recipe entities and
+ * interacting with the database via the RecipeRepository. Additionally, it utilizes
+ * GoodRepository for operations related to the Good entities that are part of the recipes.
  */
 @Service(value = "recipeService")
 public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeDTO> {
@@ -20,10 +23,11 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     private final GoodRepository goodRepository;
 
     /**
-     * Constructs a new RecipeService. is Autowired
+     * Constructor to autowire the RecipeRepository and GoodRepository, enabling
+     * database operations for recipes and associated goods.
      *
-     * @param repository     the repository the Service should use
-     * @param goodRepository the repository the Service should use
+     * @param repository The RecipeRepository for recipe database operations.
+     * @param goodRepository The GoodRepository for good database operations.
      */
     @Autowired
     public RecipeService(RecipeRepository repository, GoodRepository goodRepository) {
@@ -32,31 +36,33 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     }
 
     /**
-     * Find all Recipe whew the outputName contains
+     * Finds recipes where the output good's name contains a specified string.
+     * Useful for searching recipes based on the name of the output good.
      *
-     * @param outputName the string contained
-     * @return list of Recipe matching
+     * @param outputName The name (or part of it) to search for in the output goods of recipes.
+     * @return A list of recipes that match the search criteria.
      */
     public List<Recipe> findAllByNameContains(String outputName) {
         return repository.findAllByOutputNameContains(outputName);
     }
 
     /**
-     * Find Good by Name
+     * Finds a recipe by the name of its output good. Returns an optional recipe
+     * which is useful for handling cases where the recipe may not exist.
      *
-     * @param name the string contained
-     * @return list of Goods matching
+     * @param name The name of the output good.
+     * @return An Optional containing the found recipe, if any.
      */
     public Optional<Recipe> findByName(String name) {
         return repository.findByOutputNameIs(name);
     }
 
     /**
-     * Adds new Entity to the database
-     * Overridden from BaseService
+     * Creates and saves a new recipe entity to the database based on the provided RecipeDTO.
+     * This method overrides an abstract method from BaseService, tailored to handle Recipe entities.
      *
-     * @param recipeDTO DTO responding to the Entity to add.
-     * @return the added entity
+     * @param recipeDTO The RecipeDTO containing data for the new recipe.
+     * @return The newly created and saved Recipe entity.
      */
     @Override
     public Recipe post(RecipeDTO recipeDTO) {
@@ -86,12 +92,12 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
     }
 
     /**
-     * Updates an Entity
-     * Overridden from BaseService
+     * Updates an existing Recipe entity with data from the provided RecipeDTO.
+     * This method overrides an abstract method from BaseService, tailored to Recipe entities.
      *
-     * @param original  original entity
-     * @param recipeDTO dto containing the updated data
-     * @return the update entity
+     * @param original  The original Recipe entity to be updated.
+     * @param recipeDTO The RecipeDTO containing the updated data.
+     * @return The updated Recipe entity.
      */
     @Override
     public Recipe putPatch(Recipe original, RecipeDTO recipeDTO) {
@@ -123,6 +129,14 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
         return original;
     }
 
+    /**
+     * Utility method to retrieve UUIDs from the Good numbers specified in the RecipeDTO.
+     * Handles conversion from string identifiers and lookup via GoodRepository.
+     *
+     * @param recipeDTO The RecipeDTO containing good identifiers.
+     * @param num       The specific input or output good number to lookup.
+     * @return The UUID of the specified good, if found.
+     */
     private UUID getUUIDFromGoodNumber(RecipeDTO recipeDTO, int num) {
         return switch (num) {
             case 1 -> {
@@ -205,5 +219,14 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
 
             default -> null;
         };
+    }
+
+    public Optional<Recipe> findAllByOutputId(UUID id) {
+        var output = goodRepository.findById(id).orElse(null);
+
+        if (output == null) {
+            return Optional.empty();
+        }
+        return findByName(output.getName());
     }
 }

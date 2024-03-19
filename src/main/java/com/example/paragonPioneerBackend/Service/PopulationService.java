@@ -9,17 +9,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 /**
- * the Base handling the CRUD functions for the Populations Entities. Extends BaseService
+ * Service for managing populations within the application. It provides functionality to add, retrieve,
+ * update, and find populations based on various criteria. This service extends the generic BaseService,
+ * specifying Population as the entity type, PopulationRepository as the repository, and PopulationDTO
+ * as the data transfer object (DTO).
  */
 @Service(value = "populationService")
 public class PopulationService extends BaseService<Population, PopulationRepository, PopulationDTO> {
 
     /**
-     * Constructs a new PopulationService. is Autowired
+     * Autowired constructor to inject PopulationRepository dependency. This setup facilitates
+     * interaction with the database regarding Population entities.
      *
-     * @param repository the repository the Service should use
+     * @param repository The PopulationRepository instance for database operations.
      */
     @Autowired
     public PopulationService(PopulationRepository repository) {
@@ -27,11 +30,11 @@ public class PopulationService extends BaseService<Population, PopulationReposit
     }
 
     /**
-     * Adds new Entity to the database
-     * Overridden from BaseService
+     * Creates a new Population entity based on the provided DTO and saves it to the database. This method
+     * overrides the abstract post method from BaseService.
      *
-     * @param populationDTO DTO responding to the Entity to add.
-     * @return the added entity
+     * @param populationDTO The DTO containing data for the new population entity.
+     * @return The newly created and saved Population entity.
      */
     @Override
     public Population post(PopulationDTO populationDTO) {
@@ -44,44 +47,45 @@ public class PopulationService extends BaseService<Population, PopulationReposit
     }
 
     /**
-     * Find all Population with name contains
+     * Retrieves a list of all Population entities that contain the given name string. This method
+     * utilizes the repository to perform a search based on name containment.
      *
-     * @param name the string contained
-     * @return list of Population matching
+     * @param name The string to be contained within the population name.
+     * @return A list of Population entities matching the search criteria.
      */
     public List<Population> findAllByNameContains(String name) {
         return repository.findAllByNameContains(name);
     }
 
-
-
     /**
-     * Find Good by slug
+     * Finds a Population entity by its slug. This method provides a way to retrieve populations based on
+     * a unique slug value.
      *
-     * @param slug the string contained
-     * @return list of Goods matching
+     * @param slug The slug associated with a specific population.
+     * @return An Optional containing the found Population entity, if any.
      */
     public Optional<Population> findBySlug(String slug) {
         return repository.findBySlugIs(slug);
     }
 
     /**
-     * Find Population by Name
+     * Finds a Population entity by its name. This method offers an alternative way to retrieve populations
+     * by their exact name.
      *
-     * @param name the string contained
-     * @return list of Goods matching
+     * @param name The exact name of the population to find.
+     * @return An Optional containing the found Population entity, if any.
      */
     public Optional<Population> findByName(String name) {
         return repository.findByNameIs(name);
     }
 
     /**
-     * Updates an Entity
-     * Overridden from BaseService
+     * Updates an existing Population entity with data from the provided DTO. This method overrides the
+     * abstract putPatch method from BaseService to apply the updates to the Population entity.
      *
-     * @param original      original entity
-     * @param populationDTO dto containing the updated data
-     * @return the update entity
+     * @param original      The original Population entity to be updated.
+     * @param populationDTO The DTO containing the updated data for the population.
+     * @return The updated Population entity.
      */
     @Override
     public Population putPatch(Population original, PopulationDTO populationDTO) {

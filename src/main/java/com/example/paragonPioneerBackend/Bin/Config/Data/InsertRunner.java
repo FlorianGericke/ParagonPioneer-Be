@@ -9,7 +9,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Execute all runner in correct Order. To set up relations correctly
+ * Application runner that orchestrates the execution of various data inserter components
+ * to populate the database with initial data upon application startup. Ensures that data
+ * insertions are executed in a specific order to maintain data integrity and correctly set up
+ * entity relationships.
+ * <p>
+ * This component is crucial for initializing the application with a consistent and comprehensive
+ * set of data, facilitating development, testing, and demonstration scenarios.
  */
 @Configuration
 @RequiredArgsConstructor
@@ -25,9 +31,11 @@ public class InsertRunner implements ApplicationRunner {
     private final Requirement_Population_BuildingInserter costBuildingPopulation;
 
     /**
-     * function called when application is started
+     * Executes the data insertion tasks in the prescribed order when the application starts.
+     * This method is automatically called by the Spring Boot framework, providing an entry point
+     * for running the inserter components.
      *
-     * @param args the application arguments
+     * @param args Application arguments passed at startup, not directly used by this method.
      */
     @Override
     public void run(ApplicationArguments args) {
@@ -43,5 +51,12 @@ public class InsertRunner implements ApplicationRunner {
         buildingInserter.run();
         costBuildingGoodsInserter.run();
         costBuildingPopulation.run();
+
+        /*
+        todo: the following inserter are not havely required, and will be implemented after the 0.1 release
+         */
+
+//         costBuildingGoodsInserter.run(); // Insert cost-building-goods relations.
+//         costBuildingPopulation.run(); // Insert requirement-population-building relations.
     }
 }

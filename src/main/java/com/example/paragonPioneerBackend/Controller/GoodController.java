@@ -14,16 +14,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * Handling all endpoints responding to goods, extends BaseController.
+ * Controller responsible for handling HTTP requests related to the Good entity.
+ * It extends the generic BaseController to provide CRUD operations for Good entities
+ * and adds a custom method for searching goods by name. This controller uses the GoodService
+ * to interact with the database and perform operations on Good entities.
  */
 @Controller
 @RequestMapping(path = "/api/v1/good")
 public class GoodController extends BaseController<Good, GoodRepository, GoodDTO, GoodService> {
 
     /**
-     * Constructor for GoodController, gets autowired
+     * Constructs a new GoodController with the specified GoodService.
+     * The GoodService is injected by Spring's dependency injection mechanism and is used
+     * to perform business logic and database operations on Good entities.
      *
-     * @param service service the controller is using
+     * @param service The service handling business logic for Good entities.
      */
     @Autowired
     public GoodController(GoodService service) {
@@ -31,10 +36,12 @@ public class GoodController extends BaseController<Good, GoodRepository, GoodDTO
     }
 
     /**
-     * get endpoint for find by name
+     * Retrieves a list of Good entities whose names contain the specified substring.
+     * This method allows for searching the database for goods based on partial name matches,
+     * facilitating user search operations in the application.
      *
-     * @param name to look for
-     * @return list of all Goods containing the name
+     * @param name The substring to search for within Good entity names.
+     * @return A list of Good entities that contain the specified substring in their names.
      */
     @GetMapping(value = "/find", produces = "application/json")
     public @ResponseBody List<Good> getEntities(@RequestParam String name) {

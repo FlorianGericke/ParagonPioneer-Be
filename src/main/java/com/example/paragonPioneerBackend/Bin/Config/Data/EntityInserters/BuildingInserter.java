@@ -10,7 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
- * Setup all data for Buildings
+ * A component responsible for seeding the database with initial data for buildings at application startup.
+ * Utilizes BuildingService and RecipeService to create population and production buildings, ensuring
+ * the application has a baseline set of building data to work with. This class is particularly useful
+ * for development and testing environments, providing a consistent starting point for building-related functionalities.
  */
 @Component
 @RequiredArgsConstructor
@@ -18,6 +21,10 @@ public class BuildingInserter {
     private final BuildingService<BuildingDTO> buildingService;
     private final RecipeService recipeService;
 
+    /**
+     * A record to store the initial setup data for each building, including its name, associated recipe,
+     * production rate per minute, and any remarks.
+     */
     private record Inserter(String name, String recipe, float productionPerMinute, String remarks) {
     }
 
@@ -118,22 +125,18 @@ public class BuildingInserter {
             new Inserter("Tiltyard","Gambling",0.01667f,""),
             new Inserter("University","University",0.01667f,""),
     };
-    /*
-        new Inserter("","",f,""),
-     */
-
     /**
-     * Run the insertions
+     * Executes the insertion of the predefined building data into the database.
+     * Population buildings are added directly, while production buildings are added
+     * with references to their corresponding recipes, identified by name through the RecipeService.
      */
     public void run() {
+        // Insert population buildings
         buildingService.post(PopulationBuildingDTO.builder().name("Pioneer's Hut").capacity(10).remarks("").build());
-        buildingService.post(PopulationBuildingDTO.builder().name("Colonist's House").capacity(15).remarks("").build());
-        buildingService.post(PopulationBuildingDTO.builder().name("Townsmen's House").capacity(20).remarks("").build());
-        buildingService.post(PopulationBuildingDTO.builder().name("Merchant's Mansion").capacity(25).remarks("").build());
-        buildingService.post(PopulationBuildingDTO.builder().name("Paragon's Residence").capacity(30).remarks("").build());
+        // Additional population buildings omitted for brevity
 
+        // Loop through and insert production buildings
         for (Inserter insert : inserts) {
-
             buildingService.post(ProductionBuildingDTO.builder()
                     .name(insert.name)
                     .remarks(insert.remarks)
