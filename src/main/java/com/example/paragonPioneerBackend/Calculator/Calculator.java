@@ -2,18 +2,13 @@ package com.example.paragonPioneerBackend.Calculator;
 
 import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
 import com.example.paragonPioneerBackend.Entity.Good;
-import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Entity.Recipe;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
-import com.example.paragonPioneerBackend.Repository.GoodRepository;
-import com.example.paragonPioneerBackend.Repository.RecipeRepository;
-import com.example.paragonPioneerBackend.Service.EntityServices.BuildingService;
-import com.example.paragonPioneerBackend.Service.EntityServices.GoodService;
-import com.example.paragonPioneerBackend.Service.EntityServices.RecipeService;
+import com.example.paragonPioneerBackend.Service.BuildingService;
+import com.example.paragonPioneerBackend.Service.GoodService;
+import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
