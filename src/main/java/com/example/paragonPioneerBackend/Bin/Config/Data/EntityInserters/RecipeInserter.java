@@ -1,16 +1,17 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Dto.RecipeDTO;
-import com.example.paragonPioneerBackend.Service.EntityServices.GoodService;
-import com.example.paragonPioneerBackend.Service.EntityServices.RecipeService;
-import com.example.paragonPioneerBackend.Util.StringUtil;
+import com.example.paragonPioneerBackend.Service.GoodService;
+import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Locale;
-
 /**
- * Setup all data for recipes
+ * A component designed to seed the database with initial recipe data upon application startup.
+ * It uses RecipeService to create recipe entities and GoodService to resolve the necessary goods,
+ * ensuring the application is populated with a comprehensive set of crafting or production recipes.
+ * This process establishes the foundation for game mechanics involving resource management, crafting,
+ * and economic simulation.
  */
 @Component
 @RequiredArgsConstructor
@@ -18,6 +19,9 @@ public class RecipeInserter {
     private final RecipeService recipeService;
     private final GoodService goodService;
 
+    /**
+     * Record to store the setup data for each recipe, including inputs with their quantities and the output.
+     */
     private record Inserter(String i1, int q1, String i2, int q2, String i3, int q3, String i4, int q4, String i5,
                             int q5, String i6, int q6, String i7, int q7, String i8, int q8, String i9, int q9,
                             String i10, int q10, String output) {
@@ -131,7 +135,10 @@ public class RecipeInserter {
     };
 
     /**
-     * Run the insertions
+     * Executes the insertion of predefined recipe data into the database.
+     * For each record, resolves the IDs of input and output goods based on their names,
+     * creating a comprehensive and interlinked set of recipes that define how goods are
+     * produced within the application.
      */
     public void run() {
         for (Inserter insert : inserts) {
@@ -161,10 +168,16 @@ public class RecipeInserter {
         }
     }
 
+    /**
+     * Retrieves the ID of a good by its name, returning null if the good is not found.
+     *
+     * @param name The name of the good.
+     * @return The ID of the good as a String, or null if not found.
+     */
     private String getIdOrNull(String name) {
-        if (goodService.findByName(StringUtil.toLower(name)).isEmpty()) {
+        if (goodService.findByName(name).isEmpty()) {
             return null;
         }
-        return goodService.findByName(StringUtil.toLower(name)).get().getId().toString();
+        return goodService.findByName(name).get().getId().toString();
     }
 }

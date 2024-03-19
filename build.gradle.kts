@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.1.5"
     id("io.spring.dependency-management") version "1.1.3"
+    id("com.github.johnrengelman.shadow") version "7.1.2" // Add this line
 }
 
 group = "com.example"
@@ -35,6 +36,11 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
 tasks.bootBuildImage {
@@ -43,4 +49,16 @@ tasks.bootBuildImage {
 
 tasks.javadoc {
     setDestinationDir(file("Documentation/Java"))
+}
+
+
+// Add this block
+tasks.shadowJar {
+    archiveBaseName.set("my-app")
+    archiveVersion.set("0.0.1-SNAPSHOT")
+    archiveClassifier.set("")
+
+    manifest {
+        attributes["Main-Class"] = "com.example.paragonPioneerBackend.PpApiApplication"
+    }
 }
