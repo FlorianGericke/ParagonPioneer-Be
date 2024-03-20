@@ -175,9 +175,10 @@ public class RecipeInserter {
      * @return The ID of the good as a String, or null if not found.
      */
     private String getIdOrNull(String name) {
-        if (goodService.findByName(name).isEmpty()) {
+        try {
+            return goodService.findByName(name).getId().toString();
+        } catch (Exception e) {
             return null;
         }
-        return goodService.findByName(name).get().getId().toString();
     }
 }

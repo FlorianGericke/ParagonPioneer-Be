@@ -6,6 +6,7 @@ import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
 import com.example.paragonPioneerBackend.Entity.Building;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Repository.PopulationBuildingRepository;
 import com.example.paragonPioneerBackend.Repository.ProductionBuildingRepository;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 
@@ -64,8 +64,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
      * @param slug The slug to search for.
      * @return An Optional containing the Building entity if found, or empty otherwise.
      */
-    public Optional<Building> findBySlug(String slug) {
-        return repository.findBySlugIs(slug);
+    public Building findBySlug(String slug) throws EntityNotFoundException {
+        return repository.findBySlugIs(slug).orElseThrow(() -> new EntityNotFoundException("Slug",slug));
     }
 
     /**
@@ -84,8 +84,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
      * @param name The name to search for.
      * @return An Optional containing the Building entity if found, or empty otherwise.
      */
-    public Optional<Building> findByName(String name) {
-        return repository.findByNameIs(name);
+    public Building findByName(String name) throws EntityNotFoundException {
+        return repository.findByNameIs(name).orElseThrow(() -> new EntityNotFoundException("Name",name));
     }
 
     /**
@@ -128,7 +128,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
      * @return The updated Building entity.
      */
     @Override
-    public Building putPatch(Building original, BuildingTypeDTO buildingTypeDTO) {
+    public Building putPatch(Building original, BuildingTypeDTO buildingTypeDTO) throws EntityNotFoundException {
         original.setName(buildingTypeDTO.getName() != null ? buildingTypeDTO.getName() : original.getName());
         original.setRemarks(buildingTypeDTO.getRemarks() != null ? buildingTypeDTO.getRemarks() : original.getRemarks());
         original.setSlug(buildingTypeDTO.getSlug() != null ? buildingTypeDTO.getSlug() : original.getSlug());
@@ -165,7 +165,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
         return populationBuildingRepository.findAll();
     }
 
-    public ProductionBuilding getProductionBuildingByRecipe(String recipeName) {
-        return productionBuildingRepository.findAll().stream().filter(productionBuilding -> productionBuilding.getRecipe() != null && productionBuilding.getRecipe().getOutput().getName().equals(recipeName)).findFirst().get();
+    public ProductionBuilding getProductionBuildingByRecipe(String name) throws EntityNotFoundException {
+        return productionBuildingRepository.findProductionBuildingByRecipeName(name).orElseThrow(() -> new EntityNotFoundException("Name",name));
     }
 }

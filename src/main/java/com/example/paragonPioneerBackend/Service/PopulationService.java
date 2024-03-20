@@ -2,13 +2,13 @@ package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Dto.PopulationDTO;
 import com.example.paragonPioneerBackend.Entity.Population;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 /**
  * Service for managing populations within the application. It provides functionality to add, retrieve,
  * update, and find populations based on various criteria. This service extends the generic BaseService,
@@ -64,8 +64,8 @@ public class PopulationService extends BaseService<Population, PopulationReposit
      * @param slug The slug associated with a specific population.
      * @return An Optional containing the found Population entity, if any.
      */
-    public Optional<Population> findBySlug(String slug) {
-        return repository.findBySlugIs(slug);
+    public Population findBySlug(String slug) throws EntityNotFoundException {
+        return repository.findBySlugIs(slug).orElseThrow(() -> new EntityNotFoundException("Slug", slug));
     }
 
     /**
@@ -75,8 +75,8 @@ public class PopulationService extends BaseService<Population, PopulationReposit
      * @param name The exact name of the population to find.
      * @return An Optional containing the found Population entity, if any.
      */
-    public Optional<Population> findByName(String name) {
-        return repository.findByNameIs(name);
+    public Population findByName(String name) throws EntityNotFoundException {
+        return repository.findByNameIs(name).orElseThrow(() -> new EntityNotFoundException("Name", name));
     }
 
     /**
@@ -88,7 +88,7 @@ public class PopulationService extends BaseService<Population, PopulationReposit
      * @return The updated Population entity.
      */
     @Override
-    public Population putPatch(Population original, PopulationDTO populationDTO) {
+    public Population putPatch(Population original, PopulationDTO populationDTO) throws EntityNotFoundException {
         original.setName(populationDTO.getName() != null ? populationDTO.getName() : original.getName());
         original.setSlug(populationDTO.getSlug() != null ? populationDTO.getSlug() : original.getSlug());
         return original;
