@@ -23,6 +23,9 @@ public class UuidUtil {
     public static UUID parseUuidFromStringOrNull(String uuidStr) {
         // Regular expression to validate the UUID string format.
         var uuidRegex = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$";
+        if (uuidStr == null){
+            return null;
+        }
 
         // Check if the UUID string matches the UUID format.
         if (!uuidStr.matches(uuidRegex)) {

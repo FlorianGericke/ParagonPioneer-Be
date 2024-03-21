@@ -5,7 +5,7 @@ import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import java.util.Optional;
  * This class extends the generic BaseService to offer CRUD operations tailored to the Good entity.
  * It utilizes GoodDTO for data transfer and interacts with the GoodRepository for persistence operations.
  */
-@Component(value = "goodService")
+@Service(value = "goodService")
 public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
 
     /**

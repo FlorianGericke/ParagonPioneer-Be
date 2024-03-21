@@ -3,8 +3,9 @@ package com.example.paragonPioneerBackend.Service;
 import com.example.paragonPioneerBackend.Dto.Requirement_Population_BuildingDTO;
 import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
 import com.example.paragonPioneerBackend.Repository.*;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ import java.util.UUID;
  * utilizes PopulationRepository and BuildingRepository for operations related to Population
  * and Building entities that are part of these relationships.
  */
-@Component(value = "costBuildingPopulationService")
+@Service(value = "costBuildingPopulationService")
 public class Requirement_Building_PopulationService extends BaseService<Requirement_Population_Building, Requirement_Population_BuildingRepository, Requirement_Population_BuildingDTO> {
 
     private final PopulationRepository populationRepository;
@@ -48,8 +49,12 @@ public class Requirement_Building_PopulationService extends BaseService<Requirem
     public Requirement_Population_Building post(Requirement_Population_BuildingDTO costBuildingPopulationDTO) {
         return repository.save(
                 Requirement_Population_Building.builder()
-                        .population(populationRepository.findById(UUID.fromString(costBuildingPopulationDTO.getPopulationId())).get())
-                        .building(buildingRepository.findById(UUID.fromString(costBuildingPopulationDTO.getBuildingId())).get())
+                        .population(UuidUtil.parseUuidFromStringOrNull(costBuildingPopulationDTO.getPopulationId()) == null ?
+                                null :
+                                populationRepository.findById(UuidUtil.parseUuidFromStringOrNull(costBuildingPopulationDTO.getPopulationId())).orElse(null))
+                        .building(UuidUtil.parseUuidFromStringOrNull(costBuildingPopulationDTO.getBuildingId()) == null ?
+                                null :
+                                buildingRepository.findById(UuidUtil.parseUuidFromStringOrNull(costBuildingPopulationDTO.getBuildingId())).orElse(null))
                         .amount(costBuildingPopulationDTO.getAmount())
                         .build()
         );

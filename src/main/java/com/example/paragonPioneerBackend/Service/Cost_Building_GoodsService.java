@@ -5,16 +5,18 @@ import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Repository.Cost_Building_GoodsRepository;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+
 /**
  * Service class for managing the relationships between buildings and goods within the application.
  * This class extends the BaseService to offer specialized CRUD operations for the Cost_Building_Goods entity.
  * It interacts with the GoodRepository and BuildingRepository to handle operations related to building costs and goods.
  */
-@Component(value = "costBuildingGoodsService")
+@Service(value = "costBuildingGoodsService")
 public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods, Cost_Building_GoodsRepository, Cost_Building_GoodsDTO> {
     private final GoodRepository goodRepository;
     private final BuildingRepository buildingRepository;

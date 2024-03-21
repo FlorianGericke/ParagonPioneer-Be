@@ -5,7 +5,7 @@ import com.example.paragonPioneerBackend.Entity.Population;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import java.util.Optional;
  * specifying Population as the entity type, PopulationRepository as the repository, and PopulationDTO
  * as the data transfer object (DTO).
  */
-@Component(value = "populationService")
+@Service(value = "populationService")
 public class PopulationService extends BaseService<Population, PopulationRepository, PopulationDTO> {
 
     /**

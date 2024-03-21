@@ -5,7 +5,7 @@ import com.example.paragonPioneerBackend.Entity.Recipe;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +17,7 @@ import java.util.UUID;
  * interacting with the database via the RecipeRepository. Additionally, it utilizes
  * GoodRepository for operations related to the Good entities that are part of the recipes.
  */
-@Component(value = "recipeService")
+@Service(value = "recipeService")
 public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeDTO> {
 
     private final GoodRepository goodRepository;

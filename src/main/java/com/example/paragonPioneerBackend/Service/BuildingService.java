@@ -13,7 +13,7 @@ import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
 import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +29,7 @@ import java.util.UUID;
  * @param <BuildingTypeDTO> A generic type parameter that extends BuildingDTO,
  *                          allowing the service to work with different types of building DTOs.
  */
-@Component(value = "buildingService")
+@Service(value = "buildingService")
 public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseService<Building, BuildingRepository, BuildingTypeDTO> {
 
     private final BuildingRepository buildingRepository;

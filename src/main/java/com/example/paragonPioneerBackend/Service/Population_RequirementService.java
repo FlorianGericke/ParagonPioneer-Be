@@ -7,7 +7,7 @@ import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import com.example.paragonPioneerBackend.Repository.Population_RequirementRepository;
 import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 /**
@@ -15,7 +15,7 @@ import java.util.UUID;
  * This class extends the generic BaseService to provide specific CRUD operations for Population_Requirement entities.
  * It leverages Population_RequirementDTO for data transfer and interacts with Population_RequirementRepository for persistence operations.
  */
-@Component(value = "population_RequirementService")
+@Service(value = "population_RequirementService")
 public class Population_RequirementService extends BaseService<Population_Requirement, Population_RequirementRepository, Population_RequirementDTO> {
 
     private final GoodRepository goodRepository;
