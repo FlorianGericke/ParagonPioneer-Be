@@ -48,6 +48,21 @@ public class Good extends BaseEntity implements Slugable {
     @Column(name = "slug", nullable = false, unique = true, columnDefinition = "varchar(255)")
     private String slug;
 
+
+    /**
+     * A boolean flag indicating whether the good is a map resource. Map resources are goods that are not producable and are the beginning product of a process chain.
+     * By default, this flag is set to false, indicating that the good is not a map resource.
+     *
+     * @Column is a JPA annotation that specifies the mapped column for a persistent property or field.
+     * name: The name of the column in the database table.
+     * nullable: Whether the database column can have null values. In this case, it cannot.
+     * columnDefinition: The SQL fragment that is used when generating the DDL for the column. In this case, it's a boolean.
+     * @Builder.Default is a Lombok annotation that sets the default value for this field when building an instance of Good using the builder pattern.
+     */
+    @Column(name = "isMapResource", nullable = false, columnDefinition = "boolean")
+    @Builder.Default
+    private boolean isMapResource = false;
+
     /**
      * A set of {@link Cost_Building_Goods} entities that reference this good as a construction requirement for buildings.
      * This relationship is managed as a one-to-many association, indicating the various buildings that require this good.

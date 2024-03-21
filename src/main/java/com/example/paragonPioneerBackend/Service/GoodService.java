@@ -70,6 +70,7 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
         return repository.save(Good.builder()
                 .name(goodDTO.getName())
                 .remarks(goodDTO.getRemarks())
+                .isMapResource(goodDTO.isMapResource())
                 .slug(goodDTO.getSlug().isEmpty() ? SlugUtil.createSlug(goodDTO.getName()) : goodDTO.getSlug())
                 .build());
     }

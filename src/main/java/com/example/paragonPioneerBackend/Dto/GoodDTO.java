@@ -44,4 +44,13 @@ public class GoodDTO {
     @JsonProperty("slug")
     @Builder.Default
     private String slug = "";
+
+    /**
+     * A boolean flag indicating whether the good is a map resource. Map resources are goods that are not
+     * producible and are the beginning product of a process chain. By default, this flag is set to false,
+     * indicating that the good is not a map resource.
+     */
+    @JsonProperty("slug")
+    @Builder.Default
+    private boolean isMapResource = false;
 }
