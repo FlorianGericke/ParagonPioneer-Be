@@ -630,7 +630,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/good?page=2&size=4&sort",
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/calculator?goodSlug=gunpowder",
 							"host": [
 								"{{BasePath}}"
 							],
@@ -638,20 +638,12 @@
 							"path": [
 								"api",
 								"{{ApiVersion}}",
-								"good"
+								"calculator"
 							],
 							"query": [
 								{
-									"key": "page",
-									"value": "2"
-								},
-								{
-									"key": "size",
-									"value": "4"
-								},
-								{
-									"key": "sort",
-									"value": null
+									"key": "goodSlug",
+									"value": "gunpowder"
 								}
 							]
 						}

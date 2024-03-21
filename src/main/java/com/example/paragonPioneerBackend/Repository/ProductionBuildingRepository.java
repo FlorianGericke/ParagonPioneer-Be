@@ -48,10 +48,10 @@ public interface ProductionBuildingRepository extends JpaRepository<ProductionBu
      * when the exact recipe name is known, facilitating operations like data validation, lookup,
      * or display in user interfaces.
      *
-     * @param Name The Slug name of the recipe associated with the production building to find.
+     * @param recipeSlug The Slug name of the recipe associated with the production building to find.
      * @return An Optional containing the found production building if available;
      *         otherwise, an empty Optional.
      */
-    @Query("SELECT p FROM ProductionBuilding p  WHERE p.recipe.output.slug = :name")
-    Optional<ProductionBuilding> findProductionBuildingByRecipeName(@Param("name") String name);
+    @Query("SELECT p FROM ProductionBuilding p  WHERE p.recipe.output.slug = :recipeSlug")
+    Optional<ProductionBuilding> findProductionBuildingByRecipeSlug(@Param("recipeSlug") String recipeSlug);
 }

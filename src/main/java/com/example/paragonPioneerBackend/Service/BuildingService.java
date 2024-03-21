@@ -165,7 +165,17 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
         return populationBuildingRepository.findAll();
     }
 
-    public ProductionBuilding getProductionBuildingByRecipe(String name) throws EntityNotFoundException {
-        return productionBuildingRepository.findProductionBuildingByRecipeName(name).orElseThrow(() -> new EntityNotFoundException("Name",name));
+    /**
+     * Searches for a ProductionBuilding entity that has a recipe with the specified name.
+     * This method is particularly useful for retrieving specific production buildings
+     * when the exact recipe name is known, facilitating operations like data validation, lookup,
+     * or display in user interfaces.
+     *
+     * @param recipeSlug The Slug name of the recipe associated with the production building to find.
+     * @return An Optional containing the found production building if available;
+     * otherwise, an empty Optional.
+     */
+    public ProductionBuilding getProductionBuildingByRecipeSlug(String recipeSlug) throws EntityNotFoundException {
+        return productionBuildingRepository.findProductionBuildingByRecipeSlug(recipeSlug).orElseThrow(() -> new EntityNotFoundException("Name",recipeSlug));
     }
 }
