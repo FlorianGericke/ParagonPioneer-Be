@@ -1,5 +1,6 @@
 package com.example.paragonPioneerBackend.Controller;
 
+import com.example.paragonPioneerBackend.Calculator.Calculator;
 import com.example.paragonPioneerBackend.Service.CalculatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,9 @@ public class CalculatorController {
     private final CalculatorService service;
 
     @GetMapping(produces = "application/json")
-    public @ResponseBody void putPopulationBuildingEntity(
+    public @ResponseBody Calculator.CalculationResponse putPopulationBuildingEntity(
             @RequestParam(name = "goodSlug") String goodSlug
     ) {
-        service.calculate(goodSlug);
+        return service.calculate(goodSlug);
     }
 }

@@ -8,16 +8,20 @@ import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
 public class Calculator {
 
 
     private ProductionKnot target;
-    private StringBuilder errors;
+    private ArrayList<String> errors;
     private final RecipeService recipeService;
     private final GoodService goodService;
 
+    public record CalculationResponse(ProductionKnot target, ArrayList<String> errors) {
+    }
 
     public Calculator(RecipeService recipeService, GoodService goodService) {
         this.recipeService = recipeService;
@@ -25,15 +29,16 @@ public class Calculator {
     }
 
 
-    public void setUp(String goodSlug) {
+    public CalculationResponse calculate(String goodSlug) {
         Good good = goodService.findBySlug(goodSlug);
-        errors = new StringBuilder();
+        errors = new ArrayList<>();
         this.target = new ProductionKnot(good);
-        setUp(target);
+        setUp(target,errors);
+        return new CalculationResponse(target, errors);
     }
 
 
-    private void setUp(ProductionKnot knot) {
+    private void setUp(ProductionKnot knot,  ArrayList<String> errors) {
 
         if (knot.getGood().isMapResource()) { // base case
             return;
@@ -42,7 +47,7 @@ public class Calculator {
         try {
             recipe = recipeService.findBySlug(knot.getGood().getSlug());
         } catch (EntityNotFoundException e) {
-            errors.append("No recipe found for " + knot.getGood().getSlug()).append(" ").append(knot.getGood().getId()).append("\n");
+            errors.add("No recipe found for " + knot.getGood().getSlug());
             return;
         }
 
@@ -55,7 +60,7 @@ public class Calculator {
         }
 
         for (ProductionKnot ingredient : knot.getIngredients()) {
-            setUp(ingredient);
+            setUp(ingredient, errors);
         }
     }
 
