@@ -16,8 +16,10 @@ public class CalculatorService {
     private final GoodService goodService;
     private final BuildingService<ProductionBuildingDTO> productionBuildingDTOBuildingService;
 
-    public void calculate(String goodName, float amount) {
-        Calculator calc = new Calculator(recipeService, goodService, goodName, amount, productionBuildingDTOBuildingService);
-        System.out.println(calc.getFormatted());
+    public void calculate(String goodSlug) {
+        Calculator calc = new Calculator(recipeService, goodService);
+        calc.setUp(goodSlug);
+        System.out.println(calc.formatted());
+        System.out.println(calc.getErrors());
     }
 }

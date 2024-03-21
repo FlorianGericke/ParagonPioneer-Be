@@ -53,7 +53,11 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
      * @param name The name of the output good.
      * @return An Optional containing the found recipe, if any.
      */
-    public Recipe  findByName(String name) throws EntityNotFoundException {
+    public Recipe findByName(String name) throws EntityNotFoundException {
+        return repository.findByOutputNameIs(name).orElseThrow(() -> new EntityNotFoundException("Name", name));
+    }
+
+    public Recipe findBySlug(String name) throws EntityNotFoundException {
         return repository.findByOutputNameIs(name).orElseThrow(() -> new EntityNotFoundException("Name", name));
     }
 

@@ -1,69 +1,76 @@
 package com.example.paragonPioneerBackend.Calculator;
 
-import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Entity.Recipe;
-import com.example.paragonPioneerBackend.Service.BuildingService;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Stack;
 
 @Getter
 @Setter
 public class Calculator {
 
 
-    private final ProductionKnot target;
+    private ProductionKnot target;
+    private StringBuilder errors;
     private final RecipeService recipeService;
     private final GoodService goodService;
-    private final BuildingService<ProductionBuildingDTO> productionBuildingDTOBuildingService;
 
 
-    public Calculator(RecipeService recipeService, GoodService goodService, ProductionKnot target, BuildingService<ProductionBuildingDTO> productionBuildingDTOBuildingService) {
-        this.target = target;
+    public Calculator(RecipeService recipeService, GoodService goodService) {
         this.recipeService = recipeService;
         this.goodService = goodService;
-        this.productionBuildingDTOBuildingService = productionBuildingDTOBuildingService;
-        setUp(this.target);
     }
 
-    public Calculator(RecipeService recipeService, GoodService goodService, String goodName, float amount, BuildingService<ProductionBuildingDTO> productionBuildingDTOBuildingService) {
-        this(recipeService, goodService, new ProductionKnot(goodName, amount, productionBuildingDTOBuildingService.getProductionBuildingByRecipe(goodName).getName()), productionBuildingDTOBuildingService);
+
+    public void setUp(String goodSlug) {
+        Good good = goodService.findBySlug(goodSlug);
+        errors = new StringBuilder();
+        this.target = new ProductionKnot(good);
+        setUp(target);
     }
 
-    private void setUp(ProductionKnot target) {
-        Good good = goodService.findByName(target.getGoodName());
 
-        if (good.getName().contains("tile")) {
+    private void setUp(ProductionKnot knot) {
+
+        if (knot.getGood().isMapResource()) { // base case
+            return;
+        }
+        Recipe recipe;
+        try {
+            recipe = recipeService.findBySlug(knot.getGood().getSlug());
+        } catch (EntityNotFoundException e) {
+            errors.append("No recipe found for " + knot.getGood().getSlug()).append(" ").append(knot.getGood().getId()).append("\n");
             return;
         }
 
-        Recipe recipe = recipeService.findByName(good.getName());
 
         for (Recipe.QuantityOfGood ingredient : recipe.getQuantityOfGoods()) {
-            if (ingredient.good() == null) {
-                continue;
+            if (ingredient.good() != null) {
+                ProductionKnot ingredientKnot = new ProductionKnot(ingredient.good());
+                knot.addIngredient(ingredientKnot);
             }
+        }
 
-            ProductionKnot knot = null;
-
-            knot = new ProductionKnot(ingredient.good().getName(), ingredient.quantity() * target.getAmount(), productionBuildingDTOBuildingService.getProductionBuildingByRecipe(ingredient.good().getName()).getName());
-
-            setUp(knot);
-            target.addNeed(knot);
+        for (ProductionKnot ingredient : knot.getIngredients()) {
+            setUp(ingredient);
         }
     }
 
-    public String getFormatted() {
-        StringBuilder st = new StringBuilder("For the production of ").append(target.getGoodName()).append(" (").append(target.getProductionBuilding()).append(")\n");
-        st.append("\t");
-        for (Stack<ProductionKnot> stack : target.getNeeds()) {
-            Stack<ProductionKnot> cp = (Stack<ProductionKnot>) stack.clone();
-            cp.forEach(knot -> st.append(knot.toString(1)));
-        }
-        return st.toString();
+    public String getErrors() {
+        return errors.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Calculator{" +
+                "target=" + target +
+                '}';
+    }
+
+    public String formatted() {
+        return target.formatted(0);
     }
 }

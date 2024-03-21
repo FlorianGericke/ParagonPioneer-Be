@@ -16,9 +16,8 @@ public class CalculatorController {
 
     @GetMapping(produces = "application/json")
     public @ResponseBody void putPopulationBuildingEntity(
-            @RequestParam(name = "good") String goodName,
-            @RequestParam(name = "amount") int amount
+            @RequestParam(name = "goodSlug") String goodSlug
     ) {
-        service.calculate(goodName, amount);
+        service.calculate(goodSlug);
     }
 }
