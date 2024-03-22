@@ -77,9 +77,10 @@ public class CalculationOutputDTO {
         parent.setGoodSlug(knot.getGood().getSlug());
         parent.setGoodName(knot.getGood().getName());
         parent.setGoodId(knot.getGood().getId().toString());
-        parent.setBuildingSlug(knot.getManufacturer().getSlug());
-        parent.setBuildingName(knot.getManufacturer().getName());
-        parent.setBuildingIdl(knot.getManufacturer().getId().toString());
+
+        parent.setBuildingSlug(knot.getManufacturer() == null ? null : knot.getManufacturer().getSlug());
+        parent.setBuildingName(knot.getManufacturer() == null ? null : knot.getManufacturer().getName());
+        parent.setBuildingIdl(knot.getManufacturer() == null ? null : knot.getManufacturer().getId().toString());
 
         if (!knot.getIngredients().isEmpty()) {
             for (ProductionKnot ingredient : knot.getIngredients()) {

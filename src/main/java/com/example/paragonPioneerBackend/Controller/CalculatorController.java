@@ -27,6 +27,6 @@ public class CalculatorController {
     public @ResponseBody CalculationOutputDTO putPopulationBuildingEntity(
             @RequestParam(name = "goodSlug") String goodSlug
     ) {
-        return service.calculate(goodSlug);
+        return  CalculationOutputDTO.createFromEntity(service.calculate(goodSlug));
     }
 }

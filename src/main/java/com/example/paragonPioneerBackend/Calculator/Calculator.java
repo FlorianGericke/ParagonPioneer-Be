@@ -1,5 +1,6 @@
 package com.example.paragonPioneerBackend.Calculator;
 
+import com.example.paragonPioneerBackend.Entity.Building;
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Entity.Recipe;
@@ -70,10 +71,17 @@ public class Calculator {
             return;
         }
 
-        ProductionBuilding building = buildingService.getProductionBuildingByRecipeSlug(recipe.getSlug());
+//        ProductionBuilding building = buildingService.getProductionBuildingByRecipeSlug(recipe.getSlug());
 
         for (Recipe.QuantityOfGood ingredient : recipe.getQuantityOfGoods()) {
             if (ingredient.good() != null) {
+                Building building;
+                try {
+                    building = buildingService.getProductionBuildingByRecipeSlug(ingredient.good().getSlug());
+                } catch (EntityNotFoundException e) {
+                    errors.add("No recipe found for " + knot.getGood().getSlug());
+                    building = null;
+                }
                 ProductionKnot ingredientKnot = new ProductionKnot(ingredient.good(), building);
                 knot.addIngredient(ingredientKnot);
             }
