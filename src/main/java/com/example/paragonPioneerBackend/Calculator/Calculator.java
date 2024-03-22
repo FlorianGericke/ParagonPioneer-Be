@@ -79,7 +79,6 @@ public class Calculator {
                 try {
                     building = buildingService.getProductionBuildingByRecipeSlug(ingredient.good().getSlug());
                 } catch (EntityNotFoundException e) {
-                    errors.add("No recipe found for " + knot.getGood().getSlug());
                     building = null;
                 }
                 ProductionKnot ingredientKnot = new ProductionKnot(ingredient.good(), building);
