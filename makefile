@@ -2,13 +2,22 @@
 .PHONY: all
 all: rebuild
 
-run:
-	gradle bootJar
+dev_enviroment:
+	docker-compose build --no-cache
+	docker-compose up -d
+
+rebuild_dev_enviroment:
 	docker-compose down
 	docker-compose build --no-cache
-	docker-compose up
+	docker-compose up -d
 
+stop_dev_enviroment:
+	docker-compose down
 
-stop:
+prod_enviroment:
+	gradle clean
 	gradle bootJar
 	docker-compose down
+	docker-compose -f docker-compose.prod.yml build --no-cache
+	docker-compose -f docker-compose.prod.yml up
+
