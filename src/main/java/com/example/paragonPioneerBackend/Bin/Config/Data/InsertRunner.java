@@ -40,22 +40,25 @@ public class InsertRunner implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) {
-        try (ProgressBar pb = new ProgressBar("Data Insertion", 6L)) {
-            authenticationService.register(RegisterRequest.builder()
-                    .email("amin@user.de")
-                    .password("admin")
-                    .build());
+        long amount = goodInserter.getInsertsLength() + populationInserter.getInsertsLength() +
+                recipeInserter.getInsertsLength() + populationRequirementInserter.getInsertsLength() +
+                buildingInserter.getInsertsLength();
+
+        try (ProgressBar pb = new ProgressBar("Data Insertion", amount + 1)) {
+            try {
+                authenticationService.register(RegisterRequest.builder()
+                        .email("amin@user.de")
+                        .password("admin")
+                        .build());
+            } catch (Exception ignored) {
+            }
             pb.step();
-            goodInserter.run();
-            pb.step();
-            populationInserter.run();
-            pb.step();
-            recipeInserter.run();
-            pb.step();
-            populationRequirementInserter.run();
-            pb.step();
-            buildingInserter.run();
-            pb.step();
+
+            goodInserter.run(pb::step);
+            populationInserter.run(pb::step);
+            recipeInserter.run(pb::step);
+            populationRequirementInserter.run(pb::step);
+            buildingInserter.run(pb::step);
         }
         /*
         todo: the following inserter are not havely required, and will be implemented after the 0.1 release
