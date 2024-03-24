@@ -168,6 +168,10 @@ public class Recipe extends BaseEntity implements Slugable {
     @JoinColumn(name = "output")
     private Good output;
 
+    @OneToOne()
+    @JoinColumn(name = "production_building")
+    private ProductionBuilding productionBuilding = null;
+
     /**
      * Returns the slug of the output good, uniquely identifying the recipe.
      *

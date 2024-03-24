@@ -2,13 +2,13 @@ package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Dto.GoodDTO;
 import com.example.paragonPioneerBackend.Entity.Good;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service class for managing goods in the application.
@@ -45,8 +45,8 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
      * @param slug The slug representing the good.
      * @return An Optional containing the Good if found, or an empty Optional otherwise.
      */
-    public Optional<Good> findBySlug(String slug) {
-        return repository.findBySlugIs(slug);
+    public Good findBySlug(String slug) throws EntityNotFoundException {
+        return repository.findBySlugIs(slug).orElseThrow(() -> new EntityNotFoundException("Slug", slug));
     }
 
     /**
@@ -55,8 +55,8 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
      * @param name The name of the good to find.
      * @return An Optional containing the Good if found, or an empty Optional otherwise.
      */
-    public Optional<Good> findByName(String name) {
-        return repository.findByNameIs(name);
+    public Good findByName(String name) throws EntityNotFoundException {
+        return repository.findByNameIs(name).orElseThrow(() -> new EntityNotFoundException("Name", name));
     }
 
     /**
@@ -70,6 +70,7 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
         return repository.save(Good.builder()
                 .name(goodDTO.getName())
                 .remarks(goodDTO.getRemarks())
+                .isMapResource(goodDTO.isMapResource())
                 .slug(goodDTO.getSlug().isEmpty() ? SlugUtil.createSlug(goodDTO.getName()) : goodDTO.getSlug())
                 .build());
     }
@@ -82,7 +83,7 @@ public class GoodService extends BaseService<Good, GoodRepository, GoodDTO> {
      * @return The updated Good entity.
      */
     @Override
-    public Good putPatch(Good original, GoodDTO goodDTO) {
+    public Good putPatch(Good original, GoodDTO goodDTO) throws EntityNotFoundException {
         original.setName(goodDTO.getName() != null ? goodDTO.getName() : original.getName());
         original.setSlug(goodDTO.getSlug() != null ? goodDTO.getSlug() : original.getSlug());
         original.setRemarks(goodDTO.getRemarks() != null ? goodDTO.getRemarks() : original.getRemarks());

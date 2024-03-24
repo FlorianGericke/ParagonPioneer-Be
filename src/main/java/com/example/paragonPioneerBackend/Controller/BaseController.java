@@ -3,11 +3,10 @@ package com.example.paragonPioneerBackend.Controller;
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
 import com.example.paragonPioneerBackend.Service.BaseService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -66,7 +65,7 @@ public class BaseController<
      * @return An Optional containing the entity if found, or empty otherwise.
      */
     @GetMapping(path = "/{id}", produces = "application/json")
-    public @ResponseBody Optional<Type> getEntity(@PathVariable UUID id) {
+    public @ResponseBody Type getEntity(@PathVariable UUID id) {
         return service.get(id);
     }
 

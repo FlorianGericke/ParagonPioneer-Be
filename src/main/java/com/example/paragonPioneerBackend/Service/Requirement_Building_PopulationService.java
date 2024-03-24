@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Dto.Requirement_Population_BuildingDTO;
 import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.*;
 import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +71,7 @@ public class Requirement_Building_PopulationService extends BaseService<Requirem
      * @return The updated Requirement_Population_Building entity.
      */
     @Override
-    public Requirement_Population_Building putPatch(Requirement_Population_Building original, Requirement_Population_BuildingDTO costBuildingPopulationDTO) {
+    public Requirement_Population_Building putPatch(Requirement_Population_Building original, Requirement_Population_BuildingDTO costBuildingPopulationDTO) throws EntityNotFoundException {
         original.setBuilding(costBuildingPopulationDTO.getBuildingId() == null ? original.getBuilding() : buildingRepository.findById(UUID.fromString(costBuildingPopulationDTO.getBuildingId())).get());
         original.setPopulation(costBuildingPopulationDTO.getPopulationId() == null ? original.getPopulation() : populationRepository.findById(UUID.fromString(costBuildingPopulationDTO.getPopulationId())).get());
         if (original.getAmount() != costBuildingPopulationDTO.getAmount()) {
