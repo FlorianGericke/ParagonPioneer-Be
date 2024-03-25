@@ -3,7 +3,6 @@ package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 import com.example.paragonPioneerBackend.Dto.BuildingDTO;
 import com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO;
 import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
-import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Service.BuildingService;
 import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -157,17 +156,14 @@ public class BuildingInserter {
         // Additional population buildings omitted for brevity
 
         for (Inserter insert : inserts) {
-            String recipeId = null;
             try {
+                String recipeId = null;
                 recipeId = recipeService.findByName(insert.recipe).getId().toString();
-            } catch (EntityNotFoundException ignored) {
-            }
 
-            try {
                 buildingService.post(ProductionBuildingDTO.builder()
                         .name(insert.name)
                         .remarks(insert.remarks)
-                        .idOfRecipe(OptionalUtil.getIdOrEmpty(recipeService.findByName(insert.recipe)))
+                        .idOfRecipe(recipeId)
                         .productionPerMinute(insert.productionPerMinute)
                         .build());
             } catch (Exception ignored) {

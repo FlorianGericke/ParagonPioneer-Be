@@ -65,10 +65,8 @@ public class Cost_Building_goodsInserter {
             try {
                 String buildingId = null;
 
-                // Resolve the building ID from the building name
-                if (buildingService.findByName(insert.buildingName).isPresent()) {
-                    buildingId = buildingService.findByName(insert.buildingName).getId().toString();
-                }
+                buildingId = buildingService.findByName(insert.buildingName).getId().toString();
+
 
                 // Create and post the cost-building-goods relation
                 costBuildingGoodsService.post(
