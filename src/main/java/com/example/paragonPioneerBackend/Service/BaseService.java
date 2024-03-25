@@ -1,11 +1,12 @@
 package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Entity.BaseEntity;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.Pageable;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.UUID;
 
 /**
@@ -68,8 +69,8 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      * @param id The UUID of the entity to retrieve.
      * @return An Optional containing the entity if found, or empty otherwise.
      */
-    public Optional<Type> get(UUID id) {
-        return repository.findById(id);
+    public Type get(UUID id) throws EntityNotFoundException {
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
     }
 
     /**
@@ -89,8 +90,8 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      * @param dto The DTO containing updated data.
      * @return The updated entity.
      */
-    public Type putPatch(UUID id, Dto dto) {
-        Type original = repository.findById(id).orElseThrow();
+    public Type putPatch(UUID id, Dto dto) throws EntityNotFoundException {
+        Type original = repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
         return repository.save(putPatch(original, dto));
     }
 
@@ -100,8 +101,8 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      * @param id The UUID of the entity to delete.
      * @return The deleted entity.
      */
-    public Type delete(UUID id) {
-        Type entity = repository.findById(id).orElseThrow();
+    public Type delete(UUID id) throws EntityNotFoundException {
+        Type entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
         repository.deleteById(id);
         return entity;
     }

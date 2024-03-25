@@ -5,8 +5,8 @@ import com.example.paragonPioneerBackend.Entity.JoinTables.Population_Requiremen
 import com.example.paragonPioneerBackend.Repository.Population_RequirementRepository;
 import com.example.paragonPioneerBackend.Service.Population_RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controller for managing HTTP requests related to population requirement relations within the application.
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @see BaseController for base functionality
  */
-@Controller
+@RestController
 @RequestMapping(path = "/api/v1/requirement")
 public class Population_RequirementController extends BaseController<Population_Requirement, Population_RequirementRepository, Population_RequirementDTO, Population_RequirementService> {
 

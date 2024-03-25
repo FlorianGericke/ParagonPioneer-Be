@@ -5,8 +5,8 @@ import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
 import com.example.paragonPioneerBackend.Repository.Cost_Building_GoodsRepository;
 import com.example.paragonPioneerBackend.Service.Cost_Building_GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controller for managing the relationships between costs, buildings, and goods.
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Inherits common CRUD operations from BaseController and utilizes the Cost_Building_GoodsService
  * to perform business logic specific to cost-building-goods relationships.
  */
-@Controller
+@RestController
 @RequestMapping(path = "/api/v1/cost/building_good")
 public class Cost_Building_GoodsController extends BaseController<Cost_Building_Goods, Cost_Building_GoodsRepository, Cost_Building_GoodsDTO, Cost_Building_GoodsService> {
 

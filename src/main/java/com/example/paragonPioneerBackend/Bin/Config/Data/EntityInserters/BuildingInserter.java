@@ -3,9 +3,9 @@ package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 import com.example.paragonPioneerBackend.Dto.BuildingDTO;
 import com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO;
 import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Service.BuildingService;
 import com.example.paragonPioneerBackend.Service.RecipeService;
-import com.example.paragonPioneerBackend.Util.OptionalUtil;
 import lombok.RequiredArgsConstructor;
 import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
@@ -156,8 +156,13 @@ public class BuildingInserter {
 
         // Additional population buildings omitted for brevity
 
-        // Loop through and insert production buildings
         for (Inserter insert : inserts) {
+            String recipeId = null;
+            try {
+                recipeId = recipeService.findByName(insert.recipe).getId().toString();
+            } catch (EntityNotFoundException ignored) {
+            }
+
             try {
                 buildingService.post(ProductionBuildingDTO.builder()
                         .name(insert.name)

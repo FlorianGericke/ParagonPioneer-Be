@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -56,7 +55,7 @@ public class RecipeController extends BaseController<Recipe, RecipeRepository, R
      * @return An Optional containing the found recipe if available, or empty otherwise.
      */
     @GetMapping(path = "/output/{id}", produces = "application/json")
-    public @ResponseBody Optional<Recipe> getEntity(@PathVariable UUID id) {
+    public @ResponseBody Recipe getEntity(@PathVariable UUID id) {
         return service.findAllByOutputId(id);
     }
 }

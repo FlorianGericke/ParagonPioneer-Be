@@ -2,7 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.1.5"
     id("io.spring.dependency-management") version "1.1.3"
-    id("com.github.johnrengelman.shadow") version "7.1.2" // Add this line
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "com.example"

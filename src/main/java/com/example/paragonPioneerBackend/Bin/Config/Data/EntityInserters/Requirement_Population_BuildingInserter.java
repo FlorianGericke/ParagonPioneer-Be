@@ -1,10 +1,10 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Dto.Requirement_Population_BuildingDTO;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Service.BuildingService;
 import com.example.paragonPioneerBackend.Service.PopulationService;
 import com.example.paragonPioneerBackend.Service.Requirement_Building_PopulationService;
-import com.example.paragonPioneerBackend.Util.OptionalUtil;
 import lombok.RequiredArgsConstructor;
 import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
@@ -57,13 +57,18 @@ public class Requirement_Population_BuildingInserter {
     public void run(Supplier<ProgressBar> progressBarSupplier) {
         for (Inserter insert : inserts) {
             try {
-                requirementBuildingPopulationService.post(
-                        Requirement_Population_BuildingDTO.builder()
-                                .populationId(OptionalUtil.getIdOrEmpty(populationService.findByName(insert.populationName)))
-                                .buildingId(OptionalUtil.getIdOrEmpty(buildingService.findByName(insert.buildingName)))
-                                .amount(insert.amount)
-                                .build()
-                );
+                String populationId = null;
+                String buildingId = null;
+
+                populationId = populationService.findByName(insert.populationName).getId().toString();
+                buildingId = buildingService.findByName(insert.buildingName).getId().toString();
+                Requirement_Population_BuildingDTO dto = Requirement_Population_BuildingDTO.builder()
+                        .populationId(populationId)
+                        .buildingId(buildingId)
+                        .amount(insert.amount)
+                        .build();
+
+                requirementBuildingPopulationService.post(dto);
             } catch (Exception ignored) {
             }
             progressBarSupplier.get();

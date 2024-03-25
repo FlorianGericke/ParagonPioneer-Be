@@ -2,10 +2,10 @@ package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Dto.Cost_Building_GoodsDTO;
 import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Repository.Cost_Building_GoodsRepository;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
-import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,7 +61,7 @@ public class Cost_Building_GoodsService extends BaseService<Cost_Building_Goods,
      * @return The updated Cost_Building_Goods entity.
      */
     @Override
-    public Cost_Building_Goods putPatch(Cost_Building_Goods original, Cost_Building_GoodsDTO costBuildingGoodsDTO) {
+    public Cost_Building_Goods putPatch(Cost_Building_Goods original, Cost_Building_GoodsDTO costBuildingGoodsDTO) throws EntityNotFoundException {
         original.setBuilding(costBuildingGoodsDTO.getBuildingId() == null ? original.getBuilding() : buildingRepository.findById(UUID.fromString(costBuildingGoodsDTO.getBuildingId())).get());
         original.setGood(costBuildingGoodsDTO.getGoodId() == null ? original.getGood() : goodRepository.findById(UUID.fromString(costBuildingGoodsDTO.getGoodId())).get());
         if (original.getAmount() != costBuildingGoodsDTO.getAmount()) {

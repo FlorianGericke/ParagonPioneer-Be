@@ -67,13 +67,13 @@ public class Cost_Building_goodsInserter {
 
                 // Resolve the building ID from the building name
                 if (buildingService.findByName(insert.buildingName).isPresent()) {
-                    buildingId = Objects.requireNonNull(buildingService.findByName(insert.buildingName).orElse(null)).getId().toString();
+                    buildingId = buildingService.findByName(insert.buildingName).getId().toString();
                 }
 
                 // Create and post the cost-building-goods relation
                 costBuildingGoodsService.post(
                         Cost_Building_GoodsDTO.builder()
-                                .goodId(Objects.requireNonNull(goodService.findByName(insert.goodName).orElse(null)).getId().toString())
+                                .goodId(Objects.requireNonNull(goodService.findByName(insert.goodName)).getId().toString())
                                 .buildingId(buildingId)
                                 .amount(insert.amount)
                                 .build()

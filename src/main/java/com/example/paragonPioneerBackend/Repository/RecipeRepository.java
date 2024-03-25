@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Repository;
 
 import com.example.paragonPioneerBackend.Entity.Good;
+import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Entity.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 

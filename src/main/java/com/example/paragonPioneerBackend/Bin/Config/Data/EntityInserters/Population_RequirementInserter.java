@@ -1,9 +1,10 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Dto.Population_RequirementDTO;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Service.GoodService;
+import com.example.paragonPioneerBackend.Service.PopulationService;
 import com.example.paragonPioneerBackend.Service.Population_RequirementService;
-import com.example.paragonPioneerBackend.Util.OptionalUtil;
 import lombok.RequiredArgsConstructor;
 import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ import java.util.function.Supplier;
 public class Population_RequirementInserter {
     private final Population_RequirementService populationRequirementService;
     private final GoodService goodService;
+    private final PopulationService populationService;
 
     /**
      * Record to store the setup data for each population requirement, including the population
@@ -53,15 +55,20 @@ public class Population_RequirementInserter {
     public void run(Supplier<ProgressBar> progressBarSupplier) {
         for (Inserter insert : inserts) {
             try {
-                populationRequirementService.post(
-                        Population_RequirementDTO.builder()
-                                .goodId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.goodName)))
-                                .populationId(OptionalUtil.getIdOrEmpty(goodService.findByName(insert.populationName))) // Assuming there's a method to find population by name, similar to goodService.findByName
-                                .consumption(insert.consumption)
-                                .produce(insert.produce)
-                                .isBasic(insert.isBasic)
-                                .build()
-                );
+                String goodId = null;
+                String populationId = null;
+                goodId = goodService.findByName(insert.goodName).getId().toString();
+                populationId = populationService.findByName(insert.populationName).getId().toString();
+
+                Population_RequirementDTO dto = Population_RequirementDTO.builder()
+                        .goodId(goodId)
+                        .populationId(populationId)
+                        .consumption(insert.consumption)
+                        .produce(insert.produce)
+                        .isBasic(insert.isBasic)
+                        .build();
+
+                populationRequirementService.post(dto);
             } catch (Exception ignored) {
             }
             progressBarSupplier.get();

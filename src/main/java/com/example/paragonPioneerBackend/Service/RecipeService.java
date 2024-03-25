@@ -2,13 +2,13 @@ package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Dto.RecipeDTO;
 import com.example.paragonPioneerBackend.Entity.Recipe;
+import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -53,8 +53,12 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
      * @param name The name of the output good.
      * @return An Optional containing the found recipe, if any.
      */
-    public Optional<Recipe> findByName(String name) {
-        return repository.findByOutputNameIs(name);
+    public Recipe findByName(String name) throws EntityNotFoundException {
+        return repository.findByOutputNameIs(name).orElseThrow(() -> new EntityNotFoundException("Name", name));
+    }
+
+    public Recipe findBySlug(String name) throws EntityNotFoundException {
+        return repository.findByOutputNameIs(name).orElseThrow(() -> new EntityNotFoundException("Name", name));
     }
 
     /**
@@ -100,7 +104,7 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
      * @return The updated Recipe entity.
      */
     @Override
-    public Recipe putPatch(Recipe original, RecipeDTO recipeDTO) {
+    public Recipe putPatch(Recipe original, RecipeDTO recipeDTO) throws EntityNotFoundException {
         original.setInput1(recipeDTO.getInput1() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 1)).orElse(null) : original.getInput1());
         original.setInput2(recipeDTO.getInput2() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 2)).orElse(null) : original.getInput2());
         original.setInput3(recipeDTO.getInput3() != null ? goodRepository.findById(getUUIDFromGoodNumber(recipeDTO, 3)).orElse(null) : original.getInput3());
@@ -221,12 +225,15 @@ public class RecipeService extends BaseService<Recipe, RecipeRepository, RecipeD
         };
     }
 
-    public Optional<Recipe> findAllByOutputId(UUID id) {
-        var output = goodRepository.findById(id).orElse(null);
+    /**
+     * Finds all recipes that produce a specific good, based on the UUID of the good.
+     *
+     * @param id The UUID of the good to search for in the output of recipes.
+     * @return A list of recipes that produce the specified good.
+     */
+    public Recipe findAllByOutputId(UUID id) throws EntityNotFoundException{
+        var output = goodRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
 
-        if (output == null) {
-            return Optional.empty();
-        }
         return findByName(output.getName());
     }
 }
