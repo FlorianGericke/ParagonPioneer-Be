@@ -4,6 +4,7 @@ import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 /**
  * The CostBuildingGoodsMapper class is a Spring component that implements the ResponseMapper interface.
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @Getter
+@Component
 public class CostBuildingGoodsMapper implements ResponseMapper<CostBuildingGoodsMapper, CostBuildingGoods> {
 
     /**

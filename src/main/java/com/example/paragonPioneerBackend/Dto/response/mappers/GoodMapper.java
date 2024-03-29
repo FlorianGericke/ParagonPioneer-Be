@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 /**
  * The GoodMapper class is a Spring component that implements the ResponseMapper interface.
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Component
 public class GoodMapper implements ResponseMapper<GoodMapper, Good> {
 
     private String id;
