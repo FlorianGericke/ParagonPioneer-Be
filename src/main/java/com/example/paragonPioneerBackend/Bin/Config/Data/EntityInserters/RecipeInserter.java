@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Dto.RecipeDTO;
+import com.example.paragonPioneerBackend.Dto.requests.RecipeInput;
+import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +21,29 @@ public class RecipeInserter {
     private final GoodService goodService;
 
     /**
-     * Record to store the setup data for each recipe, including inputs with their quantities and the output.
+     * A record class that represents an inserter for recipe data.
+     * This class is used to create instances of recipe data that will be inserted into the database.
+     * Each instance of this class represents a single recipe, with properties for the input goods, their quantities, and the output good.
+     * The input goods are represented by Strings (i1 to i10) and their corresponding quantities by integers (q1 to q10).
+     * The output good is also represented by a String.
      */
     private record Inserter(String i1, int q1, String i2, int q2, String i3, int q3, String i4, int q4, String i5,
                             int q5, String i6, int q6, String i7, int q7, String i8, int q8, String i9, int q9,
                             String i10, int q10, String output) {
     }
 
+    /**
+     * This class represents a list of Inserter objects. Each Inserter object represents a production process in a game.
+     * Each process takes place on a specific type of tile, requires a certain amount of time, and may require up to 9 different input goods.
+     * Each input good has a corresponding quantity. The process produces a single type of output good.
+     * <p>
+     * The Inserter constructor takes the following parameters:
+     * - tileType: The type of tile on which the process takes place.
+     * - time: The time required for the process to complete.
+     * - inputGood1 to inputGood9: The goods required as input for the process. If a process requires fewer than 9 goods, the remaining parameters should be null.
+     * - quantity1 to quantity9: The quantity of each input good required for the process. If a process requires fewer than 9 goods, the remaining parameters should be 0.
+     * - outputGood: The good produced by the process.
+     */
     private final Inserter[] inserts = {
             new Inserter("Land tile", 7, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Wood"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Water"),
@@ -123,48 +140,44 @@ public class RecipeInserter {
             new Inserter("Land tile", 1, "Gunpowder", 2, "Metal Cuttings", 2, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Fireworks"),
             new Inserter("Land tile", 1, "Horse", 20, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Gambling"),
             new Inserter("Land tile", 1, "Book", 15, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "University"),
-
-//https://oszimt-my.sharepoint.com/:x:/g/personal/lingsminat_florian_oszimt_onmicrosoft_com/Eee1K8H31LFAv335Nl95EwgBwTbi7y-IHPz7AhNOmDHMCw?e=N8x37
-//Hier ist die Liste zu finden. Rezepte wurden aufsteigend nach ID eingetragen, Grau, Rot und Orange markierte Rezepte wurden nicht eingestragen
-            //
-
-
-            /*
-            new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, ""),
-            */
     };
 
     /**
-     * Executes the insertion of predefined recipe data into the database.
-     * For each record, resolves the IDs of input and output goods based on their names,
-     * creating a comprehensive and interlinked set of recipes that define how goods are
-     * produced within the application.
+     * This method is responsible for running the insertion process of the initial recipe data into the database.
+     * It iterates over the array of Inserter records, each representing a single recipe to be inserted.
+     * For each record, it creates a new RecipeInput object using the RecipeInput builder, setting the properties for the input goods and their quantities, and the output good from the record.
+     * The RecipeInput object is then posted to the RecipeService, which handles the actual insertion into the database.
+     * If a recipe for a good is not found, it catches the EntityNotFoundException and prints a message to the console.
      */
     public void run() {
         for (Inserter insert : inserts) {
-            recipeService.post(RecipeDTO.builder()
-                    .output(getIdOrNull(insert.output))
-                    .input1(getIdOrNull(insert.i1))
-                    .input2(getIdOrNull(insert.i2))
-                    .input3(getIdOrNull(insert.i3))
-                    .input4(getIdOrNull(insert.i4))
-                    .input5(getIdOrNull(insert.i5))
-                    .input6(getIdOrNull(insert.i5))
-                    .input7(getIdOrNull(insert.i6))
-                    .input8(getIdOrNull(insert.i7))
-                    .input9(getIdOrNull(insert.i8))
-                    .input10(getIdOrNull(insert.i10))
-                    .quantityOfInput1(insert.q1)
-                    .quantityOfInput2(insert.q2)
-                    .quantityOfInput3(insert.q3)
-                    .quantityOfInput4(insert.q4)
-                    .quantityOfInput5(insert.q5)
-                    .quantityOfInput6(insert.q6)
-                    .quantityOfInput7(insert.q7)
-                    .quantityOfInput8(insert.q8)
-                    .quantityOfInput9(insert.q9)
-                    .quantityOfInput10(insert.q10)
-                    .build());
+            try {
+                recipeService.post(RecipeInput.builder()
+                        .good_1(getIdOrNull(insert.i1))
+                        .quantityOfGood_1(insert.q1)
+                        .good_2(getIdOrNull(insert.i2))
+                        .quantityOfGood_2(insert.q2)
+                        .good_3(getIdOrNull(insert.i3))
+                        .quantityOfGood_3(insert.q3)
+                        .good_4(getIdOrNull(insert.i4))
+                        .quantityOfGood_4(insert.q4)
+                        .good_5(getIdOrNull(insert.i5))
+                        .quantityOfGood_5(insert.q5)
+                        .good_6(getIdOrNull(insert.i6))
+                        .quantityOfGood_6(insert.q6)
+                        .good_7(getIdOrNull(insert.i7))
+                        .quantityOfGood_7(insert.q7)
+                        .good_8(getIdOrNull(insert.i8))
+                        .quantityOfGood_8(insert.q8)
+                        .good_9(getIdOrNull(insert.i9))
+                        .quantityOfGood_9(insert.q9)
+                        .good_10(getIdOrNull(insert.i10))
+                        .quantityOfGood_10(insert.q10)
+                        .outputGood(getIdOrNull(insert.output))
+                        .build());
+            } catch (ParagonPioneerBeException e) {
+                System.out.println("Could not create Recipe for good: " + insert.output);
+            }
         }
     }
 
@@ -176,7 +189,7 @@ public class RecipeInserter {
      */
     private String getIdOrNull(String name) {
         try {
-            return goodService.findByName(name).getId().toString();
+            return goodService.findByIdSlugName(name).getId().toString();
         } catch (Exception e) {
             return null;
         }

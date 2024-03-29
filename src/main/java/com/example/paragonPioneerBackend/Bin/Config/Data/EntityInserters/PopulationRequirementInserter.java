@@ -1,10 +1,10 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Dto.Population_RequirementDTO;
-import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
+import com.example.paragonPioneerBackend.Dto.requests.PopulationRequirementInput;
+import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.GoodService;
+import com.example.paragonPioneerBackend.Service.PopulationRequirementService;
 import com.example.paragonPioneerBackend.Service.PopulationService;
-import com.example.paragonPioneerBackend.Service.Population_RequirementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class Population_RequirementInserter {
-    private final Population_RequirementService populationRequirementService;
+public class PopulationRequirementInserter {
+    private final PopulationRequirementService populationRequirementService;
     private final GoodService goodService;
     private final PopulationService populationService;
 
@@ -28,9 +28,13 @@ public class Population_RequirementInserter {
     private record Inserter(String populationName, String goodName, float consumption, float produce, boolean isBasic) {
     }
 
+    /**
+     * Predefined list of population requirements to be inserted into the database.
+     * Each record represents a distinct population segment and its specific requirements.
+     */
     private final Inserter[] inserts = {
             new Inserter("Pioneers", "Water", 0, 0, true),
-            // Additional inserts omitted for brevity
+            // todo find out more about the Requirements for all Population Types
     };
 
     /**
@@ -41,23 +45,18 @@ public class Population_RequirementInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            String goodId = null;
-            String populationId = null;
             try {
-                goodId = goodService.findByName(insert.goodName).getId().toString();
-                populationId = populationService.findByName(insert.populationName).getId().toString();
-            } catch (EntityNotFoundException ignored) {
+                populationRequirementService.post(PopulationRequirementInput.builder()
+                        .good(goodService.findByIdSlugName(insert.goodName).getId().toString())
+                        .population(populationService.findByIdSlugName(insert.populationName).getId().toString())
+                        .consumption(insert.consumption)
+                        .produceRate(insert.produce)
+                        .isBasic(insert.isBasic)
+                        .build()
+                );
+            } catch (ParagonPioneerBeException e) {
+                System.out.println("Could not create PopulationRequirement for Population " + insert.populationName + " and Good " + insert.goodName);
             }
-
-            Population_RequirementDTO dto = Population_RequirementDTO.builder()
-                    .goodId(goodId)
-                    .populationId(populationId)
-                    .consumption(insert.consumption)
-                    .produce(insert.produce)
-                    .isBasic(insert.isBasic)
-                    .build();
-
-            populationRequirementService.post(dto);
         }
     }
 }

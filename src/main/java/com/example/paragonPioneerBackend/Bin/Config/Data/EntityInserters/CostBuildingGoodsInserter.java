@@ -1,13 +1,12 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Dto.Cost_Building_GoodsDTO;
+import com.example.paragonPioneerBackend.Dto.requests.CostBuildingGoodsInput;
+import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.BuildingService;
-import com.example.paragonPioneerBackend.Service.Cost_Building_GoodsService;
+import com.example.paragonPioneerBackend.Service.CostBuildingGoodsService;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 /**
  * Component responsible for seeding the database with initial data for cost-building-goods relations.
@@ -18,8 +17,8 @@ import java.util.Objects;
  */
 @Component
 @RequiredArgsConstructor
-public class Cost_Building_goodsInserter {
-    private final Cost_Building_GoodsService costBuildingGoodsService;
+public class CostBuildingGoodsInserter {
+    private final CostBuildingGoodsService costBuildingGoodsService;
     private final BuildingService<?> buildingService;
     private final GoodService goodService;
 
@@ -40,6 +39,7 @@ public class Cost_Building_goodsInserter {
             new Inserter("Fisherman", "Wood", 10),
             new Inserter("Sawmill", "Wood", 20),
             new Inserter("Potato Farm", "Plank", 10)
+            //todo add more cost-building-goods relations
     };
 
     /**
@@ -50,20 +50,17 @@ public class Cost_Building_goodsInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            String buildingId = null;
-
-
-            buildingId = buildingService.findByName(insert.buildingName).getId().toString();
-
-
-            // Create and post the cost-building-goods relation
-            costBuildingGoodsService.post(
-                    Cost_Building_GoodsDTO.builder()
-                            .goodId(Objects.requireNonNull(goodService.findByName(insert.goodName)).getId().toString())
-                            .buildingId(buildingId)
-                            .amount(insert.amount)
-                            .build()
-            );
+            try {
+                costBuildingGoodsService.post(
+                        CostBuildingGoodsInput.builder()
+                                .good(goodService.findByIdSlugName(insert.goodName).getId().toString())
+                                .building(buildingService.findByIdSlugName(insert.buildingName).getId().toString())
+                                .amount(insert.amount)
+                                .build()
+                );
+            } catch (ParagonPioneerBeException e) {
+                System.out.println("Could not create CostBuildingGoods for Good " + insert.goodName + " and Building " + insert.buildingName);
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Dto.Requirement_Population_BuildingDTO;
-import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
+import com.example.paragonPioneerBackend.Dto.requests.RequirementPopulationBuildingInput;
+import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.BuildingService;
 import com.example.paragonPioneerBackend.Service.PopulationService;
-import com.example.paragonPioneerBackend.Service.Requirement_Building_PopulationService;
+import com.example.paragonPioneerBackend.Service.RequirementBuildingPopulationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class Requirement_Population_BuildingInserter {
-    private final Requirement_Building_PopulationService requirementBuildingPopulationService;
+public class RequirementPopulationBuildingInserter {
+    private final RequirementBuildingPopulationService requirementBuildingPopulationService;
     private final BuildingService<?> buildingService;
     private final PopulationService populationService;
 
@@ -30,9 +30,16 @@ public class Requirement_Population_BuildingInserter {
     private record Inserter(String buildingName, String populationName, int amount) {
     }
 
+    /**
+     * An array of Inserter records that represent the initial setup data for building-population requirements.
+     * Each record represents a single building-population requirement, with properties for the building name, the required population segment name, and the amount needed.
+     * The building name and population segment name are represented by Strings, and the amount needed is an integer.
+     * This array is used to seed the database with initial data on the population requirements for buildings.
+     */
     private final Inserter[] inserts = {
             new Inserter("Fisherman", "Pioneers", 10),
-            // Additional inserts omitted for brevity
+            new Inserter("Sawmill", "Pioneers", 50),
+            // todo add more building-population requirements
     };
 
     /**
@@ -44,21 +51,16 @@ public class Requirement_Population_BuildingInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            String populationId = null;
-            String buildingId = null;
             try {
-                populationId = populationService.findByName(insert.populationName).getId().toString();
-                buildingId = buildingService.findByName(insert.buildingName).getId().toString();
-            } catch (EntityNotFoundException ignored) {
+                RequirementPopulationBuildingInput dto = RequirementPopulationBuildingInput.builder()
+                        .population(populationService.findByIdSlugName(insert.populationName).getId().toString())
+                        .building(buildingService.findByIdSlugName(insert.buildingName).getId().toString())
+                        .amount(insert.amount)
+                        .build();
+                requirementBuildingPopulationService.post(dto);
+            } catch (ParagonPioneerBeException e) {
+                System.out.println("Could not create Building Population for Building: " + insert.buildingName + " and Population: " + insert.populationName);
             }
-
-            Requirement_Population_BuildingDTO dto = Requirement_Population_BuildingDTO.builder()
-                    .populationId(populationId)
-                    .buildingId(buildingId)
-                    .amount(insert.amount)
-                    .build();
-
-            requirementBuildingPopulationService.post(dto);
         }
     }
 }
