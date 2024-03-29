@@ -1,23 +1,22 @@
 package com.example.paragonPioneerBackend.Service;
 
-import com.example.paragonPioneerBackend.Dto.BuildingDTO;
-import com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO;
-import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
-import com.example.paragonPioneerBackend.Entity.Building;
+import com.example.paragonPioneerBackend.Dto.requests.BuildingInput;
+import com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput;
+import com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
+import com.example.paragonPioneerBackend.Exception.CastException;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
-import com.example.paragonPioneerBackend.Repository.PopulationBuildingRepository;
-import com.example.paragonPioneerBackend.Repository.ProductionBuildingRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
+import com.example.paragonPioneerBackend.Service.generic.SlugableService;
+import com.example.paragonPioneerBackend.Util.ServiceUtil;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
-import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.Set;
 
 
 /**
@@ -29,122 +28,89 @@ import java.util.UUID;
  * @param <BuildingTypeDTO> A generic type parameter that extends BuildingDTO,
  *                          allowing the service to work with different types of building DTOs.
  */
-@Service(value = "buildingService")
-public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseService<Building, BuildingRepository, BuildingTypeDTO> {
-
-    private final BuildingRepository buildingRepository;
-    private final PopulationBuildingRepository populationBuildingRepository;
-    private final ProductionBuildingRepository productionBuildingRepository;
+@org.springframework.stereotype.Service()
+public class BuildingService<BuildingTypeDTO extends BuildingInput> extends SlugableService<Building, BuildingRepository, BuildingTypeDTO> {
     private final RecipeRepository recipeRepository;
 
     /**
      * Autowired constructor to inject repository dependencies.
      *
-     * @param repository                   General repository for Building entities.
-     * @param buildingRepository           Specific repository for Building entities.
-     * @param populationBuildingRepository Repository for PopulationBuilding entities.
-     * @param productionBuildingRepository Repository for ProductionBuilding entities.
-     * @param recipeRepository             Repository for managing Recipe entities related to ProductionBuildings.
+     * @param repository         General repository for Building entities.
+     * @param buildingRepository Specific repository for Building entities.
+     * @param recipeRepository   Repository for managing Recipe entities related to ProductionBuildings.
      */
     @Autowired
     public BuildingService(BuildingRepository repository, BuildingRepository buildingRepository,
-                           PopulationBuildingRepository populationBuildingRepository,
-                           ProductionBuildingRepository productionBuildingRepository,
                            RecipeRepository recipeRepository) {
         super(repository);
-        this.buildingRepository = buildingRepository;
-        this.populationBuildingRepository = populationBuildingRepository;
-        this.productionBuildingRepository = productionBuildingRepository;
         this.recipeRepository = recipeRepository;
     }
 
     /**
-     * Searches for a building entity by its slug.
+     * This method is used to map a BuildingTypeDTO to a Building entity.
+     * It checks if the DTO is an instance of ProductionBuildingInput or PopulationBuildingInput.
+     * If the DTO is an instance of ProductionBuildingInput, it creates a new ProductionBuilding entity with the properties from the DTO.
+     * The recipe for the ProductionBuilding is retrieved from the repository using either the UUID or the slug from the DTO.
+     * If the DTO is an instance of PopulationBuildingInput, it creates a new PopulationBuilding entity with the properties from the DTO.
+     * If the DTO is not an instance of either ProductionBuildingInput or PopulationBuildingInput, it throws a CastException.
      *
-     * @param slug The slug to search for.
-     * @return An Optional containing the Building entity if found, or empty otherwise.
-     */
-    public Building findBySlug(String slug) throws EntityNotFoundException {
-        return repository.findBySlugIs(slug).orElseThrow(() -> new EntityNotFoundException("Slug",slug));
-    }
-
-    /**
-     * Retrieves all building entities that contain the specified name.
-     *
-     * @param name The name to search for.
-     * @return A list of Building entities that contain the given name.
-     */
-    public List<Building> findAllByNameContains(String name) {
-        return repository.findAllByNameContains(name);
-    }
-
-    /**
-     * Searches for a building entity by its name.
-     *
-     * @param name The name to search for.
-     * @return An Optional containing the Building entity if found, or empty otherwise.
-     */
-    public Building findByName(String name) throws EntityNotFoundException {
-        return repository.findByNameIs(name).orElseThrow(() -> new EntityNotFoundException("Name",name));
-    }
-
-    /**
-     * Adds a new building entity to the database based on the provided DTO.
-     *
-     * @param buildingTypeDTO The DTO containing the data for the new building entity.
-     * @return The newly added Building entity.
+     * @param buildingTypeDTO The DTO that contains the new values for the Building entity.
+     * @return The newly created Building entity.
+     * @throws CastException           if the DTO does not match any known building types.
+     * @throws EntityNotFoundException if the recipe for the ProductionBuilding is not found in the repository.
      */
     @Override
-    public Building post(BuildingTypeDTO buildingTypeDTO) {
-        if (buildingTypeDTO instanceof PopulationBuildingDTO populationBuildingDTO) {
-            return buildingRepository.save(PopulationBuilding.builder()
-                    .name(populationBuildingDTO.getName())
-                    .remarks(populationBuildingDTO.getRemarks())
-                    .capacity(populationBuildingDTO.getCapacity())
-                    .slug(populationBuildingDTO.getSlug().isEmpty() ? SlugUtil.createSlug(populationBuildingDTO.getName()) : populationBuildingDTO.getSlug())
-                    .build());
-        }
-        if (buildingTypeDTO instanceof ProductionBuildingDTO productionBuildingDTO) {
-            ProductionBuilding building = ProductionBuilding.builder()
-                    .name(productionBuildingDTO.getName())
-                    .remarks(productionBuildingDTO.getRemarks())
-                    .productionPerMinute(productionBuildingDTO.getProductionPerMinute())
-                    .recipe(UuidUtil.parseUuidFromStringOrNull(productionBuildingDTO.getIdOfRecipe()) == null ?
-                            null :
-                            recipeRepository.findById(UuidUtil.parseUuidFromStringOrNull(productionBuildingDTO.getIdOfRecipe())).orElse(null))
-                    .slug(productionBuildingDTO.getSlug().isEmpty() ? SlugUtil.createSlug(productionBuildingDTO.getName()) : productionBuildingDTO.getSlug())
+    @Transactional
+    public Building mapToEntity(BuildingTypeDTO buildingTypeDTO) throws CastException {
+        if (buildingTypeDTO instanceof ProductionBuildingInput productionBuildingInput) {
+            return ProductionBuilding.builder()
+                    .name(productionBuildingInput.getName())
+                    .remarks(productionBuildingInput.getRemarks())
+                    .productionPerMinute(productionBuildingInput.getProductionPerMinute())
+                    .recipe(ServiceUtil.ifErrorThenNull((good) -> ServiceUtil.getHelper(good, recipeRepository),productionBuildingInput.getRecipe()))
+                    .slug(SlugUtil.createSlug(productionBuildingInput.getName()))
                     .build();
-            return buildingRepository.save(building);
         }
-
-        return null;
+        if (buildingTypeDTO instanceof PopulationBuildingInput populationBuildingInput) {
+            return PopulationBuilding.builder()
+                    .name(populationBuildingInput.getName())
+                    .remarks(populationBuildingInput.getRemarks())
+                    .capacity(populationBuildingInput.getCapacity())
+                    .slug(SlugUtil.createSlug(populationBuildingInput.getName()))
+                    .build();
+        }
+        throw new CastException("No Matching Building Type Found");
     }
 
     /**
-     * Updates an existing building entity with the data provided in the DTO.
+     * This method is used to update the properties of a Building entity based on the provided DTO.
+     * It checks if the DTO and the entity to update are instances of ProductionBuildingDTO and ProductionBuilding respectively.
+     * If true, it updates the name, remarks, production per minute, and recipe of the production building.
+     * If the DTO and the entity to update are instances of PopulationBuildingDTO and PopulationBuilding respectively,
+     * it updates the name, remarks, and capacity of the population building.
+     * If neither condition is met, it throws a CastException.
      *
-     * @param original        The original building entity to be updated.
-     * @param buildingTypeDTO The DTO containing the updated data.
+     * @param entityToUpdate The original Building entity that might be updated.
+     * @param dto            The DTO that contains the new values for the Building entity.
      * @return The updated Building entity.
+     * @throws CastException if the DTO and the entity to update do not match any known building types.
      */
     @Override
-    public Building putPatch(Building original, BuildingTypeDTO buildingTypeDTO) throws EntityNotFoundException {
-        original.setName(buildingTypeDTO.getName() != null ? buildingTypeDTO.getName() : original.getName());
-        original.setRemarks(buildingTypeDTO.getRemarks() != null ? buildingTypeDTO.getRemarks() : original.getRemarks());
-        original.setSlug(buildingTypeDTO.getSlug() != null ? buildingTypeDTO.getSlug() : original.getSlug());
-
-        if (buildingTypeDTO instanceof PopulationBuildingDTO populationBuildingDTO && original instanceof PopulationBuilding) {
-            ((PopulationBuilding) original).setCapacity(populationBuildingDTO.getCapacity() != ((PopulationBuilding) original).getCapacity() ? populationBuildingDTO.getCapacity() : ((PopulationBuilding) original).getCapacity());
-            return original;
+    public Building patch(Building entityToUpdate, BuildingTypeDTO dto) throws CastException {
+        if (dto instanceof ProductionBuildingInput productionBuildingDTO && entityToUpdate instanceof ProductionBuilding productionBuilding) {
+            productionBuilding.setName(ServiceUtil.patchHelper(productionBuilding.getName(), productionBuildingDTO.getName()));
+            productionBuilding.setRemarks(ServiceUtil.patchHelper(productionBuilding.getRemarks(), productionBuildingDTO.getRemarks()));
+            productionBuilding.setProductionPerMinute(ServiceUtil.patchHelper(productionBuilding.getProductionPerMinute(), productionBuildingDTO.getProductionPerMinute()));
+            productionBuilding.setRecipe(ServiceUtil.patchHelper(productionBuilding.getRecipe(), productionBuildingDTO.getRecipe(), recipeRepository));
+            return productionBuilding;
         }
-
-        if (buildingTypeDTO instanceof ProductionBuildingDTO productionBuildingDTO && original instanceof ProductionBuilding) {
-            ((ProductionBuilding) original).setProductionPerMinute(productionBuildingDTO.getProductionPerMinute() != ((ProductionBuilding) original).getProductionPerMinute() ? productionBuildingDTO.getProductionPerMinute() : ((ProductionBuilding) original).getProductionPerMinute());
-            ((ProductionBuilding) original).setRecipe(productionBuildingDTO.getIdOfRecipe() != null ? recipeRepository.findById(UUID.fromString(productionBuildingDTO.getIdOfRecipe())).get() : ((ProductionBuilding) original).getRecipe());
-            return original;
+        if (dto instanceof PopulationBuildingInput populationBuildingDTO && entityToUpdate instanceof PopulationBuilding populationBuilding) {
+            populationBuilding.setName(ServiceUtil.patchHelper(populationBuilding.getName(), populationBuildingDTO.getName()));
+            populationBuilding.setRemarks(ServiceUtil.patchHelper(populationBuilding.getRemarks(), populationBuildingDTO.getRemarks()));
+            populationBuilding.setCapacity(ServiceUtil.patchHelper(populationBuilding.getCapacity(), populationBuildingDTO.getCapacity()));
+            return populationBuilding;
         }
-
-        return null;
+        throw new CastException("No Matching Building Type Found");
     }
 
     /**
@@ -152,8 +118,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
      *
      * @return A list of all ProductionBuilding entities.
      */
-    public List<ProductionBuilding> getAllProductionBuilding() {
-        return productionBuildingRepository.findAll();
+    public Set<ProductionBuilding> getAllProductionBuilding() {
+        return repository.findAllProductionBuildings();
     }
 
     /**
@@ -161,8 +127,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
      *
      * @return A list of all PopulationBuilding entities.
      */
-    public List<PopulationBuilding> getAllPopulationBuilding() {
-        return populationBuildingRepository.findAll();
+    public Set<PopulationBuilding> getAllPopulationBuilding() {
+        return repository.findAllPopulationBuildings();
     }
 
     /**
@@ -176,6 +142,6 @@ public class BuildingService<BuildingTypeDTO extends BuildingDTO> extends BaseSe
      * otherwise, an empty Optional.
      */
     public ProductionBuilding getProductionBuildingByRecipeSlug(String recipeSlug) throws EntityNotFoundException {
-        return productionBuildingRepository.findProductionBuildingByRecipeSlug(recipeSlug).orElseThrow(() -> new EntityNotFoundException("Name",recipeSlug));
+        return repository.findProductionBuildingByRecipeSlug(recipeSlug).orElseThrow(() -> new EntityNotFoundException("recipeSlug", recipeSlug));
     }
 }

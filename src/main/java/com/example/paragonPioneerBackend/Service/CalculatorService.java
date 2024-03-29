@@ -2,7 +2,7 @@ package com.example.paragonPioneerBackend.Service;
 
 import com.example.paragonPioneerBackend.Calculator.CalculationResponse;
 import com.example.paragonPioneerBackend.Calculator.Calculator;
-import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
+import com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class CalculatorService {
 
     private final RecipeService recipeService;
     private final GoodService goodService;
-    private final BuildingService<ProductionBuildingDTO> productionBuildingDTOBuildingService;
+    private final BuildingService<ProductionBuildingInput> productionBuildingDTOBuildingService;
 
     /**
      * This method calculates the production chain for a given good
