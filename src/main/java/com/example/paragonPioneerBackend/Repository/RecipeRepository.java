@@ -1,11 +1,8 @@
 package com.example.paragonPioneerBackend.Repository;
 
 import com.example.paragonPioneerBackend.Entity.Good;
-import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Entity.Recipe;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,7 +12,7 @@ import java.util.UUID;
  * This repository plays a crucial role in managing the data access layer for recipe entities, facilitating
  * the retrieval of recipes based on specific criteria related to the product they generate.
  */
-public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
+public interface RecipeRepository extends SlugableReposetory<Recipe> {
 
     /**
      * Finds a recipe by its output good.
@@ -26,20 +23,10 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
     Optional<Recipe> findByOutputIs(Good output);
 
     /**
-     * Finds a recipe by the name of its output good.
+     * Finds a recipe by its output good's ID.
      *
-     * @param outputName The name of the output good of the recipe to find.
-     * @return An Optional containing the recipe if a matching output name is found; otherwise, an empty Optional.
+     * @param id The UUID of the output {@link Good} of the recipe to find.
+     * @return An Optional containing the recipe if a matching output ID is found; otherwise, an empty Optional.
      */
-    Optional<Recipe> findByOutputNameIs(String outputName);
-
-    /**
-     * Finds all recipes where the name of the output good contains the specified substring.
-     * This method is particularly useful for implementing search functionalities within the application,
-     * allowing users to find recipes based on partial names of the product they are looking to produce.
-     *
-     * @param outputName The substring to search for within the names of the output goods.
-     * @return A list of recipes that contain the specified substring in the name of their output goods.
-     */
-    List<Recipe> findAllByOutputNameContains(String outputName);
+    Optional<Recipe> findByOutputIdIs(UUID id);
 }
