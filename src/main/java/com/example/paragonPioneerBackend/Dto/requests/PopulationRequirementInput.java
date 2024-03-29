@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Dto;
+package com.example.paragonPioneerBackend.Dto.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -10,50 +10,45 @@ import lombok.*;
  * for CRUD operations on population requirements and for displaying this information in user interfaces or API responses.
  */
 @Data
-@Getter
-@Setter
-@AllArgsConstructor
 @Builder
-public class Population_RequirementDTO {
-    /**
-     * The unique identifier of the population requirement relationship. This ID allows for the unique referencing
-     * of each population requirement within the system.
-     */
-    @JsonProperty("id")
-    private String id;
-
+public class PopulationRequirementInput {
     /**
      * The identifier of the good associated with this requirement. It references the specific good that is
      * consumed or produced by the population segment identified by {@code populationId}.
      */
-    @JsonProperty("good_id")
-    private String goodId;
+    @Builder.Default
+    @JsonProperty("id_slug_or_name_of_good")
+    private String good = null;
 
     /**
      * The identifier of the population segment associated with this requirement. It references the specific
      * population segment that consumes or produces the good identified by {@code goodId}.
      */
-    @JsonProperty("population_id")
-    private String populationId;
+    @Builder.Default
+    @JsonProperty("id_slug_or_name_of_population")
+    private String population = null;
 
     /**
      * The rate at which the specified good is consumed by the population segment. This field quantifies
      * the consumption needs of the population for the good.
      */
+    @Builder.Default
     @JsonProperty("consumption")
-    private float consumption;
+    private Float consumption = null;
 
     /**
      * The rate at which the specified good is produced by the population segment. This field quantifies
      * the production output of the population for the good.
      */
-    @JsonProperty("produce")
-    private float produce;
+    @Builder.Default
+    @JsonProperty("produce_rate")
+    private Float produceRate = null;
 
     /**
      * A flag indicating whether the specified good is considered a basic necessity for the population segment.
      * Basic necessities are essential for the survival or well-being of the population.
      */
+    @Builder.Default
     @JsonProperty("isBasic")
-    private boolean isBasic;
+    private boolean isBasic = true;
 }

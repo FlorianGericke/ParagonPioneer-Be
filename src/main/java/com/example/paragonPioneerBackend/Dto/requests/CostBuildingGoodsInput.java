@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Dto;
+package com.example.paragonPioneerBackend.Dto.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -10,37 +10,30 @@ import lombok.*;
  * in a more accessible and transferable format.
  */
 @Data
-@Getter
-@Setter
-@AllArgsConstructor
 @Builder
-public class Cost_Building_GoodsDTO {
-
-    /**
-     * The unique identifier of the cost-building-goods relationship. This ID is used to uniquely identify
-     * a specific relation instance in the system.
-     */
-    @JsonProperty("id")
-    private String id;
+public class CostBuildingGoodsInput {
 
     /**
      * The identifier of the building involved in the relationship. It references the specific building
      * that requires the good as part of its construction or maintenance cost.
      */
-    @JsonProperty("building_id")
-    private String buildingId;
+    @Builder.Default
+    @JsonProperty("id_slug_or_name_of_building")
+    private String building = null;
 
     /**
      * The identifier of the good involved in the relationship. It references the specific good that is
      * required by the building, as identified by the buildingId.
      */
-    @JsonProperty("good_id")
-    private String goodId;
+    @Builder.Default
+    @JsonProperty("id_slug_or_name_of_good")
+    private String good = null;
 
     /**
      * The amount of the specified good (goodId) that is required by the building (buildingId). This field
      * quantifies the relationship, indicating how much of the good is needed.
      */
+    @Builder.Default
     @JsonProperty("amount")
-    private int amount;
+    private Integer amount = null;
 }

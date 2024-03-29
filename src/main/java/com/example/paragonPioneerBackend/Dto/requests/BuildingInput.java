@@ -1,7 +1,9 @@
-package com.example.paragonPioneerBackend.Dto;
+package com.example.paragonPioneerBackend.Dto.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -11,38 +13,21 @@ import lombok.experimental.SuperBuilder;
  * in client-server communication.
  */
 @Data
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @SuperBuilder
-public class BuildingDTO {
-
-    /**
-     * Unique identifier of the building. Used to uniquely identify a building within the system.
-     */
-    @JsonProperty("id")
-    private String id;
-
+@NoArgsConstructor
+public abstract class BuildingInput {
     /**
      * Name of the building. Provides a human-readable identifier for the building.
      */
+    @Builder.Default
     @JsonProperty("name")
-    private String name;
+    private String name = null;
 
     /**
      * Additional remarks about the building. Can include any notes or additional information
      * relevant to the building.
      */
-    @JsonProperty("remarks")
-    private String remarks;
-
-    /**
-     * A slug for the building, providing a URL-friendly string identifier. It's used for creating
-     * more readable URLs that reference the building.
-     * By default, it is an empty string indicating that it can be optionally provided.
-     */
-    @JsonProperty("slug")
     @Builder.Default
-    private String slug = "";
+    @JsonProperty("remarks")
+    private String remarks = null;
 }

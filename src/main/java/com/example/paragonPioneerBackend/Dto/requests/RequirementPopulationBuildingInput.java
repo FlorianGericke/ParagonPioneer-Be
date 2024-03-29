@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Dto;
+package com.example.paragonPioneerBackend.Dto.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -10,37 +10,30 @@ import lombok.*;
  * population requirements for buildings.
  */
 @Data
-@Getter
-@Setter
-@AllArgsConstructor
 @Builder
-public class Requirement_Population_BuildingDTO {
-    /**
-     * The unique identifier of the requirement-population-building relationship instance. This ID allows
-     * for the unique referencing and manipulation of each relationship record within the system.
-     */
-    @JsonProperty("id")
-    private String id;
-
+public class RequirementPopulationBuildingInput {
     /**
      * The unique identifier of the building involved in the relationship. This ID links the DTO to a specific
      * building that requires a certain population segment for its operation or other purposes.
      */
-    @JsonProperty("building_id")
-    private String buildingId;
+    @Builder.Default
+    @JsonProperty("id_slug_or_name_of_building")
+    private String building = null;
 
     /**
      * The unique identifier of the population segment involved in the relationship. This ID links the DTO to a
      * specific population segment that is required by the building identified by {@code buildingId}.
      */
-    @JsonProperty("population_id")
-    private String populationId;
+    @Builder.Default
+    @JsonProperty("id_slug_or_name_of_population")
+    private String population = null;
 
     /**
      * The amount of the specified population segment required by the building. This field quantifies the
      * population requirement, indicating how many individuals or units from the population segment are needed
      * by the building for its operation or for fulfilling other specified criteria.
      */
+    @Builder.Default
     @JsonProperty("amount")
-    private int amount;
+    private Integer amount = null;
 }
