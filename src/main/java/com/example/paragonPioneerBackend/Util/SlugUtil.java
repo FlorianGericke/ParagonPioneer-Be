@@ -17,7 +17,6 @@ public class SlugUtil {
      */
     public static boolean validateSlug(String slug) {
         String slugPattern = "^[a-z0-9]+(?:-[a-z0-9]+)*$";
-
         return slug.matches(slugPattern);
     }
 
@@ -35,7 +34,7 @@ public class SlugUtil {
         String original = str;
 
         str = str.toLowerCase(); // Convert to lowercase
-        str = str.replaceAll("[^a-zA-Z0-9 ]", ""); // Remove non-alphanumeric characters except spaces
+        str = str.replaceAll("[^a-zA-Z0-9]", ""); // Remove non-alphanumeric characters except spaces
         str = str.replaceAll(" ", "-"); // Replace spaces with hyphens
 
         if (!validateSlug(str)) {
