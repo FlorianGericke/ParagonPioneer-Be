@@ -1,7 +1,9 @@
-package com.example.paragonPioneerBackend.Entity;
+package com.example.paragonPioneerBackend.Entity.abstractEntity;
 
+import com.example.paragonPioneerBackend.Entity.entityEnums.EntityState;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -12,13 +14,14 @@ import java.util.UUID;
  * This class serves as a foundation for entity classes, providing essential fields and lifecycle event handling.
  */
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
 
     /**
      * Unique identifier for the entity. It is generated automatically and is unique across all entities.
      */
-    @Getter
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(unique = true, nullable = false)
     private UUID id;
@@ -77,10 +80,10 @@ public class BaseEntity {
      * @return {@link EntityState} indicating whether the entity is created, updated, or deleted.
      */
     protected EntityState getState() {
-        if(deletedAt != null) {
+        if (deletedAt != null) {
             return EntityState.DELETED;
         }
-        if(updatedAt != null) {
+        if (updatedAt != null) {
             return EntityState.UPDATED;
         }
         return EntityState.CREATED;

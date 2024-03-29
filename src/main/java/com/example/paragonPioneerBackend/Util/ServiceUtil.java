@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Util;
 
-import com.example.paragonPioneerBackend.Entity.BaseEntity;
-import com.example.paragonPioneerBackend.Entity.Slugable;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Slugable;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.SlugableReposetory;
 import org.springframework.data.jpa.repository.JpaRepository;

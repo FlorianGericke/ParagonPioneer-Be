@@ -1,6 +1,6 @@
 package com.example.paragonPioneerBackend.Util;
 
-import com.example.paragonPioneerBackend.Entity.BaseEntity;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
 
 import java.util.Set;
 import java.util.UUID;

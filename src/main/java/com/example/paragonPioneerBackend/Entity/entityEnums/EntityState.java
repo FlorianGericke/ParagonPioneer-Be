@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Entity;
+package com.example.paragonPioneerBackend.Entity.entityEnums;
 
 /**
  * Defines the possible states of entities in the application.
