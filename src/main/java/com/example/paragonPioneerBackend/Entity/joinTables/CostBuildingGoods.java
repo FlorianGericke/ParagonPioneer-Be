@@ -1,7 +1,7 @@
-package com.example.paragonPioneerBackend.Entity.JoinTables;
+package com.example.paragonPioneerBackend.Entity.joinTables;
 
-import com.example.paragonPioneerBackend.Entity.BaseEntity;
-import com.example.paragonPioneerBackend.Entity.Building;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -24,7 +24,7 @@ import org.hibernate.annotations.Where;
 @Table(name = "cost_building_goods")
 @SQLDelete(sql = "UPDATE cost_building_goods SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-public class Cost_Building_Goods extends BaseEntity {
+public class CostBuildingGoods extends BaseEntity {
 
     /**
      * The good that is part of the cost for a building. This is a many-to-one relationship as many costs can reference the same good.

@@ -1,7 +1,8 @@
 package com.example.paragonPioneerBackend.Entity;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
-import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
+import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
+import com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import jakarta.persistence.Entity;
 import lombok.*;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class PopulationBuilding extends Building {
 
     /**
@@ -23,28 +25,9 @@ public class PopulationBuilding extends Building {
      */
     private int capacity;
 
-    /**
-     * Constructs a new instance of PopulationBuilding with detailed attributes.
-     *
-     * @param name the name of the PopulationBuilding, inherited from {@link Building}.
-     * @param remarks additional information about the PopulationBuilding, inherited from {@link Building}.
-     * @param costs a set of costs associated with constructing or maintaining the PopulationBuilding,
-     *              represented by {@link Cost_Building_Goods}.
-     * @param requirementPopulationBuildings the population requirements for the building,
-     *                                       represented by {@link Requirement_Population_Building}.
-     * @param capacity the maximum number of persons the building can accommodate.
-     * @param slug the unique slug for the PopulationBuilding, used for URL representation, inherited from {@link Building}.
-     */
     @Builder
-    public PopulationBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, Requirement_Population_Building requirementPopulationBuildings, int capacity, String slug) {
-        super(name, remarks, costs, requirementPopulationBuildings, slug);
+    public PopulationBuilding(String name, String slug, String remarks, Set<CostBuildingGoods> costs, RequirementPopulationBuilding requirePopulation, int capacity) {
+        super(name, slug, remarks, costs, requirePopulation);
         this.capacity = capacity;
-    }
-
-    /**
-     * Default constructor for PopulationBuilding, required for JPA entity initialization.
-     */
-    public PopulationBuilding() {
-        super();
     }
 }

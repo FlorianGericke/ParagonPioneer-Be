@@ -1,7 +1,7 @@
-package com.example.paragonPioneerBackend.Entity.JoinTables;
+package com.example.paragonPioneerBackend.Entity.joinTables;
 
-import com.example.paragonPioneerBackend.Entity.BaseEntity;
-import com.example.paragonPioneerBackend.Entity.Building;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.Population;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -25,7 +25,7 @@ import org.hibernate.annotations.Where;
 @Table(name = "requirement_population_building")
 @SQLDelete(sql = "UPDATE requirement_population_building SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-public class Requirement_Population_Building extends BaseEntity {
+public class RequirementPopulationBuilding extends BaseEntity {
 
     /**
      * The population associated with the building requirement. This many-to-one relationship
