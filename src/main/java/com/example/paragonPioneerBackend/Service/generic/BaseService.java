@@ -3,7 +3,6 @@ package com.example.paragonPioneerBackend.Service.generic;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,16 +58,6 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
         return repository.findAll(pageable);
     }
 
-    /**
-     * Retrieves all entities, with pagination and sorting based on page number and page size.
-     *
-     * @param page     The page number to retrieve.
-     * @param pageSize The number of entities per page.
-     * @return A page of entities.
-     */
-    public Page<Type> getAll(int page, int pageSize) {
-        return repository.findAll(PageRequest.of(page, pageSize));
-    }
 
     /**
      * Retrieves a single entity by its ID.
