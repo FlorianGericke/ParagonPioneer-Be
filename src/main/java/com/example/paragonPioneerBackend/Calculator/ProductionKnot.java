@@ -1,6 +1,6 @@
 package com.example.paragonPioneerBackend.Calculator;
 
-import com.example.paragonPioneerBackend.Entity.Building;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.Good;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,24 +8,36 @@ import lombok.Setter;
 import java.util.ArrayList;
 
 /**
- * This is a class named ProductionKnot.
- * It represents a node in a production tree, where each node is a good that is produced by a building.
+ * The ProductionKnot class represents a node in a production tree.
+ * Each node is a good that is produced by a building.
  * Each node can have multiple ingredients, which are also ProductionKnots.
  */
 @Getter
 @Setter
 public class ProductionKnot {
 
-    // The good that this node produces
+    /**
+     * The good that this node produces.
+     */
     private Good good;
-    // The building that produces this good
+
+    /**
+     * The building that produces this good.
+     */
     private Building manufacturer;
-    // The ingredients required to produce this good
+
+    /**
+     * The ingredients required to produce this good.
+     * Each ingredient is represented as a ProductionKnot.
+     */
     private ArrayList<ProductionKnot> ingredients = new ArrayList<>();
 
     /**
      * Constructor for the ProductionKnot class.
      * Initializes the good and the manufacturer.
+     *
+     * @param good The good that this node produces.
+     * @param manufacturer The building that produces this good.
      */
     public ProductionKnot(Good good, Building manufacturer) {
         this.good = good;
@@ -34,6 +46,8 @@ public class ProductionKnot {
 
     /**
      * Adds an ingredient to the list of ingredients.
+     *
+     * @param ingredient The ingredient to add.
      */
     public void addIngredient(ProductionKnot ingredient) {
         ingredients.add(ingredient);
@@ -41,6 +55,8 @@ public class ProductionKnot {
 
     /**
      * Returns a string representation of the ProductionKnot.
+     *
+     * @return A string representation of the ProductionKnot.
      */
     @Override
     public String toString() {
@@ -53,6 +69,9 @@ public class ProductionKnot {
     /**
      * Returns a formatted string representation of the ProductionKnot.
      * The string is indented by the number of tabs specified by the parameter.
+     *
+     * @param tab The number of tabs to indent the string.
+     * @return A formatted string representation of the ProductionKnot.
      */
     public String formatted(int tab) {
         StringBuilder sb = new StringBuilder();
@@ -66,6 +85,9 @@ public class ProductionKnot {
     /**
      * Returns a string of tabs.
      * The number of tabs is specified by the parameter.
+     *
+     * @param tab The number of tabs to include in the string.
+     * @return A string of tabs.
      */
     private String tabCount(int tab) {
         StringBuilder sb = new StringBuilder();
