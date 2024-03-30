@@ -4,9 +4,10 @@ import com.example.paragonPioneerBackend.Entity.abstractEntity.Slugable;
 import com.example.paragonPioneerBackend.Exception.EntityExistsException;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.SlugableReposetory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -53,11 +54,12 @@ public abstract class SlugableService<Type extends Slugable, Repository extends 
     /**
      * Retrieves all entities that contain the provided string in their name.
      *
-     * @param name The string to be searched for in the names of the entities.
+     * @param pageable
+     * @param name     The string to be searched for in the names of the entities.
      * @return A Set of entities that contain the provided string in their name.
      */
-    public Set<Type> findAllContainingName(String name) {
-        return repository.findAllByNameContains(name);
+    public Page<Type> findAllContainingName(Pageable pageable, String name) {
+        return repository.findAllByNameContains(pageable, name);
     }
 
     /**
@@ -78,7 +80,7 @@ public abstract class SlugableService<Type extends Slugable, Repository extends 
         } catch (IllegalArgumentException e) {
             // If the string is not a valid UUID, try to find the entity by its slug or name
             return repository.findBySlug(smth).orElse(
-                    repository.findAllByNameContains(smth).stream().findFirst()
+                    repository.findAllByNameContains(Pageable.unpaged(), smth).stream().findFirst()
                             .orElseThrow(() -> new EntityNotFoundException("Recipe", smth))
             );
         }

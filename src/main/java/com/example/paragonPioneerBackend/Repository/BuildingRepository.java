@@ -1,13 +1,14 @@
 package com.example.paragonPioneerBackend.Repository;
 
-import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Spring Data JPA repository for {@link Building} entities.
@@ -28,7 +29,7 @@ public interface BuildingRepository extends SlugableReposetory<Building> {
      * @return A Set of ProductionBuilding entities where the dtype is 'PopulationBuilding'.
      */
     @Query("SELECT p FROM ProductionBuilding p")
-    Set<ProductionBuilding> findAllProductionBuildings();
+    Page<ProductionBuilding> findAllProductionBuildings(Pageable pageable);
 
     /**
      * This method is used to find all Buildings that are of type 'PopulationBuilding'.
@@ -40,7 +41,7 @@ public interface BuildingRepository extends SlugableReposetory<Building> {
      * @return A Set of PopulationBuilding entities where the dtype is 'PopulationBuilding'.
      */
     @Query("SELECT p FROM PopulationBuilding p")
-    Set<PopulationBuilding> findAllPopulationBuildings();
+    Page<PopulationBuilding> findAllPopulationBuildings(Pageable pageable);
 
     /**
      * This method is used to find a Building that is of type 'PopulationBuilding' by its recipe slug.

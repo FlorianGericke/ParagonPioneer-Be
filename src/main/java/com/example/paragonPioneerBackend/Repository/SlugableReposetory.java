@@ -1,11 +1,12 @@
 package com.example.paragonPioneerBackend.Repository;
 
 import com.example.paragonPioneerBackend.Entity.abstractEntity.Slugable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -40,5 +41,5 @@ public interface SlugableReposetory<SlugableEntity extends Slugable> extends Jpa
      * @param name The string to be searched for in the names of the SlugableEntities.
      * @return A List of SlugableEntities that contain the provided string in their name.
      */
-    Set<SlugableEntity> findAllByNameContains(String name);
+    Page<SlugableEntity> findAllByNameContains(Pageable pageable, String name);
 }

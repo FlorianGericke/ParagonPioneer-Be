@@ -1,7 +1,7 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data;
 
-import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
-import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
+//import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
+//import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
@@ -20,15 +20,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class InsertRunner implements ApplicationRunner {
-    private final AuthenticationService authenticationService;
+//    private final AuthenticationService authenticationService;
 
     private final GoodInserter goodInserter;
     private final RecipeInserter recipeInserter;
     private final PopulationInserter populationInserter;
     private final BuildingInserter buildingInserter;
-    private final Cost_Building_goodsInserter costBuildingGoodsInserter;
-    private final Population_RequirementInserter populationRequirementInserter;
-    private final Requirement_Population_BuildingInserter costBuildingPopulation;
+    private final CostBuildingGoodsInserter costBuildingGoodsInserter;
+    private final PopulationRequirementInserter populationRequirementInserter;
+    private final RequirementPopulationBuildingInserter costBuildingPopulation;
 
     /**
      * Executes the data insertion tasks in the prescribed order when the application starts.
@@ -39,22 +39,17 @@ public class InsertRunner implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) {
-        authenticationService.register(RegisterRequest.builder()
-                .email("amin@user.de")
-                .password("admin")
-                .build());
+//        authenticationService.register(RegisterRequest.builder()
+//                .email("amin@user.de")
+//                .password("admin")
+//                .build());
 
         goodInserter.run();
-        populationInserter.run();
         recipeInserter.run();
-        populationRequirementInserter.run();
         buildingInserter.run();
-
-        /*
-        todo: the following inserter are not havely required, and will be implemented after the 0.1 release
-         */
-
-//         costBuildingGoodsInserter.run(); // Insert cost-building-goods relations.
-//         costBuildingPopulation.run(); // Insert requirement-population-building relations.
+        populationInserter.run();
+        populationRequirementInserter.run();
+        costBuildingGoodsInserter.run();
+        costBuildingPopulation.run();
     }
 }

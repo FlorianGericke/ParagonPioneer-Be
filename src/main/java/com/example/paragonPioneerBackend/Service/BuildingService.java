@@ -3,9 +3,9 @@ package com.example.paragonPioneerBackend.Service;
 import com.example.paragonPioneerBackend.Dto.requests.BuildingInput;
 import com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput;
 import com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput;
-import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Exception.CastException;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
@@ -14,9 +14,9 @@ import com.example.paragonPioneerBackend.Service.generic.SlugableService;
 import com.example.paragonPioneerBackend.Util.ServiceUtil;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Set;
 
 
 /**
@@ -118,8 +118,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      *
      * @return A list of all ProductionBuilding entities.
      */
-    public Set<ProductionBuilding> getAllProductionBuilding() {
-        return repository.findAllProductionBuildings();
+    public Page<ProductionBuilding> getAllProductionBuilding(Pageable pageable) {
+        return repository.findAllProductionBuildings(pageable);
     }
 
     /**
@@ -127,8 +127,8 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      *
      * @return A list of all PopulationBuilding entities.
      */
-    public Set<PopulationBuilding> getAllPopulationBuilding() {
-        return repository.findAllPopulationBuildings();
+    public Page<PopulationBuilding> getAllPopulationBuilding(Pageable pageable) {
+        return repository.findAllPopulationBuildings(pageable);
     }
 
     /**
