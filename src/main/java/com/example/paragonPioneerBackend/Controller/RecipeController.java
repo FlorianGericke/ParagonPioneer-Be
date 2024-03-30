@@ -46,7 +46,7 @@ public class RecipeController extends SlugableController<Recipe, RecipeRepositor
      * @param id The output ID of the recipe.
      * @return A RecipeMapper object.
      */
-    @GetMapping(value = "/byOutput/{id},", produces = "application/json")
+    @GetMapping(value = "/byOutputId/{id},", produces = "application/json")
     public RecipeMapper getByOutputId(@PathVariable UUID id) {
         return mapper.map(service.findByOutputId(id));
     }

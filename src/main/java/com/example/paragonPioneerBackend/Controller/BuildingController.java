@@ -45,7 +45,7 @@ public class BuildingController extends SlugableController<Building, BuildingRep
      * @param pageable The pagination information.
      * @return A page of BuildingMapper objects.
      */
-    @GetMapping(value = "/production", produces = "application/json")
+    @GetMapping(value = "/productionBuilding", produces = "application/json")
     public @ResponseBody Page<BuildingMapper> getProductionBuildings(Pageable pageable) {
         return service.getAllProductionBuilding(pageable).map(mapper::map);
     }
@@ -57,7 +57,7 @@ public class BuildingController extends SlugableController<Building, BuildingRep
      * @param pageable The pagination information.
      * @return A page of BuildingMapper objects.
      */
-    @GetMapping(value = "/population", produces = "application/json")
+    @GetMapping(value = "/populationBuilding", produces = "application/json")
     public @ResponseBody Page<BuildingMapper> getPopulationBuildings(Pageable pageable) {
         return service.getAllPopulationBuilding(pageable).map(mapper::map);
     }

@@ -48,7 +48,7 @@ public abstract class SlugableController<
      * @param slug The slug of the entity to retrieve.
      * @return The entity with the specified slug.
      */
-    @GetMapping(value = "/{slug}", produces = "application/json")
+    @GetMapping(value = "/slug/{slug}", produces = "application/json")
     public @ResponseBody Mapper getEntityBySlug(@PathVariable String slug) {
         return mapper.map(service.findBySlug(slug));
     }
@@ -59,7 +59,7 @@ public abstract class SlugableController<
      * @param name The string to be searched for in the names of the entities.
      * @return A Set of entities that contain the provided string in their name.
      */
-    @GetMapping(value = "/{name}", produces = "application/json")
+    @GetMapping(value = "/name/{name}", produces = "application/json")
     public @ResponseBody Page<Mapper> getContainingName(Pageable pageable, @PathVariable String name) {
         return service.findAllContainingName(pageable,name).map(mapper::map);
     }
@@ -74,7 +74,7 @@ public abstract class SlugableController<
      * @param smth The string that represents the ID, slug, or name of the entity.
      * @return The entity if found by its ID, slug, or name.
      */
-    @GetMapping(value = "/{smth}", produces = "application/json")
+    @GetMapping(value = "/find/{smth}", produces = "application/json")
     public @ResponseBody Mapper findByIdSlugName(@PathVariable String smth) {
         return mapper.map(service.findByIdSlugName(smth));
     }
