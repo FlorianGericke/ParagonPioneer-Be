@@ -4,6 +4,7 @@ import com.example.paragonPioneerBackend.Dto.response.mappers.ResponseMapper;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.Slugable;
 import com.example.paragonPioneerBackend.Repository.SlugableReposetory;
 import com.example.paragonPioneerBackend.Service.generic.SlugableService;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,7 +61,7 @@ public abstract class SlugableController<
      * @return A Set of entities that contain the provided string in their name.
      */
     @GetMapping(value = "/name/{name}", produces = "application/json")
-    public @ResponseBody Page<Mapper> getContainingName(Pageable pageable, @PathVariable String name) {
+    public @ResponseBody Page<Mapper> getContainingName(@ParameterObject Pageable pageable, @PathVariable String name) {
         return service.findAllContainingName(pageable,name).map(mapper::map);
     }
 

@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Controller;
 
 import com.example.paragonPioneerBackend.Dto.response.mappers.calculator.CalculationMapper;
 import com.example.paragonPioneerBackend.Service.CalculatorService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/v1/calculator")
+@Tag(name = "Calculator", description = "Endpoints for calculating the result of a good")
 public class CalculatorController {
 
     // The CalculatorService that performs the calculations
@@ -29,7 +31,7 @@ public class CalculatorController {
      * @return A CalculationMapper representing the result of the calculation.
      */
     @GetMapping(value = "/{goodSlug}", produces = "application/json")
-    public @ResponseBody CalculationMapper putPopulationBuildingEntity(
+    public CalculationMapper putPopulationBuildingEntity(
             @PathVariable String goodSlug) {
         return calculationMapper.map(service.calculate(goodSlug));
     }

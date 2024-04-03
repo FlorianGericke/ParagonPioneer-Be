@@ -6,6 +6,7 @@ import com.example.paragonPioneerBackend.Dto.response.mappers.GoodMapper;
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Service.GoodService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping(path = "/api/v1/good")
+@Tag(name = "Good", description = "Endpoints for managing goods")
 public class GoodController extends SlugableController<Good, GoodRepository, GoodInput, GoodMapper, GoodService> {
 
     /**

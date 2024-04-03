@@ -2,7 +2,10 @@ package com.example.paragonPioneerBackend.Bin.Config.Data;
 
 //import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
 //import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
+
 import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
+import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
+import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -20,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class InsertRunner implements ApplicationRunner {
-//    private final AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
     private final GoodInserter goodInserter;
     private final RecipeInserter recipeInserter;
@@ -39,10 +42,11 @@ public class InsertRunner implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) {
-//        authenticationService.register(RegisterRequest.builder()
-//                .email("amin@user.de")
-//                .password("admin")
-//                .build());
+        // todo Hard Coded Admin login with Clear Password is just for Developing and testing. This should be set in an ignored env file
+        authenticationService.register(RegisterRequest.builder()
+                .email("admin@user.de")
+                .password("admin")
+                .build());
 
         goodInserter.run();
         recipeInserter.run();
@@ -51,5 +55,6 @@ public class InsertRunner implements ApplicationRunner {
         populationRequirementInserter.run();
         costBuildingGoodsInserter.run();
         costBuildingPopulation.run();
+        System.out.println("CMS Server: " + "http://localhost:8080/swagger-ui/index.html");
     }
 }

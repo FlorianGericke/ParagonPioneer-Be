@@ -3,6 +3,8 @@ package com.example.paragonPioneerBackend.Controller.abstractController;
 import com.example.paragonPioneerBackend.Dto.response.mappers.ResponseMapper;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
 import com.example.paragonPioneerBackend.Service.generic.BaseService;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,11 +20,11 @@ import java.util.UUID;
  * - InputDto: The type of the DTO that this controller accepts as input for creating and updating entities.
  * - Mapper: The type of the ResponseMapper that this controller uses to map entities to their corresponding response DTOs.
  * - Service: The type of the BaseService that this controller uses to perform business logic operations.
- *
+ * <p>
  * The controller has two protected fields:
  * - service: An instance of the BaseService that this controller uses to perform business logic operations.
  * - mapper: An instance of the ResponseMapper that this controller uses to map entities to their corresponding response DTOs.
- *
+ * <p>
  * The controller provides the following endpoints:
  * - POST /: Creates a new entity from the given input DTO and returns the created entity.
  * - GET /: Returns a page of entities, mapped to their corresponding response DTOs.
@@ -71,7 +73,7 @@ public abstract class BaseController<
      * @return A page of entities, mapped to their corresponding response DTOs.
      */
     @GetMapping(produces = "application/json")
-    public @ResponseBody Page<Mapper> getEntities(Pageable pageable) {
+    public @ResponseBody Page<Mapper> getEntities(@ParameterObject Pageable pageable) {
         return service.getAll(pageable).map(mapper::map);
     }
 

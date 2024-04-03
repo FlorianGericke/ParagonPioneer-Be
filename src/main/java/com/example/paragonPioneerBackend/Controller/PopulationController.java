@@ -6,6 +6,7 @@ import com.example.paragonPioneerBackend.Dto.response.mappers.PopulationMapper;
 import com.example.paragonPioneerBackend.Entity.Population;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import com.example.paragonPioneerBackend.Service.PopulationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping(path = "/api/v1/population")
+@Tag(name = "Population", description = "Endpoints for managing populations")
 public class PopulationController extends SlugableController<Population, PopulationRepository, PopulationInput, PopulationMapper, PopulationService> {
 
     /**
