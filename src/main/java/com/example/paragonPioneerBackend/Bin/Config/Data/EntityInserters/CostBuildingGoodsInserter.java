@@ -53,8 +53,8 @@ public class CostBuildingGoodsInserter {
             try {
                 costBuildingGoodsService.post(
                         CostBuildingGoodsInput.builder()
-                                .good(goodService.findByIdSlugName(insert.goodName).getId().toString())
-                                .building(buildingService.findByIdSlugName(insert.buildingName).getId().toString())
+                                .good(goodService.findSmthByIdSlugName(insert.goodName).getId().toString())
+                                .building(buildingService.findSmthByIdSlugName(insert.buildingName).getId().toString())
                                 .amount(insert.amount)
                                 .build()
                 );

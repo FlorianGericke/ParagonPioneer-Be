@@ -47,8 +47,8 @@ public class PopulationRequirementInserter {
         for (Inserter insert : inserts) {
             try {
                 populationRequirementService.post(PopulationRequirementInput.builder()
-                        .good(goodService.findByIdSlugName(insert.goodName).getId().toString())
-                        .population(populationService.findByIdSlugName(insert.populationName).getId().toString())
+                        .good(goodService.findSmthByIdSlugName(insert.goodName).getId().toString())
+                        .population(populationService.findSmthByIdSlugName(insert.populationName).getId().toString())
                         .consumption(insert.consumption)
                         .produceRate(insert.produce)
                         .isBasic(insert.isBasic)

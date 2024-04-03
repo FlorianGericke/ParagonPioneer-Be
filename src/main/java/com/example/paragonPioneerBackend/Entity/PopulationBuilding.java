@@ -25,6 +25,16 @@ public class PopulationBuilding extends Building {
      */
     private int capacity;
 
+    /**
+     * Constructor for the PopulationBuilding class.
+     *
+     * @param name The name of the population building.
+     * @param slug The slug for URL representation of the population building.
+     * @param remarks Optional remarks providing additional information about the population building.
+     * @param costs A set of {@link CostBuildingGoods} entities that represent the cost of constructing this building.
+     * @param requirePopulation A {@link RequirementPopulationBuilding} entity that represents the population requirement for this building.
+     * @param capacity The maximum number of persons that the population building can accommodate.
+     */
     @Builder
     public PopulationBuilding(String name, String slug, String remarks, Set<CostBuildingGoods> costs, RequirementPopulationBuilding requirePopulation, int capacity) {
         super(name, slug, remarks, costs, requirePopulation);

@@ -11,6 +11,8 @@ import lombok.*;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GoodInput {
     /**
      * The name of the good. Provides a human-readable name for the good, which can be used for display

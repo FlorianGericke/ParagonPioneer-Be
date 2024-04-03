@@ -189,7 +189,7 @@ public class RecipeInserter {
      */
     private String getIdOrNull(String name) {
         try {
-            return goodService.findByIdSlugName(name).getId().toString();
+            return goodService.findSmthByIdSlugName(name).getId().toString();
         } catch (Exception e) {
             return null;
         }

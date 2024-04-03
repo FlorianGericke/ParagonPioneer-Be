@@ -11,6 +11,8 @@ import lombok.*;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class RequirementPopulationBuildingInput {
     /**
      * The unique identifier of the building involved in the relationship. This ID links the DTO to a specific

@@ -37,6 +37,17 @@ public class ProductionBuilding extends Building {
     @JoinColumn(name = "recipe")
     private Recipe recipe = null;
 
+    /**
+     * Constructor for the ProductionBuilding class.
+     *
+     * @param name                The name of the production building.
+     * @param slug                The slug for URL representation of the production building.
+     * @param remarks             Optional remarks providing additional information about the production building.
+     * @param costs               A set of {@link CostBuildingGoods} entities that represent the cost of constructing this building.
+     * @param requirePopulation   A {@link RequirementPopulationBuilding} entity that represents the population requirement for this building.
+     * @param productionPerMinute The production rate of the building in terms of items produced per minute.
+     * @param recipe              The {@link Recipe} that dictates what goods are produced by this building, including the required input goods and their quantities.
+     */
     @Builder
     public ProductionBuilding(String name, String slug, String remarks, Set<CostBuildingGoods> costs, RequirementPopulationBuilding requirePopulation, float productionPerMinute, Recipe recipe) {
         super(name, slug, remarks, costs, requirePopulation);

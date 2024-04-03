@@ -28,7 +28,7 @@ public class GlobalExceptionHandling {
      * @param request the WebRequest object
      * @return ResponseEntity with a map containing the details of the exception
      */
-    @ExceptionHandler(ParagonPioneerBeException.class)
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleMyCustomException(ParagonPioneerBeException ex, WebRequest request) {
         // Create a response body, possibly a Map or a custom error object
         Map<String, Object> body = new LinkedHashMap<>();

@@ -12,6 +12,8 @@ import lombok.*;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PopulationInput {
     /**
      * The name of the population segment. This provides a human-readable identifier that can be used

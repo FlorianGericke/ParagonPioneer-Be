@@ -192,6 +192,34 @@ public class Recipe extends Slugable {
         return re;
     }
 
+    /**
+     * Constructor for the Recipe class.
+     *
+     * @param name The name of the recipe.
+     * @param slug The slug for URL representation of the recipe.
+     * @param input1 The first input good required for the recipe.
+     * @param quantityOfInput1 The quantity of the first input good required.
+     * @param input2 The second input good required for the recipe.
+     * @param quantityOfInput2 The quantity of the second input good required.
+     * @param input3 The third input good required for the recipe.
+     * @param quantityOfInput3 The quantity of the third input good required.
+     * @param input4 The fourth input good required for the recipe.
+     * @param quantityOfInput4 The quantity of the fourth input good required.
+     * @param input5 The fifth input good required for the recipe.
+     * @param quantityOfInput5 The quantity of the fifth input good required.
+     * @param input6 The sixth input good required for the recipe.
+     * @param quantityOfInput6 The quantity of the sixth input good required.
+     * @param input7 The seventh input good required for the recipe.
+     * @param quantityOfInput7 The quantity of the seventh input good required.
+     * @param input8 The eighth input good required for the recipe.
+     * @param quantityOfInput8 The quantity of the eighth input good required.
+     * @param input9 The ninth input good required for the recipe.
+     * @param quantityOfInput9 The quantity of the ninth input good required.
+     * @param input10 The tenth input good required for the recipe.
+     * @param quantityOfInput10 The quantity of the tenth input good required.
+     * @param output The output good produced by the recipe.
+     * @param productionBuilding The building where the recipe is produced.
+     */
     @Builder
     public Recipe(String name, String slug, Good input1, int quantityOfInput1, Good input2, int quantityOfInput2, Good input3, int quantityOfInput3, Good input4, int quantityOfInput4, Good input5, int quantityOfInput5, Good input6, int quantityOfInput6, Good input7, int quantityOfInput7, Good input8, int quantityOfInput8, Good input9, int quantityOfInput9, Good input10, int quantityOfInput10, Good output, ProductionBuilding productionBuilding) {
         super(name, slug);

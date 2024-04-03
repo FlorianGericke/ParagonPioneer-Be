@@ -77,9 +77,17 @@ public class Population extends Slugable {
         }
     }
 
+    /**
+     * Constructor for the Population class.
+     *
+     * @param name The name of the population.
+     * @param slug The slug for URL representation of the population.
+     * @param requiredGoods The set of goods required by this population to sustain or grow.
+     * @param requiredBuilding The set of buildings required by this population to sustain or grow.
+     */
     @Builder
     public Population(String name, String slug, Set<PopulationRequirement> requiredGoods, Set<RequirementPopulationBuilding> requiredBuilding) {
-        super(slug, name);
+        super(name, slug);
         this.requiredGoods = requiredGoods;
         this.requiredBuilding = requiredBuilding;
     }

@@ -58,6 +58,15 @@ public class Good extends Slugable {
     @ToString.Exclude
     private Set<CostBuildingGoods> neededForBuildings;
 
+    /**
+     * Constructor for the Good class.
+     *
+     * @param name The name of the good.
+     * @param slug The slug for URL representation of the good.
+     * @param remarks Optional remarks providing additional information about the good.
+     * @param isMapResource A boolean flag indicating whether the good is a map resource.
+     * @param neededForBuildings A set of {@link CostBuildingGoods} entities that reference this good as a construction requirement for buildings.
+     */
     @Builder
     public Good(String name, String slug, String remarks, boolean isMapResource, Set<CostBuildingGoods> neededForBuildings) {
         super(name, slug);

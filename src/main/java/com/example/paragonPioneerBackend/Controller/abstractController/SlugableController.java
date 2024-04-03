@@ -77,6 +77,6 @@ public abstract class SlugableController<
      */
     @GetMapping(value = "/find/{smth}", produces = "application/json")
     public @ResponseBody Mapper findByIdSlugName(@PathVariable String smth) {
-        return mapper.map(service.findByIdSlugName(smth));
+        return mapper.map(service.getByIdIriOrSlug(smth));
     }
 }

@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Service.generic;
 
 import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -108,7 +109,7 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      * The implementation should handle merging the original entity with the changes defined in the DTO.
      *
      * @param entityToUpdate The original entity that is to be patched.
-     * @param dto      The DTO containing the changes to be applied to the original entity.
+     * @param dto            The DTO containing the changes to be applied to the original entity.
      * @return The patched entity.
      */
     @Transactional
@@ -125,6 +126,31 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
         Type entity = repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
         repository.deleteById(id);
         return entity;
+    }
+
+    /**
+     * This method is used to retrieve an entity by its ID or IRI.
+     * It first tries to parse the provided string as a UUID. If this fails, it assumes the string is an IRI.
+     * It then extracts the UUID from the IRI and tries to parse it.
+     * If the parsing is successful, it uses the parsed UUID to retrieve the entity from the repository.
+     * If the entity is not found, it throws an EntityNotFoundException.
+     *
+     * @param idOrIri The ID or IRI of the entity to retrieve.
+     * @return The retrieved entity.
+     * @throws EntityNotFoundException if the entity with the provided ID or IRI is not found in the repository.
+     */
+    public Type getByIdOrIri(String idOrIri) {
+        // Try to parse the provided string as a UUID
+        UUID id = UuidUtil.parseUuidFromStringOrNull(idOrIri);
+
+        // If the parsing fails, assume the string is an IRI and extract the UUID from it
+        if (id == null) {
+            id = UuidUtil.parseUuidFromStringOrNull(idOrIri.substring(idOrIri.lastIndexOf("/") + 1));
+        }
+
+        // Use the parsed UUID to retrieve the entity from the repository
+        UUID finalId = id;
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(finalId));
     }
 
     /**

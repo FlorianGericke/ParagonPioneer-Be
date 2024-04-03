@@ -4,8 +4,8 @@ import com.example.paragonPioneerBackend.Bin.Security.AuthServices.Authenticatio
 import com.example.paragonPioneerBackend.Bin.Security.Requests.AuthenticationRequest;
 import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import com.example.paragonPioneerBackend.Bin.Security.Responses.AuthenticationResponse;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +34,7 @@ public class AuthenticationController {
      */
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @ParameterObject RegisterRequest request
+            @RequestBody RegisterRequest request
     ) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
@@ -48,7 +48,7 @@ public class AuthenticationController {
      */
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @ParameterObject AuthenticationRequest request
+            @org.springframework.web.bind.annotation.RequestBody AuthenticationRequest request
     ) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }

@@ -11,6 +11,8 @@ import lombok.*;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PopulationRequirementInput {
     /**
      * The identifier of the good associated with this requirement. It references the specific good that is

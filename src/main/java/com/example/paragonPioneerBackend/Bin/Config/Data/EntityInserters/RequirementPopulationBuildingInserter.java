@@ -53,8 +53,8 @@ public class RequirementPopulationBuildingInserter {
         for (Inserter insert : inserts) {
             try {
                 RequirementPopulationBuildingInput dto = RequirementPopulationBuildingInput.builder()
-                        .population(populationService.findByIdSlugName(insert.populationName).getId().toString())
-                        .building(buildingService.findByIdSlugName(insert.buildingName).getId().toString())
+                        .population(populationService.findSmthByIdSlugName(insert.populationName).getId().toString())
+                        .building(buildingService.findSmthByIdSlugName(insert.buildingName).getId().toString())
                         .amount(insert.amount)
                         .build();
                 requirementBuildingPopulationService.post(dto);
