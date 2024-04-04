@@ -61,8 +61,8 @@ public abstract class BaseController<
      * @return The created entity.
      */
     @PostMapping(produces = "application/json")
-    public @ResponseBody Type postEntity(@RequestBody InputDto dto) {
-        return service.post(dto);
+    public @ResponseBody Mapper postEntity(@RequestBody InputDto dto) {
+        return mapper.map(service.post(dto));
     }
 
     /**

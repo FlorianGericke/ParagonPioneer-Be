@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 
 /**
@@ -39,6 +40,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
     private final RecipeRepository recipeRepository;
     private final GoodRepository goodRepository;
     private final CostBuildingGoodsRepository costBuildingGoodsRepository;
+
     private final BuildingRepository buildingRepository;
 
     /**
@@ -49,8 +51,7 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      */
     @Autowired
     public BuildingService(BuildingRepository repository,
-                           RecipeRepository recipeRepository, GoodRepository goodRepository, CostBuildingGoodsRepository costBuildingGoodsRepository,
-                           BuildingRepository buildingRepository) {
+                           RecipeRepository recipeRepository, GoodRepository goodRepository, CostBuildingGoodsRepository costBuildingGoodsRepository, BuildingRepository buildingRepository) {
         super(repository);
         this.recipeRepository = recipeRepository;
         this.goodRepository = goodRepository;
@@ -76,19 +77,19 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
     public Building mapToEntity(BuildingTypeDTO buildingTypeDTO) throws CastException {
         if (buildingTypeDTO instanceof ProductionBuildingInput productionBuildingInput) {
             return ProductionBuilding.builder()
-                    .name(productionBuildingInput.getName())
                     .remarks(productionBuildingInput.getRemarks())
                     .productionPerMinute(productionBuildingInput.getProductionPerMinute())
-                    .recipe(ServiceUtil.getHelper(productionBuildingInput.getRecipe(), recipeRepository))
+                    .recipe((ServiceUtil.ifErrorThenNull(recipe -> ServiceUtil.getHelper(recipe, recipeRepository), productionBuildingInput.getRecipe())))
+                    .name(productionBuildingInput.getName())
                     .slug(SlugUtil.createSlug(productionBuildingInput.getName()))
                     .costs(getCostBuildingGoods(productionBuildingInput))
                     .build();
         }
         if (buildingTypeDTO instanceof PopulationBuildingInput populationBuildingInput) {
             return PopulationBuilding.builder()
-                    .name(populationBuildingInput.getName())
                     .remarks(populationBuildingInput.getRemarks())
                     .capacity(populationBuildingInput.getCapacity())
+                    .name(populationBuildingInput.getName())
                     .slug(SlugUtil.createSlug(populationBuildingInput.getName()))
                     .costs(getCostBuildingGoods(populationBuildingInput))
                     .build();
@@ -118,6 +119,28 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
     }
 
     /**
+     * This method is used to update an existing Building entity based on the provided DTO.
+     * It first retrieves the original entity from the repository using the provided ID.
+     * If the entity is not found, it throws an EntityNotFoundException.
+     * It then calls the mapToEntity method to create a new entity based on the provided DTO.
+     * The ID of the new entity is set to the ID of the original entity, and the created at timestamp is copied over.
+     * The new entity is then saved back to the repository.
+     *
+     * @param id             The UUID of the entity to be updated.
+     * @param buildingTypeDTO The DTO containing the updated data for the entity.
+     * @return The updated entity.
+     * @throws EntityNotFoundException if the entity with the provided ID is not found in the repository.
+     */
+    @Override
+    @Transactional
+    public Building put(UUID id, BuildingTypeDTO buildingTypeDTO) throws EntityNotFoundException {
+        var oldCosts = costBuildingGoodsRepository.findAllByBuildingId(id);
+        costBuildingGoodsRepository.deleteAll(oldCosts);
+        costBuildingGoodsRepository.flush();
+        return super.put(id, buildingTypeDTO);
+    }
+
+    /**
      * This method is used to update the properties of a Building entity based on the provided DTO.
      * It checks if the DTO and the entity to update are instances of ProductionBuildingDTO and ProductionBuilding respectively.
      * If true, it updates the name, remarks, production per minute, and recipe of the production building.
@@ -132,6 +155,18 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      */
     @Override
     public Building patch(Building entityToUpdate, BuildingTypeDTO dto) throws CastException {
+        if (dto.getCosts() != null && !dto.getCosts().isEmpty()) {
+            costBuildingGoodsRepository.deleteAll(entityToUpdate.getCosts());
+            costBuildingGoodsRepository.flush();
+            entityToUpdate.getCosts().clear();
+            entityToUpdate.setCosts(getCostBuildingGoods(dto));
+            repository.saveAndFlush(entityToUpdate);
+            entityToUpdate.getCosts().forEach(costBuildingGoods -> {
+                costBuildingGoods.setBuilding(entityToUpdate);
+                costBuildingGoodsRepository.saveAndFlush(costBuildingGoods);
+            });
+        }
+
         if (dto instanceof ProductionBuildingInput productionBuildingDTO && entityToUpdate instanceof ProductionBuilding productionBuilding) {
             productionBuilding.setName(ServiceUtil.patchHelper(productionBuilding.getName(), productionBuildingDTO.getName()));
             productionBuilding.setRemarks(ServiceUtil.patchHelper(productionBuilding.getRemarks(), productionBuildingDTO.getRemarks()));
@@ -180,6 +215,16 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
         return repository.findProductionBuildingByRecipeSlug(recipeSlug).orElseThrow(() -> new EntityNotFoundException("Building", recipeSlug));
     }
 
+    /**
+     * Searches for a PopulationBuilding entity that has a capacity equal to the specified value.
+     * This method is particularly useful for retrieving specific population buildings
+     * when the exact capacity is known, facilitating operations like data validation, lookup,
+     * or display in user interfaces.
+     *
+     * @param capacity The capacity of the population building to find.
+     * @return An Optional containing the found population building if available;
+     * otherwise, an empty Optional.
+     */
     private Set<CostBuildingGoods> getCostBuildingGoods(BuildingInput buildingInput) {
         if (buildingInput.getCosts() == null) {
             return null;

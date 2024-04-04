@@ -1,6 +1,5 @@
 package com.example.paragonPioneerBackend.Dto.requests;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 /**
@@ -19,7 +18,6 @@ public class PopulationInput {
      * The name of the population segment. This provides a human-readable identifier that can be used
      * in user interfaces and reports.
      */
-    @JsonProperty("name")
     @Builder.Default
     private String name = null;
 }

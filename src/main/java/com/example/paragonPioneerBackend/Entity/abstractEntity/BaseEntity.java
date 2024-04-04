@@ -30,6 +30,8 @@ public abstract class BaseEntity {
      * Timestamp indicating when the entity was created. It is set automatically and cannot be null.
      */
     @Column(name = "created_at", nullable = false)
+    @Getter
+    @Setter
     private LocalDateTime createdAt;
 
     /**

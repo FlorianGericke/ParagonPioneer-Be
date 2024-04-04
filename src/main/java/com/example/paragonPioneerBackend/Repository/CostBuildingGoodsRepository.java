@@ -2,6 +2,8 @@ package com.example.paragonPioneerBackend.Repository;
 
 import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,4 +17,5 @@ import java.util.UUID;
  * data store, enabling easy data access and manipulation without the need for custom SQL.
  */
 public interface CostBuildingGoodsRepository extends JpaRepository<CostBuildingGoods, UUID> {
+    List<CostBuildingGoods> findAllByBuildingId(UUID buildingId);
 }

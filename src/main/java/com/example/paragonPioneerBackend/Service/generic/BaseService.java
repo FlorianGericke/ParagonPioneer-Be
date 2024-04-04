@@ -71,16 +71,19 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
     }
 
     /**
-     * Updates an entity identified by the given ID with data from the provided DTO.
+     * Updates an existing entity with the provided DTO.
      *
-     * @param id  The ID of the entity to update.
-     * @param dto The DTO containing updated data.
+     * @param id  The UUID of the entity to update.
+     * @param dto The DTO containing the updated data for the entity.
      * @return The updated entity.
+     * @throws EntityNotFoundException if the entity with the provided ID is not found in the repository.
      */
     @Transactional
     public Type put(UUID id, Dto dto) throws EntityNotFoundException {
+        var old = repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
         Type next = mapToEntity(dto);
         next.setId(id);
+        next.setCreatedAt(old.getCreatedAt());
         return repository.saveAndFlush(next);
     }
 
@@ -141,14 +144,5 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      */
     public Type getByIdOrIri(String idOrIri) {
         return repository.findById(UuidUtil.getFromString(idOrIri)).orElseThrow(() -> new EntityNotFoundException(UuidUtil.getFromString(idOrIri)));
-    }
-
-    /**
-     * Retrieves the repository used by this service.
-     *
-     * @return The repository instance.
-     */
-    public Repository getRepository() {
-        return repository;
     }
 }

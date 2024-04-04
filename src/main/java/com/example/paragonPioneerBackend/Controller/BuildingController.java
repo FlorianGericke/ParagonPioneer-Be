@@ -15,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 /**
  * BuildingController is a REST controller that handles HTTP requests related to buildings.
  * It extends the SlugableController and provides endpoints for fetching production and population buildings.
@@ -41,21 +43,124 @@ public class BuildingController extends SlugableController<Building, BuildingRep
         super(service, mapper);
     }
 
-
+    /**
+     * Endpoint to create a new building.
+     * It uses the service to create the building and the mapper to map the entity to response DTO.
+     * This method is hidden from the Swagger UI.
+     *
+     * @param buildingInput The DTO containing the data for the new building.
+     * @return The created building as a DTO.
+     */
     @Override
     @Hidden
-    public Building postEntity(BuildingInput buildingInput) {
+    public BuildingMapper postEntity(BuildingInput buildingInput) {
         return super.postEntity(buildingInput);
     }
 
+    /**
+     * Endpoint to update an existing building.
+     * It uses the service to update the building and the mapper to map the entity to response DTO.
+     * This method is hidden from the Swagger UI.
+     *
+     * @param id The ID of the building to update.
+     * @param buildingInput The DTO containing the updated data for the building.
+     * @return The updated building as a DTO.
+     */
+    @Override
+    @Hidden
+    public BuildingMapper putEntity(UUID id, BuildingInput buildingInput) {
+        return super.putEntity(id, buildingInput);
+    }
+
+    /**
+     * Endpoint to partially update an existing building.
+     * It uses the service to update the building and the mapper to map the entity to response DTO.
+     * This method is hidden from the Swagger UI.
+     *
+     * @param id The ID of the building to update.
+     * @param buildingInput The DTO containing the updated data for the building.
+     * @return The updated building as a DTO.
+     */
+    @Override
+    @Hidden
+    public BuildingMapper patchEntity(UUID id, BuildingInput buildingInput) {
+        return super.patchEntity(id, buildingInput);
+    }
+
+    /**
+     * Endpoint to create a new production building.
+     * It uses the service to create the building and the mapper to map the entity to response DTO.
+     *
+     * @param buildingInput The DTO containing the data for the new production building.
+     * @return The created production building as a DTO.
+     */
     @PostMapping(value = "/productionBuilding", produces = "application/json")
-    public Building postProductionBuilding(@RequestBody ProductionBuildingInput buildingInput) {
+    public BuildingMapper postProductionBuilding(@RequestBody ProductionBuildingInput buildingInput) {
         return super.postEntity(buildingInput);
     }
 
+    /**
+     * Endpoint to create a new population building.
+     * It uses the service to create the building and the mapper to map the entity to response DTO.
+     *
+     * @param buildingInput The DTO containing the data for the new population building.
+     * @return The created population building as a DTO.
+     */
     @PostMapping(value = "/populationBuilding", produces = "application/json")
-    public Building postPopulationBuilding(@RequestBody PopulationBuildingInput buildingInput) {
+    public BuildingMapper postPopulationBuilding(@RequestBody PopulationBuildingInput buildingInput) {
         return super.postEntity(buildingInput);
+    }
+
+    /**
+     * Endpoint to update an existing production building.
+     * It uses the service to update the building and the mapper to map the entity to response DTO.
+     *
+     * @param id The ID of the production building to update.
+     * @param buildingInput The DTO containing the updated data for the production building.
+     * @return The updated production building as a DTO.
+     */
+    @PutMapping(value = "/productionBuilding/{id}", produces = "application/json")
+    public BuildingMapper putProductionBuilding(@PathVariable UUID id, @RequestBody ProductionBuildingInput buildingInput) {
+        return super.putEntity(id, buildingInput);
+    }
+
+    /**
+     * Endpoint to update an existing population building.
+     * It uses the service to update the building and the mapper to map the entity to response DTO.
+     *
+     * @param id The ID of the population building to update.
+     * @param buildingInput The DTO containing the updated data for the population building.
+     * @return The updated population building as a DTO.
+     */
+    @PutMapping(value = "/populationBuilding/{id}", produces = "application/json")
+    public BuildingMapper putPopulationBuilding(@PathVariable UUID id, @RequestBody PopulationBuildingInput buildingInput) {
+        return super.putEntity(id, buildingInput);
+    }
+
+    /**
+     * Endpoint to partially update an existing production building.
+     * It uses the service to update the building and the mapper to map the entity to response DTO.
+     *
+     * @param id The ID of the production building to update.
+     * @param buildingInput The DTO containing the updated data for the production building.
+     * @return The updated production building as a DTO.
+     */
+    @PatchMapping(value = "/productionBuilding/{id}", produces = "application/json")
+    public BuildingMapper patchProductionBuilding(@PathVariable UUID id, @RequestBody ProductionBuildingInput buildingInput) {
+        return super.patchEntity(id, buildingInput);
+    }
+
+    /**
+     * Endpoint to partially update an existing population building.
+     * It uses the service to update the building and the mapper to map the entity to response DTO.
+     *
+     * @param id The ID of the population building to update.
+     * @param buildingInput The DTO containing the updated data for the population building.
+     * @return The updated population building as a DTO.
+     */
+    @PatchMapping(value = "/populationBuilding/{id}", produces = "application/json")
+    public BuildingMapper patchPopulationBuilding(@PathVariable UUID id, @RequestBody PopulationBuildingInput buildingInput) {
+        return super.patchEntity(id, buildingInput);
     }
 
     /**

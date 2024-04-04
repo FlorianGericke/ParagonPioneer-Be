@@ -1,6 +1,5 @@
 package com.example.paragonPioneerBackend.Dto.requests;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -22,7 +21,6 @@ public class ProductionBuildingInput extends BuildingInput {
      * This rate is crucial for calculating production outputs over time.
      */
     @Builder.Default
-    @JsonProperty("production_per_minute")
     private Float productionPerMinute = null;
 
     /**
@@ -31,6 +29,5 @@ public class ProductionBuildingInput extends BuildingInput {
      * produced by the production process.
      */
     @Builder.Default
-    @JsonProperty("id_slug_or_name_of_recipe")
     private String recipe = null;
 }
