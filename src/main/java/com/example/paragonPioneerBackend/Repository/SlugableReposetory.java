@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -42,4 +43,6 @@ public interface SlugableReposetory<SlugableEntity extends Slugable> extends Jpa
      * @return A List of SlugableEntities that contain the provided string in their name.
      */
     Page<SlugableEntity> findAllByNameContains(Pageable pageable, String name);
+
+    List<SlugableEntity> findAllByName(String name);
 }

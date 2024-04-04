@@ -3,7 +3,6 @@ package com.example.paragonPioneerBackend.Controller.abstractController;
 import com.example.paragonPioneerBackend.Dto.response.mappers.ResponseMapper;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
 import com.example.paragonPioneerBackend.Service.generic.BaseService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

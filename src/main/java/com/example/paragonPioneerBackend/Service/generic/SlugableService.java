@@ -7,7 +7,6 @@ import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Repository.SlugableReposetory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -43,7 +42,6 @@ public abstract class SlugableService<Type extends Slugable, Repository extends 
     }
 
     @Override
-    @Transactional
     public Type post(Dto dto) {
         var found = repository.findBySlug(mapToEntity(dto).getSlug());
         if (found.isPresent()) {

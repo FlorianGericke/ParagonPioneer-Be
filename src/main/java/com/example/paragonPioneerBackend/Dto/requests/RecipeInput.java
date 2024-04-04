@@ -19,116 +19,116 @@ public class RecipeInput {
      * Identifier for the first input good required by the recipe.
      */
     @Builder.Default
-    private String good_1 = null;
+    private String input1 = null;
     /**
      * Quantity of the first input good required.
      */
     @Builder.Default
-    private Integer quantityOfGood_1 = null;
+    private Integer quantityOfInput1 = 0;
 
     /**
      * Identifier for the second input good.
      */
     @Builder.Default
-    private String good_2 = null;
+    private String input2 = null;
     /**
      * Quantity of the second input good.
      */
     @Builder.Default
-    private Integer quantityOfGood_2 = null;
+    private Integer quantityOfInput2 = 0;
 
     /**
      * Identifier for the third input good.
      */
     @Builder.Default
-    private String good_3 = null;
+    private String input3 = null;
     /**
      * Quantity of the third input good.
      */
     @Builder.Default
-    private Integer quantityOfGood_3 = null;
+    private Integer quantityOfInput3 = 0;
 
     /**
      * Identifier for the fourth input good.
      */
     @Builder.Default
-    private String good_4 = null;
+    private String input4 = null;
     /**
      * Quantity of the fourth input good.
      */
     @Builder.Default
-    private Integer quantityOfGood_4 = null;
+    private Integer quantityOfInput4 = 0;
 
     /**
      * Identifier for the fifth input good.
      */
     @Builder.Default
-    private String good_5 = null;
+    private String input5 = null;
     /**
      * Quantity of the fifth input good.
      */
     @Builder.Default
-    private Integer quantityOfGood_5 = null;
+    private Integer quantityOfInput5 = 0;
 
     /**
      * Identifier for the sixth input good.
      */
     @Builder.Default
-    private String good_6 = null;
+    private String input6 = null;
     /**
      * Quantity of the sixth input good.
      */
     @Builder.Default
-    private Integer quantityOfGood_6 = null;
+    private Integer quantityOfInput6 = 0;
 
     /**
      * Identifier for the seventh input good.
      */
     @Builder.Default
-    private String good_7 = null;
+    private String input7 = null;
     /**
      * Quantity of the seventh input good.
      */
     @Builder.Default
-    private Integer quantityOfGood_7 = null;
+    private Integer quantityOfInput7 = 0;
 
     /**
      * Identifier for the eighth input good.
      */
     @Builder.Default
-    private String good_8 = null;
+    private String input8 = null;
     /**
      * Quantity of the eighth input good.
      */
     @Builder.Default
-    private Integer quantityOfGood_8 = null;
+    private Integer quantityOfInput8 = 0;
 
     /**
      * Identifier for the ninth input good.
      */
     @Builder.Default
-    private String good_9 = null;
+    private String input9 = null;
     /**
      * Quantity of the ninth input good.
      */
     @Builder.Default
-    private Integer quantityOfGood_9 = null;
+    private Integer quantityOfInput9 = 0;
 
     /**
      * Identifier for the tenth input good, if applicable.
      */
     @Builder.Default
-    private String good_10 = null;
+    private String input10 = null;
     /**
      * Quantity of the tenth input good, if applicable.
      */
     @Builder.Default
-    private Integer quantityOfGood_10 = null;
+    private Integer quantityOfInput10 = 0;
 
     /**
      * Identifier of the output product produced by combining the inputs as specified by the recipe.
      * This field links the recipe to its resultant product.
      */
     @Builder.Default
-    private String outputGood = null;
+    private String output = null;
 }

@@ -79,10 +79,9 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      */
     @Transactional
     public Type put(UUID id, Dto dto) throws EntityNotFoundException {
-        repository.findById(id).ifPresent(repository::delete);
         Type next = mapToEntity(dto);
         next.setId(id);
-        return repository.save(next);
+        return repository.saveAndFlush(next);
     }
 
     /**
@@ -99,8 +98,9 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      */
     @Transactional
     public Type patch(UUID id, Dto dto) throws EntityNotFoundException {
-        Type original = repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
-        return repository.save(patch(original, dto));
+        repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
+        var entity = repository.getReferenceById(id);
+        return repository.saveAndFlush(patch(entity, dto));
     }
 
     /**
@@ -140,17 +140,7 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      * @throws EntityNotFoundException if the entity with the provided ID or IRI is not found in the repository.
      */
     public Type getByIdOrIri(String idOrIri) {
-        // Try to parse the provided string as a UUID
-        UUID id = UuidUtil.parseUuidFromStringOrNull(idOrIri);
-
-        // If the parsing fails, assume the string is an IRI and extract the UUID from it
-        if (id == null) {
-            id = UuidUtil.parseUuidFromStringOrNull(idOrIri.substring(idOrIri.lastIndexOf("/") + 1));
-        }
-
-        // Use the parsed UUID to retrieve the entity from the repository
-        UUID finalId = id;
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(finalId));
+        return repository.findById(UuidUtil.getFromString(idOrIri)).orElseThrow(() -> new EntityNotFoundException(UuidUtil.getFromString(idOrIri)));
     }
 
     /**

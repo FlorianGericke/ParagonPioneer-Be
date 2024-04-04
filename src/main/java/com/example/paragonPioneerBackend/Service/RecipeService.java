@@ -9,7 +9,6 @@ import com.example.paragonPioneerBackend.Service.generic.SlugableService;
 import com.example.paragonPioneerBackend.Util.ServiceUtil;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -46,32 +45,31 @@ public class RecipeService extends SlugableService<Recipe, RecipeRepository, Rec
      * @return The newly created Recipe entity.
      */
     @Override
-    @Transactional
     public Recipe mapToEntity(RecipeInput recipeInput) {
         return Recipe.builder()
-                .input1(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_1()))
-                .quantityOfInput1(recipeInput.getQuantityOfGood_1())
-                .input2(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_2()))
-                .quantityOfInput2(recipeInput.getQuantityOfGood_2())
-                .input3(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_3()))
-                .quantityOfInput3(recipeInput.getQuantityOfGood_3())
-                .input4(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_4()))
-                .quantityOfInput4(recipeInput.getQuantityOfGood_4())
-                .input5(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_5()))
-                .quantityOfInput5(recipeInput.getQuantityOfGood_5())
-                .input6(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_6()))
-                .quantityOfInput6(recipeInput.getQuantityOfGood_6())
-                .input7(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_7()))
-                .quantityOfInput7(recipeInput.getQuantityOfGood_7())
-                .input8(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_8()))
-                .quantityOfInput8(recipeInput.getQuantityOfGood_8())
-                .input9(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_9()))
-                .quantityOfInput9(recipeInput.getQuantityOfGood_9())
-                .input10(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getGood_10()))
-                .quantityOfInput10(recipeInput.getQuantityOfGood_10())
-                .output(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getOutputGood()))
-                .slug(SlugUtil.createSlug(ServiceUtil.getHelper(recipeInput.getOutputGood(), goodRepository).getName()))
-                .name(ServiceUtil.getHelper(recipeInput.getOutputGood(), goodRepository).getName())
+                .input1(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput1()))
+                .quantityOfInput1(recipeInput.getQuantityOfInput1())
+                .input2(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput2()))
+                .quantityOfInput2(recipeInput.getQuantityOfInput2())
+                .input3(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput3()))
+                .quantityOfInput3(recipeInput.getQuantityOfInput3())
+                .input4(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput4()))
+                .quantityOfInput4(recipeInput.getQuantityOfInput4())
+                .input5(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput5()))
+                .quantityOfInput5(recipeInput.getQuantityOfInput5())
+                .input6(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput6()))
+                .quantityOfInput6(recipeInput.getQuantityOfInput6())
+                .input7(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput7()))
+                .quantityOfInput7(recipeInput.getQuantityOfInput7())
+                .input8(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput8()))
+                .quantityOfInput8(recipeInput.getQuantityOfInput8())
+                .input9(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput9()))
+                .quantityOfInput9(recipeInput.getQuantityOfInput9())
+                .input10(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getInput10()))
+                .quantityOfInput10(recipeInput.getQuantityOfInput10())
+                .output(ServiceUtil.ifErrorThenNull(good -> ServiceUtil.getHelper(good, goodRepository), recipeInput.getOutput()))
+                .slug(SlugUtil.createSlug(ServiceUtil.getHelperNoNull(recipeInput.getOutput(), goodRepository).getName()))
+                .name(ServiceUtil.getHelperNoNull(recipeInput.getOutput(), goodRepository).getName())
                 .build();
     }
 
@@ -88,27 +86,27 @@ public class RecipeService extends SlugableService<Recipe, RecipeRepository, Rec
      */
     @Override
     public Recipe patch(Recipe entityToUpdate, RecipeInput recipeInput) {
-        entityToUpdate.setInput1(ServiceUtil.patchHelper(entityToUpdate.getInput1(), recipeInput.getGood_1(), goodRepository));
-        entityToUpdate.setInput2(ServiceUtil.patchHelper(entityToUpdate.getInput2(), recipeInput.getGood_2(), goodRepository));
-        entityToUpdate.setInput3(ServiceUtil.patchHelper(entityToUpdate.getInput3(), recipeInput.getGood_3(), goodRepository));
-        entityToUpdate.setInput4(ServiceUtil.patchHelper(entityToUpdate.getInput4(), recipeInput.getGood_4(), goodRepository));
-        entityToUpdate.setInput5(ServiceUtil.patchHelper(entityToUpdate.getInput5(), recipeInput.getGood_5(), goodRepository));
-        entityToUpdate.setInput6(ServiceUtil.patchHelper(entityToUpdate.getInput6(), recipeInput.getGood_6(), goodRepository));
-        entityToUpdate.setInput7(ServiceUtil.patchHelper(entityToUpdate.getInput7(), recipeInput.getGood_7(), goodRepository));
-        entityToUpdate.setInput8(ServiceUtil.patchHelper(entityToUpdate.getInput8(), recipeInput.getGood_8(), goodRepository));
-        entityToUpdate.setInput9(ServiceUtil.patchHelper(entityToUpdate.getInput9(), recipeInput.getGood_9(), goodRepository));
-        entityToUpdate.setInput10(ServiceUtil.patchHelper(entityToUpdate.getInput10(), recipeInput.getGood_10(), goodRepository));
-        entityToUpdate.setOutput(ServiceUtil.patchHelper(entityToUpdate.getOutput(), recipeInput.getOutputGood(), goodRepository));
-        entityToUpdate.setQuantityOfInput1(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput1(), recipeInput.getQuantityOfGood_1()));
-        entityToUpdate.setQuantityOfInput2(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput2(), recipeInput.getQuantityOfGood_2()));
-        entityToUpdate.setQuantityOfInput3(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput3(), recipeInput.getQuantityOfGood_3()));
-        entityToUpdate.setQuantityOfInput4(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput4(), recipeInput.getQuantityOfGood_4()));
-        entityToUpdate.setQuantityOfInput5(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput5(), recipeInput.getQuantityOfGood_5()));
-        entityToUpdate.setQuantityOfInput6(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput6(), recipeInput.getQuantityOfGood_6()));
-        entityToUpdate.setQuantityOfInput7(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput7(), recipeInput.getQuantityOfGood_7()));
-        entityToUpdate.setQuantityOfInput8(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput8(), recipeInput.getQuantityOfGood_8()));
-        entityToUpdate.setQuantityOfInput9(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput9(), recipeInput.getQuantityOfGood_9()));
-        entityToUpdate.setQuantityOfInput10(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput10(), recipeInput.getQuantityOfGood_10()));
+        entityToUpdate.setInput1(ServiceUtil.patchHelper(entityToUpdate.getInput1(), recipeInput.getInput1(), goodRepository));
+        entityToUpdate.setInput2(ServiceUtil.patchHelper(entityToUpdate.getInput2(), recipeInput.getInput2(), goodRepository));
+        entityToUpdate.setInput3(ServiceUtil.patchHelper(entityToUpdate.getInput3(), recipeInput.getInput3(), goodRepository));
+        entityToUpdate.setInput4(ServiceUtil.patchHelper(entityToUpdate.getInput4(), recipeInput.getInput4(), goodRepository));
+        entityToUpdate.setInput5(ServiceUtil.patchHelper(entityToUpdate.getInput5(), recipeInput.getInput5(), goodRepository));
+        entityToUpdate.setInput6(ServiceUtil.patchHelper(entityToUpdate.getInput6(), recipeInput.getInput6(), goodRepository));
+        entityToUpdate.setInput7(ServiceUtil.patchHelper(entityToUpdate.getInput7(), recipeInput.getInput7(), goodRepository));
+        entityToUpdate.setInput8(ServiceUtil.patchHelper(entityToUpdate.getInput8(), recipeInput.getInput8(), goodRepository));
+        entityToUpdate.setInput9(ServiceUtil.patchHelper(entityToUpdate.getInput9(), recipeInput.getInput9(), goodRepository));
+        entityToUpdate.setInput10(ServiceUtil.patchHelper(entityToUpdate.getInput10(), recipeInput.getInput10(), goodRepository));
+        entityToUpdate.setOutput(ServiceUtil.patchHelper(entityToUpdate.getOutput(), recipeInput.getOutput(), goodRepository));
+        entityToUpdate.setQuantityOfInput1(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput1(), recipeInput.getQuantityOfInput1()));
+        entityToUpdate.setQuantityOfInput2(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput2(), recipeInput.getQuantityOfInput2()));
+        entityToUpdate.setQuantityOfInput3(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput3(), recipeInput.getQuantityOfInput3()));
+        entityToUpdate.setQuantityOfInput4(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput4(), recipeInput.getQuantityOfInput4()));
+        entityToUpdate.setQuantityOfInput5(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput5(), recipeInput.getQuantityOfInput5()));
+        entityToUpdate.setQuantityOfInput6(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput6(), recipeInput.getQuantityOfInput6()));
+        entityToUpdate.setQuantityOfInput7(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput7(), recipeInput.getQuantityOfInput7()));
+        entityToUpdate.setQuantityOfInput8(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput8(), recipeInput.getQuantityOfInput8()));
+        entityToUpdate.setQuantityOfInput9(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput9(), recipeInput.getQuantityOfInput9()));
+        entityToUpdate.setQuantityOfInput10(ServiceUtil.patchHelper(entityToUpdate.getQuantityOfInput10(), recipeInput.getQuantityOfInput10()));
         return entityToUpdate;
     }
 

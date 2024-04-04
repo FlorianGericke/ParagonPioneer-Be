@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Util;
 
 import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
+import com.example.paragonPioneerBackend.Exception.CastException;
 
 import java.util.Set;
 import java.util.UUID;
@@ -23,7 +24,7 @@ public class UuidUtil {
      * @param uuidStr The string representation of the UUID to parse.
      * @return A {@link UUID} object if the string is in a valid UUID format; {@code null} otherwise.
      */
-    public static UUID parseUuidFromStringOrNull(String uuidStr) {
+    public static UUID validateOrNull(String uuidStr) {
         // Regular expression to validate the UUID string format.
         var uuidRegex = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$";
         if (uuidStr == null) {
@@ -63,5 +64,17 @@ public class UuidUtil {
      */
     public static String getIri(String prefix, BaseEntity entity) {
         return entity == null ? null : EnvironmentUtil.getApiBaseUrl() + prefix + entity.getId();
+    }
+
+    public static UUID getFromString(String idOrIri) {
+        UUID id = UuidUtil.validateOrNull(idOrIri);
+        if (id == null) {
+            try {
+                id = UuidUtil.validateOrNull(idOrIri.substring(idOrIri.lastIndexOf("/") + 1));
+            } catch (Exception e) {
+                throw new CastException("Cannot parse " + idOrIri);
+            }
+        }
+        return id;
     }
 }

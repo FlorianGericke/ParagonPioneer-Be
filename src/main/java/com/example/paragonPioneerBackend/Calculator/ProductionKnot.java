@@ -1,5 +1,6 @@
 package com.example.paragonPioneerBackend.Calculator;
 
+import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.Good;
 import lombok.Getter;
@@ -37,9 +38,9 @@ public class ProductionKnot {
      * Initializes the good and the manufacturer.
      *
      * @param good The good that this node produces.
-     * @param manufacturer The building that produces this good.
+     * @param manufacturer The productionBuilding that produces this good.
      */
-    public ProductionKnot(Good good, Building manufacturer) {
+    public ProductionKnot(Good good, ProductionBuilding manufacturer) {
         this.good = good;
         this.manufacturer = manufacturer;
     }

@@ -16,7 +16,6 @@ import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -60,16 +59,16 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      * @throws EntityNotFoundException if the recipe for the ProductionBuilding is not found in the repository.
      */
     @Override
-    @Transactional
     public Building mapToEntity(BuildingTypeDTO buildingTypeDTO) throws CastException {
         if (buildingTypeDTO instanceof ProductionBuildingInput productionBuildingInput) {
-            return ProductionBuilding.builder()
+            var re = ProductionBuilding.builder()
                     .name(productionBuildingInput.getName())
                     .remarks(productionBuildingInput.getRemarks())
                     .productionPerMinute(productionBuildingInput.getProductionPerMinute())
-                    .recipe(ServiceUtil.ifErrorThenNull((good) -> ServiceUtil.getHelper(good, recipeRepository),productionBuildingInput.getRecipe()))
+                    .recipe(ServiceUtil.getHelper(productionBuildingInput.getRecipe(), recipeRepository))
                     .slug(SlugUtil.createSlug(productionBuildingInput.getName()))
                     .build();
+            return re;
         }
         if (buildingTypeDTO instanceof PopulationBuildingInput populationBuildingInput) {
             return PopulationBuilding.builder()
@@ -142,6 +141,6 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      * otherwise, an empty Optional.
      */
     public ProductionBuilding getProductionBuildingByRecipeSlug(String recipeSlug) throws EntityNotFoundException {
-        return repository.findProductionBuildingByRecipeSlug(recipeSlug).orElseThrow(() -> new EntityNotFoundException("recipeSlug", recipeSlug));
+        return repository.findProductionBuildingByRecipeSlug(recipeSlug).orElseThrow(() -> new EntityNotFoundException("Building", recipeSlug));
     }
 }

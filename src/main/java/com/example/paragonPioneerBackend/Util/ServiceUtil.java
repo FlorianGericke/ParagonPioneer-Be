@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Util;
 
 import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.Slugable;
+import com.example.paragonPioneerBackend.Exception.CastException;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.SlugableReposetory;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -72,14 +73,18 @@ public class ServiceUtil {
      *
      * @param <Type>     The type of the BaseEntity.
      * @param toUpdate   The original BaseEntity value that might be updated.
-     * @param nextID     The ID of the new BaseEntity that might replace the original value.
+     * @param entity     The ID of the new BaseEntity that might replace the original value.
      * @param repository The JpaRepository where the BaseEntity is stored.
      * @return The original BaseEntity value if 'nextID' is null, otherwise the new BaseEntity value.
      * @throws EntityNotFoundException if the BaseEntity with the 'nextID' is not found in the repository.
      */
-    public static <Type extends BaseEntity> Type patchHelper(Type toUpdate, String nextID, JpaRepository<Type, UUID> repository) {
-        return nextID == null ? toUpdate : repository.findById(UUID.fromString(nextID)).orElseThrow(() -> new EntityNotFoundException(UUID.fromString(nextID)));
+    public static <Type extends BaseEntity> Type patchHelper(Type toUpdate, String entity, JpaRepository<Type, UUID> repository) {
+        return entity == null ? toUpdate : repository.findById(UuidUtil.getFromString(entity)).orElseThrow(() -> new EntityNotFoundException(UUID.fromString(entity)));
     }
+//
+//    public static <Type extends Slugable, Service extends SlugableService<Type,?,?>> Type patchHelper(Type toUpdate, String nextID, Service service) {
+//        return nextID == null ? toUpdate : service.getByIdIriOrSlug(nextID);
+//    }
 
     /**
      * This helper method is used to retrieve a Slugable entity from the repository.
@@ -91,16 +96,33 @@ public class ServiceUtil {
      * @param entity     The string that represents the UUID or slug of the entity.
      * @param repository The SlugableReposetory where the Slugable entity is stored.
      * @return The Slugable entity if found in the repository.
-     * @throws EntityNotFoundException if the Slugable entity is not found in the repository.
+     * @throws CastException if the Slugable entity is not found in the repository.
      */
     public static <Type extends Slugable> Type getHelper(String entity, SlugableReposetory<Type> repository) {
-        UUID uuid = UuidUtil.parseUuidFromStringOrNull(entity);
-        if (uuid != null) {
-            return repository.findById(uuid)
-                    .orElseThrow(() -> new EntityNotFoundException("Recipe", uuid.toString()));
-        } else {
-            return repository.findBySlug(entity)
-                    .orElseThrow(() -> new EntityNotFoundException("Recipe", entity));
+        if (entity == null || entity.isEmpty()) {
+            return null;
+        }
+        UUID identifier = UuidUtil.getFromString(entity);
+        if (identifier != null) {
+            return repository.findById(identifier).orElseThrow(() -> new EntityNotFoundException(identifier));
+        }
+        return repository.findBySlug(entity).orElseGet(() -> {
+            var list = repository.findAllByName(entity);
+            if (list.isEmpty()) {
+                throw new CastException("Cannot parse " + entity);
+            }
+            return list.get(0);
+        });
+    }
+
+    public static <Type extends Slugable> Type getHelperNoNull(String entity, SlugableReposetory<Type> repository) {
+        if (entity == null || entity.isEmpty()) {
+            throw new CastException("Cannot parse " + entity);
+        }
+        try {
+            return repository.findById(UuidUtil.getFromString(entity)).orElseThrow(() -> new EntityNotFoundException(UUID.fromString(entity)));
+        } catch (CastException e) {
+            return repository.findBySlug(entity).orElseThrow(() -> e);
         }
     }
 
@@ -109,12 +131,12 @@ public class ServiceUtil {
      * If the function throws an exception, the method catches it and returns null.
      * This method is useful when you want to perform an operation that might throw an exception, but you want to handle the exception and return a default value instead.
      *
-     * @param <T> The type of the BaseEntity.
-     * @param function The function to be applied to the entityIdSlug.
+     * @param <T>          The type of the BaseEntity.
+     * @param function     The function to be applied to the entityIdSlug.
      * @param entityIdSlug The string that represents the ID or slug of the entity.
      * @return The result of applying the function to the entityIdSlug, or null if the function throws an exception.
      */
-    public static <T extends BaseEntity>  T ifErrorThenNull(Function<String, T> function, String entityIdSlug) {
+    public static <T extends BaseEntity> T ifErrorThenNull(Function<String, T> function, String entityIdSlug) {
         try {
             return function.apply(entityIdSlug);
         } catch (Exception e) {
