@@ -1,8 +1,8 @@
 package com.example.paragonPioneerBackend.Entity;
 
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
 import com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding;
-import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

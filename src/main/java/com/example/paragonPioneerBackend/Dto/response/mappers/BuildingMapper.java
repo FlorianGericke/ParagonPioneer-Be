@@ -3,9 +3,17 @@ package com.example.paragonPioneerBackend.Dto.response.mappers;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
+import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
 import com.example.paragonPioneerBackend.Util.UuidUtil;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * The BuildingMapper class is a Spring component that implements the ResponseMapper interface.
@@ -27,7 +35,7 @@ public class BuildingMapper implements ResponseMapper<BuildingMapper, Building> 
     private String name;
     private String remarks;
     @Builder.Default
-    private String[] costs = null;
+    private ArrayList<Map<String,String>> costs = null;
     @Builder.Default
     private String requirePopulation = null;
     private String slug;
@@ -53,11 +61,18 @@ public class BuildingMapper implements ResponseMapper<BuildingMapper, Building> 
      */
     @Override
     public BuildingMapper map(Building input) {
+        var costs = new ArrayList<Map<String, String>>();
+        for (CostBuildingGoods costBuildingGoods: input.getCosts()){
+            var cost = new LinkedHashMap<String, String>();
+            cost.put("good", UuidUtil.getIri("goods/", costBuildingGoods.getGood()));
+            cost.put("amount", String.valueOf(costBuildingGoods.getAmount()));
+            costs.add(cost);
+        }
         var mapper = BuildingMapper.builder()
                 .id(input.getId().toString())
                 .name(input.getName())
                 .remarks(input.getRemarks())
-                .costs(UuidUtil.getIri("goods/", input.getCosts()))
+                .costs(costs)
                 .slug(input.getSlug());
 
 

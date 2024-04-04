@@ -6,9 +6,12 @@ import com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput;
 import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
+import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
 import com.example.paragonPioneerBackend.Exception.CastException;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
+import com.example.paragonPioneerBackend.Repository.CostBuildingGoodsRepository;
+import com.example.paragonPioneerBackend.Repository.GoodRepository;
 import com.example.paragonPioneerBackend.Repository.RecipeRepository;
 import com.example.paragonPioneerBackend.Service.generic.SlugableService;
 import com.example.paragonPioneerBackend.Util.ServiceUtil;
@@ -16,6 +19,10 @@ import com.example.paragonPioneerBackend.Util.SlugUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -30,19 +37,25 @@ import org.springframework.data.domain.Pageable;
 @org.springframework.stereotype.Service()
 public class BuildingService<BuildingTypeDTO extends BuildingInput> extends SlugableService<Building, BuildingRepository, BuildingTypeDTO> {
     private final RecipeRepository recipeRepository;
+    private final GoodRepository goodRepository;
+    private final CostBuildingGoodsRepository costBuildingGoodsRepository;
+    private final BuildingRepository buildingRepository;
 
     /**
      * Autowired constructor to inject repository dependencies.
      *
-     * @param repository         General repository for Building entities.
-     * @param buildingRepository Specific repository for Building entities.
-     * @param recipeRepository   Repository for managing Recipe entities related to ProductionBuildings.
+     * @param repository       General repository for Building entities.
+     * @param recipeRepository Repository for managing Recipe entities related to ProductionBuildings.
      */
     @Autowired
-    public BuildingService(BuildingRepository repository, BuildingRepository buildingRepository,
-                           RecipeRepository recipeRepository) {
+    public BuildingService(BuildingRepository repository,
+                           RecipeRepository recipeRepository, GoodRepository goodRepository, CostBuildingGoodsRepository costBuildingGoodsRepository,
+                           BuildingRepository buildingRepository) {
         super(repository);
         this.recipeRepository = recipeRepository;
+        this.goodRepository = goodRepository;
+        this.costBuildingGoodsRepository = costBuildingGoodsRepository;
+        this.buildingRepository = buildingRepository;
     }
 
     /**
@@ -59,16 +72,17 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      * @throws EntityNotFoundException if the recipe for the ProductionBuilding is not found in the repository.
      */
     @Override
+    @Transactional
     public Building mapToEntity(BuildingTypeDTO buildingTypeDTO) throws CastException {
         if (buildingTypeDTO instanceof ProductionBuildingInput productionBuildingInput) {
-            var re = ProductionBuilding.builder()
+            return ProductionBuilding.builder()
                     .name(productionBuildingInput.getName())
                     .remarks(productionBuildingInput.getRemarks())
                     .productionPerMinute(productionBuildingInput.getProductionPerMinute())
                     .recipe(ServiceUtil.getHelper(productionBuildingInput.getRecipe(), recipeRepository))
                     .slug(SlugUtil.createSlug(productionBuildingInput.getName()))
+                    .costs(getCostBuildingGoods(productionBuildingInput))
                     .build();
-            return re;
         }
         if (buildingTypeDTO instanceof PopulationBuildingInput populationBuildingInput) {
             return PopulationBuilding.builder()
@@ -76,9 +90,31 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
                     .remarks(populationBuildingInput.getRemarks())
                     .capacity(populationBuildingInput.getCapacity())
                     .slug(SlugUtil.createSlug(populationBuildingInput.getName()))
+                    .costs(getCostBuildingGoods(populationBuildingInput))
                     .build();
         }
         throw new CastException("No Matching Building Type Found");
+    }
+
+    /**
+     * This method is used to create a new Building entity and store it in the database.
+     * It also sets the Building entity to each CostBuildingGoods entity associated with it and saves them in the database.
+     * This method is transactional, meaning that if any operation within the method fails, all operations are rolled back.
+     *
+     * @param buildingTypeDTO The DTO that contains the new values for the Building entity.
+     * @return The newly created Building entity.
+     */
+    @Override
+    @Transactional
+    public Building post(BuildingTypeDTO buildingTypeDTO) {
+        Building building = super.post(buildingTypeDTO);
+        if (building.getCosts() != null) {
+            for (CostBuildingGoods costBuildingGoods : building.getCosts()) {
+                costBuildingGoods.setBuilding(building);
+                costBuildingGoodsRepository.saveAndFlush(costBuildingGoods);
+            }
+        }
+        return building;
     }
 
     /**
@@ -142,5 +178,22 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      */
     public ProductionBuilding getProductionBuildingByRecipeSlug(String recipeSlug) throws EntityNotFoundException {
         return repository.findProductionBuildingByRecipeSlug(recipeSlug).orElseThrow(() -> new EntityNotFoundException("Building", recipeSlug));
+    }
+
+    private Set<CostBuildingGoods> getCostBuildingGoods(BuildingInput buildingInput) {
+        if (buildingInput.getCosts() == null) {
+            return null;
+        }
+        Set<CostBuildingGoods> costs = new HashSet<>();
+        for (var cost : buildingInput.getCosts()) {
+            if (!cost.containsKey("good") || !cost.containsKey("amount")) {
+                throw new CastException("Costs must contain 'good' and 'amount' keys");
+            }
+            var good = ServiceUtil.getHelper(cost.get("good"), goodRepository);
+            var amount = cost.get("amount");
+            var saved = costBuildingGoodsRepository.saveAndFlush(CostBuildingGoods.builder().good(good).amount(Integer.parseInt(amount)).build());
+            costs.add(saved);
+        }
+        return costs;
     }
 }

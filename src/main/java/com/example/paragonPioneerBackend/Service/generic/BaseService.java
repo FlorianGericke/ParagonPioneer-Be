@@ -43,7 +43,7 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      */
     @Transactional
     public Type post(Dto dto) {
-        return repository.save(mapToEntity(dto));
+        return repository.saveAndFlush(mapToEntity(dto));
     }
 
     @Transactional

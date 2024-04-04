@@ -2,18 +2,18 @@ package com.example.paragonPioneerBackend.Controller;
 
 import com.example.paragonPioneerBackend.Controller.abstractController.SlugableController;
 import com.example.paragonPioneerBackend.Dto.requests.BuildingInput;
+import com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput;
+import com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput;
 import com.example.paragonPioneerBackend.Dto.response.mappers.BuildingMapper;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Repository.BuildingRepository;
 import com.example.paragonPioneerBackend.Service.BuildingService;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * BuildingController is a REST controller that handles HTTP requests related to buildings.
@@ -39,6 +39,23 @@ public class BuildingController extends SlugableController<Building, BuildingRep
      */
     public BuildingController(BuildingService<BuildingInput> service, BuildingMapper mapper) {
         super(service, mapper);
+    }
+
+
+    @Override
+    @Hidden
+    public Building postEntity(BuildingInput buildingInput) {
+        return super.postEntity(buildingInput);
+    }
+
+    @PostMapping(value = "/productionBuilding", produces = "application/json")
+    public Building postProductionBuilding(@RequestBody ProductionBuildingInput buildingInput) {
+        return super.postEntity(buildingInput);
+    }
+
+    @PostMapping(value = "/populationBuilding", produces = "application/json")
+    public Building postPopulationBuilding(@RequestBody PopulationBuildingInput buildingInput) {
+        return super.postEntity(buildingInput);
     }
 
     /**
