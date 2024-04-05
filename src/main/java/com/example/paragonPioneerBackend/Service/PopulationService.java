@@ -62,13 +62,6 @@ public class PopulationService extends SlugableService<Population, PopulationRep
         return repository.save(population);
     }
 
-    @Override
-    public Population patch(UUID id, PopulationInput input) throws EntityNotFoundException {
-        var population = super.patch(id, input);
-//        population.setRequiredGoods(getRequirements(input, population));
-        return repository.save(population);
-    }
-
     @Transactional
     @Override
     public Population put(UUID id, PopulationInput input) throws EntityNotFoundException {
