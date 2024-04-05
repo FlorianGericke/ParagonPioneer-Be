@@ -1,6 +1,8 @@
 package com.example.paragonPioneerBackend.Dto.response.mappers;
 
 import com.example.paragonPioneerBackend.Entity.joinTables.PopulationRequirement;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +16,23 @@ import org.springframework.stereotype.Component;
  */
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Component
 public class PopulationRequirementMapper implements ResponseMapper<PopulationRequirementMapper, PopulationRequirement>
 {
+    private String id;
+    @Builder.Default
+    private String good = null;
+    @Builder.Default
+    private String population = null;
+    @Builder.Default
+    private Float consumption = null;
+    @Builder.Default
+    private Float produceRate = null;
+    @Builder.Default
+    private boolean isBasic = true;
+
     /**
      * This method is used to map a PopulationRequirement entity to a PopulationRequirementMapper object.
      * Currently, this method is not implemented and returns null.
@@ -27,6 +42,13 @@ public class PopulationRequirementMapper implements ResponseMapper<PopulationReq
      */
     @Override
     public PopulationRequirementMapper map(PopulationRequirement input) {
-        return null;
+        return PopulationRequirementMapper.builder()
+                .id(UuidUtil.getIri("requirement/population/",input))
+                .good(UuidUtil.getIri("good/",input.getGood()))
+                .population(UuidUtil.getIri("population/",input.getPopulation()))
+                .consumption(input.getConsumption())
+                .produceRate(input.getProduce())
+                .isBasic(input.isBasic())
+                .build();
     }
 }

@@ -48,8 +48,8 @@ public class PopulationRequirementService extends BaseService<PopulationRequirem
     @Transactional
     public PopulationRequirement mapToEntity(PopulationRequirementInput populationRequirementDTO) {
         return PopulationRequirement.builder()
-                .good(ServiceUtil.getHelper(populationRequirementDTO.getGood(), goodRepository))
-                .population(ServiceUtil.getHelper(populationRequirementDTO.getPopulation(), populationRepository))
+                .good(ServiceUtil.ifErrorThenNull(good ->ServiceUtil.getHelper(good, goodRepository),populationRequirementDTO.getGood()))
+                .population(ServiceUtil.ifErrorThenNull(population->ServiceUtil.getHelper(population, populationRepository),populationRequirementDTO.getPopulation()))
                 .consumption(populationRequirementDTO.getConsumption())
                 .produce(populationRequirementDTO.getProduceRate())
                 .isBasic(populationRequirementDTO.isBasic())

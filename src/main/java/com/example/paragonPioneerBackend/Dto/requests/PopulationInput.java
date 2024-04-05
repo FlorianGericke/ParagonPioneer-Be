@@ -20,4 +20,11 @@ public class PopulationInput {
      */
     @Builder.Default
     private String name = null;
+
+    /**
+     * The name of the population segment. This provides a human-readable identifier that can be used
+     * in user interfaces and reports.
+     */
+    @Builder.Default
+    private String[] requirements = null;
 }

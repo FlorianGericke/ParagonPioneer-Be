@@ -298,6 +298,14 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
         return requirementPopulationBuildingRepository.getReferenceById(re.getId());
     }
 
+    /**
+     * This method is used to remove the costs associated with a building.
+     * It first checks if the building has any costs associated with it.
+     * If it does, it deletes all the costs from the costBuildingGoodsRepository,
+     * sets the costs of the building to null, and saves the building in the repository.
+     *
+     * @param building The Building entity from which the costs are to be removed.
+     */
     private void removeCosts(Building building) {
         if (building.getCosts() != null) {
             costBuildingGoodsRepository.deleteAll(building.getCosts());
@@ -306,15 +314,38 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
         }
     }
 
+    /**
+     * This method is used to remove the costs associated with a building, given the building's ID.
+     * It retrieves the building from the repository using the provided ID,
+     * and calls the removeCosts method with the retrieved building.
+     *
+     * @param id The UUID of the Building entity from which the costs are to be removed.
+     * @throws EntityNotFoundException If no Building entity with the provided UUID is found.
+     */
     private void removeCosts(UUID id) {
         removeCosts(repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Building", id)));
     }
 
+    /**
+     * This method is used to remove the requirement associated with a building, given the building's ID.
+     * It retrieves the building from the repository using the provided ID,
+     * and calls the removeRequirement method with the retrieved building.
+     *
+     * @param id The UUID of the Building entity from which the requirement is to be removed.
+     * @throws EntityNotFoundException If no Building entity with the provided UUID is found.
+     */
     private void removeRequirement(UUID id) {
         removeRequirement(repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Building", id)));
     }
 
-
+    /**
+     * This method is used to remove the requirement associated with a building.
+     * It first checks if the building has a requirement associated with it.
+     * If it does, it deletes the requirement from the requirementPopulationBuildingRepository,
+     * sets the requirement of the building to null, and saves the building in the repository.
+     *
+     * @param building The Building entity from which the requirement is to be removed.
+     */
     private void removeRequirement(Building building) {
         if (building.getRequirePopulation() != null) {
             requirementPopulationBuildingRepository.deleteById(building.getRequirePopulation().getId());

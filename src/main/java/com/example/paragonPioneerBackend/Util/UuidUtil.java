@@ -66,6 +66,17 @@ public class UuidUtil {
         return entity == null ? null : EnvironmentUtil.getApiBaseUrl() + prefix + entity.getId();
     }
 
+    /**
+     * This method is used to parse a UUID from a given string or IRI (Internationalized Resource Identifier).
+     * It first attempts to parse the UUID from the input string using the validateOrNull method.
+     * If the input string is not a valid UUID, it assumes the string is an IRI and attempts to extract the UUID from it.
+     * The UUID is assumed to be the substring after the last "/" character in the IRI.
+     * If the extraction fails, a CastException is thrown with a message indicating the input string could not be parsed.
+     *
+     * @param idOrIri The string or IRI from which to extract the UUID.
+     * @return A UUID parsed from the input string or IRI.
+     * @throws CastException If the input string is not a valid UUID or IRI, or if the UUID cannot be extracted from the IRI.
+     */
     public static UUID getFromString(String idOrIri) {
         UUID id = UuidUtil.validateOrNull(idOrIri);
         if (id == null) {

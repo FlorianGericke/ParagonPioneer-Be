@@ -2,6 +2,8 @@ package com.example.paragonPioneerBackend.Repository;
 
 import com.example.paragonPioneerBackend.Entity.joinTables.PopulationRequirement;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,4 +17,12 @@ import java.util.UUID;
  * population requirement data without directly dealing with database queries.
  */
 public interface PopulationRequirementRepository extends JpaRepository<PopulationRequirement, UUID> {
+
+    /**
+     * This method retrieves a list of population requirements based on the provided population ID.
+     *
+     * @param populationId The ID of the population for which to retrieve requirements.
+     * @return A list of population requirements associated with the specified population ID.
+     */
+    List<PopulationRequirement> findByPopulationId(UUID populationId);
 }

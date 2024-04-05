@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-
 /**
  * The PopulationMapper class is a Spring component that implements the ResponseMapper interface.
  * It is used to map a Population entity to a PopulationMapper object.
@@ -27,7 +26,7 @@ public class PopulationMapper  implements ResponseMapper<PopulationMapper, Popul
     private String name;
     private String slug;
     @Builder.Default
-    private String[] requiredGoods = null;
+    private String[] requirements = null;
     private String populationProductionUnit;
 
     /**
@@ -45,7 +44,7 @@ public class PopulationMapper  implements ResponseMapper<PopulationMapper, Popul
                 .id(UuidUtil.getIri("population/",input))
                 .name(input.getName())
                 .slug(input.getSlug())
-                .requiredGoods(input.getRequiredGoods().stream().map(good -> EnvironmentUtil.getApiBaseUrl() + "/requirement/population_good/" + good.getId().toString()).toArray(String[]::new))
+                .requirements(input.getRequiredGoods() == null ? null: input.getRequiredGoods().stream().map(good -> EnvironmentUtil.getApiBaseUrl() + "requirement/population/" + good.getId().toString()).toArray(String[]::new))
                 .populationProductionUnit(input.getPopulationProductionUnit().name())
                 .build();
     }

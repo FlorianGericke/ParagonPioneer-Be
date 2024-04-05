@@ -26,7 +26,6 @@ import java.util.UUID;
  * - BuildingRepository: The repository type used for accessing the database.
  * - BuildingInput: The DTO type used for creating and updating buildings.
  * - BuildingMapper: The mapper type used for converting between entities and DTOs.
- * - BuildingService<BuildingInput>: The service type used for business logic operations.
  */
 @RestController
 @RequestMapping(path = "/api/v1/building")

@@ -1,7 +1,9 @@
 package com.example.paragonPioneerBackend.Dto.requests;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * DTO class for transferring data related to the requirements of a population segment within the application.
@@ -19,7 +21,6 @@ public class PopulationRequirementInput {
      * consumed or produced by the population segment identified by {@code populationId}.
      */
     @Builder.Default
-    @JsonProperty("id_slug_or_name_of_good")
     private String good = null;
 
     /**
@@ -27,7 +28,6 @@ public class PopulationRequirementInput {
      * population segment that consumes or produces the good identified by {@code goodId}.
      */
     @Builder.Default
-    @JsonProperty("id_slug_or_name_of_population")
     private String population = null;
 
     /**
@@ -35,7 +35,6 @@ public class PopulationRequirementInput {
      * the consumption needs of the population for the good.
      */
     @Builder.Default
-    @JsonProperty("consumption")
     private Float consumption = null;
 
     /**
@@ -43,7 +42,6 @@ public class PopulationRequirementInput {
      * the production output of the population for the good.
      */
     @Builder.Default
-    @JsonProperty("produce_rate")
     private Float produceRate = null;
 
     /**
@@ -51,6 +49,5 @@ public class PopulationRequirementInput {
      * Basic necessities are essential for the survival or well-being of the population.
      */
     @Builder.Default
-    @JsonProperty("isBasic")
     private boolean isBasic = true;
 }

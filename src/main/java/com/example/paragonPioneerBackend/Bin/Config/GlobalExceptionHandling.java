@@ -36,7 +36,7 @@ public class GlobalExceptionHandling {
         body.put("type", ex.getClass().getSimpleName());
         body.put("message", ex.getMessage());
         // todo Only for Development
-//        body.put("stackTrace", ex.getStackTrace());
+        body.put("stackTrace", ex.getStackTrace());
 
         // You can add more details to the body as needed
         return new ResponseEntity<>(body, ex.getStatusCode());
