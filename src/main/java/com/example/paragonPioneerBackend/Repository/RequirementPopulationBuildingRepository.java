@@ -3,6 +3,7 @@ package com.example.paragonPioneerBackend.Repository;
 import com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -19,4 +20,5 @@ import java.util.UUID;
  * requirement-population-building relation data without directly dealing with database queries.
  */
 public interface RequirementPopulationBuildingRepository extends JpaRepository<RequirementPopulationBuilding, UUID> {
+    ArrayList<RequirementPopulationBuilding> findAllByBuildingId(UUID buildingId);
 }

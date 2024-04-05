@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -56,4 +57,23 @@ public abstract class BuildingInput {
                 }
             ]""")
     private ArrayList<Map<String, String>> costs = null;
+
+    /**
+     * The requirements for the building.
+     * This is a map of requirements, where each entry represents a requirement.
+     * Each requirement has two properties: "population" and "amount".
+     * The "population" property can be an IRI, Slug, UUID, or Name.
+     * The "amount" property is a string representing the required amount.
+     */
+    @Builder.Default
+    @SchemaProperties({
+            @SchemaProperty(name = "population", schema = @Schema(type = "IRI, Slug, UUID, or Name")),
+            @SchemaProperty(name = "amount", schema = @Schema(type = "string"))
+    })
+    @Schema(example = """
+            {
+                "population": "string",
+                "amount": "string"
+            }""")
+    private HashMap<String, String> require = null;
 }

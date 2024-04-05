@@ -34,8 +34,8 @@ public class GlobalExceptionHandling {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("type", ex.getClass().getSimpleName());
+        body.put("message", ex.getMessage());
         // todo Only for Development
-//        body.put("message", ex.getMessage());
 //        body.put("stackTrace", ex.getStackTrace());
 
         // You can add more details to the body as needed

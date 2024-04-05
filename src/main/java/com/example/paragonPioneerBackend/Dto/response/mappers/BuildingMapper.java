@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,12 +38,10 @@ public class BuildingMapper implements ResponseMapper<BuildingMapper, Building> 
     @Builder.Default
     private ArrayList<Map<String, String>> costs = null;
     @Builder.Default
-    private String requirePopulation = null;
+    private HashMap<String, String> require = null;
     private String slug;
-    // Only for population buildings
     @Builder.Default
     private Integer capacity = null;
-    // Only for production buildings
     @Builder.Default
     private Float productionPerMinute = null;
     @Builder.Default
@@ -71,19 +70,26 @@ public class BuildingMapper implements ResponseMapper<BuildingMapper, Building> 
             }
         }
 
+        var require = new HashMap<String, String>();
+        if (input.getRequirePopulation() != null) {
+            require.put("population", UuidUtil.getIri("population/", input.getRequirePopulation().getPopulation()));
+            require.put("amount", String.valueOf(input.getRequirePopulation().getAmount()));
+        }
+
         var mapper = BuildingMapper.builder()
-                .id(input.getId().toString())
+                .id(UuidUtil.getIri("building/", input))
                 .name(input.getName())
                 .remarks(input.getRemarks())
                 .costs(costs)
+                .require(require)
                 .slug(input.getSlug());
 
 
         if (input instanceof PopulationBuilding) {
             mapper.capacity(((PopulationBuilding) input).getCapacity());
         } else if (input instanceof ProductionBuilding) {
+            mapper.id(UuidUtil.getIri("building/productionBuilding/", input));
             mapper.productionPerMinute(((ProductionBuilding) input).getProductionPerMinute());
-            mapper.recipe(UuidUtil.getIri("recipe/", ((ProductionBuilding) input).getRecipe()));
         }
         return mapper.build();
     }

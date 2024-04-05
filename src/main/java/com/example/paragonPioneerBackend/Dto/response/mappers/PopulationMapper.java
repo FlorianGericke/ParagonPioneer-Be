@@ -2,6 +2,7 @@ package com.example.paragonPioneerBackend.Dto.response.mappers;
 
 import com.example.paragonPioneerBackend.Entity.Population;
 import com.example.paragonPioneerBackend.Util.EnvironmentUtil;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,7 +42,7 @@ public class PopulationMapper  implements ResponseMapper<PopulationMapper, Popul
     @Override
     public PopulationMapper map(Population input) {
         return PopulationMapper.builder()
-                .id(input.getId().toString())
+                .id(UuidUtil.getIri("population/",input))
                 .name(input.getName())
                 .slug(input.getSlug())
                 .requiredGoods(input.getRequiredGoods().stream().map(good -> EnvironmentUtil.getApiBaseUrl() + "/requirement/population_good/" + good.getId().toString()).toArray(String[]::new))

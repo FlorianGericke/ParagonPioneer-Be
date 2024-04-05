@@ -3,6 +3,7 @@ package com.example.paragonPioneerBackend.Dto.response.mappers;
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Entity.Recipe;
 import com.example.paragonPioneerBackend.Util.EnvironmentUtil;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -58,7 +59,7 @@ public class RecipeMapper implements ResponseMapper<RecipeMapper, Recipe> {
     @Override
     public RecipeMapper map(Recipe input) {
         return RecipeMapper.builder()
-                .id(input.getId().toString())
+                .id(UuidUtil.getIri("recipe/",input))
                 .slug(input.getSlug())
                 .input1(getIriOrNull(input.getInput1()))
                 .quantityOfInput1(input.getQuantityOfInput1())

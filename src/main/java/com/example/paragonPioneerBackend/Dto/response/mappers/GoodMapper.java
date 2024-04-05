@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Dto.response.mappers;
 
 import com.example.paragonPioneerBackend.Entity.Good;
+import com.example.paragonPioneerBackend.Util.UuidUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,7 +38,7 @@ public class GoodMapper implements ResponseMapper<GoodMapper, Good> {
     @Override
     public GoodMapper map(Good input) {
         return GoodMapper.builder()
-                .id(input.getId().toString())
+                .id(UuidUtil.getIri("good/",input))
                 .name(input.getName())
                 .remarks(input.getRemarks())
                 .slug(input.getSlug())

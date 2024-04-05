@@ -43,7 +43,7 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
      */
     @Transactional
     public Type post(Dto dto) {
-        return repository.saveAndFlush(mapToEntity(dto));
+        return repository.save(mapToEntity(dto));
     }
 
     @Transactional
@@ -84,7 +84,7 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
         Type next = mapToEntity(dto);
         next.setId(id);
         next.setCreatedAt(old.getCreatedAt());
-        return repository.saveAndFlush(next);
+        return repository.save(next);
     }
 
     /**
@@ -103,7 +103,7 @@ public abstract class BaseService<Type extends BaseEntity, Repository extends Jp
     public Type patch(UUID id, Dto dto) throws EntityNotFoundException {
         repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
         var entity = repository.getReferenceById(id);
-        return repository.saveAndFlush(patch(entity, dto));
+        return repository.save(patch(entity, dto));
     }
 
     /**

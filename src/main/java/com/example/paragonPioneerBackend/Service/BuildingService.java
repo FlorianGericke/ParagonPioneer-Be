@@ -7,12 +7,10 @@ import com.example.paragonPioneerBackend.Entity.PopulationBuilding;
 import com.example.paragonPioneerBackend.Entity.ProductionBuilding;
 import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
 import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
+import com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding;
 import com.example.paragonPioneerBackend.Exception.CastException;
 import com.example.paragonPioneerBackend.Exception.EntityNotFoundException;
-import com.example.paragonPioneerBackend.Repository.BuildingRepository;
-import com.example.paragonPioneerBackend.Repository.CostBuildingGoodsRepository;
-import com.example.paragonPioneerBackend.Repository.GoodRepository;
-import com.example.paragonPioneerBackend.Repository.RecipeRepository;
+import com.example.paragonPioneerBackend.Repository.*;
 import com.example.paragonPioneerBackend.Service.generic.SlugableService;
 import com.example.paragonPioneerBackend.Util.ServiceUtil;
 import com.example.paragonPioneerBackend.Util.SlugUtil;
@@ -40,131 +38,120 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
     private final RecipeRepository recipeRepository;
     private final GoodRepository goodRepository;
     private final CostBuildingGoodsRepository costBuildingGoodsRepository;
-
-    private final BuildingRepository buildingRepository;
+    private final RequirementPopulationBuildingRepository requirementPopulationBuildingRepository;
+    private final PopulationRepository populationRepository;
 
     /**
-     * Autowired constructor to inject repository dependencies.
+     * Constructor for the BuildingService class.
+     * It initializes the BuildingService with the provided repositories.
+     * It also calls the superclass's constructor with the BuildingRepository.
      *
-     * @param repository       General repository for Building entities.
-     * @param recipeRepository Repository for managing Recipe entities related to ProductionBuildings.
+     * @param repository                              The BuildingRepository for managing Building entities.
+     * @param recipeRepository                        The RecipeRepository for managing Recipe entities.
+     * @param goodRepository                          The GoodRepository for managing Good entities.
+     * @param costBuildingGoodsRepository             The CostBuildingGoodsRepository for managing CostBuildingGoods entities.
+     * @param requirementPopulationBuildingRepository The RequirementPopulationBuildingRepository for managing RequirementPopulationBuilding entities.
+     * @param populationRepository                    The PopulationRepository for managing Population entities.
      */
     @Autowired
     public BuildingService(BuildingRepository repository,
-                           RecipeRepository recipeRepository, GoodRepository goodRepository, CostBuildingGoodsRepository costBuildingGoodsRepository, BuildingRepository buildingRepository) {
+                           RecipeRepository recipeRepository,
+                           GoodRepository goodRepository,
+                           CostBuildingGoodsRepository costBuildingGoodsRepository,
+                           RequirementPopulationBuildingRepository requirementPopulationBuildingRepository,
+                           PopulationRepository populationRepository) {
         super(repository);
         this.recipeRepository = recipeRepository;
         this.goodRepository = goodRepository;
         this.costBuildingGoodsRepository = costBuildingGoodsRepository;
-        this.buildingRepository = buildingRepository;
+        this.requirementPopulationBuildingRepository = requirementPopulationBuildingRepository;
+        this.populationRepository = populationRepository;
     }
 
     /**
-     * This method is used to map a BuildingTypeDTO to a Building entity.
-     * It checks if the DTO is an instance of ProductionBuildingInput or PopulationBuildingInput.
-     * If the DTO is an instance of ProductionBuildingInput, it creates a new ProductionBuilding entity with the properties from the DTO.
-     * The recipe for the ProductionBuilding is retrieved from the repository using either the UUID or the slug from the DTO.
-     * If the DTO is an instance of PopulationBuildingInput, it creates a new PopulationBuilding entity with the properties from the DTO.
-     * If the DTO is not an instance of either ProductionBuildingInput or PopulationBuildingInput, it throws a CastException.
+     * This method is responsible for creating a new Building entity based on the provided BuildingTypeDTO.
+     * It first calls the superclass's post method to create a basic Building entity.
+     * Then, it sets the 'requirePopulation' field of the Building entity by calling the 'createRequirement' method with the BuildingTypeDTO and the newly created Building entity.
+     * It also sets the 'costs' field of the Building entity by calling the 'createCostBuildingGoods' method with the BuildingTypeDTO and the newly created Building entity.
+     * Finally, it saves the updated Building entity in the repository and returns it.
      *
-     * @param buildingTypeDTO The DTO that contains the new values for the Building entity.
-     * @return The newly created Building entity.
-     * @throws CastException           if the DTO does not match any known building types.
-     * @throws EntityNotFoundException if the recipe for the ProductionBuilding is not found in the repository.
+     * @param buildingTypeDTO The BuildingTypeDTO object that contains the data for creating the Building entity.
+     * @return The created and saved Building entity.
      */
-    @Override
     @Transactional
-    public Building mapToEntity(BuildingTypeDTO buildingTypeDTO) throws CastException {
-        if (buildingTypeDTO instanceof ProductionBuildingInput productionBuildingInput) {
-            return ProductionBuilding.builder()
-                    .remarks(productionBuildingInput.getRemarks())
-                    .productionPerMinute(productionBuildingInput.getProductionPerMinute())
-                    .recipe((ServiceUtil.ifErrorThenNull(recipe -> ServiceUtil.getHelper(recipe, recipeRepository), productionBuildingInput.getRecipe())))
-                    .name(productionBuildingInput.getName())
-                    .slug(SlugUtil.createSlug(productionBuildingInput.getName()))
-                    .costs(getCostBuildingGoods(productionBuildingInput))
-                    .build();
-        }
-        if (buildingTypeDTO instanceof PopulationBuildingInput populationBuildingInput) {
-            return PopulationBuilding.builder()
-                    .remarks(populationBuildingInput.getRemarks())
-                    .capacity(populationBuildingInput.getCapacity())
-                    .name(populationBuildingInput.getName())
-                    .slug(SlugUtil.createSlug(populationBuildingInput.getName()))
-                    .costs(getCostBuildingGoods(populationBuildingInput))
-                    .build();
-        }
-        throw new CastException("No Matching Building Type Found");
-    }
-
-    /**
-     * This method is used to create a new Building entity and store it in the database.
-     * It also sets the Building entity to each CostBuildingGoods entity associated with it and saves them in the database.
-     * This method is transactional, meaning that if any operation within the method fails, all operations are rolled back.
-     *
-     * @param buildingTypeDTO The DTO that contains the new values for the Building entity.
-     * @return The newly created Building entity.
-     */
     @Override
-    @Transactional
     public Building post(BuildingTypeDTO buildingTypeDTO) {
-        Building building = super.post(buildingTypeDTO);
-        if (building.getCosts() != null) {
-            for (CostBuildingGoods costBuildingGoods : building.getCosts()) {
-                costBuildingGoods.setBuilding(building);
-                costBuildingGoodsRepository.saveAndFlush(costBuildingGoods);
-            }
-        }
-        return building;
+        var building = super.post(buildingTypeDTO);
+        building.setRequirePopulation(createRequirement(buildingTypeDTO, building));
+        building.setCosts(createCostBuildingGoods(buildingTypeDTO, building));
+        return repository.save(building);
     }
 
     /**
-     * This method is used to update an existing Building entity based on the provided DTO.
-     * It first retrieves the original entity from the repository using the provided ID.
-     * If the entity is not found, it throws an EntityNotFoundException.
-     * It then calls the mapToEntity method to create a new entity based on the provided DTO.
-     * The ID of the new entity is set to the ID of the original entity, and the created at timestamp is copied over.
-     * The new entity is then saved back to the repository.
+     * This method is responsible for updating an existing Building entity based on the provided BuildingTypeDTO.
+     * It first calls the superclass's put method to update the basic fields of the Building entity.
+     * Then, it sets the 'requirePopulation' field of the Building entity by calling the 'createRequirement' method with the BuildingTypeDTO and the updated Building entity.
+     * It also sets the 'costs' field of the Building entity by calling the 'createCostBuildingGoods' method with the BuildingTypeDTO and the updated Building entity.
+     * Finally, it saves the updated Building entity in the repository and returns it.
      *
-     * @param id             The UUID of the entity to be updated.
-     * @param buildingTypeDTO The DTO containing the updated data for the entity.
-     * @return The updated entity.
-     * @throws EntityNotFoundException if the entity with the provided ID is not found in the repository.
+     * @param id              The UUID of the Building entity to be updated.
+     * @param buildingTypeDTO The BuildingTypeDTO object that contains the data for updating the Building entity.
+     * @return The updated and saved Building entity.
+     * @throws EntityNotFoundException If no Building entity with the provided UUID is found.
      */
-    @Override
     @Transactional
+    @Override
     public Building put(UUID id, BuildingTypeDTO buildingTypeDTO) throws EntityNotFoundException {
-        var oldCosts = costBuildingGoodsRepository.findAllByBuildingId(id);
-        costBuildingGoodsRepository.deleteAll(oldCosts);
-        costBuildingGoodsRepository.flush();
-        return super.put(id, buildingTypeDTO);
+        removeRequirement(id);
+        removeCosts(id);
+        var building = super.put(id, buildingTypeDTO);
+        building.setRequirePopulation(createRequirement(buildingTypeDTO, building));
+        building.setCosts(createCostBuildingGoods(buildingTypeDTO, building));
+        return repository.save(building);
     }
 
     /**
-     * This method is used to update the properties of a Building entity based on the provided DTO.
-     * It checks if the DTO and the entity to update are instances of ProductionBuildingDTO and ProductionBuilding respectively.
-     * If true, it updates the name, remarks, production per minute, and recipe of the production building.
-     * If the DTO and the entity to update are instances of PopulationBuildingDTO and PopulationBuilding respectively,
-     * it updates the name, remarks, and capacity of the population building.
-     * If neither condition is met, it throws a CastException.
+     * This method is responsible for partially updating an existing Building entity based on the provided BuildingTypeDTO.
+     * It first calls the superclass's patch method to update the basic fields of the Building entity.
+     * Then, it sets the 'requirePopulation' field of the Building entity by calling the 'createRequirement' method with the BuildingTypeDTO and the updated Building entity.
+     * It also sets the 'costs' field of the Building entity by calling the 'createCostBuildingGoods' method with the BuildingTypeDTO and the updated Building entity.
+     * Finally, it saves the updated Building entity in the repository and returns it.
      *
-     * @param entityToUpdate The original Building entity that might be updated.
-     * @param dto            The DTO that contains the new values for the Building entity.
-     * @return The updated Building entity.
-     * @throws CastException if the DTO and the entity to update do not match any known building types.
+     * @param id              The UUID of the Building entity to be updated.
+     * @param buildingTypeDTO The BuildingTypeDTO object that contains the data for updating the Building entity.
+     * @return The updated and saved Building entity.
+     * @throws EntityNotFoundException If no Building entity with the provided UUID is found.
      */
+    @Transactional
+    @Override
+    public Building patch(UUID id, BuildingTypeDTO buildingTypeDTO) throws EntityNotFoundException {
+        var building = super.patch(id, buildingTypeDTO);
+        building.setRequirePopulation(createRequirement(buildingTypeDTO, building));
+        building.setCosts(createCostBuildingGoods(buildingTypeDTO, building));
+        return repository.save(building);
+    }
+
+    /**
+     * This method is responsible for partially updating an existing Building entity based on the provided BuildingTypeDTO.
+     * It first checks if the BuildingTypeDTO has a 'require' field. If so, it deletes the existing RequirementPopulationBuilding entity associated with the Building entity and sets the 'requirePopulation' field to null.
+     * It then checks if the BuildingTypeDTO has a 'costs' field. If so, it deletes all the existing CostBuildingGoods entities associated with the Building entity and sets the 'requirePopulation' field to null.
+     * If the BuildingTypeDTO is an instance of ProductionBuildingInput and the Building entity is an instance of ProductionBuilding, it updates the 'name', 'remarks', 'productionPerMinute', and 'recipe' fields of the ProductionBuilding entity.
+     * If the BuildingTypeDTO is an instance of PopulationBuildingInput and the Building entity is an instance of PopulationBuilding, it updates the 'name', 'remarks', and 'capacity' fields of the PopulationBuilding entity.
+     * If the BuildingTypeDTO is not an instance of any known subtype, it throws a CastException.
+     *
+     * @param entityToUpdate The Building entity to be updated.
+     * @param dto            The BuildingTypeDTO object that contains the data for updating the Building entity.
+     * @return The updated Building entity.
+     * @throws CastException If the BuildingTypeDTO is not an instance of any known subtype.
+     */
+    @Transactional
     @Override
     public Building patch(Building entityToUpdate, BuildingTypeDTO dto) throws CastException {
+        if (dto.getRequire() != null) {
+            removeRequirement(entityToUpdate);
+        }
         if (dto.getCosts() != null && !dto.getCosts().isEmpty()) {
-            costBuildingGoodsRepository.deleteAll(entityToUpdate.getCosts());
-            costBuildingGoodsRepository.flush();
-            entityToUpdate.getCosts().clear();
-            entityToUpdate.setCosts(getCostBuildingGoods(dto));
-            repository.saveAndFlush(entityToUpdate);
-            entityToUpdate.getCosts().forEach(costBuildingGoods -> {
-                costBuildingGoods.setBuilding(entityToUpdate);
-                costBuildingGoodsRepository.saveAndFlush(costBuildingGoods);
-            });
+            removeCosts(entityToUpdate);
         }
 
         if (dto instanceof ProductionBuildingInput productionBuildingDTO && entityToUpdate instanceof ProductionBuilding productionBuilding) {
@@ -180,6 +167,45 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
             populationBuilding.setCapacity(ServiceUtil.patchHelper(populationBuilding.getCapacity(), populationBuildingDTO.getCapacity()));
             return populationBuilding;
         }
+        throw new CastException("No Matching Building Type Found");
+    }
+
+    /**
+     * This method is responsible for mapping a BuildingTypeDTO object to a Building entity.
+     * It checks the type of the BuildingTypeDTO and maps it to the corresponding Building subtype.
+     * If the BuildingTypeDTO is an instance of ProductionBuildingInput, it maps it to a ProductionBuilding entity.
+     * If the BuildingTypeDTO is an instance of PopulationBuildingInput, it maps it to a PopulationBuilding entity.
+     * If the BuildingTypeDTO is not an instance of any known subtype, it throws a CastException.
+     *
+     * @param buildingTypeDTO The BuildingTypeDTO object to be mapped to a Building entity.
+     * @return The mapped Building entity.
+     * @throws CastException If the BuildingTypeDTO is not an instance of any known subtype.
+     */
+    @Override
+    @Transactional
+    public Building mapToEntity(BuildingTypeDTO buildingTypeDTO) throws CastException {
+        // Check if the BuildingTypeDTO is an instance of ProductionBuildingInput
+        if (buildingTypeDTO instanceof ProductionBuildingInput productionBuildingInput) {
+            // Map the ProductionBuildingInput to a ProductionBuilding entity
+            return ProductionBuilding.builder()
+                    .remarks(productionBuildingInput.getRemarks())
+                    .productionPerMinute(productionBuildingInput.getProductionPerMinute())
+                    .recipe((ServiceUtil.ifErrorThenNull(recipe -> ServiceUtil.getHelper(recipe, recipeRepository), productionBuildingInput.getRecipe())))
+                    .name(productionBuildingInput.getName())
+                    .slug(SlugUtil.createSlug(productionBuildingInput.getName()))
+                    .build();
+        }
+        // Check if the BuildingTypeDTO is an instance of PopulationBuildingInput
+        if (buildingTypeDTO instanceof PopulationBuildingInput populationBuildingInput) {
+            // Map the PopulationBuildingInput to a PopulationBuilding entity
+            return PopulationBuilding.builder()
+                    .remarks(populationBuildingInput.getRemarks())
+                    .capacity(populationBuildingInput.getCapacity())
+                    .name(populationBuildingInput.getName())
+                    .slug(SlugUtil.createSlug(populationBuildingInput.getName()))
+                    .build();
+        }
+        // Throw a CastException if the BuildingTypeDTO is not an instance of any known subtype
         throw new CastException("No Matching Building Type Found");
     }
 
@@ -221,11 +247,11 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
      * when the exact capacity is known, facilitating operations like data validation, lookup,
      * or display in user interfaces.
      *
-     * @param capacity The capacity of the population building to find.
+     * @param buildingInput The capacity of the population building to find.
      * @return An Optional containing the found population building if available;
      * otherwise, an empty Optional.
      */
-    private Set<CostBuildingGoods> getCostBuildingGoods(BuildingInput buildingInput) {
+    private Set<CostBuildingGoods> createCostBuildingGoods(BuildingInput buildingInput, Building building) {
         if (buildingInput.getCosts() == null) {
             return null;
         }
@@ -236,9 +262,64 @@ public class BuildingService<BuildingTypeDTO extends BuildingInput> extends Slug
             }
             var good = ServiceUtil.getHelper(cost.get("good"), goodRepository);
             var amount = cost.get("amount");
-            var saved = costBuildingGoodsRepository.saveAndFlush(CostBuildingGoods.builder().good(good).amount(Integer.parseInt(amount)).build());
-            costs.add(saved);
+            var saved = costBuildingGoodsRepository.save(CostBuildingGoods.builder().building(building).good(good).amount(Integer.parseInt(amount)).build());
+            costs.add(costBuildingGoodsRepository.getReferenceById(saved.getId()));
         }
         return costs;
+    }
+
+    /**
+     * This method is responsible for creating a RequirementPopulationBuilding entity based on the provided BuildingInput.
+     * It checks if the BuildingInput has a 'require' field. If not, it returns null.
+     * If the 'require' field is present, it checks if it contains 'population' and 'amount' keys. If not, it throws a CastException.
+     * It retrieves the population and amount values from the 'require' field, and uses them to create a new RequirementPopulationBuilding entity.
+     * The new entity is saved in the requirementPopulationBuildingRepository and returned.
+     *
+     * @param buildingInput The BuildingInput object that contains the 'require' field.
+     * @param building      The Building entity to which the RequirementPopulationBuilding entity is associated.
+     * @return The created RequirementPopulationBuilding entity.
+     * @throws CastException If the 'require' field does not contain 'population' and 'amount' keys.
+     */
+    private RequirementPopulationBuilding createRequirement(BuildingInput buildingInput, Building building) {
+        // Check if the BuildingInput has a 'require' field
+        if (buildingInput.getRequire() == null) {
+            return null;
+        }
+        // Check if the 'require' field contains 'population' and 'amount' keys
+        if (!buildingInput.getRequire().containsKey("population") || !buildingInput.getRequire().containsKey("amount")) {
+            throw new CastException("Costs must contain 'population' and 'amount' keys");
+        }
+        // Retrieve the population and amount values from the 'require' field
+        var population = ServiceUtil.getHelper(buildingInput.getRequire().get("population"), populationRepository);
+        var amount = buildingInput.getRequire().get("amount");
+        // Create a new RequirementPopulationBuilding entity and save it in the repository
+        var re = requirementPopulationBuildingRepository.save(RequirementPopulationBuilding.builder().building(building).population(population).amount(Integer.parseInt(amount)).build());
+        // Return the created RequirementPopulationBuilding entity
+        return requirementPopulationBuildingRepository.getReferenceById(re.getId());
+    }
+
+    private void removeCosts(Building building) {
+        if (building.getCosts() != null) {
+            costBuildingGoodsRepository.deleteAll(building.getCosts());
+            building.setCosts(null);
+            repository.save(building);
+        }
+    }
+
+    private void removeCosts(UUID id) {
+        removeCosts(repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Building", id)));
+    }
+
+    private void removeRequirement(UUID id) {
+        removeRequirement(repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Building", id)));
+    }
+
+
+    private void removeRequirement(Building building) {
+        if (building.getRequirePopulation() != null) {
+            requirementPopulationBuildingRepository.deleteById(building.getRequirePopulation().getId());
+            building.setRequirePopulation(null);
+            repository.save(building);
+        }
     }
 }
