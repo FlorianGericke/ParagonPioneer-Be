@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Dto.GoodDTO;
+import com.example.paragonPioneerBackend.Dto.requests.GoodInput;
+import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,20 +18,45 @@ import org.springframework.stereotype.Component;
 public class GoodInserter {
     private final GoodService service;
 
+
     /**
-     * Record to store the initial setup data for goods, including their name and any remarks.
+     * A record class that represents an inserter for goods data.
+     * This class is used to create instances of goods data that will be inserted into the database.
+     * Each instance of this class represents a single good, with properties for the name, remarks, and whether it is a map resource.
      */
     private record Inserter(String name, String remarks, boolean isMapResource) {
-        // Static factory method with default value for isMapResource
+        /**
+         * A static factory method that creates a new Inserter instance with the specified name and remarks.
+         * The isMapResource property is set to false by default.
+         *
+         * @param name    The name of the good.
+         * @param remarks The remarks for the good.
+         * @return A new Inserter instance with the specified name and remarks, and isMapResource set to false.
+         */
         static Inserter of(String name, String remarks) {
             return new Inserter(name, remarks, false);
         }
 
+        /**
+         * A static factory method that creates a new Inserter instance with the specified name, remarks, and isMapResource.
+         *
+         * @param name          The name of the good.
+         * @param remarks       The remarks for the good.
+         * @param isMapResource A boolean indicating whether the good is a map resource.
+         * @return A new Inserter instance with the specified name, remarks, and isMapResource.
+         */
         static Inserter of(String name, String remarks, boolean isMapResource) {
             return new Inserter(name, remarks, isMapResource);
         }
     }
 
+    /**
+     * An array of Inserter records that represent the initial goods data to be inserted into the database.
+     * Each record in the array represents a single good, with properties for the name, remarks, and whether it is a map resource.
+     * The name and remarks are provided as strings, and the isMapResource property is a boolean.
+     * The array is populated with a predefined set of goods, each represented by an Inserter record created using the Inserter.of static factory method.
+     * This array is used in the run method of the GoodInserter class to populate the database with initial goods data.
+     */
     private final Inserter[] inserts = {
             Inserter.of("Land tile", "", true),
             Inserter.of("Water tile", "", true),
@@ -123,18 +149,23 @@ public class GoodInserter {
     };
 
     /**
-     * Executes the insertion of predefined goods data into the database.
-     * Iterates through each record in the predefined list and uses the GoodService
-     * to create a new Good entity for each, populating the application's database
-     * with essential goods data.
+     * This method is responsible for running the insertion process of the initial goods data into the database.
+     * It iterates over the array of Inserter records, each representing a single good to be inserted.
+     * For each record, it creates a new GoodInput object using the GoodInput builder, setting the isMapResource, name, and remarks properties from the record.
+     * The GoodInput object is then posted to the GoodService, which handles the actual insertion into the database.
      */
     public void run() {
         for (Inserter insert : inserts) {
-            service.post(GoodDTO.builder()
-                    .isMapResource(insert.isMapResource)
-                    .name(insert.name)
-                    .remarks(insert.remarks)
-                    .build());
+            try {
+                service.post(GoodInput.builder()
+                        .isMapResource(insert.isMapResource)
+                        .name(insert.name)
+                        .remarks(insert.remarks)
+                        .build());
+            } catch (ParagonPioneerBeException e) {
+                System.out.println("Could not create Good " + insert.name);
+            }
         }
+
     }
 }

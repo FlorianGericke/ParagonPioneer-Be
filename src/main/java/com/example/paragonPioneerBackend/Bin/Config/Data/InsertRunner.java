@@ -1,8 +1,11 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data;
 
+//import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
+//import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
+
+import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
 import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
-import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -26,9 +29,9 @@ public class InsertRunner implements ApplicationRunner {
     private final RecipeInserter recipeInserter;
     private final PopulationInserter populationInserter;
     private final BuildingInserter buildingInserter;
-    private final Cost_Building_goodsInserter costBuildingGoodsInserter;
-    private final Population_RequirementInserter populationRequirementInserter;
-    private final Requirement_Population_BuildingInserter costBuildingPopulation;
+    private final CostBuildingGoodsInserter costBuildingGoodsInserter;
+    private final PopulationRequirementInserter populationRequirementInserter;
+    private final RequirementPopulationBuildingInserter costBuildingPopulation;
 
     /**
      * Executes the data insertion tasks in the prescribed order when the application starts.
@@ -39,22 +42,19 @@ public class InsertRunner implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) {
+        // todo Hard Coded Admin login with Clear Password is just for Developing and testing. This should be set in an ignored env file
         authenticationService.register(RegisterRequest.builder()
-                .email("amin@user.de")
+                .email("admin@user.de")
                 .password("admin")
                 .build());
 
         goodInserter.run();
-        populationInserter.run();
         recipeInserter.run();
-        populationRequirementInserter.run();
         buildingInserter.run();
-
-        /*
-        todo: the following inserter are not havely required, and will be implemented after the 0.1 release
-         */
-
-//         costBuildingGoodsInserter.run(); // Insert cost-building-goods relations.
-//         costBuildingPopulation.run(); // Insert requirement-population-building relations.
+        populationInserter.run();
+        populationRequirementInserter.run();
+        costBuildingGoodsInserter.run();
+        costBuildingPopulation.run();
+        System.out.println("CMS Server: " + "http://localhost:8080/swagger-ui/index.html");
     }
 }

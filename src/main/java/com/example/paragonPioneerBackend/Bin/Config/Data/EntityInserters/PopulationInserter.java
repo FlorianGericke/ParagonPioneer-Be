@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Dto.PopulationDTO;
+import com.example.paragonPioneerBackend.Dto.requests.PopulationInput;
+import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.PopulationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,11 +19,16 @@ public class PopulationInserter {
     private final PopulationService populationService;
 
     /**
-     * Record to store the setup data for population segments, including their names.
+     * Private record class used to define the names of population segments to be inserted.
+     * Each record represents a distinct population segment, such as pioneers, colonists, etc.
      */
     private record Inserter(String name) {
     }
 
+    /**
+     * Predefined list of population segments to be inserted into the database.
+     * Each segment represents a distinct demographic group within the application.
+     */
     private final Inserter[] inserts = {
             new Inserter("Pioneers"),
             new Inserter("Colonists"),
@@ -39,9 +45,13 @@ public class PopulationInserter {
      */
     public void run() {
         for (Inserter insert : inserts) {
-            populationService.post(PopulationDTO.builder()
+            try {
+            populationService.post(PopulationInput.builder()
                     .name(insert.name)
                     .build());
+            } catch (ParagonPioneerBeException e) {
+                System.out.println("Could not create Population " + insert.name);
+            }
         }
     }
 }

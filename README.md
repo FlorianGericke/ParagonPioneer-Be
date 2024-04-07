@@ -45,6 +45,20 @@ Or, when using an IDE, execute the main method in:
 
     java/com/example/paragonPioneerBackend/PpApiApplication.java
 
+### 3. Access the Application
+
+Now that the application is running, you can access it via the following URL:
+
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+All available endpoints are listed here. You Should be able to use all GET Requests without any problems.
+For POST, PUT and DELETE requests, you will need to authenticate yourself. To do this, you can use the following credentials:
+
+    email: admin@user.de
+    password: admin
+
+These Credentials are only for testing purposes. In a real application, you would need to create your own user and request 
+Admin Access from the Owner of the Application.
 
 ## Api Documentation
 

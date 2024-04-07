@@ -1,7 +1,8 @@
 package com.example.paragonPioneerBackend.Entity;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
-import com.example.paragonPioneerBackend.Util.SlugUtil;
+import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Slugable;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,31 +23,17 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Builder
 @Table(name = "good")
-@RequiredArgsConstructor
-@AllArgsConstructor
 @SQLDelete(sql = "UPDATE good SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-public class Good extends BaseEntity implements Slugable {
-
-    /**
-     * The name of the good. It is unique and cannot be null, ensuring that each good can be distinctly identified.
-     */
-    @Column(name = "name", nullable = false, unique = true, columnDefinition = "varchar(255)")
-    private String name;
+@NoArgsConstructor
+public class Good extends Slugable {
 
     /**
      * Optional remarks providing additional information about the good. It can be null and provides flexibility in describing the good.
      */
     @Column(name = "remarks", nullable = true, columnDefinition = "varchar(255)")
     private String remarks;
-
-    /**
-     * A unique slug for the good, used for URL representation. The slug is validated upon setting to ensure it meets URL-friendly criteria.
-     */
-    @Column(name = "slug", nullable = false, unique = true, columnDefinition = "varchar(255)")
-    private String slug;
 
 
     /**
@@ -60,39 +47,31 @@ public class Good extends BaseEntity implements Slugable {
      * @Builder.Default is a Lombok annotation that sets the default value for this field when building an instance of Good using the builder pattern.
      */
     @Column(name = "isMapResource", nullable = false, columnDefinition = "boolean")
-    @Builder.Default
-    private boolean isMapResource = false;
+    private boolean isMapResource;
 
     /**
-     * A set of {@link Cost_Building_Goods} entities that reference this good as a construction requirement for buildings.
+     * A set of {@link CostBuildingGoods} entities that reference this good as a construction requirement for buildings.
      * This relationship is managed as a one-to-many association, indicating the various buildings that require this good.
      */
     @OneToMany(mappedBy = "good")
     @JsonBackReference
     @ToString.Exclude
-    private Set<Cost_Building_Goods> neededForBuildings;
+    private Set<CostBuildingGoods> neededForBuildings;
 
     /**
-     * Retrieves the slug associated with this good.
+     * Constructor for the Good class.
      *
-     * @return The slug as a {@link String}.
+     * @param name The name of the good.
+     * @param slug The slug for URL representation of the good.
+     * @param remarks Optional remarks providing additional information about the good.
+     * @param isMapResource A boolean flag indicating whether the good is a map resource.
+     * @param neededForBuildings A set of {@link CostBuildingGoods} entities that reference this good as a construction requirement for buildings.
      */
-    @Override
-    public String getSlug() {
-        return this.slug;
-    }
-
-    /**
-     * Sets and validates the slug for this good. If the slug is invalid, an exception is thrown.
-     *
-     * @param slug The slug to set for this good.
-     * @throws IllegalStateException if the slug is invalid as determined by {@link SlugUtil}.
-     */
-    public void setSlug(String slug) {
-        if (!SlugUtil.validateSlug(slug)) {
-            throw new IllegalStateException("Could not create Slug for" + slug);
-        }
-
-        this.slug = slug;
+    @Builder
+    public Good(String name, String slug, String remarks, boolean isMapResource, Set<CostBuildingGoods> neededForBuildings) {
+        super(name, slug);
+        this.remarks = remarks;
+        this.isMapResource = isMapResource;
+        this.neededForBuildings = neededForBuildings;
     }
 }

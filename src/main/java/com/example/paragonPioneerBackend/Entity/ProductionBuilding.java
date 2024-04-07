@@ -1,8 +1,12 @@
 package com.example.paragonPioneerBackend.Entity;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
-import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
-import jakarta.persistence.*;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
+import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
+import com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.*;
 
 import java.util.Set;
@@ -16,12 +20,13 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class ProductionBuilding extends Building {
 
     /**
      * Specifies the production rate of the building in terms of items produced per minute.
      */
-    @Column(name="production_per_minute")
+    @Column(name = "production_per_minute")
     private float productionPerMinute = 0;
 
     /**
@@ -33,29 +38,20 @@ public class ProductionBuilding extends Building {
     private Recipe recipe = null;
 
     /**
-     * Constructs a new instance of ProductionBuilding with specified attributes, including production details
-     * and the recipe used for production.
+     * Constructor for the ProductionBuilding class.
      *
-     * @param name The name of the ProductionBuilding, inherited from {@link Building}.
-     * @param remarks Additional information about the ProductionBuilding, inherited from {@link Building}.
-     * @param costs A set of costs associated with constructing or maintaining the ProductionBuilding,
-     *              represented by {@link Cost_Building_Goods}.
-     * @param requirementPopulationBuildings The population requirements for the building,
-     *                                       represented by {@link Requirement_Population_Building}.
-     * @param productionPerMinute The production rate of the building, specifying how many items it can produce per minute.
-     * @param recipe The production recipe of the building, detailing the required inputs and their quantities for production.
-     * @param slug The unique slug for the ProductionBuilding, used for URL representation, inherited from {@link Building}.
+     * @param name                The name of the production building.
+     * @param slug                The slug for URL representation of the production building.
+     * @param remarks             Optional remarks providing additional information about the production building.
+     * @param costs               A set of {@link CostBuildingGoods} entities that represent the cost of constructing this building.
+     * @param requirePopulation   A {@link RequirementPopulationBuilding} entity that represents the population requirement for this building.
+     * @param productionPerMinute The production rate of the building in terms of items produced per minute.
+     * @param recipe              The {@link Recipe} that dictates what goods are produced by this building, including the required input goods and their quantities.
      */
     @Builder
-    public ProductionBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, Requirement_Population_Building requirementPopulationBuildings, float productionPerMinute, Recipe recipe, String slug) {
-        super(name, remarks, costs, requirementPopulationBuildings, slug);
+    public ProductionBuilding(String name, String slug, String remarks, Set<CostBuildingGoods> costs, RequirementPopulationBuilding requirePopulation, float productionPerMinute, Recipe recipe) {
+        super(name, slug, remarks, costs, requirePopulation);
         this.productionPerMinute = productionPerMinute;
         this.recipe = recipe;
-    }
-
-    /**
-     * Default constructor for ProductionBuilding, required for JPA entity initialization.
-     */
-    public ProductionBuilding() {
     }
 }
