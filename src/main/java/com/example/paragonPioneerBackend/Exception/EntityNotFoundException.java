@@ -14,7 +14,12 @@ public class EntityNotFoundException extends ParagonPioneerBeException {
         this(identifier, value.toString());
     }
 
+
     public EntityNotFoundException(UUID id) {
-        this("id", id.toString());
+        super(HttpStatusCode.valueOf(404), "No Entity with id" + id.toString() + " found");
+    }
+
+    public EntityNotFoundException(String name) {
+        super(HttpStatusCode.valueOf(404), "No Entity with name" + name + " found");
     }
 }
