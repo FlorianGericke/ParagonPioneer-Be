@@ -8,6 +8,71 @@
 	},
 	"item": [
 		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testmail\",\n    \"password\": \"pw\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/auth/register",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\",\n    \"capacity\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/building/population",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"building",
+								"population"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "building",
 			"item": [
 				{
@@ -346,6 +411,16 @@
 				{
 					"name": "building by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbWluQHVzZXIuZGUiLCJpYXQiOjE3MDg0NTc0ODgsImV4cCI6MTcwODQ1ODkyOH0.T8LswPgFl2Fd6-ZMustcb1EMBsRGKDu3wM0IiIHK4Ds",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -372,7 +447,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "0e301b77-f1c2-49fa-bdff-c636677b1275"
+									"value": "0d207f3e-885b-4102-ac31-fc29105c7773"
 								}
 							]
 						}
@@ -531,6 +606,44 @@
 								{
 									"key": "name",
 									"value": "we"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "calculateRecipe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/calculator?goodSlug=gunpowder",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"calculator"
+							],
+							"query": [
+								{
+									"key": "goodSlug",
+									"value": "gunpowder"
 								}
 							]
 						}
@@ -721,6 +834,46 @@
 								{
 									"key": "sort",
 									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipe output id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/recipe/output/:id",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"recipe",
+								"output",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "07b9c5f1-508d-40f4-85ea-a208318f530d"
 								}
 							]
 						}
@@ -1815,6 +1968,16 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{Bearer Token}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -1849,6 +2012,11 @@
 		{
 			"key": "ApiVersion",
 			"value": "v1",
+			"type": "string"
+		},
+		{
+			"key": "Bearer Token",
+			"value": "empty",
 			"type": "string"
 		}
 	]

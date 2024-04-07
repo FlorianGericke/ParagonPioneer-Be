@@ -1,43 +1,39 @@
 package com.example.paragonPioneerBackend.Controller;
 
-import com.example.paragonPioneerBackend.Dto.PopulationDTO;
+import com.example.paragonPioneerBackend.Controller.abstractController.SlugableController;
+import com.example.paragonPioneerBackend.Dto.requests.PopulationInput;
+import com.example.paragonPioneerBackend.Dto.response.mappers.PopulationMapper;
 import com.example.paragonPioneerBackend.Entity.Population;
 import com.example.paragonPioneerBackend.Repository.PopulationRepository;
 import com.example.paragonPioneerBackend.Service.PopulationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 /**
- * Handling all endpoints responding to populations, extends BaseController.
+ * PopulationController is a REST controller that handles HTTP requests related to the Population entity.
+ * It extends the SlugableController and provides CRUD operations for Population entities.
+ * This controller uses the PopulationService to interact with the database and perform operations on Population entities.
+ *
+ * The PopulationController class is parameterized with the following types:
+ * - Population: The entity type that this controller handles.
+ * - PopulationRepository: The repository type used for accessing the database.
+ * - PopulationInput: The DTO type used for creating and updating populations.
+ * - PopulationMapper: The mapper type used for converting between entities and DTOs.
+ * - PopulationService: The service type used for business logic operations.
  */
 @Controller
 @RequestMapping(path = "/api/v1/population")
-public class PopulationController extends BaseController<Population, PopulationRepository, PopulationDTO, PopulationService> {
+@Tag(name = "Population", description = "Endpoints for managing populations")
+public class PopulationController extends SlugableController<Population, PopulationRepository, PopulationInput, PopulationMapper, PopulationService> {
 
     /**
-     * Constructor for PopulationController, gets autowired
+     * Constructs a BaseController with the specified service and mapper.
      *
-     * @param service service the controller is using
+     * @param service The service used for business logic operations.
+     * @param mapper  The mapper used for mapping entities to response DTOs.
      */
-    @Autowired
-    public PopulationController(PopulationService service) {
-        super(service);
-    }
-
-    /**
-     * get endpoint for find by name
-     *
-     * @param name to look for
-     * @return list of all Populations containing the name
-     */
-    @GetMapping(value = "/find", produces = "application/json")
-    public @ResponseBody List<Population> getEntities(@RequestParam String name) {
-        return service.findAllByNameContains(name);
+    public PopulationController(PopulationService service, PopulationMapper mapper) {
+        super(service, mapper);
     }
 }

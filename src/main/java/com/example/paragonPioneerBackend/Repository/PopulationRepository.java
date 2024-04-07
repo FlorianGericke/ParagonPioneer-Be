@@ -1,40 +1,13 @@
 package com.example.paragonPioneerBackend.Repository;
 
 import com.example.paragonPioneerBackend.Entity.Population;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 /**
- * Repository for populations
+ * Spring Data JPA repository interface for {@link Population} entities.
+ * This repository extends JpaRepository to provide standardized CRUD operations and
+ * extends functionality with custom query methods for finding populations by specific criteria.
+ * It supports operations such as finding a population by name or slug and searching for populations
+ * based on a name substring, enhancing the application's ability to interact with population data.
  */
-public interface PopulationRepository extends JpaRepository<Population, UUID> {
-
-    /**
-     * * find a populations by its name
-     *
-     * @param name of the population to find
-     * @return the population
-     */
-    Optional<Population> findByNameIs(String name);
-
-    /**
-     * * find a population by its name
-     *
-     * @param slug of the good to find
-     * @return the good
-     */
-    Optional<Population> findBySlugIs(String slug);
-
-
-    /**
-     * find all population by name contains
-     *
-     * @param name contained string
-     * @return list of all matching
-     */
-    List<Population> findAllByNameContains(String name);
+public interface PopulationRepository extends SlugableReposetory<Population> {
 }
-

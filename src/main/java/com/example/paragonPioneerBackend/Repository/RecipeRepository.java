@@ -2,40 +2,31 @@ package com.example.paragonPioneerBackend.Repository;
 
 import com.example.paragonPioneerBackend.Entity.Good;
 import com.example.paragonPioneerBackend.Entity.Recipe;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Repository for the recipes
+ * Spring Data JPA repository for {@link Recipe} entities. Provides standard CRUD operations inherited
+ * from JpaRepository, along with custom query methods to find recipes by their output or the name of their output.
+ * This repository plays a crucial role in managing the data access layer for recipe entities, facilitating
+ * the retrieval of recipes based on specific criteria related to the product they generate.
  */
-public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
+public interface RecipeRepository extends SlugableReposetory<Recipe> {
 
     /**
-     * * find a populationBuilding by its output
+     * Finds a recipe by its output good.
      *
-     * @param output the output good of the recipe  to find
-     * @return the recipe
+     * @param output The output {@link Good} of the recipe to find.
+     * @return An Optional containing the recipe if a matching output is found; otherwise, an empty Optional.
      */
     Optional<Recipe> findByOutputIs(Good output);
 
     /**
-     * * find a populationBuilding by its output name
+     * Finds a recipe by its output good's ID.
      *
-     * @param outputName the output good name of the recipe  to find
-     * @return the recipe
+     * @param id The UUID of the output {@link Good} of the recipe to find.
+     * @return An Optional containing the recipe if a matching output ID is found; otherwise, an empty Optional.
      */
-    Optional<Recipe> findByOutputNameIs(String outputName);
-
-    /**
-     * find all recipes by output name contains
-     *
-     * @param outputName contained string
-     * @return list of all matching
-     */
-    List<Recipe> findAllByOutputNameContains(String outputName);
+    Optional<Recipe> findByOutputIdIs(UUID id);
 }
-
-

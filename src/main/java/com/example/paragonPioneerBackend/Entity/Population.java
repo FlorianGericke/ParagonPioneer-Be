@@ -1,11 +1,13 @@
 package com.example.paragonPioneerBackend.Entity;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
-import com.example.paragonPioneerBackend.Entity.JoinTables.Population_Requirement;
-import com.example.paragonPioneerBackend.Util.SlugUtil;
+import com.example.paragonPioneerBackend.Entity.joinTables.PopulationRequirement;
+import com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Slugable;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -13,87 +15,80 @@ import org.hibernate.annotations.Where;
 import java.util.Set;
 
 /**
- * Entity representing a Population
+ * Entity class representing a population segment within the game.
+ * Populations can produce various units or resources, represented by the {@link PopulationProductionUnit} enum.
+ * This class includes information about the population name, the slug for URL representation, and relationships with goods and buildings.
  */
 @Entity
 @Getter
 @Setter
 @ToString
-@Builder
 @Table(name = "population")
-@RequiredArgsConstructor
-@AllArgsConstructor
 @SQLDelete(sql = "UPDATE population SET deleted_at = current_date WHERE id=?")
 @Where(clause = "deleted_at IS NULL")
-public class Population extends BaseEntity implements Slugable {
+@NoArgsConstructor
+public class Population extends Slugable {
 
     /**
-     * Enum of all possible procurements ot a population
+     * Enum defining the possible production units of a population. This includes Militias, Income, and Favor,
+     * reflecting the different types of outputs a population can generate.
      */
     public enum PopulationProductionUnit {
-        /**
-         * Population creates Militias
-         */
-        Militias,
-
-        /**
-         * Population creates Income
-         */
-        Income,
-
-        /**
-         * Population creates Favor
-         */
-        Favor
+        Militias, // Population creates Militias
+        Income,   // Population generates Income
+        Favor     // Population produces Favor
     }
 
-    @Column(name = "name", columnDefinition = "varchar(255)")
-    private String name;
-
-    @Column(name = "slug", nullable = false, unique = true,columnDefinition = "varchar(255)")
-    private String slug;
-
+    /**
+     * Set of goods required by this population to sustain or grow. This is a one-to-many relationship
+     * indicating which goods are needed by this population segment.
+     */
     @OneToMany(mappedBy = "population")
     @JsonManagedReference
     @ToString.Exclude
-    private Set<Population_Requirement> requiredGoods;
+    private Set<PopulationRequirement> requiredGoods;
 
+    /**
+     * Set of buildings required by this population to sustain or grow. This is a one-to-many relationship
+     * showing which buildings are needed for this population segment.
+     */
     @OneToMany(mappedBy = "population")
     @JsonBackReference
     @ToString.Exclude
-    private Set<Requirement_Population_Building> requiredBuilding;
+    private Set<RequirementPopulationBuilding> requiredBuilding;
 
     /**
-     * get the Type of the production for this population
+     * Determines the type of production unit associated with this population based on its name.
      *
-     * @return PopulationProductionUnit of this entity
+     * @return The {@link PopulationProductionUnit} representing the type of production this population contributes to.
      */
     public PopulationProductionUnit getPopulationProductionUnit() {
         if (getName() == null) {
             return null;
         }
 
-        if (getName().equals("Pioneers")) {
-            return PopulationProductionUnit.Militias;
+        switch (getName()) {
+            case "Pioneers":
+                return PopulationProductionUnit.Militias;
+            case "Paragons":
+                return PopulationProductionUnit.Favor;
+            default:
+                return PopulationProductionUnit.Income;
         }
-
-        if (getName().equals("Paragons")) {
-            return PopulationProductionUnit.Favor;
-        }
-
-        return PopulationProductionUnit.Income;
     }
 
-    @Override
-    public String getSlug() {
-        return this.slug;
-    }
-
-    public void setSlug(String slug) {
-        if (!SlugUtil.validateSlug(slug)) {
-            throw new IllegalStateException("Could not create Slug for" + slug);
-        }
-
-        this.slug = slug;
+    /**
+     * Constructor for the Population class.
+     *
+     * @param name The name of the population.
+     * @param slug The slug for URL representation of the population.
+     * @param requiredGoods The set of goods required by this population to sustain or grow.
+     * @param requiredBuilding The set of buildings required by this population to sustain or grow.
+     */
+    @Builder
+    public Population(String name, String slug, Set<PopulationRequirement> requiredGoods, Set<RequirementPopulationBuilding> requiredBuilding) {
+        super(name, slug);
+        this.requiredGoods = requiredGoods;
+        this.requiredBuilding = requiredBuilding;
     }
 }
