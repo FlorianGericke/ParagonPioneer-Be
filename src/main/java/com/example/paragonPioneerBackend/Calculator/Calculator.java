@@ -57,7 +57,7 @@ public class Calculator {
         ProductionBuilding building = getBuilding(goodSlug);
         this.target = new ProductionKnot(good, building);
         var depth = setUp(target, errors, 0);
-        return new CalculationResponse(target, errors);
+        return new CalculationResponse(depth, target, errors);
     }
 
     /**
@@ -88,7 +88,10 @@ public class Calculator {
                 }
             }
         } catch (EntityNotFoundException e) {
-            errors.add("No recipe found for " + knot.getGood().getSlug());
+            var msg = "No recipe found for " + knot.getGood().getSlug();
+            if (errors.stream().noneMatch(msg::equals)) {
+                errors.add(msg);
+            }
         }
         return maxDepth;
     }
@@ -117,9 +120,10 @@ public class Calculator {
             // Try to get the production building by the recipe slug
             return buildingService.getProductionBuildingByRecipeSlug(ingredientSlug);
         } catch (EntityNotFoundException e) {
-            // If the building is not found, add an error message to the errors list
-            errors.add("No ProductionBuilding found for " + ingredientSlug);
-            // Return null as the building was not found
+            var msg = "No ProductionBuilding found for " + ingredientSlug;
+            if (errors.stream().noneMatch(msg::equals)) {
+                errors.add(msg);
+            }
             return null;
         }
     }
