@@ -56,23 +56,23 @@ public class Calculator {
         Good good = goodService.findBySlug(goodSlug);
         ProductionBuilding building = getBuilding(goodSlug);
         this.target = new ProductionKnot(good, building);
-        setUp(target, errors);
+        var depth = setUp(target, errors, 0);
         return new CalculationResponse(target, errors);
     }
 
     /**
-     * Sets up a production knot.
-     * If the good is a map resource, it returns immediately.
-     * Otherwise, it finds the recipe for the good and sets up the production building and ingredients.
-     * If a recipe or a building is not found, it adds an error to the list of errors.
-     * After setting up the current knot, it recursively sets up all its ingredient knots.
+     * Sets up the production knot by adding ingredients recursively.
+     * Returns the maximum depth of the production knot.
      *
      * @param knot   The production knot to set up.
-     * @param errors The list of errors to add to if any occur.
+     * @param errors The list of errors to add to.
+     * @param depth  The current depth of the production knot.
+     * @return The maximum depth of the production knot.
      */
-    private void setUp(ProductionKnot knot, ArrayList<String> errors) {
-        if (knot.getGood().isMapResource()) return;
+    private int setUp(ProductionKnot knot, ArrayList<String> errors, int depth) {
+        if (knot.getGood().isMapResource()) return depth;
 
+        int maxDepth = depth;
         try {
             Recipe recipe = recipeService.findBySlug(knot.getGood().getSlug());
             for (Recipe.QuantityOfGood ingredient : recipe.getQuantityOfGoods()) {
@@ -81,10 +81,16 @@ public class Calculator {
                     knot.addIngredient(new ProductionKnot(ingredient.good(), building));
                 }
             }
-            knot.getIngredients().forEach(ingredient -> setUp(ingredient, errors));
+            for (ProductionKnot ingredient : knot.getIngredients()) {
+                int ingredientDepth = setUp(ingredient, errors, depth + 1);
+                if (ingredientDepth > maxDepth) {
+                    maxDepth = ingredientDepth;
+                }
+            }
         } catch (EntityNotFoundException e) {
             errors.add("No recipe found for " + knot.getGood().getSlug());
         }
+        return maxDepth;
     }
 
     /**
