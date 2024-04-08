@@ -7,16 +7,23 @@ dev_enviroment:
 
 rebuild_dev_enviroment:
 	docker-compose down
+	docker-compose -f docker-compose.prod.yml down
+	gradle clean
+	gradle compileJava
 	docker-compose build --no-cache
 	docker-compose up  --remove-orphans
 
-stop_dev_enviroment:
+stop:
 	docker-compose down
+	docker-compose -f docker-compose.prod.yml down
 
 prod_enviroment:
+	docker-compose down
+	docker-compose -f docker-compose.prod.yml down
 	gradle clean
+	gradle compileJava
 	gradle bootJar
 	docker-compose down
 	docker-compose -f docker-compose.prod.yml build --no-cache
-	docker-compose -f docker-compose.prod.yml up  --remove-orphans
+	docker-compose -f docker-compose.prod.yml up --remove-orphans
 
