@@ -1,4 +1,4 @@
-package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
+package com.example.paragonPioneerBackend.Bin.Data.EntityInserters;
 
 import com.example.paragonPioneerBackend.Dto.requests.PopulationInput;
 import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;

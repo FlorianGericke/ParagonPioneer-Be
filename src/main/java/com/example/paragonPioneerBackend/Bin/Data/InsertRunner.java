@@ -1,6 +1,6 @@
-package com.example.paragonPioneerBackend.Bin.Config.Data;
+package com.example.paragonPioneerBackend.Bin.Data;
 
-import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
+import com.example.paragonPioneerBackend.Bin.Data.EntityInserters.*;
 import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
 import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import lombok.RequiredArgsConstructor;
