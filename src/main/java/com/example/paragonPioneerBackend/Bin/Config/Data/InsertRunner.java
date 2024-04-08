@@ -1,10 +1,6 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data;
 
 import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
-//import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
-//import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
-
-import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
 import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import lombok.RequiredArgsConstructor;
@@ -55,17 +51,18 @@ public class InsertRunner implements ApplicationRunner {
                         .email("amin@user.de")
                         .password("admin")
                         .build());
+                pb.step();
+
+                goodInserter.run(pb::step);
+                recipeInserter.run(pb::step);
+                buildingInserter.run(pb::step);
+                populationInserter.run(pb::step);
+                populationRequirementInserter.run(pb::step);
+                costBuildingGoodsInserter.run(pb::step);
+                costBuildingPopulation.run(pb::step);
             } catch (Exception ignored) {
             }
-            pb.step();
 
-            goodInserter.run(pb::step);
-            recipeInserter.run(pb::step);
-            buildingInserter.run(pb::step);
-            populationInserter.run(pb::step);
-            populationRequirementInserter.run(pb::step);
-            costBuildingGoodsInserter.run(pb::step);
-            costBuildingPopulation.run(pb::step);
             System.out.println("CMS Server: " + "http://localhost:8080/swagger-ui/index.html");
         }
     }

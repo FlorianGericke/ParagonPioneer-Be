@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: ppAssemblyLineBa
 -- ------------------------------------------------------
--- Server version	8.0.35
+-- Server version	8.0.36
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,6 +19,7 @@
 -- Table structure for table `admin`
 --
 
+DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin` (
@@ -38,6 +39,7 @@ CREATE TABLE `admin` (
 -- Table structure for table `building`
 --
 
+DROP TABLE IF EXISTS `building`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `building` (
@@ -63,6 +65,7 @@ CREATE TABLE `building` (
 -- Table structure for table `cost_building_goods`
 --
 
+DROP TABLE IF EXISTS `cost_building_goods`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cost_building_goods` (
@@ -85,9 +88,11 @@ CREATE TABLE `cost_building_goods` (
 -- Table structure for table `good`
 --
 
+DROP TABLE IF EXISTS `good`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `good` (
+  `is_map_resource` tinyint(1) NOT NULL,
   `created_at` datetime(6) NOT NULL,
   `deleted_at` datetime(6) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
@@ -96,7 +101,6 @@ CREATE TABLE `good` (
   `remarks` varchar(255) DEFAULT NULL,
   `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_nbh6tb7e9lyj7i7ouk9xqwqdg` (`name`),
   UNIQUE KEY `UK_s6la9h5sjmb40l2ldyrdgrvum` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -105,6 +109,7 @@ CREATE TABLE `good` (
 -- Table structure for table `population`
 --
 
+DROP TABLE IF EXISTS `population`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `population` (
@@ -112,7 +117,7 @@ CREATE TABLE `population` (
   `deleted_at` datetime(6) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
   `id` binary(16) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_m9q869h9yj6e396uevaj0grdp` (`slug`)
@@ -123,6 +128,7 @@ CREATE TABLE `population` (
 -- Table structure for table `population_requirement`
 --
 
+DROP TABLE IF EXISTS `population_requirement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `population_requirement` (
@@ -147,6 +153,7 @@ CREATE TABLE `population_requirement` (
 -- Table structure for table `recipe`
 --
 
+DROP TABLE IF EXISTS `recipe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recipe` (
@@ -174,8 +181,13 @@ CREATE TABLE `recipe` (
   `input_7` binary(16) DEFAULT NULL,
   `input_8` binary(16) DEFAULT NULL,
   `input_9` binary(16) DEFAULT NULL,
-  `output` binary(16) DEFAULT NULL,
+  `output` binary(16) NOT NULL,
+  `production_building` binary(16) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_r6fr7vfovs1k2wq7bjeqberj5` (`slug`),
+  UNIQUE KEY `UK_f4dq4cgv6n33926akdk7gp20s` (`production_building`),
   KEY `FKk2dnvk7u98noftg1hx6k76i62` (`input_1`),
   KEY `FKoslhn6r9w7ln2o3cs6k3lp7qw` (`input_10`),
   KEY `FKr1w9rj2jdk3te3bdfbk42lc7y` (`input_2`),
@@ -197,7 +209,8 @@ CREATE TABLE `recipe` (
   CONSTRAINT `FKldrekctvk1mxgc90yef310boa` FOREIGN KEY (`input_9`) REFERENCES `good` (`id`),
   CONSTRAINT `FKoslhn6r9w7ln2o3cs6k3lp7qw` FOREIGN KEY (`input_10`) REFERENCES `good` (`id`),
   CONSTRAINT `FKq698ebgk1yrcrttqcuxtyiukc` FOREIGN KEY (`input_3`) REFERENCES `good` (`id`),
-  CONSTRAINT `FKr1w9rj2jdk3te3bdfbk42lc7y` FOREIGN KEY (`input_2`) REFERENCES `good` (`id`)
+  CONSTRAINT `FKr1w9rj2jdk3te3bdfbk42lc7y` FOREIGN KEY (`input_2`) REFERENCES `good` (`id`),
+  CONSTRAINT `FKrlc0eox7eht7lcydxamlduwrh` FOREIGN KEY (`production_building`) REFERENCES `building` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -205,6 +218,7 @@ CREATE TABLE `recipe` (
 -- Table structure for table `requirement_population_building`
 --
 
+DROP TABLE IF EXISTS `requirement_population_building`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `requirement_population_building` (
@@ -232,4 +246,4 @@ CREATE TABLE `requirement_population_building` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-23 13:54:51
+-- Dump completed on 2024-04-08  9:48:00
