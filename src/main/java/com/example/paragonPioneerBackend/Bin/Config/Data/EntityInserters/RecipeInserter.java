@@ -5,7 +5,10 @@ import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.RequiredArgsConstructor;
+import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Supplier;
 
 /**
  * A component designed to seed the database with initial recipe data upon application startup.
@@ -143,13 +146,20 @@ public class RecipeInserter {
     };
 
     /**
-     * This method is responsible for running the insertion process of the initial recipe data into the database.
-     * It iterates over the array of Inserter records, each representing a single recipe to be inserted.
-     * For each record, it creates a new RecipeInput object using the RecipeInput builder, setting the properties for the input goods and their quantities, and the output good from the record.
-     * The RecipeInput object is then posted to the RecipeService, which handles the actual insertion into the database.
-     * If a recipe for a good is not found, it catches the EntityNotFoundException and prints a message to the console.
+     * Retrieves the number of recipes to be seeded in the database.
+     *
+     * @return The number of recipes as an integer.
      */
-    public void run() {
+    public int getInsertsLength() {
+        return inserts.length;
+    }
+
+    /**
+     * Runs the seeding process for the recipe data, creating recipe entities and persisting them in the database.
+     *
+     * @param progressBarSupplier A supplier for a progress bar to display the progress of the seeding process.
+     */
+    public void run(Supplier<ProgressBar> progressBarSupplier) {
         for (Inserter insert : inserts) {
             try {
                 recipeService.post(RecipeInput.builder()
@@ -177,6 +187,8 @@ public class RecipeInserter {
                         .build());
             } catch (ParagonPioneerBeException e) {
                 System.out.println("Could not create Recipe for good: " + insert.output);
+            }finally {
+                progressBarSupplier.get();
             }
         }
     }

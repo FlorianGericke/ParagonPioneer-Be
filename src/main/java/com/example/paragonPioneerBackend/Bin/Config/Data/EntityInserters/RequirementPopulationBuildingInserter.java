@@ -6,7 +6,10 @@ import com.example.paragonPioneerBackend.Service.BuildingService;
 import com.example.paragonPioneerBackend.Service.PopulationService;
 import com.example.paragonPioneerBackend.Service.RequirementBuildingPopulationService;
 import lombok.RequiredArgsConstructor;
+import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Supplier;
 
 /**
  * Component for seeding the database with initial data on the population requirements for buildings.
@@ -43,13 +46,22 @@ public class RequirementPopulationBuildingInserter {
     };
 
     /**
-     * Executes the insertion of predefined building-population requirement data into the database.
-     * For each record, it identifies the corresponding building and population by their names and
-     * creates a relationship entity that defines the required amount of population for the building
-     * to function. This method ensures that the application data model reflects the dependencies
-     * between building operations and population support.
+     * Returns the number of data insertion tasks for building-population requirements.
+     *
+     * @return The number of data insertion tasks.
      */
-    public void run() {
+    public int getInsertsLength() {
+        return inserts.length;
+    }
+
+    /**
+     * Executes the data insertion tasks for building-population requirements.
+     * This method is called by the InsertRunner component, providing an entry point
+     * for running the inserter components.
+     *
+     * @param progressBarSupplier A supplier for a progress bar to display the progress of the data insertion tasks.
+     */
+    public void run(Supplier<ProgressBar> progressBarSupplier) {
         for (Inserter insert : inserts) {
             try {
                 RequirementPopulationBuildingInput dto = RequirementPopulationBuildingInput.builder()
@@ -60,6 +72,8 @@ public class RequirementPopulationBuildingInserter {
                 requirementBuildingPopulationService.post(dto);
             } catch (ParagonPioneerBeException e) {
                 System.out.println("Could not create Building Population for Building: " + insert.buildingName + " and Population: " + insert.populationName);
+            }finally {
+                progressBarSupplier.get();
             }
         }
     }

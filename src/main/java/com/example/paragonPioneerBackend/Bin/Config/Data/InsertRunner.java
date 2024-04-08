@@ -1,12 +1,10 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data;
 
-//import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
-//import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
-
 import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
 import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import lombok.RequiredArgsConstructor;
+import me.tongfei.progressbar.ProgressBar;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
@@ -42,19 +40,30 @@ public class InsertRunner implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) {
-        // todo Hard Coded Admin login with Clear Password is just for Developing and testing. This should be set in an ignored env file
-        authenticationService.register(RegisterRequest.builder()
-                .email("admin@user.de")
-                .password("admin")
-                .build());
+        long amount = goodInserter.getInsertsLength() + populationInserter.getInsertsLength() +
+                recipeInserter.getInsertsLength() + populationRequirementInserter.getInsertsLength() +
+                buildingInserter.getInsertsLength();
 
-        goodInserter.run();
-        recipeInserter.run();
-        buildingInserter.run();
-        populationInserter.run();
-        populationRequirementInserter.run();
-        costBuildingGoodsInserter.run();
-        costBuildingPopulation.run();
-        System.out.println("CMS Server: " + "http://localhost:8080/swagger-ui/index.html");
+        try (ProgressBar pb = new ProgressBar("Data Insertion", amount + 1)) {
+            // todo Hard Coded Admin login with Clear Password is just for Developing and testing. This should be set in an ignored env file
+            try {
+                authenticationService.register(RegisterRequest.builder()
+                        .email("amin@user.de")
+                        .password("admin")
+                        .build());
+                pb.step();
+
+                goodInserter.run(pb::step);
+                recipeInserter.run(pb::step);
+                buildingInserter.run(pb::step);
+                populationInserter.run(pb::step);
+                populationRequirementInserter.run(pb::step);
+                costBuildingGoodsInserter.run(pb::step);
+                costBuildingPopulation.run(pb::step);
+            } catch (Exception ignored) {
+            }
+
+            System.out.println("CMS Server: " + "http://localhost:8080/swagger-ui/index.html");
+        }
     }
 }

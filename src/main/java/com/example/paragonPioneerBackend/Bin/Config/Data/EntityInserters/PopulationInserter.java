@@ -4,7 +4,10 @@ import com.example.paragonPioneerBackend.Dto.requests.PopulationInput;
 import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.PopulationService;
 import lombok.RequiredArgsConstructor;
+import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Supplier;
 
 /**
  * A component designed to seed the application's database with initial population data.
@@ -38,12 +41,23 @@ public class PopulationInserter {
     };
 
     /**
-     * Executes the insertion of predefined population data into the database.
-     * Iterates through each record in the predefined list, creating a new population
-     * entity for each segment. This method ensures that the application is populated
-     * with necessary demographic segments for subsequent operations and simulations.
+     * Returns the number of data insertion tasks for population segments.
+     *
+     * @return The number of data insertion tasks.
      */
-    public void run() {
+    public int getInsertsLength() {
+        return inserts.length;
+    }
+
+
+    /**
+     * Executes the data insertion tasks for population segments.
+     * This method is called by the InsertRunner component, providing an entry point
+     * for running the inserter components.
+     *
+     * @param progressBarSupplier A supplier for a progress bar to display the progress of the data insertion tasks.
+     */
+    public void run(Supplier<ProgressBar> progressBarSupplier) {
         for (Inserter insert : inserts) {
             try {
             populationService.post(PopulationInput.builder()
@@ -51,6 +65,8 @@ public class PopulationInserter {
                     .build());
             } catch (ParagonPioneerBeException e) {
                 System.out.println("Could not create Population " + insert.name);
+            }finally {
+                progressBarSupplier.get();
             }
         }
     }

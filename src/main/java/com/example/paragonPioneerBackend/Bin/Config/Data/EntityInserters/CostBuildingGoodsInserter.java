@@ -6,7 +6,11 @@ import com.example.paragonPioneerBackend.Service.BuildingService;
 import com.example.paragonPioneerBackend.Service.CostBuildingGoodsService;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
+import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * Component responsible for seeding the database with initial data for cost-building-goods relations.
@@ -43,12 +47,22 @@ public class CostBuildingGoodsInserter {
     };
 
     /**
-     * Executes the insertion of the predefined cost-building-goods data into the database.
-     * It resolves the IDs of buildings and goods based on their names and creates associations
-     * that specify the cost in terms of goods required for each building. This method ensures
-     * the application is populated with essential data regarding the construction costs of buildings.
+     * Returns the number of data insertion tasks for cost-building-goods relations.
+     *
+     * @return The number of data insertion tasks.
      */
-    public void run() {
+    public int getInsertsLength() {
+        return inserts.length;
+    }
+
+    /**
+     * Executes the data insertion tasks for cost-building-goods relations.
+     * This method is called by the InsertRunner component, providing an entry point
+     * for running the inserter components.
+     *
+     * @param progressBarSupplier Supplier for a progress bar to display the insertion progress.
+     */
+    public void run(Supplier<ProgressBar> progressBarSupplier) {
         for (Inserter insert : inserts) {
             try {
                 costBuildingGoodsService.post(
@@ -60,6 +74,8 @@ public class CostBuildingGoodsInserter {
                 );
             } catch (ParagonPioneerBeException e) {
                 System.out.println("Could not create CostBuildingGoods for Good " + insert.goodName + " and Building " + insert.buildingName);
+            }finally {
+                progressBarSupplier.get();
             }
         }
     }

@@ -4,7 +4,10 @@ import com.example.paragonPioneerBackend.Dto.requests.GoodInput;
 import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import lombok.RequiredArgsConstructor;
+import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Supplier;
 
 /**
  * A component responsible for populating the database with initial goods data.
@@ -153,8 +156,22 @@ public class GoodInserter {
      * It iterates over the array of Inserter records, each representing a single good to be inserted.
      * For each record, it creates a new GoodInput object using the GoodInput builder, setting the isMapResource, name, and remarks properties from the record.
      * The GoodInput object is then posted to the GoodService, which handles the actual insertion into the database.
+     * Returns the number of data insertion tasks for goods.
+     *
+     * @return The number of data insertion tasks.
      */
-    public void run() {
+    public int getInsertsLength() {
+        return inserts.length;
+    }
+
+    /**
+     * Executes the data insertion tasks for goods.
+     * This method is called by the InsertRunner component, providing an entry point
+     * for running the inserter components.
+     *
+     * @param progressBarSupplier Supplier for a progress bar to display the insertion progress.
+     */
+    public void run(Supplier<ProgressBar> progressBarSupplier) {
         for (Inserter insert : inserts) {
             try {
                 service.post(GoodInput.builder()
@@ -164,8 +181,9 @@ public class GoodInserter {
                         .build());
             } catch (ParagonPioneerBeException e) {
                 System.out.println("Could not create Good " + insert.name);
+            }finally {
+                progressBarSupplier.get();
             }
         }
-
     }
 }

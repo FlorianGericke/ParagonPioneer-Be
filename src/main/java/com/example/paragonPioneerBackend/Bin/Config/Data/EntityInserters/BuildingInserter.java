@@ -6,7 +6,10 @@ import com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput;
 import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.BuildingService;
 import lombok.RequiredArgsConstructor;
+import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Supplier;
 
 /**
  * A component responsible for seeding the database with initial data for buildings at application startup.
@@ -131,14 +134,25 @@ public class BuildingInserter {
             new Inserter("University", "University", 0.01667f, ""),
     };
 
+
     /**
-     * This method is responsible for running the insertion process of the initial building data into the database.
-     * It first posts a PopulationBuildingInput object representing a "Pioneer's Hut" to the BuildingService.
-     * Then, it iterates over the array of Inserter records, each representing a single building to be inserted.
-     * For each record, it creates a new ProductionBuildingInput object using the ProductionBuildingInput builder, setting the name, remarks, production per minute, and recipe properties from the record.
-     * The ProductionBuildingInput object is then posted to the BuildingService, which handles the actual insertion into the database.
+     * Returns the number of building records to be inserted into the database.
+     *
+     * @return The number of building records to be inserted.
      */
-    public void run() {
+    public int getInsertsLength() {
+        return inserts.length + 1; // For the One Pioneers Hud building
+    }
+
+    /**
+     * Executes the insertion of the predefined building data into the database. It creates population and production
+     * buildings based on the provided records, ensuring the application is populated with essential data regarding
+     * the buildings available for construction and production. This method is particularly useful for development
+     * and testing environments, providing a consistent starting point for building-related functionalities.
+     *
+     * @param progressBarSupplier A supplier for a progress bar to update the progress of the data insertion.
+     */
+   public void run(Supplier<ProgressBar> progressBarSupplier) {
         buildingService.post(PopulationBuildingInput.builder().name("Pioneer's Hut").capacity(10).remarks("").build());
 
         for (Inserter insert : inserts) {
@@ -152,6 +166,8 @@ public class BuildingInserter {
                 buildingService.post(dto);
             } catch (ParagonPioneerBeException e) {
                 System.out.println("Could not create Building " + insert.name);
+            }finally {
+                progressBarSupplier.get();
             }
         }
     }
