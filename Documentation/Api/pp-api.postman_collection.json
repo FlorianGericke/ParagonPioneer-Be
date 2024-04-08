@@ -613,6 +613,44 @@
 					"response": []
 				},
 				{
+					"name": "calculateRecipe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testFunction\",\n    \"remarks\": \"TestRemark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasePath}}:{{port}}/api/{{ApiVersion}}/calculator?goodSlug=gunpowder",
+							"host": [
+								"{{BasePath}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"{{ApiVersion}}",
+								"calculator"
+							],
+							"query": [
+								{
+									"key": "goodSlug",
+									"value": "gunpowder"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "good by id",
 					"request": {
 						"method": "PUT",

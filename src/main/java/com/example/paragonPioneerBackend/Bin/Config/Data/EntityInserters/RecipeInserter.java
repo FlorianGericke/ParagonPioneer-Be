@@ -1,6 +1,7 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Dto.RecipeDTO;
+import com.example.paragonPioneerBackend.Dto.requests.RecipeInput;
+import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.GoodService;
 import com.example.paragonPioneerBackend.Service.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -23,13 +24,29 @@ public class RecipeInserter {
     private final GoodService goodService;
 
     /**
-     * Record to store the setup data for each recipe, including inputs with their quantities and the output.
+     * A record class that represents an inserter for recipe data.
+     * This class is used to create instances of recipe data that will be inserted into the database.
+     * Each instance of this class represents a single recipe, with properties for the input goods, their quantities, and the output good.
+     * The input goods are represented by Strings (i1 to i10) and their corresponding quantities by integers (q1 to q10).
+     * The output good is also represented by a String.
      */
     private record Inserter(String i1, int q1, String i2, int q2, String i3, int q3, String i4, int q4, String i5,
                             int q5, String i6, int q6, String i7, int q7, String i8, int q8, String i9, int q9,
                             String i10, int q10, String output) {
     }
 
+    /**
+     * This class represents a list of Inserter objects. Each Inserter object represents a production process in a game.
+     * Each process takes place on a specific type of tile, requires a certain amount of time, and may require up to 9 different input goods.
+     * Each input good has a corresponding quantity. The process produces a single type of output good.
+     * <p>
+     * The Inserter constructor takes the following parameters:
+     * - tileType: The type of tile on which the process takes place.
+     * - time: The time required for the process to complete.
+     * - inputGood1 to inputGood9: The goods required as input for the process. If a process requires fewer than 9 goods, the remaining parameters should be null.
+     * - quantity1 to quantity9: The quantity of each input good required for the process. If a process requires fewer than 9 goods, the remaining parameters should be 0.
+     * - outputGood: The good produced by the process.
+     */
     private final Inserter[] inserts = {
             new Inserter("Land tile", 7, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Wood"),
             new Inserter("Land tile", 1, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, "Water"),
@@ -145,32 +162,34 @@ public class RecipeInserter {
     public void run(Supplier<ProgressBar> progressBarSupplier) {
         for (Inserter insert : inserts) {
             try {
-                recipeService.post(RecipeDTO.builder()
-                        .output(getIdOrNull(insert.output))
+                recipeService.post(RecipeInput.builder()
                         .input1(getIdOrNull(insert.i1))
-                        .input2(getIdOrNull(insert.i2))
-                        .input3(getIdOrNull(insert.i3))
-                        .input4(getIdOrNull(insert.i4))
-                        .input5(getIdOrNull(insert.i5))
-                        .input6(getIdOrNull(insert.i5))
-                        .input7(getIdOrNull(insert.i6))
-                        .input8(getIdOrNull(insert.i7))
-                        .input9(getIdOrNull(insert.i8))
-                        .input10(getIdOrNull(insert.i10))
                         .quantityOfInput1(insert.q1)
+                        .input2(getIdOrNull(insert.i2))
                         .quantityOfInput2(insert.q2)
+                        .input3(getIdOrNull(insert.i3))
                         .quantityOfInput3(insert.q3)
+                        .input4(getIdOrNull(insert.i4))
                         .quantityOfInput4(insert.q4)
+                        .input5(getIdOrNull(insert.i5))
                         .quantityOfInput5(insert.q5)
+                        .input6(getIdOrNull(insert.i6))
                         .quantityOfInput6(insert.q6)
+                        .input7(getIdOrNull(insert.i7))
                         .quantityOfInput7(insert.q7)
+                        .input8(getIdOrNull(insert.i8))
                         .quantityOfInput8(insert.q8)
+                        .input9(getIdOrNull(insert.i9))
                         .quantityOfInput9(insert.q9)
+                        .input10(getIdOrNull(insert.i10))
                         .quantityOfInput10(insert.q10)
+                        .output(getIdOrNull(insert.output))
                         .build());
-            } catch (Exception ignored) {
+            } catch (ParagonPioneerBeException e) {
+                System.out.println("Could not create Recipe for good: " + insert.output);
+            }finally {
+                progressBarSupplier.get();
             }
-            progressBarSupplier.get();
         }
     }
 
@@ -181,9 +200,10 @@ public class RecipeInserter {
      * @return The ID of the good as a String, or null if not found.
      */
     private String getIdOrNull(String name) {
-        if (goodService.findByName(name).isEmpty()) {
+        try {
+            return goodService.findSmthByIdSlugName(name).getId().toString();
+        } catch (Exception e) {
             return null;
         }
-        return goodService.findByName(name).get().getId().toString();
     }
 }

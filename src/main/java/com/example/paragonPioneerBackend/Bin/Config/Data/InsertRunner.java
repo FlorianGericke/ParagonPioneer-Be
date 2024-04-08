@@ -1,6 +1,10 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data;
 
 import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
+//import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
+//import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
+
+import com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters.*;
 import com.example.paragonPioneerBackend.Bin.Security.AuthServices.AuthenticationService;
 import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +31,9 @@ public class InsertRunner implements ApplicationRunner {
     private final RecipeInserter recipeInserter;
     private final PopulationInserter populationInserter;
     private final BuildingInserter buildingInserter;
-    private final Cost_Building_goodsInserter costBuildingGoodsInserter;
-    private final Population_RequirementInserter populationRequirementInserter;
-    private final Requirement_Population_BuildingInserter costBuildingPopulation;
+    private final CostBuildingGoodsInserter costBuildingGoodsInserter;
+    private final PopulationRequirementInserter populationRequirementInserter;
+    private final RequirementPopulationBuildingInserter costBuildingPopulation;
 
     /**
      * Executes the data insertion tasks in the prescribed order when the application starts.
@@ -45,6 +49,7 @@ public class InsertRunner implements ApplicationRunner {
                 buildingInserter.getInsertsLength();
 
         try (ProgressBar pb = new ProgressBar("Data Insertion", amount + 1)) {
+            // todo Hard Coded Admin login with Clear Password is just for Developing and testing. This should be set in an ignored env file
             try {
                 authenticationService.register(RegisterRequest.builder()
                         .email("amin@user.de")
@@ -55,16 +60,13 @@ public class InsertRunner implements ApplicationRunner {
             pb.step();
 
             goodInserter.run(pb::step);
-            populationInserter.run(pb::step);
             recipeInserter.run(pb::step);
-            populationRequirementInserter.run(pb::step);
             buildingInserter.run(pb::step);
+            populationInserter.run(pb::step);
+            populationRequirementInserter.run(pb::step);
+            costBuildingGoodsInserter.run(pb::step);
+            costBuildingPopulation.run(pb::step);
+            System.out.println("CMS Server: " + "http://localhost:8080/swagger-ui/index.html");
         }
-        /*
-        todo: the following inserter are not havely required, and will be implemented after the 0.1 release
-         */
-
-//         costBuildingGoodsInserter.run(); // Insert cost-building-goods relations.
-//         costBuildingPopulation.run(); // Insert requirement-population-building relations.
     }
 }

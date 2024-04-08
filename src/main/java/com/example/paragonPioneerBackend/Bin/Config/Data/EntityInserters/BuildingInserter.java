@@ -1,11 +1,10 @@
 package com.example.paragonPioneerBackend.Bin.Config.Data.EntityInserters;
 
-import com.example.paragonPioneerBackend.Dto.BuildingDTO;
-import com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO;
-import com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO;
+import com.example.paragonPioneerBackend.Dto.requests.BuildingInput;
+import com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput;
+import com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput;
+import com.example.paragonPioneerBackend.Exception.ParagonPioneerBeException;
 import com.example.paragonPioneerBackend.Service.BuildingService;
-import com.example.paragonPioneerBackend.Service.RecipeService;
-import com.example.paragonPioneerBackend.Util.OptionalUtil;
 import lombok.RequiredArgsConstructor;
 import me.tongfei.progressbar.ProgressBar;
 import org.springframework.stereotype.Component;
@@ -21,16 +20,22 @@ import java.util.function.Supplier;
 @Component
 @RequiredArgsConstructor
 public class BuildingInserter {
-    private final BuildingService<BuildingDTO> buildingService;
-    private final RecipeService recipeService;
+    private final BuildingService<BuildingInput> buildingService;
 
     /**
-     * A record to store the initial setup data for each building, including its name, associated recipe,
-     * production rate per minute, and any remarks.
+     * A record class that represents an inserter for building data.
+     * This class is used to create instances of building data that will be inserted into the database.
+     * Each instance of this class represents a single building, with properties for the name, recipe, production per minute, and remarks.
+     * The name and recipe are represented by Strings, the production per minute is a float, and the remarks are a String.
      */
     private record Inserter(String name, String recipe, float productionPerMinute, String remarks) {
     }
 
+    /**
+     * An array of Inserter records representing the initial building data to be inserted into the database.
+     * Each record represents a single building, with properties for the name, recipe, production per minute, and remarks.
+     * The array contains records for various buildings, such as lumberjacks, sawmills, farms, and barracks, among others.
+     */
     private final Inserter[] inserts = {
             new Inserter("Lumberjack", "Wood", 5f, ""),
             new Inserter("Well", "Water", 0.01667f, ""),
@@ -129,6 +134,7 @@ public class BuildingInserter {
             new Inserter("University", "University", 0.01667f, ""),
     };
 
+
     /**
      * Returns the number of building records to be inserted into the database.
      *
@@ -146,28 +152,23 @@ public class BuildingInserter {
      *
      * @param progressBarSupplier A supplier for a progress bar to update the progress of the data insertion.
      */
-    public void run(Supplier<ProgressBar> progressBarSupplier) {
-        // Insert population buildings
-        try {
-            buildingService.post(PopulationBuildingDTO.builder().name("Pioneer's Hut").capacity(10).remarks("").build());
-        } catch (Exception ignored) {
-        }
-        progressBarSupplier.get();
+   public void run(Supplier<ProgressBar> progressBarSupplier) {
+        buildingService.post(PopulationBuildingInput.builder().name("Pioneer's Hut").capacity(10).remarks("").build());
 
-        // Additional population buildings omitted for brevity
-
-        // Loop through and insert production buildings
         for (Inserter insert : inserts) {
             try {
-                buildingService.post(ProductionBuildingDTO.builder()
+                ProductionBuildingInput dto = ProductionBuildingInput.builder()
                         .name(insert.name)
                         .remarks(insert.remarks)
-                        .idOfRecipe(OptionalUtil.getIdOrEmpty(recipeService.findByName(insert.recipe)))
                         .productionPerMinute(insert.productionPerMinute)
-                        .build());
-            } catch (Exception ignored) {
+                        .recipe(insert.recipe)
+                        .build();
+                buildingService.post(dto);
+            } catch (ParagonPioneerBeException e) {
+                System.out.println("Could not create Building " + insert.name);
+            }finally {
+                progressBarSupplier.get();
             }
-            progressBarSupplier.get();
         }
     }
 }
