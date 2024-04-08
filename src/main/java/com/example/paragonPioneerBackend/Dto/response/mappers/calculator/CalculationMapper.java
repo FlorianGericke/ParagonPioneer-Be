@@ -22,10 +22,17 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class CalculationMapper implements ResponseMapper<CalculationMapper, CalculationResponse> {
 
+    // The depth of the calculation
+    @Builder.Default
+    private Integer depth = null;
+
     // The recipe represented as a ProductionChainMapper
-    private ProductionChainMapper recipe;
+    @Builder.Default
+    private ProductionChainMapper recipe = null;
+
     // A list of errors
-    private ArrayList<String> errors;
+    @Builder.Default
+    private ArrayList<String> errors = null;
 
     /**
      * Maps a CalculationResponse to a CalculationMapper.
@@ -38,6 +45,7 @@ public class CalculationMapper implements ResponseMapper<CalculationMapper, Calc
     @Override
     public CalculationMapper map(CalculationResponse input) {
         return CalculationMapper.builder()
+                .depth(input.depth())
                 .recipe(new ProductionChainMapper().map(input.target()))
                 .errors(input.errors())
                 .build();

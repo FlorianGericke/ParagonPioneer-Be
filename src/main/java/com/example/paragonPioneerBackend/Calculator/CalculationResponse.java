@@ -10,5 +10,5 @@ import java.util.ArrayList;
  * - target: An instance of the ProductionKnot class. This represents the target of the calculation.
  * - errors: An ArrayList of Strings. This list contains any errors that occurred during the calculation.
  */
-public record CalculationResponse(ProductionKnot target, ArrayList<String> errors) {
+public record CalculationResponse(int depth, ProductionKnot target, ArrayList<String> errors) {
 }
