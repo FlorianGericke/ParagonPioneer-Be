@@ -85,7 +85,5 @@ Admin Access from the Owner of the Application.
 
 ## Database UML
 
-[Go To DB-Diagrams](https://dbdiagram.io/d/PP-PR-655c68de3be14957876943d3)
-
 [UML Diagram](./Documentation/Database/ppAssemblyLineBa.png)
 
