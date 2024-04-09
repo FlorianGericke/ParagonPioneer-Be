@@ -79,9 +79,9 @@ Admin Access from the Owner of the Application.
 
 ## Api Documentation
 
-[Klassen Diagram](./Documentation/Code/src.png)
+[Klassen Diagram](./Documentation/code/src.png)
 
-[Java Doc](https://htmlpreview.github.io/?https://raw.githubusercontent.com/LF12-ParagonPioneer/ParagonPioneer-Be/develop/Documentation/Java/index.html)
+[Java Doc](https://htmlpreview.github.io/?https://raw.githubusercontent.com/LF12-ParagonPioneer/ParagonPioneer-Be/main/Documentation/Java/index.html)
 
 ## Database UML
 
