@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
  * It extends from the BaseController class and provides endpoints for managing population requirements.
  * It is annotated with @RestController, meaning it's a controller where every method returns a domain object instead of a view.
  * It's also annotated with @RequestMapping to map web requests onto specific handler methods.
- * @Tag annotation is used to add metadata to the API about the controller.
  */
 @RestController
 @RequestMapping(path = "/api/v1/requirement/population")
