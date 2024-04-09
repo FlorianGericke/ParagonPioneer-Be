@@ -47,11 +47,15 @@ tasks.withType<Test> {
 }
 
 tasks.bootBuildImage {
-    builder.set("paketobuildpacks/builder-jammy-base:latest")
+    builder.set("paket-bildpacks/builder-jammy-base:latest")
 }
 
 tasks.javadoc {
     setDestinationDir(file("Documentation/Java"))
+}
+
+tasks.compileJava {
+    options.encoding = "UTF-8"
 }
 
 
