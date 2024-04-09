@@ -48,7 +48,7 @@ public class InsertRunner implements ApplicationRunner {
             // todo Hard Coded Admin login with Clear Password is just for Developing and testing. This should be set in an ignored env file
             try {
                 authenticationService.register(RegisterRequest.builder()
-                        .email("amin@user.de")
+                        .email("admin@user.de")
                         .password("admin")
                         .build());
                 pb.step();
