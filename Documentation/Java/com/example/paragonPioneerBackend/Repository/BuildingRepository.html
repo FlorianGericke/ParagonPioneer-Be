@@ -87,14 +87,16 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Superinterfaces:</dt>
-<dd><code>org.springframework.data.repository.CrudRepository&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.repository.ListCrudRepository&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.repository.ListPagingAndSortingRepository&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.repository.PagingAndSortingRepository&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.repository.query.QueryByExampleExecutor&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code>, <code>org.springframework.data.repository.Repository&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code></dd>
+<dd><code>org.springframework.data.repository.CrudRepository&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.repository.ListCrudRepository&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.repository.ListPagingAndSortingRepository&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.repository.PagingAndSortingRepository&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code>org.springframework.data.repository.query.QueryByExampleExecutor&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>&gt;</code>, <code>org.springframework.data.repository.Repository&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</code>, <code><a href="SlugableReposetory.html" title="interface in com.example.paragonPioneerBackend.Repository">SlugableReposetory</a>&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>&gt;</code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">BuildingRepository</span><span class="extends-implements">
-extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&gt;</span></div>
-<div class="block">Spring Data JPA repository interface for <a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a> entities.
- Provides methods to perform CRUD operations and additional queries to find buildings by name or slug.
- Inherits standard CRUD and pagination methods from JpaRepository.</div>
+extends <a href="SlugableReposetory.html" title="interface in com.example.paragonPioneerBackend.Repository">SlugableReposetory</a>&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>&gt;</span></div>
+<div class="block">Spring Data JPA repository for <a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity"><code>Building</code></a> entities.
+ This interface provides automated CRUD functionalities inherited from JpaRepository,
+ along with custom methods for querying buildings by their type.
+ It simplifies the management of building data by abstracting direct database interactions,
+ enabling straightforward data access and manipulation.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,20 +111,20 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findAllByNameContains(java.lang.String)" class="member-name-link">findAllByNameContains</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>org.springframework.data.domain.Page&lt;<a href="../Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findAllPopulationBuildings(org.springframework.data.domain.Pageable)" class="member-name-link">findAllPopulationBuildings</a><wbr>(org.springframework.data.domain.Pageable&nbsp;pageable)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Finds all buildings where the name contains the specified substring.</div>
+<div class="block">This method is used to find all Buildings that are of type 'PopulationBuilding'.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findByNameIs(java.lang.String)" class="member-name-link">findByNameIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>org.springframework.data.domain.Page&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findAllProductionBuildings(org.springframework.data.domain.Pageable)" class="member-name-link">findAllProductionBuildings</a><wbr>(org.springframework.data.domain.Pageable&nbsp;pageable)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Finds a building exactly matching the specified name.</div>
+<div class="block">This method is used to find all Buildings that are of type 'PopulationBuilding'.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findBySlugIs(java.lang.String)" class="member-name-link">findBySlugIs</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#findProductionBuildingByRecipeSlug(java.lang.String)" class="member-name-link">findProductionBuildingByRecipeSlug</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;recipeSlug)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Finds a building based on its slug.</div>
+<div class="block">This method is used to find a Building that is of type 'PopulationBuilding' by its recipe slug.</div>
 </div>
 </div>
 </div>
@@ -145,6 +147,9 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.springframework.data.repository.query.QueryByExampleExecutor">Methods inherited from interface&nbsp;org.springframework.data.repository.query.QueryByExampleExecutor</h3>
 <code>count, exists, findAll, findBy, findOne</code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Repository.SlugableReposetory">Methods inherited from interface&nbsp;com.example.paragonPioneerBackend.Repository.<a href="SlugableReposetory.html" title="interface in com.example.paragonPioneerBackend.Repository">SlugableReposetory</a></h3>
+<code><a href="SlugableReposetory.html#findAllByName(java.lang.String)">findAllByName</a>, <a href="SlugableReposetory.html#findAllByNameContains(org.springframework.data.domain.Pageable,java.lang.String)">findAllByNameContains</a>, <a href="SlugableReposetory.html#findBySlug(java.lang.String)">findBySlug</a></code></div>
 </section>
 </li>
 </ul>
@@ -157,42 +162,54 @@ extends org.springframework.data.jpa.repository.JpaRepository&lt;<a href="../Ent
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="findByNameIs(java.lang.String)">
-<h3>findByNameIs</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</span>&nbsp;<span class="element-name">findByNameIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">Finds a building exactly matching the specified name.</div>
+<section class="detail" id="findAllProductionBuildings(org.springframework.data.domain.Pageable)">
+<h3>findAllProductionBuildings</h3>
+<div class="member-signature"><span class="annotations">@Query("SELECT p FROM ProductionBuilding p")
+</span><span class="return-type">org.springframework.data.domain.Page&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</span>&nbsp;<span class="element-name">findAllProductionBuildings</span><wbr><span class="parameters">(org.springframework.data.domain.Pageable&nbsp;pageable)</span></div>
+<div class="block">This method is used to find all Buildings that are of type 'PopulationBuilding'.
+ It is a part of the BuildingRepository interface, which extends {}SlugableReposetory.
+ The implementation of this method is provided by Spring Data JPA.
+ The method returns a Set of ProductionBuilding entities that match the criteria.
+ If no Building with a dtype of 'PopulationBuilding' is found, an empty Set is returned.</div>
 <dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>name</code> - The exact name of the building to find.</dd>
 <dt>Returns:</dt>
-<dd>An Optional containing the building if found; otherwise, an empty Optional.</dd>
+<dd>A Set of ProductionBuilding entities where the dtype is 'PopulationBuilding'.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="findAllByNameContains(java.lang.String)">
-<h3>findAllByNameContains</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</span>&nbsp;<span class="element-name">findAllByNameContains</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">Finds all buildings where the name contains the specified substring.
- This method is useful for implementing search functionalities where a partial match is acceptable.</div>
+<section class="detail" id="findAllPopulationBuildings(org.springframework.data.domain.Pageable)">
+<h3>findAllPopulationBuildings</h3>
+<div class="member-signature"><span class="annotations">@Query("SELECT p FROM PopulationBuilding p")
+</span><span class="return-type">org.springframework.data.domain.Page&lt;<a href="../Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a>&gt;</span>&nbsp;<span class="element-name">findAllPopulationBuildings</span><wbr><span class="parameters">(org.springframework.data.domain.Pageable&nbsp;pageable)</span></div>
+<div class="block">This method is used to find all Buildings that are of type 'PopulationBuilding'.
+ It is a part of the BuildingRepository interface, which extends SlugableReposetory.
+ The implementation of this method is provided by Spring Data JPA.
+ The method returns a Set of PopulationBuilding entities that match the criteria.
+ If no Building with a dtype of 'PopulationBuilding' is found, an empty Set is returned.</div>
 <dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>name</code> - The substring to search for within the building names.</dd>
 <dt>Returns:</dt>
-<dd>A list of buildings that contain the specified substring in their names.</dd>
+<dd>A Set of PopulationBuilding entities where the dtype is 'PopulationBuilding'.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="findBySlugIs(java.lang.String)">
-<h3>findBySlugIs</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</span>&nbsp;<span class="element-name">findBySlugIs</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
-<div class="block">Finds a building based on its slug. Slugs are typically used in URLs and are unique for each building.</div>
+<section class="detail" id="findProductionBuildingByRecipeSlug(java.lang.String)">
+<h3>findProductionBuildingByRecipeSlug</h3>
+<div class="member-signature"><span class="annotations">@Query("SELECT p FROM ProductionBuilding p  WHERE p.recipe.output.slug = :recipeSlug")
+</span><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</span>&nbsp;<span class="element-name">findProductionBuildingByRecipeSlug</span><wbr><span class="parameters">(@Param("recipeSlug")
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;recipeSlug)</span></div>
+<div class="block">This method is used to find a Building that is of type 'PopulationBuilding' by its recipe slug.
+ It is a part of the BuildingRepository interface, which extends SlugableReposetory.
+ The implementation of this method is provided by Spring Data JPA.
+ The method returns an Optional of PopulationBuilding entity that matches the criteria.
+ If no Building with a dtype of 'PopulationBuilding' and the specified recipe slug is found,
+ an empty Optional is returned.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>slug</code> - The slug of the building to find.</dd>
+<dd><code>recipeSlug</code> - The slug of the recipe associated with the PopulationBuilding.</dd>
 <dt>Returns:</dt>
-<dd>An Optional containing the building if a matching slug is found; otherwise, an empty Optional.</dd>
+<dd>An Optional of PopulationBuilding entity where the dtype is 'PopulationBuilding' and the recipe slug matches.</dd>
 </dl>
 </section>
 </li>

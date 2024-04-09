@@ -1,7 +1,8 @@
 package com.example.paragonPioneerBackend.Entity;
 
-import com.example.paragonPioneerBackend.Entity.JoinTables.Cost_Building_Goods;
-import com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building;
+import com.example.paragonPioneerBackend.Entity.abstractEntity.Building;
+import com.example.paragonPioneerBackend.Entity.joinTables.CostBuildingGoods;
+import com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding;
 import jakarta.persistence.Entity;
 import lombok.*;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class PopulationBuilding extends Building {
 
     /**
@@ -24,27 +26,18 @@ public class PopulationBuilding extends Building {
     private int capacity;
 
     /**
-     * Constructs a new instance of PopulationBuilding with detailed attributes.
+     * Constructor for the PopulationBuilding class.
      *
-     * @param name the name of the PopulationBuilding, inherited from {@link Building}.
-     * @param remarks additional information about the PopulationBuilding, inherited from {@link Building}.
-     * @param costs a set of costs associated with constructing or maintaining the PopulationBuilding,
-     *              represented by {@link Cost_Building_Goods}.
-     * @param requirementPopulationBuildings the population requirements for the building,
-     *                                       represented by {@link Requirement_Population_Building}.
-     * @param capacity the maximum number of persons the building can accommodate.
-     * @param slug the unique slug for the PopulationBuilding, used for URL representation, inherited from {@link Building}.
+     * @param name The name of the population building.
+     * @param slug The slug for URL representation of the population building.
+     * @param remarks Optional remarks providing additional information about the population building.
+     * @param costs A set of {@link CostBuildingGoods} entities that represent the cost of constructing this building.
+     * @param requirePopulation A {@link RequirementPopulationBuilding} entity that represents the population requirement for this building.
+     * @param capacity The maximum number of persons that the population building can accommodate.
      */
     @Builder
-    public PopulationBuilding(String name, String remarks, Set<Cost_Building_Goods> costs, Requirement_Population_Building requirementPopulationBuildings, int capacity, String slug) {
-        super(name, remarks, costs, requirementPopulationBuildings, slug);
+    public PopulationBuilding(String name, String slug, String remarks, Set<CostBuildingGoods> costs, RequirementPopulationBuilding requirePopulation, int capacity) {
+        super(name, slug, remarks, costs, requirePopulation);
         this.capacity = capacity;
-    }
-
-    /**
-     * Default constructor for PopulationBuilding, required for JPA entity initialization.
-     */
-    public PopulationBuilding() {
-        super();
     }
 }

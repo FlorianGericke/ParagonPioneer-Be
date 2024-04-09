@@ -85,20 +85,26 @@ loadScripts(document, 'script');</script>
 <h1 title="Class BuildingController" class="title">Class BuildingController</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">com.example.paragonPioneerBackend.Controller.BaseController</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>&gt;&gt;
+<div class="inheritance"><a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">com.example.paragonPioneerBackend.Controller.abstractController.BaseController</a>&lt;Type,<wbr>Repository,<wbr>InputDto,<wbr>Mapper,<wbr>Service&gt;
+<div class="inheritance"><a href="abstractController/SlugableController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">com.example.paragonPioneerBackend.Controller.abstractController.SlugableController</a>&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>,<wbr><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&gt;&gt;
 <div class="inheritance">com.example.paragonPioneerBackend.Controller.BuildingController</div>
+</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
-<div class="type-signature"><span class="annotations">@Controller
+<div class="type-signature"><span class="annotations">@RestController
 @RequestMapping(path="/api/v1/building")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">BuildingController</span>
-<span class="extends-implements">extends <a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>&gt;&gt;</span></div>
-<div class="block">Controller responsible for handling HTTP requests related to buildings, including
- specialized endpoints for population and production buildings. Inherits basic CRUD
- operations from BaseController and adds specific functionalities to cater to different
- types of buildings within the system.</div>
+<span class="extends-implements">extends <a href="abstractController/SlugableController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">SlugableController</a>&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>,<wbr><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&gt;&gt;</span></div>
+<div class="block">BuildingController is a REST controller that handles HTTP requests related to buildings.
+ It extends the SlugableController and provides endpoints for fetching production and population buildings.
+ <p>
+ The BuildingController class is parameterized with the following types:
+ - Building: The entity type that this controller handles.
+ - BuildingRepository: The repository type used for accessing the database.
+ - BuildingInput: The DTO type used for creating and updating buildings.
+ - BuildingMapper: The mapper type used for converting between entities and DTOs.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,8 +113,8 @@ loadScripts(document, 'script');</script>
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
 <div class="inherited-list">
-<h3 id="fields-inherited-from-class-com.example.paragonPioneerBackend.Controller.BaseController">Fields inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.<a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a></h3>
-<code><a href="BaseController.html#service">service</a></code></div>
+<h3 id="fields-inherited-from-class-com.example.paragonPioneerBackend.Controller.abstractController.BaseController">Fields inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.abstractController.<a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">BaseController</a></h3>
+<code><a href="abstractController/BaseController.html#mapper">mapper</a>, <a href="abstractController/BaseController.html#service">service</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -119,8 +125,11 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Service.BuildingService)" class="member-name-link">BuildingController</a><wbr>(<a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&nbsp;service)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Service.BuildingService,com.example.paragonPioneerBackend.Dto.response.mappers.BuildingMapper)" class="member-name-link">BuildingController</a><wbr>(<a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&gt;&nbsp;service,
+ <a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>&nbsp;mapper)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a BaseController with the specified service and mapper.</div>
+</div>
 </div>
 </section>
 </li>
@@ -135,48 +144,76 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#deleteEntity(java.util.UUID)" class="member-name-link">deleteEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.data.domain.Page&lt;<a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPopulationBuildings(org.springframework.data.domain.Pageable)" class="member-name-link">getPopulationBuildings</a><wbr>(org.springframework.data.domain.Pageable&nbsp;pageable)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Deletes the specified building, identified by its UUID, from the system.</div>
+<div class="block">Endpoint to fetch all population buildings.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllPopulationBuildings()" class="member-name-link">getAllPopulationBuildings</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.data.domain.Page&lt;<a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProductionBuildings(org.springframework.data.domain.Pageable)" class="member-name-link">getProductionBuildings</a><wbr>(org.springframework.data.domain.Pageable&nbsp;pageable)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Retrieves all population buildings within the system.</div>
+<div class="block">Endpoint to fetch all production buildings.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllProductionBuilding()" class="member-name-link">getAllProductionBuilding</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#patchEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.BuildingInput)" class="member-name-link">patchEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ <a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&nbsp;buildingInput)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Retrieves all production buildings within the system.</div>
+<div class="block">Endpoint to partially update an existing building.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEntities(java.lang.String)" class="member-name-link">getEntities</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#patchPopulationBuilding(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput)" class="member-name-link">patchPopulationBuilding</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ <a href="../Dto/requests/PopulationBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">PopulationBuildingInput</a>&nbsp;buildingInput)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Retrieves a list of buildings that contain the specified name in their name attribute.</div>
+<div class="block">Endpoint to partially update an existing population building.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#postPopulationBuildingEntity(com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO)" class="member-name-link">postPopulationBuildingEntity</a><wbr>(<a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#patchProductionBuilding(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput)" class="member-name-link">patchProductionBuilding</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ <a href="../Dto/requests/ProductionBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">ProductionBuildingInput</a>&nbsp;buildingInput)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds a new population building to the system based on the provided DTO.</div>
+<div class="block">Endpoint to partially update an existing production building.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#postProductionBuildingEntity(com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO)" class="member-name-link">postProductionBuildingEntity</a><wbr>(<a href="../Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a>&nbsp;dto)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#postEntity(com.example.paragonPioneerBackend.Dto.requests.BuildingInput)" class="member-name-link">postEntity</a><wbr>(<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&nbsp;buildingInput)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds a new production building to the system based on the provided DTO.</div>
+<div class="block">Endpoint to create a new building.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPopulationBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO)" class="member-name-link">putPopulationBuildingEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- <a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#postPopulationBuilding(com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput)" class="member-name-link">postPopulationBuilding</a><wbr>(<a href="../Dto/requests/PopulationBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">PopulationBuildingInput</a>&nbsp;buildingInput)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Updates an existing population building identified by the provided UUID with data from the given DTO.</div>
+<div class="block">Endpoint to create a new population building.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#postProductionBuilding(com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput)" class="member-name-link">postProductionBuilding</a><wbr>(<a href="../Dto/requests/ProductionBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">ProductionBuildingInput</a>&nbsp;buildingInput)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Endpoint to create a new production building.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.BuildingInput)" class="member-name-link">putEntity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ <a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&nbsp;buildingInput)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Endpoint to update an existing building.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPopulationBuilding(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput)" class="member-name-link">putPopulationBuilding</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ <a href="../Dto/requests/PopulationBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">PopulationBuildingInput</a>&nbsp;buildingInput)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Endpoint to update an existing population building.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putProductionBuilding(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput)" class="member-name-link">putProductionBuilding</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ <a href="../Dto/requests/ProductionBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">ProductionBuildingInput</a>&nbsp;buildingInput)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Endpoint to update an existing production building.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.BaseController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.<a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a></h3>
-<code><a href="BaseController.html#getEntities(org.springframework.data.domain.Pageable)">getEntities</a>, <a href="BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="BaseController.html#patchEntity(java.util.UUID,Dto)">patchEntity</a>, <a href="BaseController.html#postEntity(Dto)">postEntity</a>, <a href="BaseController.html#putEntity(java.util.UUID,Dto)">putEntity</a></code></div>
+<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.abstractController.SlugableController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.abstractController.<a href="abstractController/SlugableController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">SlugableController</a></h3>
+<code><a href="abstractController/SlugableController.html#findByIdSlugName(java.lang.String)">findByIdSlugName</a>, <a href="abstractController/SlugableController.html#getContainingName(org.springframework.data.domain.Pageable,java.lang.String)">getContainingName</a>, <a href="abstractController/SlugableController.html#getEntityBySlug(java.lang.String)">getEntityBySlug</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.abstractController.BaseController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.abstractController.<a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">BaseController</a></h3>
+<code><a href="abstractController/BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a>, <a href="abstractController/BaseController.html#getEntities(org.springframework.data.domain.Pageable)">getEntities</a>, <a href="abstractController/BaseController.html#getEntity(java.util.UUID)">getEntity</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -192,10 +229,16 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.example.paragonPioneerBackend.Service.BuildingService)">
+<section class="detail" id="&lt;init&gt;(com.example.paragonPioneerBackend.Service.BuildingService,com.example.paragonPioneerBackend.Dto.response.mappers.BuildingMapper)">
 <h3>BuildingController</h3>
-<div class="member-signature"><span class="annotations">@Autowired
-</span><span class="modifiers">public</span>&nbsp;<span class="element-name">BuildingController</span><wbr><span class="parameters">(<a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&nbsp;service)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BuildingController</span><wbr><span class="parameters">(<a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&gt;&nbsp;service,
+ <a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>&nbsp;mapper)</span></div>
+<div class="block">Constructs a BaseController with the specified service and mapper.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>service</code> - The service used for business logic operations.</dd>
+<dd><code>mapper</code> - The mapper used for mapping entities to response DTOs.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -207,120 +250,205 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="getEntities(java.lang.String)">
-<h3>getEntities</h3>
-<div class="member-signature"><span class="annotations">@GetMapping(value="/find",
-            produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>&gt;</span>&nbsp;<span class="element-name">getEntities</span><wbr><span class="parameters">(@RequestParam
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">Retrieves a list of buildings that contain the specified name in their name attribute.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>name</code> - The substring to search for within building names.</dd>
-<dt>Returns:</dt>
-<dd>A list of all buildings containing the specified name substring.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getAllPopulationBuildings()">
-<h3>getAllPopulationBuildings</h3>
-<div class="member-signature"><span class="annotations">@GetMapping(path="/population",
-            produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/PopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">PopulationBuilding</a>&gt;</span>&nbsp;<span class="element-name">getAllPopulationBuildings</span>()</div>
-<div class="block">Retrieves all population buildings within the system.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>A list of all population buildings.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getAllProductionBuilding()">
-<h3>getAllProductionBuilding</h3>
-<div class="member-signature"><span class="annotations">@GetMapping(path="/production",
-            produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/ProductionBuilding.html" title="class in com.example.paragonPioneerBackend.Entity">ProductionBuilding</a>&gt;</span>&nbsp;<span class="element-name">getAllProductionBuilding</span>()</div>
-<div class="block">Retrieves all production buildings within the system.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>A list of all production buildings.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="postPopulationBuildingEntity(com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO)">
-<h3>postPopulationBuildingEntity</h3>
-<div class="member-signature"><span class="annotations">@PostMapping(path="/population",
-             produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">postPopulationBuildingEntity</span><wbr><span class="parameters">(@RequestBody
- <a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">Adds a new population building to the system based on the provided DTO.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>dto</code> - The DTO containing the data for the new population building.</dd>
-<dt>Returns:</dt>
-<dd>The newly added population building.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="postProductionBuildingEntity(com.example.paragonPioneerBackend.Dto.ProductionBuildingDTO)">
-<h3>postProductionBuildingEntity</h3>
-<div class="member-signature"><span class="annotations">@PostMapping(path="/production",
-             produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">postProductionBuildingEntity</span><wbr><span class="parameters">(@RequestBody
- <a href="../Dto/ProductionBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">ProductionBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">Adds a new production building to the system based on the provided DTO.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>dto</code> - The DTO containing the data for the new production building.</dd>
-<dt>Returns:</dt>
-<dd>The newly added production building.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="putPopulationBuildingEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.PopulationBuildingDTO)">
-<h3>putPopulationBuildingEntity</h3>
-<div class="member-signature"><span class="annotations">@PutMapping(path="/population/{id}",
-            produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">putPopulationBuildingEntity</span><wbr><span class="parameters">(@PathVariable
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
- @RequestBody
- <a href="../Dto/PopulationBuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">PopulationBuildingDTO</a>&nbsp;dto)</span></div>
-<div class="block">Updates an existing population building identified by the provided UUID with data from the given DTO.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - The UUID of the population building to update.</dd>
-<dd><code>dto</code> - The DTO containing the update information.</dd>
-<dt>Returns:</dt>
-<dd>The updated population building.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="deleteEntity(java.util.UUID)">
-<h3>deleteEntity</h3>
-<div class="member-signature"><span class="annotations">@DeleteMapping(path="/{id}",
-               produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span>&nbsp;<span class="element-name">deleteEntity</span><wbr><span class="parameters">(@PathVariable
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
-<div class="block">Deletes the specified building, identified by its UUID, from the system.</div>
+<section class="detail" id="postEntity(com.example.paragonPioneerBackend.Dto.requests.BuildingInput)">
+<h3>postEntity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">postEntity</span><wbr><span class="parameters">(<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to create a new building.
+ It uses the service to create the building and the mapper to map the entity to response DTO.
+ This method is hidden from the Swagger UI.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
-<dd><code><a href="BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a></code>&nbsp;in class&nbsp;<code><a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;<a href="../Entity/Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/BuildingDTO.html" title="class in com.example.paragonPioneerBackend.Dto">BuildingDTO</a>&gt;&gt;</code></dd>
+<dd><code><a href="abstractController/BaseController.html#postEntity(InputDto)">postEntity</a></code>&nbsp;in class&nbsp;<code><a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">BaseController</a>&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>,<wbr><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&gt;&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>id</code> - The UUID of the building to delete.</dd>
+<dd><code>buildingInput</code> - The DTO containing the data for the new building.</dd>
 <dt>Returns:</dt>
-<dd>The deleted building entity.</dd>
+<dd>The created building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="putEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.BuildingInput)">
+<h3>putEntity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">putEntity</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ <a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to update an existing building.
+ It uses the service to update the building and the mapper to map the entity to response DTO.
+ This method is hidden from the Swagger UI.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="abstractController/BaseController.html#putEntity(java.util.UUID,InputDto)">putEntity</a></code>&nbsp;in class&nbsp;<code><a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">BaseController</a>&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>,<wbr><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&gt;&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>id</code> - The ID of the building to update.</dd>
+<dd><code>buildingInput</code> - The DTO containing the updated data for the building.</dd>
+<dt>Returns:</dt>
+<dd>The updated building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="patchEntity(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.BuildingInput)">
+<h3>patchEntity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">patchEntity</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ <a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to partially update an existing building.
+ It uses the service to update the building and the mapper to map the entity to response DTO.
+ This method is hidden from the Swagger UI.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="abstractController/BaseController.html#patchEntity(java.util.UUID,InputDto)">patchEntity</a></code>&nbsp;in class&nbsp;<code><a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">BaseController</a>&lt;<a href="../Entity/abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a>,<wbr><a href="../Repository/BuildingRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">BuildingRepository</a>,<wbr><a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>,<wbr><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>,<wbr><a href="../Service/BuildingService.html" title="class in com.example.paragonPioneerBackend.Service">BuildingService</a>&lt;<a href="../Dto/requests/BuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">BuildingInput</a>&gt;&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>id</code> - The ID of the building to update.</dd>
+<dd><code>buildingInput</code> - The DTO containing the updated data for the building.</dd>
+<dt>Returns:</dt>
+<dd>The updated building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="postProductionBuilding(com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput)">
+<h3>postProductionBuilding</h3>
+<div class="member-signature"><span class="annotations">@PostMapping(value="/productionBuilding",
+             produces="application/json")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">postProductionBuilding</span><wbr><span class="parameters">(@RequestBody
+ <a href="../Dto/requests/ProductionBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">ProductionBuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to create a new production building.
+ It uses the service to create the building and the mapper to map the entity to response DTO.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>buildingInput</code> - The DTO containing the data for the new production building.</dd>
+<dt>Returns:</dt>
+<dd>The created production building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="postPopulationBuilding(com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput)">
+<h3>postPopulationBuilding</h3>
+<div class="member-signature"><span class="annotations">@PostMapping(value="/populationBuilding",
+             produces="application/json")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">postPopulationBuilding</span><wbr><span class="parameters">(@RequestBody
+ <a href="../Dto/requests/PopulationBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">PopulationBuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to create a new population building.
+ It uses the service to create the building and the mapper to map the entity to response DTO.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>buildingInput</code> - The DTO containing the data for the new population building.</dd>
+<dt>Returns:</dt>
+<dd>The created population building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="putProductionBuilding(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput)">
+<h3>putProductionBuilding</h3>
+<div class="member-signature"><span class="annotations">@PutMapping(value="/productionBuilding/{id}",
+            produces="application/json")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">putProductionBuilding</span><wbr><span class="parameters">(@PathVariable
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ @RequestBody
+ <a href="../Dto/requests/ProductionBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">ProductionBuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to update an existing production building.
+ It uses the service to update the building and the mapper to map the entity to response DTO.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - The ID of the production building to update.</dd>
+<dd><code>buildingInput</code> - The DTO containing the updated data for the production building.</dd>
+<dt>Returns:</dt>
+<dd>The updated production building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="putPopulationBuilding(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput)">
+<h3>putPopulationBuilding</h3>
+<div class="member-signature"><span class="annotations">@PutMapping(value="/populationBuilding/{id}",
+            produces="application/json")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">putPopulationBuilding</span><wbr><span class="parameters">(@PathVariable
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ @RequestBody
+ <a href="../Dto/requests/PopulationBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">PopulationBuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to update an existing population building.
+ It uses the service to update the building and the mapper to map the entity to response DTO.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - The ID of the population building to update.</dd>
+<dd><code>buildingInput</code> - The DTO containing the updated data for the population building.</dd>
+<dt>Returns:</dt>
+<dd>The updated population building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="patchProductionBuilding(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.ProductionBuildingInput)">
+<h3>patchProductionBuilding</h3>
+<div class="member-signature"><span class="annotations">@PatchMapping(value="/productionBuilding/{id}",
+              produces="application/json")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">patchProductionBuilding</span><wbr><span class="parameters">(@PathVariable
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ @RequestBody
+ <a href="../Dto/requests/ProductionBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">ProductionBuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to partially update an existing production building.
+ It uses the service to update the building and the mapper to map the entity to response DTO.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - The ID of the production building to update.</dd>
+<dd><code>buildingInput</code> - The DTO containing the updated data for the production building.</dd>
+<dt>Returns:</dt>
+<dd>The updated production building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="patchPopulationBuilding(java.util.UUID,com.example.paragonPioneerBackend.Dto.requests.PopulationBuildingInput)">
+<h3>patchPopulationBuilding</h3>
+<div class="member-signature"><span class="annotations">@PatchMapping(value="/populationBuilding/{id}",
+              produces="application/json")
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a></span>&nbsp;<span class="element-name">patchPopulationBuilding</span><wbr><span class="parameters">(@PathVariable
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+ @RequestBody
+ <a href="../Dto/requests/PopulationBuildingInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">PopulationBuildingInput</a>&nbsp;buildingInput)</span></div>
+<div class="block">Endpoint to partially update an existing population building.
+ It uses the service to update the building and the mapper to map the entity to response DTO.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - The ID of the population building to update.</dd>
+<dd><code>buildingInput</code> - The DTO containing the updated data for the population building.</dd>
+<dt>Returns:</dt>
+<dd>The updated population building as a DTO.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getProductionBuildings(org.springframework.data.domain.Pageable)">
+<h3>getProductionBuildings</h3>
+<div class="member-signature"><span class="annotations">@GetMapping(value="/productionBuilding",
+            produces="application/json")
+@ResponseBody
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.data.domain.Page&lt;<a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>&gt;</span>&nbsp;<span class="element-name">getProductionBuildings</span><wbr><span class="parameters">(org.springframework.data.domain.Pageable&nbsp;pageable)</span></div>
+<div class="block">Endpoint to fetch all production buildings.
+ It uses the service to fetch the buildings and the mapper to map the entities to response DTOs.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pageable</code> - The pagination information.</dd>
+<dt>Returns:</dt>
+<dd>A page of BuildingMapper objects.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getPopulationBuildings(org.springframework.data.domain.Pageable)">
+<h3>getPopulationBuildings</h3>
+<div class="member-signature"><span class="annotations">@GetMapping(value="/populationBuilding",
+            produces="application/json")
+@ResponseBody
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.data.domain.Page&lt;<a href="../Dto/response/mappers/BuildingMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">BuildingMapper</a>&gt;</span>&nbsp;<span class="element-name">getPopulationBuildings</span><wbr><span class="parameters">(org.springframework.data.domain.Pageable&nbsp;pageable)</span></div>
+<div class="block">Endpoint to fetch all population buildings.
+ It uses the service to fetch the buildings and the mapper to map the entities to response DTOs.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pageable</code> - The pagination information.</dd>
+<dt>Returns:</dt>
+<dd>A page of BuildingMapper objects.</dd>
 </dl>
 </section>
 </li>

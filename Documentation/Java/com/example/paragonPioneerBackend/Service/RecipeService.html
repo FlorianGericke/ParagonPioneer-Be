@@ -85,15 +85,17 @@ loadScripts(document, 'script');</script>
 <h1 title="Class RecipeService" class="title">Class RecipeService</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">com.example.paragonPioneerBackend.Service.BaseService</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="../Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a>,<wbr><a href="../Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a>&gt;
+<div class="inheritance"><a href="generic/BaseService.html" title="class in com.example.paragonPioneerBackend.Service.generic">com.example.paragonPioneerBackend.Service.generic.BaseService</a>&lt;Type,<wbr>Repository,<wbr>Dto&gt;
+<div class="inheritance"><a href="generic/SlugableService.html" title="class in com.example.paragonPioneerBackend.Service.generic">com.example.paragonPioneerBackend.Service.generic.SlugableService</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="../Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a>,<wbr><a href="../Dto/requests/RecipeInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">RecipeInput</a>&gt;
 <div class="inheritance">com.example.paragonPioneerBackend.Service.RecipeService</div>
+</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
-<div class="type-signature"><span class="annotations">@Component("recipeService")
+<div class="type-signature"><span class="annotations">@Service
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">RecipeService</span>
-<span class="extends-implements">extends <a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="../Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a>,<wbr><a href="../Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a>&gt;</span></div>
+<span class="extends-implements">extends <a href="generic/SlugableService.html" title="class in com.example.paragonPioneerBackend.Service.generic">SlugableService</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="../Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a>,<wbr><a href="../Dto/requests/RecipeInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">RecipeInput</a>&gt;</span></div>
 <div class="block">Service class for managing recipes in the application. It provides methods for creating,
  updating, and retrieving recipes, with a focus on manipulating Recipe entities and
  interacting with the database via the RecipeRepository. Additionally, it utilizes
@@ -106,8 +108,8 @@ loadScripts(document, 'script');</script>
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
 <div class="inherited-list">
-<h3 id="fields-inherited-from-class-com.example.paragonPioneerBackend.Service.BaseService">Fields inherited from class&nbsp;com.example.paragonPioneerBackend.Service.<a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a></h3>
-<code><a href="BaseService.html#repository">repository</a></code></div>
+<h3 id="fields-inherited-from-class-com.example.paragonPioneerBackend.Service.generic.BaseService">Fields inherited from class&nbsp;com.example.paragonPioneerBackend.Service.generic.<a href="generic/BaseService.html" title="class in com.example.paragonPioneerBackend.Service.generic">BaseService</a></h3>
+<code><a href="generic/BaseService.html#repository">repository</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -138,36 +140,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findAllByNameContains(java.lang.String)" class="member-name-link">findAllByNameContains</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;outputName)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Finds recipes where the output good's name contains a specified string.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findAllByOutputId(java.util.UUID)" class="member-name-link">findAllByOutputId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findByName(java.lang.String)" class="member-name-link">findByName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Finds a recipe by the name of its output good.</div>
-</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#findByOutputId(java.util.UUID)" class="member-name-link">findByOutputId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#post(com.example.paragonPioneerBackend.Dto.RecipeDTO)" class="member-name-link">post</a><wbr>(<a href="../Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a>&nbsp;recipeDTO)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#mapToEntity(com.example.paragonPioneerBackend.Dto.requests.RecipeInput)" class="member-name-link">mapToEntity</a><wbr>(<a href="../Dto/requests/RecipeInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">RecipeInput</a>&nbsp;recipeInput)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Creates and saves a new recipe entity to the database based on the provided RecipeDTO.</div>
+<div class="block">This method is used to map a RecipeInput DTO to a Recipe entity.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPatch(com.example.paragonPioneerBackend.Entity.Recipe,com.example.paragonPioneerBackend.Dto.RecipeDTO)" class="member-name-link">putPatch</a><wbr>(<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&nbsp;original,
- <a href="../Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a>&nbsp;recipeDTO)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#patch(com.example.paragonPioneerBackend.Entity.Recipe,com.example.paragonPioneerBackend.Dto.requests.RecipeInput)" class="member-name-link">patch</a><wbr>(<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&nbsp;entityToUpdate,
+ <a href="../Dto/requests/RecipeInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">RecipeInput</a>&nbsp;recipeInput)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Updates an existing Recipe entity with data from the provided RecipeDTO.</div>
+<div class="block">This method is used to update the properties of a Recipe entity based on the provided DTO.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Service.BaseService">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Service.<a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a></h3>
-<code><a href="BaseService.html#delete(java.util.UUID)">delete</a>, <a href="BaseService.html#get(java.util.UUID)">get</a>, <a href="BaseService.html#getAll(int,int)">getAll</a>, <a href="BaseService.html#getAll(org.springframework.data.domain.Pageable)">getAll</a>, <a href="BaseService.html#putPatch(java.util.UUID,Dto)">putPatch</a></code></div>
+<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Service.generic.SlugableService">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Service.generic.<a href="generic/SlugableService.html" title="class in com.example.paragonPioneerBackend.Service.generic">SlugableService</a></h3>
+<code><a href="generic/SlugableService.html#findAllContainingName(org.springframework.data.domain.Pageable,java.lang.String)">findAllContainingName</a>, <a href="generic/SlugableService.html#findBySlug(java.lang.String)">findBySlug</a>, <a href="generic/SlugableService.html#findSmthByIdSlugName(java.lang.String)">findSmthByIdSlugName</a>, <a href="generic/SlugableService.html#getByIdIriOrSlug(java.lang.String)">getByIdIriOrSlug</a>, <a href="generic/SlugableService.html#post(Dto)">post</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Service.generic.BaseService">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Service.generic.<a href="generic/BaseService.html" title="class in com.example.paragonPioneerBackend.Service.generic">BaseService</a></h3>
+<code><a href="generic/BaseService.html#delete(java.util.UUID)">delete</a>, <a href="generic/BaseService.html#get(java.util.UUID)">get</a>, <a href="generic/BaseService.html#getAll(org.springframework.data.domain.Pageable)">getAll</a>, <a href="generic/BaseService.html#getByIdOrIri(java.lang.String)">getByIdOrIri</a>, <a href="generic/BaseService.html#patch(java.util.UUID,Dto)">patch</a>, <a href="generic/BaseService.html#put(java.util.UUID,Dto)">put</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -206,71 +201,47 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="findAllByNameContains(java.lang.String)">
-<h3>findAllByNameContains</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</span>&nbsp;<span class="element-name">findAllByNameContains</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;outputName)</span></div>
-<div class="block">Finds recipes where the output good's name contains a specified string.
- Useful for searching recipes based on the name of the output good.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>outputName</code> - The name (or part of it) to search for in the output goods of recipes.</dd>
-<dt>Returns:</dt>
-<dd>A list of recipes that match the search criteria.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="findByName(java.lang.String)">
-<h3>findByName</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</span>&nbsp;<span class="element-name">findByName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">Finds a recipe by the name of its output good. Returns an optional recipe
- which is useful for handling cases where the recipe may not exist.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>name</code> - The name of the output good.</dd>
-<dt>Returns:</dt>
-<dd>An Optional containing the found recipe, if any.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="post(com.example.paragonPioneerBackend.Dto.RecipeDTO)">
-<h3>post</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></span>&nbsp;<span class="element-name">post</span><wbr><span class="parameters">(<a href="../Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a>&nbsp;recipeDTO)</span></div>
-<div class="block">Creates and saves a new recipe entity to the database based on the provided RecipeDTO.
- This method overrides an abstract method from BaseService, tailored to handle Recipe entities.</div>
+<section class="detail" id="mapToEntity(com.example.paragonPioneerBackend.Dto.requests.RecipeInput)">
+<h3>mapToEntity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></span>&nbsp;<span class="element-name">mapToEntity</span><wbr><span class="parameters">(<a href="../Dto/requests/RecipeInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">RecipeInput</a>&nbsp;recipeInput)</span></div>
+<div class="block">This method is used to map a RecipeInput DTO to a Recipe entity.
+ It uses the builder pattern to create a new Recipe entity and sets its input and output properties based on the DTO.
+ The input and output goods are retrieved from the GoodRepository using the PatchUtil.getHelper method.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="BaseService.html#post(Dto)">post</a></code>&nbsp;in class&nbsp;<code><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="../Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a>,<wbr><a href="../Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a>&gt;</code></dd>
+<dd><code><a href="generic/BaseService.html#mapToEntity(Dto)">mapToEntity</a></code>&nbsp;in class&nbsp;<code><a href="generic/BaseService.html" title="class in com.example.paragonPioneerBackend.Service.generic">BaseService</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="../Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a>,<wbr><a href="../Dto/requests/RecipeInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">RecipeInput</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>recipeDTO</code> - The RecipeDTO containing data for the new recipe.</dd>
+<dd><code>recipeInput</code> - The DTO that contains the new values for the Recipe entity.</dd>
 <dt>Returns:</dt>
-<dd>The newly created and saved Recipe entity.</dd>
+<dd>The newly created Recipe entity.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="putPatch(com.example.paragonPioneerBackend.Entity.Recipe,com.example.paragonPioneerBackend.Dto.RecipeDTO)">
-<h3>putPatch</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></span>&nbsp;<span class="element-name">putPatch</span><wbr><span class="parameters">(<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&nbsp;original,
- <a href="../Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a>&nbsp;recipeDTO)</span></div>
-<div class="block">Updates an existing Recipe entity with data from the provided RecipeDTO.
- This method overrides an abstract method from BaseService, tailored to Recipe entities.</div>
+<section class="detail" id="patch(com.example.paragonPioneerBackend.Entity.Recipe,com.example.paragonPioneerBackend.Dto.requests.RecipeInput)">
+<h3>patch</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></span>&nbsp;<span class="element-name">patch</span><wbr><span class="parameters">(<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&nbsp;entityToUpdate,
+ <a href="../Dto/requests/RecipeInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">RecipeInput</a>&nbsp;recipeInput)</span></div>
+<div class="block">This method is used to update the properties of a Recipe entity based on the provided DTO.
+ It updates the input and output properties of the entity to update.
+ The input and output properties are updated using the PatchUtil.patchHelper method, which checks if the new value is null.
+ If the new value is not null, it replaces the old value. If it is null, the old value is kept.
+ The method is marked as @Transactional, meaning it is part of a database transaction.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="BaseService.html#putPatch(Type,Dto)">putPatch</a></code>&nbsp;in class&nbsp;<code><a href="BaseService.html" title="class in com.example.paragonPioneerBackend.Service">BaseService</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="../Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a>,<wbr><a href="../Dto/RecipeDTO.html" title="class in com.example.paragonPioneerBackend.Dto">RecipeDTO</a>&gt;</code></dd>
+<dd><code><a href="generic/BaseService.html#patch(Type,Dto)">patch</a></code>&nbsp;in class&nbsp;<code><a href="generic/BaseService.html" title="class in com.example.paragonPioneerBackend.Service.generic">BaseService</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>,<wbr><a href="../Repository/RecipeRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">RecipeRepository</a>,<wbr><a href="../Dto/requests/RecipeInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">RecipeInput</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>original</code> - The original Recipe entity to be updated.</dd>
-<dd><code>recipeDTO</code> - The RecipeDTO containing the updated data.</dd>
+<dd><code>entityToUpdate</code> - The original Recipe entity that might be updated.</dd>
+<dd><code>recipeInput</code> - The DTO that contains the new values for the Recipe entity.</dd>
 <dt>Returns:</dt>
 <dd>The updated Recipe entity.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="findAllByOutputId(java.util.UUID)">
-<h3>findAllByOutputId</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a>&gt;</span>&nbsp;<span class="element-name">findAllByOutputId</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
+<section class="detail" id="findByOutputId(java.util.UUID)">
+<h3>findByOutputId</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Entity/Recipe.html" title="class in com.example.paragonPioneerBackend.Entity">Recipe</a></span>&nbsp;<span class="element-name">findByOutputId</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
 </section>
 </li>
 </ul>

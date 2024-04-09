@@ -1,60 +1,89 @@
-# Back End
+# Back-End Documentation
+This document provides a comprehensive guide for setting up and running the back-end environment for our application. It outlines the requirements, steps to set up the database, and instructions to run the application.
 ## Requirements
-- Java 17
-- Gradle
-- MySQL 8.1.0 or Docker (Rancher can alternatively be used for Docker)
+Before proceeding, ensure you have the following prerequisites installed on your system:
+- **Java** 17: Required for running the application.
+- **Gradle**: Used for building and running the application.
+- **MySQL 8.1.0** or **Docker**: MySQL for database management, Docker for containerization. Rancher can be used as an alternative for Docker.
 
-## Set Up the Backend
+## Setting Up the Back End
 
-### 1. Setup Database
+### Database Setup
 
-To set up the database, you can install a local MySQL server or use Docker. When using Docker, simply run the following command:
+You have two options for setting up the database: using a local MySQL server or Docker.
+
+#### Using Docker
+To create and start the Docker environment, execute:
     
 ```bash
- docker-compose up -d
+  make dev_enviroment
 ```
 
-To terminate the Docker container, run:
+To stop the Docker environment:
 
 ```bash
- docker-compose down
+ make stop_dev_enviroment
 ```
 
-Should you not have Docker installed and want to use a local MySQL server, you will need to configure the application with your database.
+To reset the Docker environment to its initial state:
 
-Go to src/main/application.properties.
+
+```bash
+ make rebuild_dev_enviroment
+```
+
+#### Using Local MySQL Server
+
+1. Ensure MySQL is installed and running.
+
+2. Configure the application to connect to your database by editing src/main/application.properties with the following settings:
 
 The file should look like this:
 
-    spring.jpa.hibernate.ddl-auto=create-drop
+    spring.jpa.hibernate.ddl-auto=validate
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-    spring.datasource.url=jdbc:mysql://127.0.0.1:{YourPort}/{YourDatabaseName}
-    spring.datasource.username={YourMysqlUserName}
-    spring.datasource.password={YourMysqlPassword}
-    spring.jpa.show-sql= true
+    spring.datasource.url=jdbc:mysql://127.0.0.1:3306/ppAssemblyLineBa
+    spring.datasource.username=root
+    spring.datasource.password=password
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 
-### 2. Run the Application
 
-Once you have set up the application correctly and your database is running, run the following command to start the application.
+### Running the Application
+
+After setting up the database, you can start the application using one of the following methods:
+
+ - Using **Gradle**: Execute the command `gradle bootRun` in your terminal.
+ - Using an **IDE**: Run the `main method in java/com/example/paragonPioneerBackend/PpApiApplication.java`.
+
+#### With Docker
+To run both the database and application using Docker, execute:
 
 ```bash
-    gradle bootRun
+    make prod_enviroment
 ```
 
-Or, when using an IDE, execute the main method in:
+### 3. Access the Application
 
-    java/com/example/paragonPioneerBackend/PpApiApplication.java
+Now that the application is running, you can access it via the following URL:
 
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+All available endpoints are listed here. You Should be able to use all GET Requests without any problems.
+For POST, PUT and DELETE requests, you will need to authenticate yourself. To do this, you can use the following credentials:
+
+    email: admin@user.de
+    password: admin
+
+These Credentials are only for testing purposes. In a real application, you would need to create your own user and request 
+Admin Access from the Owner of the Application.
 
 ## Api Documentation
 
-[Klassen Diagram](./Documentation/Code/src.png)
+[Klassen Diagram](./Documentation/code/src.png)
 
-[Java Doc](https://htmlpreview.github.io/?https://raw.githubusercontent.com/LF12-ParagonPioneer/ParagonPioneer-Be/develop/Documentation/Java/index.html)
+[Java Doc](https://htmlpreview.github.io/?https://raw.githubusercontent.com/LF12-ParagonPioneer/ParagonPioneer-Be/main/Documentation/Java/index.html)
 
 ## Database UML
-
-[Go To DB-Diagrams](https://dbdiagram.io/d/PP-PR-655c68de3be14957876943d3)
 
 [UML Diagram](./Documentation/Database/ppAssemblyLineBa.png)
 

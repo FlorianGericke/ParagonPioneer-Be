@@ -122,8 +122,25 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parseUuidFromStringOrNull(java.lang.String)" class="member-name-link">parseUuidFromStringOrNull</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;uuidStr)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getFromString(java.lang.String)" class="member-name-link">getFromString</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;idOrIri)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">This method is used to parse a UUID from a given string or IRI (Internationalized Resource Identifier).</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getIri(java.lang.String,com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity)" class="member-name-link">getIri</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix,
+ <a href="../Entity/abstractEntity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">BaseEntity</a>&nbsp;entity)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">This method is used to generate an IRI (Internationalized Resource Identifier) for a single entity.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getIri(java.lang.String,java.util.Set)" class="member-name-link">getIri</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;? extends <a href="../Entity/abstractEntity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">BaseEntity</a>&gt;&nbsp;entities)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">This method is used to generate IRIs (Internationalized Resource Identifiers) for a set of entities.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#validateOrNull(java.lang.String)" class="member-name-link">validateOrNull</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;uuidStr)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Attempts to parse a UUID from a given string.</div>
 </div>
 </div>
@@ -158,13 +175,13 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="parseUuidFromStringOrNull(java.lang.String)">
-<h3>parseUuidFromStringOrNull</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name">parseUuidFromStringOrNull</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;uuidStr)</span></div>
+<section class="detail" id="validateOrNull(java.lang.String)">
+<h3>validateOrNull</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name">validateOrNull</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;uuidStr)</span></div>
 <div class="block">Attempts to parse a UUID from a given string. The method validates the string against a UUID format
  regular expression before parsing. If the string does not match the expected UUID format, <code>null</code>
  is returned instead of throwing an exception.
-
+ <p>
  This approach allows for safe parsing of UUIDs from strings that may not be properly formatted,
  making it useful in situations where UUID strings come from external sources or user input.</div>
 <dl class="notes">
@@ -172,6 +189,59 @@ loadScripts(document, 'script');</script>
 <dd><code>uuidStr</code> - The string representation of the UUID to parse.</dd>
 <dt>Returns:</dt>
 <dd>A <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link"><code>UUID</code></a> object if the string is in a valid UUID format; <code>null</code> otherwise.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getIri(java.lang.String,java.util.Set)">
+<h3>getIri</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</span>&nbsp;<span class="element-name">getIri</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;? extends <a href="../Entity/abstractEntity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">BaseEntity</a>&gt;&nbsp;entities)</span></div>
+<div class="block">This method is used to generate IRIs (Internationalized Resource Identifiers) for a set of entities.
+ It takes a prefix and a set of entities as parameters. The prefix is prepended to the ID of each entity
+ to form the IRI. If the set of entities is null or empty, the method returns null.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>prefix</code> - The prefix to be prepended to each entity's ID to form the IRI.</dd>
+<dd><code>entities</code> - The set of entities for which to generate IRIs.</dd>
+<dt>Returns:</dt>
+<dd>An array of IRIs for the entities. If the set of entities is null or empty, returns null.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getIri(java.lang.String,com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity)">
+<h3>getIri</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getIri</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix,
+ <a href="../Entity/abstractEntity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">BaseEntity</a>&nbsp;entity)</span></div>
+<div class="block">This method is used to generate an IRI (Internationalized Resource Identifier) for a single entity.
+ It takes a prefix and an entity as parameters. The prefix is prepended to the ID of the entity
+ to form the IRI. If the entity is null, the method returns null.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>prefix</code> - The prefix to be prepended to the entity's ID to form the IRI.</dd>
+<dd><code>entity</code> - The entity for which to generate an IRI.</dd>
+<dt>Returns:</dt>
+<dd>The IRI for the entity. If the entity is null, returns null.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getFromString(java.lang.String)">
+<h3>getFromString</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a></span>&nbsp;<span class="element-name">getFromString</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;idOrIri)</span></div>
+<div class="block">This method is used to parse a UUID from a given string or IRI (Internationalized Resource Identifier).
+ It first attempts to parse the UUID from the input string using the validateOrNull method.
+ If the input string is not a valid UUID, it assumes the string is an IRI and attempts to extract the UUID from it.
+ The UUID is assumed to be the substring after the last "/" character in the IRI.
+ If the extraction fails, a CastException is thrown with a message indicating the input string could not be parsed.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>idOrIri</code> - The string or IRI from which to extract the UUID.</dd>
+<dt>Returns:</dt>
+<dd>A UUID parsed from the input string or IRI.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="../Exception/CastException.html" title="class in com.example.paragonPioneerBackend.Exception">CastException</a></code> - If the input string is not a valid UUID or IRI, or if the UUID cannot be extracted from the IRI.</dd>
 </dl>
 </section>
 </li>

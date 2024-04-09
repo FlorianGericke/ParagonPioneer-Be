@@ -85,23 +85,21 @@ loadScripts(document, 'script');</script>
 <h1 title="Class PopulationBuilding" class="title">Class PopulationBuilding</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">com.example.paragonPioneerBackend.Entity.BaseEntity</a>
-<div class="inheritance"><a href="Building.html" title="class in com.example.paragonPioneerBackend.Entity">com.example.paragonPioneerBackend.Entity.Building</a>
+<div class="inheritance"><a href="abstractEntity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity</a>
+<div class="inheritance"><a href="abstractEntity/Slugable.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">com.example.paragonPioneerBackend.Entity.abstractEntity.Slugable</a>
+<div class="inheritance"><a href="abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">com.example.paragonPioneerBackend.Entity.abstractEntity.Building</a>
 <div class="inheritance">com.example.paragonPioneerBackend.Entity.PopulationBuilding</div>
 </div>
 </div>
 </div>
+</div>
 <section class="class-description" id="class-description">
-<dl class="notes">
-<dt>All Implemented Interfaces:</dt>
-<dd><code><a href="Slugable.html" title="interface in com.example.paragonPioneerBackend.Entity">Slugable</a></code></dd>
-</dl>
 <hr>
 <div class="type-signature"><span class="annotations">@Entity
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">PopulationBuilding</span>
-<span class="extends-implements">extends <a href="Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></span></div>
+<span class="extends-implements">extends <a href="abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">Building</a></span></div>
 <div class="block">Represents a specific type of building that houses a population within the application.
- This entity extends the <a href="Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a> class to inherit common building attributes while adding specific features
+ This entity extends the <a href="abstractEntity/Building.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity"><code>Building</code></a> class to inherit common building attributes while adding specific features
  associated with population capacities, such as the number of persons it can accommodate.</div>
 </section>
 <section class="summary">
@@ -114,18 +112,14 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">PopulationBuilding</a>()</code></div>
-<div class="col-last even-row-color">
-<div class="block">Default constructor for PopulationBuilding, required for JPA entity initialization.</div>
-</div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,java.util.Set,com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building,int,java.lang.String)" class="member-name-link">PopulationBuilding</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,java.util.Set,com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding,int)" class="member-name-link">PopulationBuilding</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;remarks,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>&gt;&nbsp;costs,
- <a href="JoinTables/Requirement_Population_Building.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Requirement_Population_Building</a>&nbsp;requirementPopulationBuildings,
- int&nbsp;capacity,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">Constructs a new instance of PopulationBuilding with detailed attributes.</div>
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="joinTables/CostBuildingGoods.html" title="class in com.example.paragonPioneerBackend.Entity.joinTables">CostBuildingGoods</a>&gt;&nbsp;costs,
+ <a href="joinTables/RequirementPopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity.joinTables">RequirementPopulationBuilding</a>&nbsp;requirePopulation,
+ int&nbsp;capacity)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Constructor for the PopulationBuilding class.</div>
 </div>
 </div>
 </section>
@@ -135,11 +129,8 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Entity.Building">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Entity.<a href="Building.html" title="class in com.example.paragonPioneerBackend.Entity">Building</a></h3>
-<code><a href="Building.html#getSlug()">getSlug</a>, <a href="Building.html#setSlug(java.lang.String)">setSlug</a></code></div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Entity.BaseEntity">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Entity.<a href="BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity">BaseEntity</a></h3>
-<code><a href="BaseEntity.html#getState()">getState</a></code></div>
+<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Entity.abstractEntity.BaseEntity">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Entity.abstractEntity.<a href="abstractEntity/BaseEntity.html" title="class in com.example.paragonPioneerBackend.Entity.abstractEntity">BaseEntity</a></h3>
+<code><a href="abstractEntity/BaseEntity.html#getState()">getState</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -155,33 +146,24 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String,java.util.Set,com.example.paragonPioneerBackend.Entity.JoinTables.Requirement_Population_Building,int,java.lang.String)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String,java.lang.String,java.util.Set,com.example.paragonPioneerBackend.Entity.joinTables.RequirementPopulationBuilding,int)">
 <h3>PopulationBuilding</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PopulationBuilding</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;remarks,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Cost_Building_Goods</a>&gt;&nbsp;costs,
- <a href="JoinTables/Requirement_Population_Building.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables">Requirement_Population_Building</a>&nbsp;requirementPopulationBuildings,
- int&nbsp;capacity,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;slug)</span></div>
-<div class="block">Constructs a new instance of PopulationBuilding with detailed attributes.</div>
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="joinTables/CostBuildingGoods.html" title="class in com.example.paragonPioneerBackend.Entity.joinTables">CostBuildingGoods</a>&gt;&nbsp;costs,
+ <a href="joinTables/RequirementPopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity.joinTables">RequirementPopulationBuilding</a>&nbsp;requirePopulation,
+ int&nbsp;capacity)</span></div>
+<div class="block">Constructor for the PopulationBuilding class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>name</code> - the name of the PopulationBuilding, inherited from <a href="Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a>.</dd>
-<dd><code>remarks</code> - additional information about the PopulationBuilding, inherited from <a href="Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a>.</dd>
-<dd><code>costs</code> - a set of costs associated with constructing or maintaining the PopulationBuilding,
-              represented by <a href="JoinTables/Cost_Building_Goods.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Cost_Building_Goods</code></a>.</dd>
-<dd><code>requirementPopulationBuildings</code> - the population requirements for the building,
-                                       represented by <a href="JoinTables/Requirement_Population_Building.html" title="class in com.example.paragonPioneerBackend.Entity.JoinTables"><code>Requirement_Population_Building</code></a>.</dd>
-<dd><code>capacity</code> - the maximum number of persons the building can accommodate.</dd>
-<dd><code>slug</code> - the unique slug for the PopulationBuilding, used for URL representation, inherited from <a href="Building.html" title="class in com.example.paragonPioneerBackend.Entity"><code>Building</code></a>.</dd>
+<dd><code>name</code> - The name of the population building.</dd>
+<dd><code>slug</code> - The slug for URL representation of the population building.</dd>
+<dd><code>remarks</code> - Optional remarks providing additional information about the population building.</dd>
+<dd><code>costs</code> - A set of <a href="joinTables/CostBuildingGoods.html" title="class in com.example.paragonPioneerBackend.Entity.joinTables"><code>CostBuildingGoods</code></a> entities that represent the cost of constructing this building.</dd>
+<dd><code>requirePopulation</code> - A <a href="joinTables/RequirementPopulationBuilding.html" title="class in com.example.paragonPioneerBackend.Entity.joinTables"><code>RequirementPopulationBuilding</code></a> entity that represents the population requirement for this building.</dd>
+<dd><code>capacity</code> - The maximum number of persons that the population building can accommodate.</dd>
 </dl>
-</section>
-</li>
-<li>
-<section class="detail" id="&lt;init&gt;()">
-<h3>PopulationBuilding</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PopulationBuilding</span>()</div>
-<div class="block">Default constructor for PopulationBuilding, required for JPA entity initialization.</div>
 </section>
 </li>
 </ul>

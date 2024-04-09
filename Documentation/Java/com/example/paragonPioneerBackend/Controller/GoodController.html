@@ -48,7 +48,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li>Field</li>
 <li><a href="#constructor-detail">Constr</a></li>
-<li><a href="#method-detail">Method</a></li>
+<li>Method</li>
 </ul>
 </li>
 </ul>
@@ -66,7 +66,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method-detail">Method</a></li>
+<li>Method</li>
 </ul>
 </div>
 <div class="nav-list-search"><a href="../../../../search.html">SEARCH</a>
@@ -85,8 +85,10 @@ loadScripts(document, 'script');</script>
 <h1 title="Class GoodController" class="title">Class GoodController</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">com.example.paragonPioneerBackend.Controller.BaseController</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>,<wbr><a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>,<wbr><a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>,<wbr><a href="../Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a>&gt;
+<div class="inheritance"><a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">com.example.paragonPioneerBackend.Controller.abstractController.BaseController</a>&lt;Type,<wbr>Repository,<wbr>InputDto,<wbr>Mapper,<wbr>Service&gt;
+<div class="inheritance"><a href="abstractController/SlugableController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">com.example.paragonPioneerBackend.Controller.abstractController.SlugableController</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>,<wbr><a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>,<wbr><a href="../Dto/requests/GoodInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">GoodInput</a>,<wbr><a href="../Dto/response/mappers/GoodMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">GoodMapper</a>,<wbr><a href="../Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a>&gt;
 <div class="inheritance">com.example.paragonPioneerBackend.Controller.GoodController</div>
+</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
@@ -94,11 +96,17 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Controller
 @RequestMapping(path="/api/v1/good")
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">GoodController</span>
-<span class="extends-implements">extends <a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>,<wbr><a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>,<wbr><a href="../Dto/GoodDTO.html" title="class in com.example.paragonPioneerBackend.Dto">GoodDTO</a>,<wbr><a href="../Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a>&gt;</span></div>
-<div class="block">Controller responsible for handling HTTP requests related to the Good entity.
- It extends the generic BaseController to provide CRUD operations for Good entities
- and adds a custom method for searching goods by name. This controller uses the GoodService
- to interact with the database and perform operations on Good entities.</div>
+<span class="extends-implements">extends <a href="abstractController/SlugableController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">SlugableController</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>,<wbr><a href="../Repository/GoodRepository.html" title="interface in com.example.paragonPioneerBackend.Repository">GoodRepository</a>,<wbr><a href="../Dto/requests/GoodInput.html" title="class in com.example.paragonPioneerBackend.Dto.requests">GoodInput</a>,<wbr><a href="../Dto/response/mappers/GoodMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">GoodMapper</a>,<wbr><a href="../Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a>&gt;</span></div>
+<div class="block">GoodController is a REST controller that handles HTTP requests related to the Good entity.
+ It extends the SlugableController and provides CRUD operations for Good entities.
+ This controller uses the GoodService to interact with the database and perform operations on Good entities.
+
+ The GoodController class is parameterized with the following types:
+ - Good: The entity type that this controller handles.
+ - GoodRepository: The repository type used for accessing the database.
+ - GoodInput: The DTO type used for creating and updating goods.
+ - GoodMapper: The mapper type used for converting between entities and DTOs.
+ - GoodService: The service type used for business logic operations.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,8 +115,8 @@ loadScripts(document, 'script');</script>
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
 <div class="inherited-list">
-<h3 id="fields-inherited-from-class-com.example.paragonPioneerBackend.Controller.BaseController">Fields inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.<a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a></h3>
-<code><a href="BaseController.html#service">service</a></code></div>
+<h3 id="fields-inherited-from-class-com.example.paragonPioneerBackend.Controller.abstractController.BaseController">Fields inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.abstractController.<a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">BaseController</a></h3>
+<code><a href="abstractController/BaseController.html#mapper">mapper</a>, <a href="abstractController/BaseController.html#service">service</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -119,9 +127,10 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Service.GoodService)" class="member-name-link">GoodController</a><wbr>(<a href="../Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a>&nbsp;service)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.example.paragonPioneerBackend.Service.GoodService,com.example.paragonPioneerBackend.Dto.response.mappers.GoodMapper)" class="member-name-link">GoodController</a><wbr>(<a href="../Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a>&nbsp;service,
+ <a href="../Dto/response/mappers/GoodMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">GoodMapper</a>&nbsp;mapper)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs a new GoodController with the specified GoodService.</div>
+<div class="block">Constructs a BaseController with the specified service and mapper.</div>
 </div>
 </div>
 </section>
@@ -130,24 +139,12 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
-<div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel">
-<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Method</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEntities(java.lang.String)" class="member-name-link">getEntities</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Retrieves a list of Good entities whose names contain the specified substring.</div>
-</div>
-</div>
-</div>
-</div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.BaseController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.<a href="BaseController.html" title="class in com.example.paragonPioneerBackend.Controller">BaseController</a></h3>
-<code><a href="BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a>, <a href="BaseController.html#getEntities(org.springframework.data.domain.Pageable)">getEntities</a>, <a href="BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="BaseController.html#patchEntity(java.util.UUID,Dto)">patchEntity</a>, <a href="BaseController.html#postEntity(Dto)">postEntity</a>, <a href="BaseController.html#putEntity(java.util.UUID,Dto)">putEntity</a></code></div>
+<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.abstractController.SlugableController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.abstractController.<a href="abstractController/SlugableController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">SlugableController</a></h3>
+<code><a href="abstractController/SlugableController.html#findByIdSlugName(java.lang.String)">findByIdSlugName</a>, <a href="abstractController/SlugableController.html#getContainingName(org.springframework.data.domain.Pageable,java.lang.String)">getContainingName</a>, <a href="abstractController/SlugableController.html#getEntityBySlug(java.lang.String)">getEntityBySlug</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-com.example.paragonPioneerBackend.Controller.abstractController.BaseController">Methods inherited from class&nbsp;com.example.paragonPioneerBackend.Controller.abstractController.<a href="abstractController/BaseController.html" title="class in com.example.paragonPioneerBackend.Controller.abstractController">BaseController</a></h3>
+<code><a href="abstractController/BaseController.html#deleteEntity(java.util.UUID)">deleteEntity</a>, <a href="abstractController/BaseController.html#getEntities(org.springframework.data.domain.Pageable)">getEntities</a>, <a href="abstractController/BaseController.html#getEntity(java.util.UUID)">getEntity</a>, <a href="abstractController/BaseController.html#patchEntity(java.util.UUID,InputDto)">patchEntity</a>, <a href="abstractController/BaseController.html#postEntity(InputDto)">postEntity</a>, <a href="abstractController/BaseController.html#putEntity(java.util.UUID,InputDto)">putEntity</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -163,43 +160,15 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.example.paragonPioneerBackend.Service.GoodService)">
+<section class="detail" id="&lt;init&gt;(com.example.paragonPioneerBackend.Service.GoodService,com.example.paragonPioneerBackend.Dto.response.mappers.GoodMapper)">
 <h3>GoodController</h3>
-<div class="member-signature"><span class="annotations">@Autowired
-</span><span class="modifiers">public</span>&nbsp;<span class="element-name">GoodController</span><wbr><span class="parameters">(<a href="../Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a>&nbsp;service)</span></div>
-<div class="block">Constructs a new GoodController with the specified GoodService.
- The GoodService is injected by Spring's dependency injection mechanism and is used
- to perform business logic and database operations on Good entities.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GoodController</span><wbr><span class="parameters">(<a href="../Service/GoodService.html" title="class in com.example.paragonPioneerBackend.Service">GoodService</a>&nbsp;service,
+ <a href="../Dto/response/mappers/GoodMapper.html" title="class in com.example.paragonPioneerBackend.Dto.response.mappers">GoodMapper</a>&nbsp;mapper)</span></div>
+<div class="block">Constructs a BaseController with the specified service and mapper.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>service</code> - The service handling business logic for Good entities.</dd>
-</dl>
-</section>
-</li>
-</ul>
-</section>
-</li>
-<!-- ============ METHOD DETAIL ========== -->
-<li>
-<section class="method-details" id="method-detail">
-<h2>Method Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="getEntities(java.lang.String)">
-<h3>getEntities</h3>
-<div class="member-signature"><span class="annotations">@GetMapping(value="/find",
-            produces="application/json")
-@ResponseBody
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Entity/Good.html" title="class in com.example.paragonPioneerBackend.Entity">Good</a>&gt;</span>&nbsp;<span class="element-name">getEntities</span><wbr><span class="parameters">(@RequestParam
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
-<div class="block">Retrieves a list of Good entities whose names contain the specified substring.
- This method allows for searching the database for goods based on partial name matches,
- facilitating user search operations in the application.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>name</code> - The substring to search for within Good entity names.</dd>
-<dt>Returns:</dt>
-<dd>A list of Good entities that contain the specified substring in their names.</dd>
+<dd><code>service</code> - The service used for business logic operations.</dd>
+<dd><code>mapper</code> - The mapper used for mapping entities to response DTOs.</dd>
 </dl>
 </section>
 </li>
