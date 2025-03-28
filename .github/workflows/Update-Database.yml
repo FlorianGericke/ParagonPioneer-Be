@@ -12,6 +12,9 @@ jobs:
       name: stage
 
     steps:
+    - name: Check out
+      uses: actions/checkout@v3
+
     - name: Authenticate with Google Cloud
       uses: google-github-actions/auth@v2
       with:
