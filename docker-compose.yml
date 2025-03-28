@@ -2,10 +2,9 @@ version: '3'
 
 services:
 
-  mysql:
-    image: 'mysql:8.0'
+  mariadb:
+    image: 'mariadb:10.6'
     container_name: 'paragonPioneerBeDatabase'
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
       MYSQL_DATABASE: 'ppAssemblyLineBa'
