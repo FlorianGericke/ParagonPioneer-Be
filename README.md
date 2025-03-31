@@ -8,6 +8,23 @@ Before proceeding, ensure you have the following prerequisites installed on your
 
 ## Setting Up the Back End
 
+### Create local.env file
+
+```dotenv
+# Mysql environment variables
+MYSQL_ROOT_PASSWORD=password_for_local_mysql_root
+MYSQL_DATABASE=ppAssemblyLineBa # Database name No need to change
+MYSQL_USER=paragon-user # Database user No need to change
+MYSQL_PASSWORD=password_for_local_mysql_user
+MYSQL_DATABASE_URL=127.0.0.1 # Database URL No need to change
+
+# API environment variables
+API_DOMAIN=localhost # API Domain No need to change
+API_PORT=8080 # API Port No need to change
+ADMIN_USER=email_to_login_as_admin
+ADMIN_PASSWORD=password_to_login_as_admin
+```
+
 ### Database Setup
 
 You have two options for setting up the database: using a local MySQL server or Docker.
@@ -27,7 +44,6 @@ To stop the Docker environment:
 
 To reset the Docker environment to its initial state:
 
-
 ```bash
  make rebuild_dev_enviroment
 ```
@@ -36,30 +52,39 @@ To reset the Docker environment to its initial state:
 
 1. Ensure MySQL is installed and running.
 
-2. Configure the application to connect to your database by editing src/main/application.properties with the following settings:
-
-The file should look like this:
-
-    spring.jpa.hibernate.ddl-auto=validate
-    spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-    spring.datasource.url=jdbc:mysql://127.0.0.1:3306/ppAssemblyLineBa
-    spring.datasource.username=root
-    spring.datasource.password=password
-    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+2. Adjust [local.env]('create-local.env-file') file with your MySQL credentials.
 
 
 ### Running the Application
 
-After setting up the database, you can start the application using one of the following methods:
-
- - Using **Gradle**: Execute the command `gradle bootRun` in your terminal.
- - Using an **IDE**: Run the `main method in java/com/example/paragonPioneerBackend/PpApiApplication.java`.
+1. To Run the app in intellij you need to add the local.env file to the run configuration.
+2. Go to your Run Configurations and click edit configurations.
+3. Enable the checkbox "Enable EnvFile"
+4. Add the path to the local.env in your configuration."
 
 #### With Docker
 To run both the database and application using Docker, execute:
 
 ```bash
-    make prod_enviroment
+    make deploy_enviroment
+```
+
+To stop the Docker environment:
+
+```bash
+    make stop_deploy_enviroment
+```
+
+To reset the Docker environment to its initial state:
+
+```bash
+    make rebuild_deploy_enviroment
+```
+
+You can Stop all Containers with:
+
+```bash
+    make stop_all
 ```
 
 ### 3. Access the Application
@@ -71,8 +96,8 @@ Now that the application is running, you can access it via the following URL:
 All available endpoints are listed here. You Should be able to use all GET Requests without any problems.
 For POST, PUT and DELETE requests, you will need to authenticate yourself. To do this, you can use the following credentials:
 
-    email: admin@user.de
-    password: admin
+    email: your_email_from_local.env
+    password: your_password_from_local.env
 
 These Credentials are only for testing purposes. In a real application, you would need to create your own user and request 
 Admin Access from the Owner of the Application.
