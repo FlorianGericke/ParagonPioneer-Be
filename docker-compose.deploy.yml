@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+
+  api_service-prod:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile-backend
+    container_name: 'paragonPioneerBeApi-prod'
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_DATABASE_URL: mysql-prod
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      ADMIN_USER: ${ADMIN_USER}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      API_DOMAIN: ${API_DOMAIN}
+      API_PORT: ${API_PORT}
+    networks:
+      - ppAssemblyLineBa-network
+    depends_on:
+      mysql-prod:
+        condition: service_healthy
+
+  mysql-prod:
+    build:
+      context: .
+      dockerfile: .docker/DockerFile-mysql
+    container_name: 'paragonPioneerBeDatabase-prod'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - ppAssemblyLineBa-network
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  ppAssemblyLineBa-network:
+    driver: bridge
