@@ -4,7 +4,7 @@ steps:
     args: [ 'bootJar' ]
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-backend-images/paragon-backend:latest','.docker/backendService', '.' ]
+    args: [ 'build', '-t', 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-backend-images/paragon-backend:latest', '-f', '.docker/backendService', '.' ]
 
 images:
   - 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-backend-images/paragon-backend:latest'
