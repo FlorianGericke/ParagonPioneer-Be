@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-sql-images/paragon-sql:latest', '-f', '.docker/Dockerfile-mysql', '.' ]
+    args: [ 'build', '-t', 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-database-images/paragon-sql:latest', '-f', '.docker/Dockerfile-mysql', '.' ]
 
 images:
-  - 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-sql-images/paragon-sql:latest'
+  - 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-database-images/paragon-sql:latest'
