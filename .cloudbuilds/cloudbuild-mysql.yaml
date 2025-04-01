@@ -3,7 +3,7 @@ steps:
     args: [
       'build',
       '-t', 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-database-images/paragon-sql:latest',
-      '-f', '.docker/Dockerfile-mysql',
+      '-f', '.docker/DockerFile-mysql',
       '.' ]
 
 images:
