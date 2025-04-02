@@ -42,7 +42,18 @@ jobs:
           docker compose -f docker-compose.deploy.yml up -d
           sleep 30  # Allow time for initialization
 
-      - name: Dump Database
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: ${{ secrets.PROJECT_ID }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Setup Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          install_components: 'gsutil'
+
+      - name: Dump Database and Upload to Cloud Storage
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
@@ -51,6 +62,17 @@ jobs:
           docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
             bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
+          gsutil cp $DUMP_FILE_NAME gs://your-gcs-bucket/$DUMP_FILE_NAME
+
+#      - name: Import into Cloud SQL
+#        run: |
+#                gcloud sql import sql YOUR_CLOUD_SQL_INSTANCE_NAME \
+#                  gs://your-gcs-bucket/backup-$(date +"%Y-%m-%d-%H-%M").sql \
+#                  --database=${{ secrets.DB_NAME }} \
+#                  --quiet
+          
+          
+
 
   deploy-prod:
     runs-on: ubuntu-latest
