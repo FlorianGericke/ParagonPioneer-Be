@@ -42,21 +42,12 @@ jobs:
           docker compose -f docker-compose.deploy.yml up -d
           sleep 20  # Allow time for initialization
 
-#      - name: Populate database using docker compose exec
-#        env:
-#          MYSQL_USER: ${{ secrets.MYSQL_USER }}
-#          MYSQL_PASSWORD: ${{ secrets.MYSQL_USER_PASSWORD }}
-#          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-#        run: |
-#          docker compose exec -T  mysql-dev mysql \
-#            -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" < ./.docker/dump/database-insert.sql
-
       - name: Dump Database
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         run: |
-          DUMP_FILE_NAME= $(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
+          DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
           docker exec -T mysql-prod \
           mysqldump -uroot -p $MYSQL_ROOT_PASSWORD $MYSQL_DATABASE > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
