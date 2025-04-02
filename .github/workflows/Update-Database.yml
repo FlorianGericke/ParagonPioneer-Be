@@ -46,7 +46,7 @@ jobs:
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         run: |
           DUMP_FILE_NAME= $(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
-          docker exec -T mysql-dev \
+          docker exec -T mysql-prod \
           mysqldump -uroot -p $MYSQL_ROOT_PASSWORD $MYSQL_DATABASE > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
 
