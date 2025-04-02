@@ -40,7 +40,7 @@ jobs:
           API_PORT: 8080
         run: |
           docker compose -f docker-compose.deploy.yml up -d
-          sleep 120  # Allow time for initialization
+          sleep 60  # Allow time for initialization
 
       - name: Dump Database
         env:
@@ -48,8 +48,8 @@ jobs:
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         run: |
           DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
-          docker compose -f docker-compose.deploy.yml exec mysql-prod \
-          mysqldump -uroot -p $MYSQL_ROOT_PASSWORD $MYSQL_DATABASE > $DUMP_FILE_NAME
+          docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
+            bash -c "mysqldump -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE" > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
 
   deploy-prod:
