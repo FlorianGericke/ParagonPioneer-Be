@@ -27,18 +27,18 @@ jobs:
       - name: Populate database
         run: |
           mysql -h 127.0.0.1 \
-          -u"${{ secrets.MYSQL_USER }}" \
-          -p"${{ secrets.MYSQL_USER_PASSWORD }}" \
-          "${{ secrets.MYSQL_DATABASE }}" < .docker/dump/database-insert.sql
+          -u ${{ secrets.MYSQL_USER }} \
+          -p ${{ secrets.MYSQL_USER_PASSWORD }} \
+          ${{ secrets.MYSQL_DATABASE }} < .docker/dump/database-insert.sql
 
       - name: Dump Database
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         run: |
-          DUMP_FILE_NAME="$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql"
+          DUMP_FILE_NAME= $(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
           docker exec YOUR_CONTAINER_NAME \
-          mysqldump -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE" > "$DUMP_FILE_NAME"
+          mysqldump -uroot -p $MYSQL_ROOT_PASSWORD $MYSQL_DATABASE > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
 
   deploy-prod:
