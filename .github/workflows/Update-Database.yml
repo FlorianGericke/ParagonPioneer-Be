@@ -17,10 +17,10 @@ jobs:
       - name: Run Database in Container
         run: |
           # Export Environment Variables
-          export MYSQL_ROOT_PASSWORD={{ secrets.MYSQL_ROOT_PASSWORD }}
-          export MYSQL_DATABASE={{ secrets.MYSQL_DATABASE }}
-          export MYSQL_USER={{ secrets.MYSQL_USER }}
-          export MYSQL_PASSWORD={{ secrets.MYSQL_USER_PASSWORD }}
+          export MYSQL_ROOT_PASSWORD=$'{{ secrets.MYSQL_ROOT_PASSWORD }}'
+          export MYSQL_DATABASE=$'{{ secrets.MYSQL_DATABASE }}'
+          export MYSQL_USER=$'{{ secrets.MYSQL_USER }}'
+          export MYSQL_PASSWORD=$'{{ secrets.MYSQL_USER_PASSWORD }}'
           
           docker compose up -d
           
