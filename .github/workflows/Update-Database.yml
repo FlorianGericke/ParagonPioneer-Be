@@ -11,20 +11,20 @@ jobs:
       name: stage
 
     steps:
-    - name: Check out
-      uses: actions/checkout@v3
+      - name: Check out
+        uses: actions/checkout@v3
 
-    - name: Run Database in Container
-      run: |
+      - name: Run Database in Container
+        run: |
 #        Export Environment Variables
-        export MYSQL_ROOT_PASSWORD='${{ secrets.MYSQL_ROOT_PASSWORD }}'
-        export MYSQL_DATABASE='${{ secrets.MYSQL_DATABASE }}'
-        export MYSQL_USER='${{ secrets.MYSQL_USER }}'
-        export MYSQL_PASSWORD='${{ secrets.MYSQL_USER_PASSWORD }}'
+          export MYSQL_ROOT_PASSWORD='${{ secrets.MYSQL_ROOT_PASSWORD }}'
+          export MYSQL_DATABASE='${{ secrets.MYSQL_DATABASE }}'
+          export MYSQL_USER='${{ secrets.MYSQL_USER }}'
+          export MYSQL_PASSWORD='${{ secrets.MYSQL_USER_PASSWORD }}'
         
-        docker-compose up -d
+          docker-compose up -d
         
-        sleep 20
+         sleep 20
 
   deploy-prod:
     runs-on: ubuntu-latest
