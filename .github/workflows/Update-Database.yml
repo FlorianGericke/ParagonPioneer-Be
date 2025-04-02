@@ -16,12 +16,13 @@ jobs:
 
     - name: Run Database in Container
       run: |
-        docker-compose \
-            -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
-            -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
-            -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
-            -e MYSQL_PASSWORD=${{ secrets.MYSQL_USER_PASSWORD }} \
-            up -d
+#        Export Environment Variables
+        export MYSQL_ROOT_PASSWORD='${{ secrets.MYSQL_ROOT_PASSWORD }}'
+        export MYSQL_DATABASE='${{ secrets.MYSQL_DATABASE }}'
+        export MYSQL_USER='${{ secrets.MYSQL_USER }}'
+        export MYSQL_PASSWORD='${{ secrets.MYSQL_USER_PASSWORD }}'
+        
+        docker-compose up -d
         
         sleep 20
 
