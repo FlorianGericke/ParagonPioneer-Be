@@ -16,22 +16,30 @@ jobs:
 
       - name: Run Database in Container
         env:
+          # Database Enviorments
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           MYSQL_USER: ${{ secrets.MYSQL_USER }}
           MYSQL_PASSWORD: ${{ secrets.MYSQL_USER_PASSWORD }}
+
+          # Backend Enviorments
+          ADMIN_USER: ${ADMIN_USER}
+          ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+          API_DOMAIN: 127.0.0.1
+          API_PORT: 3306
         run: |
-          docker compose up -d
+          docker compose up \
+            -f docker-compose.deploy.yml -d
           sleep 20
 
-      - name: Populate database using docker compose exec
-        env:
-          MYSQL_USER: ${{ secrets.MYSQL_USER }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_USER_PASSWORD }}
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-        run: |
-          docker compose exec -T  mysql-dev mysql \
-            -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" < ./.docker/dump/database-insert.sql
+#      - name: Populate database using docker compose exec
+#        env:
+#          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+#          MYSQL_PASSWORD: ${{ secrets.MYSQL_USER_PASSWORD }}
+#          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+#        run: |
+#          docker compose exec -T  mysql-dev mysql \
+#            -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" < ./.docker/dump/database-insert.sql
 
       - name: Dump Database
         env:
