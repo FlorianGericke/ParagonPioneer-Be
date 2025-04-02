@@ -32,4 +32,4 @@ jobs:
 
     steps:
       - name: Check out
-        run: @echo "Production deployment not implemented yet"
+        run: echo "Production deployment not implemented yet"
