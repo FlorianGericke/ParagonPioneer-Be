@@ -31,7 +31,7 @@ jobs:
           mysql  \
           -u MYSQL_USER \
           -p ${{ secrets.MYSQL_USER_PASSWORD }} 
-          {{ secrets.MYSQL_DATABASE }} < .docker/dump/database-insert.sql
+          {{ secrets.MYSQL_DATABASE }} < ./../../.docker/dump/database-insert.sql
 
       - name: Dump Database
         run: |
