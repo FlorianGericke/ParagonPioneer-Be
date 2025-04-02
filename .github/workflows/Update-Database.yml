@@ -14,23 +14,22 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
-      - name: Run Database in Container
+      - name: Run Backend and Database Containers
         env:
-          # Database Enviorments
+          # Database Environment Variables
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           MYSQL_USER: ${{ secrets.MYSQL_USER }}
           MYSQL_PASSWORD: ${{ secrets.MYSQL_USER_PASSWORD }}
 
-          # Backend Enviorments
-          ADMIN_USER: ${ADMIN_USER}
-          ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+          # Backend Environment Variables (Correctly Referenced)
+          ADMIN_USER: ${{ secrets.ADMIN_USER }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           API_DOMAIN: 127.0.0.1
-          API_PORT: 3306
+          API_PORT: 8080
         run: |
-          docker compose up \
-            -f docker-compose.deploy.yml -d
-          sleep 20
+          docker compose -f docker-compose.deploy.yml up -d
+          sleep 20  # Allow time for initialization
 
 #      - name: Populate database using docker compose exec
 #        env:
