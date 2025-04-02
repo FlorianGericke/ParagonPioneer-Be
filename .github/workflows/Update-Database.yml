@@ -4,9 +4,8 @@ on:
   push:
     branches: [ "main", "develop" ]
 
-
 jobs:
-  deploy:
+  deploy-stage:
     runs-on: ubuntu-latest
     environment:
       name: stage
@@ -15,11 +14,22 @@ jobs:
     - name: Check out
       uses: actions/checkout@v3
 
-    - name: Authenticate with Google Cloud
-      uses: google-github-actions/auth@v2
-      with:
-        project_id: ${{ secrets.PROJECT_ID }}
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
+    - name: Run Database in Container
+      run: |
+        docker-compose \
+            -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
+            -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+            -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
+            -e MYSQL_PASSWORD=${{ secrets.MYSQL_USER_PASSWORD }} \
+            up -d
+        
+        sleep 20
 
-    - name: Trigger Cloud Build
-      run: gcloud builds submit --config .cloudbuilds/cloudbuild-mysql.yaml .
+  deploy-prod:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+
+    steps:
+      - name: Check out
+        run: @echo "Production deployment not implemented yet"
