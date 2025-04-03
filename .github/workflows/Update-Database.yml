@@ -89,9 +89,9 @@ jobs:
           CLOUD_SQL_INSTANCE: ${{ secrets.CLOUD_SQL_INSTANCE }}
           SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
         run: |
-                gcloud sql import sql $CLOUD_SQL_INSTANCE \
-                  "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME" \
-                  --database=$MYSQL_DATABASE \
+                gcloud sql import sql "$CLOUD_SQL_INSTANCE" \
+                  "gs://$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME" \
+                  --database="$MYSQL_DATABASE \
                   --quiet
 
   deploy-prod:
