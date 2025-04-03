@@ -57,7 +57,6 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          DUMP_FILE_NAME: $(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
         run: |
           DUMP_FILE_NAME="$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql"
           docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
