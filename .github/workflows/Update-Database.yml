@@ -42,6 +42,16 @@ jobs:
           docker compose -f docker-compose.deploy.yml up -d
           sleep 30  # Allow time for initialization
 
+      - name: Dump Database
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+        run: |
+          DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
+          docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
+            bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
+          echo "Dump created: $DUMP_FILE_NAME"
+
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v2
         with:
@@ -61,23 +71,17 @@ jobs:
 #          chmod 644 $DUMP_FILE_NAME
 #          gsutil cp $DUMP_FILE_NAME $SQL_DUMPS_BUCKET/$DUMP_FILE_NAME
 
-      - name: Dump Database
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-        run: |
-          DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
-          docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
-            bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
-          echo "Dump created: $DUMP_FILE_NAME"
+
           
 
       - name: Upload Dump to Cloud Storage Bucket
+        env:
+            SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
         uses: google-github-actions/setup-gcloud@v1
         with:
           install_components: 'gsutil'
           run: |
-            gsutil cp $DUMP_FILE_NAME gs://dxd-ai-poc-paragon-sqldumps/$DUMP_FILE_NAME
+            gsutil cp $DUMP_FILE_NAME $SQL_DUMPS_BUCKET/$DUMP_FILE_NAME
 
       - name: Import into Cloud SQL
         env:
