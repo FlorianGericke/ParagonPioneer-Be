@@ -63,6 +63,7 @@ jobs:
           docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
             bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
+          chmod 644 $DUMP_FILE_NAME
           gsutil cp $DUMP_FILE_NAME $SQL_DUMPS_BUCKET/$DUMP_FILE_NAME
 
       - name: Import into Cloud SQL
