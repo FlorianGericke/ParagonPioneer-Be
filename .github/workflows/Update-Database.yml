@@ -61,7 +61,7 @@ jobs:
 #          chmod 644 $DUMP_FILE_NAME
 #          gsutil cp $DUMP_FILE_NAME $SQL_DUMPS_BUCKET/$DUMP_FILE_NAME
 
-      - name: Dump Database and Upload to Cloud Storage
+      - name: Dump Database
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
@@ -72,7 +72,7 @@ jobs:
           echo "Dump created: $DUMP_FILE_NAME"
           
 
-      - name: Setup Google Cloud CLI
+      - name: Upload Dump to Cloud Storage Bucket
         uses: google-github-actions/setup-gcloud@v1
         with:
           install_components: 'gsutil'
