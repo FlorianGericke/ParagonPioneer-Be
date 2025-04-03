@@ -53,18 +53,29 @@ jobs:
         with:
           install_components: 'gsutil'
 
+#      - name: Dump Database and Upload to Cloud Storage
+#        env:
+#          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+#          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+#          SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
+#        run: |
+#          DUMP_FILE_NAME="$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql"
+#          docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
+#            bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
+#          echo "Dump created: $DUMP_FILE_NAME"
+#          chmod 644 $DUMP_FILE_NAME
+#          gsutil cp $DUMP_FILE_NAME $SQL_DUMPS_BUCKET/$DUMP_FILE_NAME
+
       - name: Dump Database and Upload to Cloud Storage
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
         run: |
-          DUMP_FILE_NAME="$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql"
+          DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
           docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
             bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
-          chmod 644 $DUMP_FILE_NAME
-          gsutil cp $DUMP_FILE_NAME $SQL_DUMPS_BUCKET/$DUMP_FILE_NAME
+          gsutil cp $DUMP_FILE_NAME gs://dxd-ai-poc-paragon-sqldumps/$DUMP_FILE_NAME
 
       - name: Import into Cloud SQL
         env:
