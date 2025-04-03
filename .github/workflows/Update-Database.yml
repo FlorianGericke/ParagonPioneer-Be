@@ -81,7 +81,7 @@ jobs:
         with:
           install_components: 'gsutil'
           run: |
-            gsutil cp $DUMP_FILE_NAME "gs://$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME"
+            gsutil cp $DUMP_FILE_NAME "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME"
 
       - name: Import into Cloud SQL
         env:
@@ -90,8 +90,8 @@ jobs:
           SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
         run: |
                 gcloud sql import sql "$CLOUD_SQL_INSTANCE" \
-                  "gs://$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME" \
-                  --database="$MYSQL_DATABASE \
+                  "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME" \
+                  --database="$MYSQL_DATABASE" \
                   --quiet
 
   deploy-prod:
