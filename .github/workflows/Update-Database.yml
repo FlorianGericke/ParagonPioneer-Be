@@ -58,8 +58,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           DUMP_FILE_NAME: $(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
-          SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
         run: |
+          DUMP_FILE_NAME="$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql"
           docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
             bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
@@ -70,7 +70,6 @@ jobs:
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           CLOUD_SQL_INSTANCE: ${{ secrets.CLOUD_SQL_INSTANCE }}
           SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
-          DUMP_FILE_NAME: ${{ steps.dump-database.outputs.DUMP_FILE_NAME }}
         run: |
                 gcloud sql import sql $CLOUD_SQL_INSTANCE \
                   $SQL_DUMPS_BUCKET/backup-$DUMP_FILE_NAME \
