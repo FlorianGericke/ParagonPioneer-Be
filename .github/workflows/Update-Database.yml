@@ -90,7 +90,7 @@ jobs:
           SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
         run: |
                 gcloud sql import sql "$CLOUD_SQL_INSTANCE" \
-                  "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME" \
+                  "dxd-ai-poc-paragon-sqldumps/$DUMP_FILE_NAME" \
                   --database="$MYSQL_DATABASE" \
                   --quiet
 
