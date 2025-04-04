@@ -18,6 +18,7 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
       API_ADDRESS: ${API_ADDRESS}
       API_PORT: ${API_PORT}
+      OPEN_API_ADDRESS: ${OPEN_API_ADDRESS}
     networks:
       - ppAssemblyLineBa-network
     depends_on:
