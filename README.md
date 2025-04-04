@@ -19,10 +19,13 @@ MYSQL_PASSWORD=password_for_local_mysql_user
 MYSQL_DATABASE_URL=127.0.0.1 # Database URL No need to change
 
 # API environment variables
-API_DOMAIN=localhost # API Domain No need to change
+API_ADDRESS=localhost # API Domain No need to change
 API_PORT=8080 # API Port No need to change
 ADMIN_USER=email_to_login_as_admin
-ADMIN_PASSWORD=password_to_login_as_admin
+ADMIN_PASSWORD=lpassword_to_login_as_admin
+
+# Open Api Spec
+OPEN_API_ADDRESS=localhost # Open API Domain No need to change
 ```
 
 ### Database Setup

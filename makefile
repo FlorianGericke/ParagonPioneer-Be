@@ -21,7 +21,7 @@ rebuild_dev_enviroment:
 
 deploy_enviroment:
 	docker-compose --env-file local.env  -f docker-compose.deploy.yml up --remove-orphans -d
-	@echo "CMS Server: http://${API_DOMAIN}:${API_PORT}/swagger-ui/index.html"
+	@echo "CMS Server: http://${API_ADDRESS}:${API_PORT}/swagger-ui/index.html"
 
 stop_deploy_enviroment:
 	docker-compose -f docker-compose.deploy.yml down

@@ -39,9 +39,9 @@ public class InsertRunner implements ApplicationRunner {
     private String adminPassword;
     @Value("${spring.jpa.hibernate.ddl-auto:}")
     private String ddlAuto;
-//    @Value("${server.address:}")
-//    private String apiDomain;
-    @Value("${server.port:}")
+    @Value("${api.domain:}")
+    private String apiDomain;
+    @Value("${api.port:}")
     private String apiPort;
 
     /**
@@ -77,6 +77,6 @@ public class InsertRunner implements ApplicationRunner {
             } catch (Exception ignored) {
             }
         }
-//        System.out.println("CMS Server: " + apiDomain+":"+apiPort+"/swagger-ui/index.html");
+        System.out.println("CMS Server: http://" + apiDomain+":"+apiPort+"/swagger-ui/index.html");
     }
 }
