@@ -47,7 +47,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         run: |
-          DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
+          export DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
           docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
             bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
@@ -68,8 +68,7 @@ jobs:
       - name: Upload Dump to Cloud Storage Bucket
         env:
           SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
-        run: |
-          gsutil cp $DUMP_FILE_NAME "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME"
+        run: gsutil cp $DUMP_FILE_NAME "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME"
             
 
       - name: Import into Cloud SQL
