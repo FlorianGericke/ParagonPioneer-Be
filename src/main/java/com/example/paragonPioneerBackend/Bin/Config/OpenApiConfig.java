@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -31,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
         // The @Server annotation provides information about the server where the API is hosted
         servers = @Server(
                 description = "Local development server",
-                url = "http://localhost:8080/"
+                url = "${OPEN_API_ADDRESS:}"
         ),
         // The @SecurityRequirement annotation specifies the security requirements for the API
         security = {

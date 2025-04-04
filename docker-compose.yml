@@ -2,14 +2,21 @@ version: '3'
 
 services:
 
-  mysql:
-    image: 'mysql:8.0'
-    container_name: 'paragonPioneerBeDatabase'
-    restart: always
+  mysql-dev:
+    build:
+      context: .
+      dockerfile: .docker/DockerFile-mysql
+    container_name: 'paragonPioneerBeDatabase-dev'
     environment:
-      MYSQL_ROOT_PASSWORD: 'password'
-      MYSQL_DATABASE: 'ppAssemblyLineBa'
-    volumes:
-      - "./sql/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - ppAssemblyLineBa-network
     ports:
       - "3306:3306"
+
+networks:
+  ppAssemblyLineBa-network:
+    driver: bridge

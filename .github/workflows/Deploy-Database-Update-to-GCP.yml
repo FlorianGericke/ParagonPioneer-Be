@@ -1,0 +1,93 @@
+name: Deploy Database Update to GCP
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+
+jobs:
+  deploy-stage:
+    runs-on: ubuntu-latest
+    environment:
+      name: stage
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Build Java Jar
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build
+        run: | 
+          gradle compileJava
+          gradle bootJar
+
+      - name: Run Backend and Database Containers
+        env:
+          # Database Environment Variables
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_USER_PASSWORD }}
+
+          # Backend Environment Variables (Correctly Referenced)
+          ADMIN_USER: ${{ secrets.ADMIN_USER }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          API_DOMAIN: 127.0.0.1
+          API_PORT: 8080
+        run: |
+          docker compose -f docker-compose.deploy.yml up -d
+          sleep 30  # Allow time for initialization
+
+      - name: Dump Database
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+        run: |
+          export DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
+          echo "DUMP_FILE_NAME=$DUMP_FILE_NAME" >> $GITHUB_ENV
+          docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
+            bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
+          echo "Dump created: $DUMP_FILE_NAME"
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: ${{ secrets.PROJECT_ID }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Install gsutil
+        env:
+            SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          install_components: 'gsutil'
+
+      - name: Upload Dump to Cloud Storage Bucket
+        env:
+          SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
+        run: gsutil cp $DUMP_FILE_NAME "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME"
+            
+
+      - name: Import into Cloud SQL
+        env:
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          CLOUD_SQL_INSTANCE: ${{ secrets.CLOUD_SQL_INSTANCE }}
+          SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
+        run: |
+                gcloud sql import sql $CLOUD_SQL_INSTANCE \
+                  "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME" \
+                  --database="$MYSQL_DATABASE" \
+                  --quiet
+
+  deploy-prod-not-implemented-yet:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+
+    steps:
+      - name: Check out
+        run: echo "Production deployment not implemented yet"

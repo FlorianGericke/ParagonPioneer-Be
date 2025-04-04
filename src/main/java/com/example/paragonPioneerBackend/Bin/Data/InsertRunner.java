@@ -5,6 +5,7 @@ import com.example.paragonPioneerBackend.Bin.Security.AuthServices.Authenticatio
 import com.example.paragonPioneerBackend.Bin.Security.Requests.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import me.tongfei.progressbar.ProgressBar;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,18 @@ public class InsertRunner implements ApplicationRunner {
     private final PopulationRequirementInserter populationRequirementInserter;
     private final RequirementPopulationBuildingInserter costBuildingPopulation;
 
+    // Environment Vars
+    @Value("${api.security.admin.mail}")
+    private String adminMail;
+    @Value("${api.security.admin.password}")
+    private String adminPassword;
+    @Value("${spring.jpa.hibernate.ddl-auto:}")
+    private String ddlAuto;
+    @Value("${api.domain:}")
+    private String apiDomain;
+    @Value("${api.port:}")
+    private String apiPort;
+
     /**
      * Executes the data insertion tasks in the prescribed order when the application starts.
      * This method is automatically called by the Spring Boot framework, providing an entry point
@@ -44,13 +57,9 @@ public class InsertRunner implements ApplicationRunner {
                 recipeInserter.getInsertsLength() + populationRequirementInserter.getInsertsLength() +
                 buildingInserter.getInsertsLength();
 
-        try (ProgressBar pb = new ProgressBar("Data Insertion", amount + 1)) {
-            // todo Hard Coded Admin login with Clear Password is just for Developing and testing. This should be set in an ignored env file
-            try {
-                authenticationService.register(RegisterRequest.builder()
-                        .email("admin@user.de")
-                        .password("admin")
-                        .build());
+        if (ddlAuto.matches("(?i)create-drop|create|update")) {
+            try (ProgressBar pb = new ProgressBar("Data Insertion", amount + 1)) {
+                authenticationService.register(new RegisterRequest(adminMail, adminPassword));
                 pb.step();
 
                 goodInserter.run(pb::step);
@@ -62,8 +71,12 @@ public class InsertRunner implements ApplicationRunner {
                 costBuildingPopulation.run(pb::step);
             } catch (Exception ignored) {
             }
-
-            System.out.println("CMS Server: " + "http://localhost:8080/swagger-ui/index.html");
+        } else {
+            try {
+                authenticationService.register(new RegisterRequest(adminMail, adminPassword));
+            } catch (Exception ignored) {
+            }
         }
+        System.out.println("CMS Server: http://" + apiDomain+":"+apiPort+"/swagger-ui/index.html");
     }
 }

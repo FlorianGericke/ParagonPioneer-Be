@@ -32,15 +32,18 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.12.3")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.3")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.3")
+    runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.security:spring-security-test")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     compileOnly("org.projectlombok:lombok:")
-    runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("me.tongfei:progressbar:0.9.1")
+    implementation("com.google.cloud.sql:mysql-socket-factory-connector-j-8:1.6.3")
 }
+
+
 
 tasks.withType<Test> {
     useJUnitPlatform()

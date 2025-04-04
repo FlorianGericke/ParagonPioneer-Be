@@ -1,0 +1,13 @@
+steps:
+  - name: 'gradle:8-jdk-alpine'  # or pick a different version if needed
+    entrypoint: 'gradle'
+    args: [ 'bootJar' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build',
+            '-t', 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-backend-images/paragon-backend:latest',
+            '-f', '.docker/Dockerfile-backend',
+            '.' ]
+
+images:
+  - 'europe-west10-docker.pkg.dev/dxd-ai-poc/paragon-backend-images/paragon-backend:latest'
