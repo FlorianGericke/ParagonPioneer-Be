@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
         // The @Server annotation provides information about the server where the API is hosted
         servers = @Server(
                 description = "Local development server",
-                url = "${server.address:}"
+                url = "${OPEN_API_ADDRESS:}"
         ),
         // The @SecurityRequirement annotation specifies the security requirements for the API
         security = {
