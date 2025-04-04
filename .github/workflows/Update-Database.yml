@@ -59,15 +59,19 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Upload Dump to Cloud Storage Bucket
+      - name: Install gsutil
         env:
             SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
         uses: google-github-actions/setup-gcloud@v1
         with:
           install_components: 'gsutil'
-          run: |
-            chmod 644 $DUMP_FILE_NAME
-            gsutil cp $DUMP_FILE_NAME "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME"
+
+      - name: Upload Dump to Cloud Storage Bucket
+        env:
+          SQL_DUMPS_BUCKET: ${{ secrets.SQL_DUMPS_BUCKET }}
+        run: |
+          gsutil cp $DUMP_FILE_NAME "$SQL_DUMPS_BUCKET/$DUMP_FILE_NAME"
+            
 
       - name: Import into Cloud SQL
         env:
