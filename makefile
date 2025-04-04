@@ -15,7 +15,7 @@ clean_compile:
 
 rebuild_dev_enviroment:
 	make stop_dev_enviroment
-	make clean_compile:
+	make clean_compile
 	docker-compose --env-file local.env build --no-cache
 	docker-compose --env-file local.env up  --remove-orphans -d
 
@@ -35,7 +35,7 @@ rebuild_deploy_enviroment:
 	make buildJar
 	docker-compose --env-file local.env   -f docker-compose.deploy.yml build  --no-cache
 	docker-compose --env-file local.env  -f docker-compose.deploy.yml up  --remove-orphans -d
-	@echo "CMS Server: http://localhost:8080/swagger-ui/index.html"
+	@echo "CMS Server: http://${API_ADDRESS}:${API_PORT}/swagger-ui/index.html"
 
 stop_all:
 	make stop_dev_enviroment
