@@ -44,12 +44,12 @@ jobs:
 
       - name: Deploy latest image from Artifact Registry
         env:
-          ARTIFACT_IMAGE_PATH: ${{ secrets.ARTIFACT_REPOSITORY_PATH }}
+          ARTIFACT_IMAGE_PATH: ${{ secrets.ARTIFACT_IMAGE_PATH }}
           CLOUD_RUN_SERVICE_NAME: ${{ secrets.CLOUD_RUN_SERVICE_NAME }}
           CLOUD_RUN_SERVICE_REGION: ${{ secrets.BACKEND_SERVICE_REGION }}
         run: |
           gcloud run deploy "$CLOUD_RUN_SERVICE_NAME" \
-          --image "ARTIFACT_IMAGE_PATH:latest" \
+          --image "$ARTIFACT_IMAGE_PATH:latest" \
           --region "$CLOUD_RUN_SERVICE_REGION" \
           --platform managed \
           --allow-unauthenticated
