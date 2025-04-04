@@ -48,7 +48,6 @@ jobs:
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         run: |
           DUMP_FILE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')-dump.sql
-          echo "DUMP_FILE_NAME=$DUMP_FILE_NAME" >> $GITHUB_ENV
           docker compose -f docker-compose.deploy.yml exec -T mysql-prod \
             bash -c "mysqldump -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \$MYSQL_DATABASE" > $DUMP_FILE_NAME
           echo "Dump created: $DUMP_FILE_NAME"
