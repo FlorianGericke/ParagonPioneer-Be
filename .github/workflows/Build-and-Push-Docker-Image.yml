@@ -1,4 +1,4 @@
-name: Build, Test, and Deploy
+name: Deploy Backend Service to GCP
 
 on:
   push:
@@ -41,3 +41,18 @@ jobs:
 
       - name: Trigger Cloud Build
         run: gcloud builds submit --config .cloudbuilds/cloudbuild-backend.yaml .
+
+      - name: Deploy latest image from Artifact Registry
+        env:
+          ARTIFACT_REPOSITORY_PATH: ${{ secrets.ARTIFACT_REPOSITORY_PATH }}
+          CLOUD_RUN_SERVICE_NAME: ${{ secrets.CLOUD_RUN_SERVICE_NAME }}
+          CLOUD_RUN_SERVICE_REGION: ${{ secrets.BACKEND_SERVICE_REGION }}
+        run: |
+          LATEST_IMAGE=$(gcloud artifacts docker images list $ARTIFACT_REPOSITORY_PATH \
+            --limit=1 --sort-by=TIMESTAMP --format='value(NAME)')
+          echo "Deploying image: $LATEST_IMAGE"
+          gcloud run deploy $CLOUD_RUN_SERVICE_NAME \
+            --image "$LATEST_IMAGE" \
+            --region $CLOUD_RUN_SERVICE_REGION \
+            --platform managed \
+            --allow-unauthenticated
