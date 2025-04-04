@@ -40,7 +40,10 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("me.tongfei:progressbar:0.9.1")
+    implementation("com.google.cloud.sql:mysql-socket-factory-connector-j-8:1.6.3")
 }
+
+
 
 tasks.withType<Test> {
     useJUnitPlatform()
